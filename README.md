@@ -6,7 +6,7 @@ Follow the steps below to create a public transportation map using our tool.
 
 ### Steps 
 
-+ Step 1:  Download [Trujillo-OMUS]([https://github.com/trufi-association/trufi-gtfs-builder](https://github.com/trufi-association/Trujillo-OMUS))
++ Step 1:  Download [Trujillo-OMUS](https://github.com/trufi-association/Trujillo-OMUS)
 
 + Step 2: Download three tools: [Nodsjs](https://nodejs.org/en), [Git]( https://github.com/git-guides/install-git), and a text code editor. We recommend [Visual Studio (VS) Code]( https://code.visualstudio.com/).
 
