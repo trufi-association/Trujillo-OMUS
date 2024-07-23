@@ -28,9 +28,8 @@ namespace OMUS.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveVialActor(VialActor vialActor)
         {
-            if (vialActor.Id == Guid.Empty)
+            if (vialActor.Id == 0) // Assuming 0 is the default value for uninitialized int
             {
-                vialActor.Id = Guid.NewGuid();
                 _context.VialActors.Add(vialActor);
                 await _context.SaveChangesAsync();
                 return NoContent();
@@ -45,6 +44,7 @@ namespace OMUS.Controllers
                 return NoContent();
             }
         }
+
 
         // DELETE: api/VialActors/5
         [HttpDelete("{id}")]

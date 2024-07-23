@@ -28,9 +28,8 @@ namespace OMUS.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveReport(Report report)
         {
-            if (report.Id == Guid.Empty)
+            if (report.Id == 0) // Assuming 0 is the default value for uninitialized int
             {
-                report.Id = Guid.NewGuid();
                 _context.Reports.Add(report);
                 await _context.SaveChangesAsync();
                 return NoContent();
@@ -45,6 +44,7 @@ namespace OMUS.Controllers
                 return NoContent();
             }
         }
+
 
         // DELETE: api/Reports/5
         [HttpDelete("{id}")]
