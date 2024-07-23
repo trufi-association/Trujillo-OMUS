@@ -48,7 +48,7 @@ namespace OMUS.Controllers
 
         // DELETE: api/Reports/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReport(Guid id)
+        public async Task<IActionResult> DeleteReport(int id)
         {
             var report = await _context.Reports.FindAsync(id);
             if (report == null) return NotFound();

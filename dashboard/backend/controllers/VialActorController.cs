@@ -48,7 +48,7 @@ namespace OMUS.Controllers
 
         // DELETE: api/VialActors/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteVialActor(Guid id)
+        public async Task<IActionResult> DeleteVialActor(int id)
         {
             var vialActor = await _context.VialActors.FindAsync(id);
             if (vialActor == null) return NotFound();
