@@ -1,4 +1,4 @@
-package com.example.mobility_observatory
+package dev.trufi.omus
 
 import io.flutter.embedding.android.FlutterActivity
 

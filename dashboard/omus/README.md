@@ -1,4 +1,4 @@
-# mobility_observatory
+# omus
 
 A new Flutter project.
 

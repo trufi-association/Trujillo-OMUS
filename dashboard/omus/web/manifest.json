@@ -1,6 +1,6 @@
 {
-    "name": "mobility_observatory",
-    "short_name": "mobility_observatory",
+    "name": "omus",
+    "short_name": "omus",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
