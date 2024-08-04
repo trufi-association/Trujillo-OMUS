@@ -1,8 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using OMUS.Data;
-using System;
-using System.Linq;
 
 public static class DbInitializer
 {

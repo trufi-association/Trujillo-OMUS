@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using OMUS.Data;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
