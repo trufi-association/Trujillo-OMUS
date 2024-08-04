@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:omus/widgets/components/dropdown/helpers/dropdown_item.dart';
+import 'package:omus/widgets/components/dropdown/multi_select_dropdown.dart';
+import 'package:omus/widgets/components/helpers/form_request_container.dart';
+import 'package:omus/widgets/components/helpers/responsive_container.dart';
+import 'package:omus/widgets/components/textfield/form_request_date_range_field.dart';
+import 'package:omus/widgets/components/textfield/form_request_field.dart';
+import 'package:omus/widgets/components/toggle_switch/custom_toggle_switch.dart';
 import 'gtfs_service.dart';
 import 'package:provider/provider.dart';
 import 'gtfs.dart';
@@ -46,6 +53,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class _SampleRequest extends FormRequest {
+  _SampleRequest({
+    required this.text,
+    required this.dateRange,
+    required this.showAll,
+  });
+
+  factory _SampleRequest.fromScratch() => _SampleRequest(
+        text: FormItemContainer<List<String>>(fieldKey: "text", value: []),
+        dateRange: FormItemContainer<DateTimeRange>(
+          fieldKey: "keyStartDate",
+        ),
+        showAll:
+            FormItemContainer<bool>(fieldKey: "keyStartDate", value: false),
+      );
+
+  final FormItemContainer<List<String>> text;
+  final FormItemContainer<DateTimeRange> dateRange;
+  final FormItemContainer<bool> showAll;
+}
+
 class GtfsMap extends StatefulWidget {
   const GtfsMap({super.key});
 
@@ -54,70 +82,123 @@ class GtfsMap extends StatefulWidget {
 }
 
 class GtfsMapState extends State<GtfsMap> {
-  List<String> tripsSelection = [];
+  // List<String> tripsSelection = [];
   double zoom = 13;
 
   @override
   Widget build(BuildContext context) {
     final gtfsData = context.watch<Gtfs>();
     return Scaffold(
-      drawer: Drawer(
-        child: RouteTripsList(
-          tripsSelection: tripsSelection,
-          gtfsData: gtfsData,
-          onChanged: (bool? value, tripId) {
-            if (value ?? false) {
-              setState(() {
-                tripsSelection.add(tripId);
-              });
-            } else {
-              setState(() {
-                tripsSelection.remove(tripId);
-              });
-            }
-          },
-        ),
-      ),
-      appBar: AppBar(title: const Text('GTFS Route Viewer')),
-      body: FlutterMap(
-        options: MapOptions(
-            initialCenter: const LatLng(-8.1120, -79.0280),
-            initialZoom: zoom,
-            onPositionChanged: (camera, _) {
-              setState(() {
-                zoom = camera.zoom;
-              });
-            }),
-        children: [
-          openStreetMapTileLayer,
-          BaseMapLayer(
-            zoom: zoom,
-            gtfsData: gtfsData,
-          ),
-          SelectedMapLayer(
-            zoom: zoom,
-            gtfsData: gtfsData,
-            routeSelection: tripsSelection,
-          ),
-          // Stack(
-          //   children: [
-          //     PolylineLayer(
-          //       polylines: _getRoutes(gtfsData),
-          //     ),
-          //     if (zoom > 16)
-          //       MarkerLayer(
-          //         markers: _getStopsMarkers(gtfsData),
-          //       )
-          //   ],
-          // ),
-
-          // : (zoom > 14)
-          //     ? CircleLayer(
-          //         circles: _getStopsCircles(gtfsData),
-          //       )
-          //     : Container(),
-        ],
-      ),
+      // drawer: Drawer(
+      //   child: RouteTripsList(
+      //     tripsSelection: tripsSelection,
+      //     gtfsData: gtfsData,
+      //     onChanged: (bool? value, tripId) {
+      //       if (value ?? false) {
+      //         setState(() {
+      //           tripsSelection.add(tripId);
+      //         });
+      //       } else {
+      //         setState(() {
+      //           tripsSelection.remove(tripId);
+      //         });
+      //       }
+      //     },
+      //   ),
+      // ),
+      body: FormRequestContainer<_SampleRequest>(
+          create: _SampleRequest.fromScratch,
+          builder: (params) {
+            final model = params.model;
+            return Stack(
+              children: [
+                FlutterMap(
+                  options: MapOptions(
+                      initialCenter: const LatLng(-8.1120, -79.0280),
+                      initialZoom: zoom,
+                      onPositionChanged: (camera, _) {
+                        setState(() {
+                          zoom = camera.zoom;
+                        });
+                      }),
+                  children: [
+                    openStreetMapTileLayer,
+                    if (model.showAll.value == true)
+                      BaseMapLayer(
+                        zoom: zoom,
+                        gtfsData: gtfsData,
+                      ),
+                    SelectedMapLayer(
+                      zoom: zoom,
+                      gtfsData: gtfsData,
+                      routeSelection: model.text.value ?? [],
+                    ),
+                  ],
+                ),
+                Container(
+                  color: Colors.red,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      CustomResponsiveContainer(
+                        children: [
+                          CustomResponsiveItem.smFixed(
+                            child: FormDateRangePickerField(
+                              update: model.update,
+                              label: "dates",
+                              field: model.dateRange,
+                              enabled: true,
+                            ),
+                          ),
+                          CustomResponsiveItem.small(
+                            child: FormRequestMultiSelectField(
+                              update: model.update,
+                              field: model.text,
+                              label: "Category",
+                              items: gtfsData.routes
+                                  .map(
+                                    (e) => DropdownItem(
+                                      id: e.routeId,
+                                      text: e.routeShortName,
+                                    ),
+                                  )
+                                  .toList(),
+                              enabled: true,
+                            ),
+                          ),
+                          CustomResponsiveItem.small(
+                            child: FormRequestMultiSelectField(
+                              update: model.update,
+                              field: model.text,
+                              label: "Routes",
+                              items: gtfsData.routes
+                                  .map(
+                                    (e) => DropdownItem(
+                                      id: e.routeId,
+                                      text: e.routeShortName,
+                                    ),
+                                  )
+                                  .toList(),
+                              enabled: true,
+                            ),
+                          ),
+                          CustomResponsiveItem.small(
+                            child: FormRequestToggleSwitch(
+                              update: model.update,
+                              label: "show all",
+                              field: model.showAll,
+                              enabled: true,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            );
+          }),
     );
   }
 }

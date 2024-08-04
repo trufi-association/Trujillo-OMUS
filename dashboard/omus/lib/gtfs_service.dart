@@ -1,6 +1,6 @@
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
-import 'package:mobility_observatory/gtfs.dart';
+import 'package:omus/gtfs.dart';
 
 class GtfsService {
   Future<Map<String, dynamic>> _loadCsv(String path) async {
