@@ -3,6 +3,7 @@ using OMUS.Data;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OMUS.Controllers
 {
@@ -11,23 +12,30 @@ namespace OMUS.Controllers
     public class ReportsController : ControllerBase
     {
         private readonly OMUSContext _context;
+        private readonly IConfiguration _configuration;
 
-        public ReportsController(OMUSContext context)
+        public ReportsController(OMUSContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
         }
 
-        // GET: api/Reports
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Report>>> GetReports()
         {
             return await _context.Reports.ToListAsync();
         }
 
-        // POST: api/Reports
+
         [HttpPost]
-        public async Task<IActionResult> SaveReport(Report report)
+        public async Task<IActionResult> SaveReport([FromQuery] string apiKey, Report report)
         {
+            var configuredApiKey = _configuration.GetValue<string>("ApiKey");
+
+            if (apiKey != configuredApiKey)
+            {
+                return Unauthorized("Invalid API Key");
+            }
             if (report.Id == 0) // Assuming 0 is the default value for uninitialized int
             {
                 _context.Reports.Add(report);
@@ -46,7 +54,7 @@ namespace OMUS.Controllers
         }
 
 
-        // DELETE: api/Reports/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReport(int id)
         {

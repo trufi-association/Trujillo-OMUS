@@ -13,6 +13,7 @@ public static class DbInitializer
 
         context.Database.EnsureCreated();
         SeedCategories(context);
+        SeedVialActors(context);
     }
 
     private static void SeedCategories(OMUSContext context)
@@ -96,4 +97,36 @@ public static class DbInitializer
 
         context.SaveChanges();
     }
+    private static void SeedVialActors(OMUSContext context)
+    {
+        if (context.VialActors.Any())
+        {
+            return; // DB has been seeded
+        }
+
+        var vialActors = new VialActor[]
+        {
+            new VialActor { Id = 1, Name = "Peatón" },
+            new VialActor { Id = 2, Name = "Pasajero" },
+            new VialActor { Id = 3, Name = "Conductor automóvil" },
+            new VialActor { Id = 4, Name = "Conductor taxi" },
+            new VialActor { Id = 5, Name = "Conductor vehículo de transporte público" },
+            new VialActor { Id = 6, Name = "Conductor motociclista" },
+            new VialActor { Id = 7, Name = "Conductor Patineta" },
+            new VialActor { Id = 8, Name = "Conductor Ciclomotor" },
+            new VialActor { Id = 9, Name = "Conductor Taxi-ciclomotor" },
+            new VialActor { Id = 10, Name = "Conductor Carga pesada" },
+            new VialActor { Id = 11, Name = "Ciclista" },
+            new VialActor { Id = 12, Name = "Nadie (solo daños)" }
+        };
+
+
+        foreach (var actor in vialActors)
+        {
+            context.VialActors.Add(actor);
+        }
+
+        context.SaveChanges();
+    }
+
 }

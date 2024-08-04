@@ -26,3 +26,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Server=db;Database=omus;User=root;Password=password;
+      - Jwt__Key=SuperSecretKeyThatIsMuchLongerAndMoreSecure@12345
+      - Jwt__Issuer=https://trufi.dev
+      - Jwt__Audience=https://myapi.dev
+      - ApiKey=2d8526cf40634bdea3b508f01f88e5c9

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OMUS.Controllers
 {
@@ -23,13 +24,14 @@ namespace OMUS.Controllers
             _context = context;
         }
 
-        // GET: api/Categories
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             return await _context.Categories.ToListAsync();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> SaveCategory(Category category)
         {
@@ -57,7 +59,7 @@ namespace OMUS.Controllers
         }
 
 
-        // DELETE: api/Categories/5
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
@@ -69,7 +71,8 @@ namespace OMUS.Controllers
 
             return NoContent();
         }
-        // GET: api/Categories/SyncTextIt
+
+        [Authorize]
         [HttpGet("SyncTextIt")]
         public async Task<IActionResult> SyncTextIt()
         {
@@ -82,7 +85,6 @@ namespace OMUS.Controllers
 
                 var content = new StringContent(JsonConvert.SerializeObject(new
                 {
-                    name = "Categories",
                     value = categoriesJson
                 }), Encoding.UTF8, "application/json");
 

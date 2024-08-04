@@ -3,6 +3,10 @@ using OMUS.Data;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace OMUS.Controllers
 {
@@ -17,14 +21,15 @@ namespace OMUS.Controllers
             _context = context;
         }
 
-        // GET: api/VialActors
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VialActor>>> GetVialActors()
         {
             return await _context.VialActors.ToListAsync();
         }
 
-        // POST: api/VialActors
+
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> SaveVialActor(VialActor vialActor)
         {
@@ -46,7 +51,8 @@ namespace OMUS.Controllers
         }
 
 
-        // DELETE: api/VialActors/5
+
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVialActor(int id)
         {
@@ -57,6 +63,37 @@ namespace OMUS.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+
+        [Authorize]
+        [HttpGet("SyncTextIt")]
+        public async Task<IActionResult> SyncTextIt()
+        {
+            var actors = await _context.VialActors.ToListAsync();
+            var actorsJson = JsonConvert.SerializeObject(actors);
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", "0c8454f10c5917709f462d89342742a81d195d07");
+
+                var content = new StringContent(JsonConvert.SerializeObject(new
+                {
+                    value = actorsJson
+                }), Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync("https://textit.com/api/v2/globals.json?key=vialactors", content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return NoContent();
+                }
+                else
+                {
+                    var responseBody = await response.Content.ReadAsStringAsync();
+                    return StatusCode((int)response.StatusCode, responseBody);
+                }
+            }
         }
 
     }
