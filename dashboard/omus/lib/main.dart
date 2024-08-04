@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:omus/services/api_service.dart';
+import 'package:omus/services/models/category.dart';
+import 'package:omus/services/models/report.dart';
+import 'package:omus/services/models/vial_actor.dart';
 import 'package:omus/widgets/components/dropdown/helpers/dropdown_item.dart';
 import 'package:omus/widgets/components/dropdown/multi_select_dropdown.dart';
+import 'package:omus/widgets/components/helpers/form_loading_helper_new.dart';
 import 'package:omus/widgets/components/helpers/form_request_container.dart';
 import 'package:omus/widgets/components/helpers/responsive_container.dart';
 import 'package:omus/widgets/components/textfield/form_request_date_range_field.dart';
@@ -55,23 +60,40 @@ class MyApp extends StatelessWidget {
 
 class _SampleRequest extends FormRequest {
   _SampleRequest({
-    required this.text,
+    required this.categories,
+    required this.actors,
+    required this.routesSelection,
     required this.dateRange,
     required this.showAll,
   });
 
   factory _SampleRequest.fromScratch() => _SampleRequest(
-        text: FormItemContainer<List<String>>(fieldKey: "text", value: []),
+        categories: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
+        actors: FormItemContainer<List<String>>(fieldKey: "actors", value: []),
+        routesSelection: FormItemContainer<List<String>>(fieldKey: "ac", value: []),
         dateRange: FormItemContainer<DateTimeRange>(
           fieldKey: "keyStartDate",
         ),
-        showAll:
-            FormItemContainer<bool>(fieldKey: "keyStartDate", value: false),
+        showAll: FormItemContainer<bool>(fieldKey: "keyStartDate", value: false),
       );
 
-  final FormItemContainer<List<String>> text;
+  final FormItemContainer<List<String>> categories;
+  final FormItemContainer<List<String>> actors;
+  final FormItemContainer<List<String>> routesSelection;
   final FormItemContainer<DateTimeRange> dateRange;
   final FormItemContainer<bool> showAll;
+}
+
+class ServerOriginal {
+  final List<Category> categories;
+  final List<VialActor> actors;
+  final List<Report> reports;
+
+  ServerOriginal({
+    required this.categories,
+    required this.actors,
+    required this.reports,
+  });
 }
 
 class GtfsMap extends StatefulWidget {
@@ -106,9 +128,27 @@ class GtfsMapState extends State<GtfsMap> {
       //     },
       //   ),
       // ),
-      body: FormRequestContainer<_SampleRequest>(
-          create: _SampleRequest.fromScratch,
+      body: FormRequestManager<Never, _SampleRequest, ServerOriginal>(
+          id: null,
+          fromScratch: _SampleRequest.fromScratch,
+          loadModel: (_) => throw "should not happen never loadModel",
+          fromResponse: (_) => throw "should not happen never loadModel",
+          loadExtraModel: () async {
+            final response = await Future.wait([
+              ApiServices.getAllCategories(),
+              ApiServices.getAllActors(),
+              ApiServices.getAllReports(),
+            ]);
+            return ServerOriginal(
+              categories: response[0] as List<Category>,
+              actors: response[1] as List<VialActor>,
+              reports: response[2] as List<Report>,
+            );
+          },
+          saveModel: (_, {id}) async => {},
+          onSaveChanges: () => {},
           builder: (params) {
+            final helper = params.responseModel.responseHelper!;
             final model = params.model;
             return Stack(
               children: [
@@ -131,7 +171,7 @@ class GtfsMapState extends State<GtfsMap> {
                     SelectedMapLayer(
                       zoom: zoom,
                       gtfsData: gtfsData,
-                      routeSelection: model.text.value ?? [],
+                      routeSelection: model.routesSelection.value ?? [],
                     ),
                   ],
                 ),
@@ -151,16 +191,32 @@ class GtfsMapState extends State<GtfsMap> {
                               enabled: true,
                             ),
                           ),
-                          CustomResponsiveItem.small(
+                          CustomResponsiveItem.fill(
                             child: FormRequestMultiSelectField(
                               update: model.update,
-                              field: model.text,
+                              field: model.categories,
                               label: "Category",
-                              items: gtfsData.routes
+                              items: helper.categories
                                   .map(
                                     (e) => DropdownItem(
-                                      id: e.routeId,
-                                      text: e.routeShortName,
+                                      id: e.id.toString(),
+                                      text: e.categoryName.toString(),
+                                    ),
+                                  )
+                                  .toList(),
+                              enabled: true,
+                            ),
+                          ),
+                          CustomResponsiveItem.fill(
+                            child: FormRequestMultiSelectField(
+                              update: model.update,
+                              field: model.actors,
+                              label: "Vial Actors",
+                              items: helper.actors
+                                  .map(
+                                    (e) => DropdownItem(
+                                      id: e.id.toString(),
+                                      text: e.name.toString(),
                                     ),
                                   )
                                   .toList(),
@@ -170,7 +226,7 @@ class GtfsMapState extends State<GtfsMap> {
                           CustomResponsiveItem.small(
                             child: FormRequestMultiSelectField(
                               update: model.update,
-                              field: model.text,
+                              field: model.routesSelection,
                               label: "Routes",
                               items: gtfsData.routes
                                   .map(
@@ -349,24 +405,19 @@ class _SelectedMapLayerState extends State<SelectedMapLayer> {
     super.initState();
     _lastGtfsData = widget.gtfsData;
     _lastRouteSelection = widget.routeSelection.toString();
-    _cachedSelectedRoutes =
-        _getSelectedRoutes(_lastGtfsData, widget.routeSelection);
-    _cachedSelectedMarkers =
-        _getSelectedStopsMarkers(_lastGtfsData, widget.routeSelection);
+    _cachedSelectedRoutes = _getSelectedRoutes(_lastGtfsData, widget.routeSelection);
+    _cachedSelectedMarkers = _getSelectedStopsMarkers(_lastGtfsData, widget.routeSelection);
   }
 
   @override
   void didUpdateWidget(SelectedMapLayer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.gtfsData != _lastGtfsData ||
-        widget.routeSelection.toString() != _lastRouteSelection) {
+    if (widget.gtfsData != _lastGtfsData || widget.routeSelection.toString() != _lastRouteSelection) {
       setState(() {
         _lastGtfsData = widget.gtfsData;
         _lastRouteSelection = widget.routeSelection.toString();
-        _cachedSelectedRoutes =
-            _getSelectedRoutes(_lastGtfsData, widget.routeSelection);
-        _cachedSelectedMarkers =
-            _getSelectedStopsMarkers(_lastGtfsData, widget.routeSelection);
+        _cachedSelectedRoutes = _getSelectedRoutes(_lastGtfsData, widget.routeSelection);
+        _cachedSelectedMarkers = _getSelectedStopsMarkers(_lastGtfsData, widget.routeSelection);
       });
     }
   }
@@ -394,8 +445,7 @@ class _SelectedMapLayerState extends State<SelectedMapLayer> {
         if (!shapeMap.containsKey(shape.shapeId)) {
           shapeMap[shape.shapeId] = [];
         }
-        shapeMap[shape.shapeId]!
-            .add(LatLng(shape.shapePtLat, shape.shapePtLon));
+        shapeMap[shape.shapeId]!.add(LatLng(shape.shapePtLat, shape.shapePtLon));
       }
     }
 
@@ -414,17 +464,9 @@ class _SelectedMapLayerState extends State<SelectedMapLayer> {
     List<String> selectedRoutes,
   ) {
     if (gtfsData.stops.isEmpty) return [];
-    final selectedTripIds = gtfsData.trips
-        .where((trip) => selectedRoutes.contains(trip.routeId))
-        .map((trip) => trip.tripId)
-        .toList();
-    final selectedStopIds = gtfsData.stopTimes
-        .where((stopTime) => selectedTripIds.contains(stopTime.tripId))
-        .map((stopTime) => stopTime.stopId)
-        .toList();
-    return gtfsData.stops
-        .where((stop) => selectedStopIds.contains(stop.stopId))
-        .map((stop) {
+    final selectedTripIds = gtfsData.trips.where((trip) => selectedRoutes.contains(trip.routeId)).map((trip) => trip.tripId).toList();
+    final selectedStopIds = gtfsData.stopTimes.where((stopTime) => selectedTripIds.contains(stopTime.tripId)).map((stopTime) => stopTime.stopId).toList();
+    return gtfsData.stops.where((stop) => selectedStopIds.contains(stop.stopId)).map((stop) {
       return Marker(
         point: LatLng(stop.stopLat, stop.stopLon),
         alignment: Alignment.center,
