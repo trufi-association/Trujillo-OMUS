@@ -75,13 +75,11 @@ class _SingleSelectFormDropdown extends FormField<DropdownItem> {
     bool enabled = true,
     String? noItemsText,
     required bool hideError,
-    // TODO make it required
     void Function(String?)? onError,
   }) : super(
           validator: (_) {
             final value = selectedItem;
-            final errorCodeResult = validateRequired(
-                value: value, required: required, items: items);
+            final errorCodeResult = validateRequired(value: value, required: required, items: items);
             if (errorCode != errorCodeResult) onError?.call(errorCodeResult);
             return errorCodeResult;
           },
@@ -92,15 +90,14 @@ class _SingleSelectFormDropdown extends FormField<DropdownItem> {
             labelText: labelText,
             hideError: hideError,
             items: items,
-            selectedValue:
-                selectedItem != null ? DropdownItem(id: selectedItem) : null,
+            selectedValue: selectedItem != null ? DropdownItem(id: selectedItem) : null,
             onChanged: (value) {
               onChanged?.call(value);
               if (errorCode != null) {
-                final errorCodeResult = validateRequired(
-                    value: value?.id, required: required, items: items);
-                if (errorCode != errorCodeResult)
+                final errorCodeResult = validateRequired(value: value?.id, required: required, items: items);
+                if (errorCode != errorCodeResult) {
                   onError?.call(errorCodeResult);
+                }
               }
             },
             enabled: enabled,
@@ -126,9 +123,7 @@ class _SingleSelectFormDropdown extends FormField<DropdownItem> {
 
     if (value == null) return "formValidator.error.fieldSelectAnOption";
 
-    return items.where((item) => item.id == value).isNotEmpty
-        ? null
-        : "formValidator.error.fieldSelectAnOption";
+    return items.where((item) => item.id == value).isNotEmpty ? null : "formValidator.error.fieldSelectAnOption";
   }
 }
 
@@ -174,8 +169,7 @@ class _SingleSelectDropdown extends StatefulWidget {
   State<_SingleSelectDropdown> createState() => _SingleSelectDropdownState();
 }
 
-class _SingleSelectDropdownState extends State<_SingleSelectDropdown>
-    with SingleTickerProviderStateMixin {
+class _SingleSelectDropdownState extends State<_SingleSelectDropdown> with SingleTickerProviderStateMixin {
   final tooltipTextFieldKey = GlobalKey<TooltipMaterialState>();
   DropdownItem? selectedItem;
 
@@ -207,7 +201,7 @@ class _SingleSelectDropdownState extends State<_SingleSelectDropdown>
     return TooltipContainer(
       tooltipMaterialStateKey: tooltipTextFieldKey,
       labelText: widget.labelText,
-      inputText: selectedItem != null ? selectedItem!.text : null,
+      inputText: selectedItem?.text,
       required: widget.required,
       enabled: widget.enabled,
       readOnly: widget.readOnly,
@@ -222,14 +216,10 @@ class _SingleSelectDropdownState extends State<_SingleSelectDropdown>
       heightMessage: widget.items.isEmpty
           ? 41
           : filteredItemsCount != widget.items.length || showSearchText
-              ? (filteredItemsCount > 0 ? filteredItemsCount * 41.0 : 1) +
-                  48 +
-                  2.0
+              ? (filteredItemsCount > 0 ? filteredItemsCount * 41.0 : 1) + 48 + 2.0
               : widget.items.length >= widget.minItemsForSearch
                   ? (widget.items.length * 41.0) + 48 + 2
-                  : (widget.items.isNotEmpty
-                      ? (widget.items.length * 41.0) + 2
-                      : 1),
+                  : (widget.items.isNotEmpty ? (widget.items.length * 41.0) + 2 : 1),
       isMenuAnchor: true,
       widthMessage: 0,
       messageWidget: (context, messageWidth, isBetterBottom, showScrollBar) {
@@ -251,10 +241,8 @@ class _SingleSelectDropdownState extends State<_SingleSelectDropdown>
               ? Container(
                   width: messageWidth,
                   height: 41,
-                  padding: const EdgeInsets.only(
-                      bottom: 4, left: 4, right: 4, top: 4),
+                  padding: const EdgeInsets.only(bottom: 4, left: 4, right: 4, top: 4),
                   child: Center(
-                    // TODO LocalizationKey.withoutTranslate
                     child: Text(
                       widget.noItemsText ?? "No items available",
                       textAlign: TextAlign.center,
@@ -263,10 +251,7 @@ class _SingleSelectDropdownState extends State<_SingleSelectDropdown>
                 )
               : SingleDropdownOverlay(
                   width: messageWidth,
-                  enableFilter: filteredItemsCount != widget.items.length ||
-                          showSearchText
-                      ? true
-                      : widget.items.length >= widget.minItemsForSearch,
+                  enableFilter: filteredItemsCount != widget.items.length || showSearchText ? true : widget.items.length >= widget.minItemsForSearch,
                   items: widget.items,
                   selectedItem: selectedItem,
                   onItemChange: (item) {

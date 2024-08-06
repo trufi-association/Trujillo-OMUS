@@ -158,7 +158,6 @@ class TooltipMaterialState extends State<TooltipWidget> with SingleTickerProvide
       child: OverlayPortal(
         controller: _overlayController,
         overlayChildBuilder: (overlayContext) {
-          // TODO works for dropdowns, I need improve for all popupTooltips
           final childRenderBox = context.findRenderObject()! as RenderBox;
           final messageWidth = widget.isMenuAnchor ? childRenderBox.size.width + 2 : widget.widthMessage;
           final messageHeight = widget.heightMessage;
@@ -172,7 +171,6 @@ class TooltipMaterialState extends State<TooltipWidget> with SingleTickerProvide
           final bottomSpace = overlayRenderBox.size.height - childPosition.dy - childRenderBox.size.height;
           final topSpace = childPosition.dy;
 
-          // TODO: Add params for dynamic 'showTop'/'showBottom' visibility by percent.
           final enableSpaceBottom = bottomSpace > messageHeight;
           final enableSpaceTop = topSpace > messageHeight;
           final isBetterBottom = enableSpaceBottom || topSpace < bottomSpace * 2;
@@ -353,8 +351,6 @@ class TooltipMaterialState extends State<TooltipWidget> with SingleTickerProvide
                     focusColor: widget.focusColor,
                     hoverColor: widget.hoverColor,
                     autofocus: widget.autofocus,
-                    // Colors for splashColor, overlayColor
-                    // TODO improve for dropdowns and popups
                     splashColor: widget.splashColor,
                     overlayColor: WidgetStatePropertyAll(widget.overlayColor),
                     onTap: widget.enabled

@@ -89,8 +89,7 @@ class FormRequestField<T> extends StatelessWidget {
     this.minLines,
     this.maxLines,
     this.isTextArea = false,
-  }) : assert(referencedFieldValue == null || backgroundColor == null,
-            "Only one of referencedFieldValue or backgroundColor can be non-null");
+  }) : assert(referencedFieldValue == null || backgroundColor == null, "Only one of referencedFieldValue or backgroundColor can be non-null");
   final FormItemContainer<T> field;
   final String label;
   final bool enabled;
@@ -127,8 +126,7 @@ class FormRequestField<T> extends StatelessWidget {
         hintText: hintText,
         textLabel: label,
         required: field.required,
-        initialValue:
-            field.value?.toString() ?? referencedFieldValue?.value?.toString(),
+        initialValue: field.value?.toString() ?? referencedFieldValue?.value?.toString(),
         onChanged: (value) {
           final parsedValue = parse(value);
           update(() => field.value = parsedValue);
@@ -290,8 +288,7 @@ class FormElementTextField extends FormField<String> {
             focusNode: focusNode,
             useObscureText: obscureText,
             hideClean: hideClean,
-            textAlign: textAlign ??
-                (suffixText == null ? TextAlign.start : TextAlign.end),
+            textAlign: textAlign ?? (suffixText == null ? TextAlign.start : TextAlign.end),
             readOnly: readOnly,
             keyboardType: keyboardType,
             autofillHints: autofillHints,
@@ -300,12 +297,11 @@ class FormElementTextField extends FormField<String> {
           ),
         );
 
-  static String? validateRequired({String? value, required bool required}) =>
-      required
-          ? value == null || value.isEmpty
-              ? ""
-              : null
-          : null;
+  static String? validateRequired({String? value, required bool required}) => required
+      ? value == null || value.isEmpty
+          ? ""
+          : null
+      : null;
 }
 
 // Text field base
@@ -380,8 +376,7 @@ class CustomFormBaseTextField extends StatefulWidget {
   final String? hintText;
 
   @override
-  State<CustomFormBaseTextField> createState() =>
-      _CustomFormBaseTextFieldState();
+  State<CustomFormBaseTextField> createState() => _CustomFormBaseTextFieldState();
 }
 
 class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
@@ -391,8 +386,7 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
 
   @override
   void initState() {
-    _controller =
-        widget.controller ?? TextEditingController(text: widget.initialValue);
+    _controller = widget.controller ?? TextEditingController(text: widget.initialValue);
     super.initState();
   }
 
@@ -402,8 +396,7 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
     if (widget.initialValue != oldWidget.initialValue) {
       final selection = _controller.selection;
       _controller.text = widget.initialValue ?? "";
-      if (selection.baseOffset <= _controller.text.length)
-        _controller.selection = selection;
+      if (selection.baseOffset <= _controller.text.length) _controller.selection = selection;
     }
   }
 
@@ -466,9 +459,7 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                     decoration: InputDecoration(
                       hintText: widget.hintText,
                       enabled: widget.enabled,
-                      fillColor: widget.enabled
-                          ? Colors.transparent
-                          : theme.hoverColor,
+                      fillColor: widget.enabled ? Colors.transparent : theme.hoverColor,
                       border: InputBorder.none,
                       label: widget.hideTextLabel
                           ? null
@@ -479,7 +470,7 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                                   widget.textLabel,
                                 ),
                                 if (widget.required)
-                                  Text(
+                                  const Text(
                                     " *",
                                   ),
                               ],
@@ -490,18 +481,15 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                       floatingLabelStyle: TextStyle(
                         color: theme.colorScheme.onSurface.withOpacity(.8),
                       ),
-                      contentPadding:
-                          const EdgeInsets.only(top: 3, left: 7, right: 7),
+                      contentPadding: const EdgeInsets.only(top: 3, left: 7, right: 7),
                       prefixText: widget.prefixText,
                       suffix: widget.suffixText != null
                           ? Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: SpacingValue.px4.value),
+                              margin: EdgeInsets.symmetric(horizontal: SpacingValue.px4.value),
                               child: Text(widget.suffixText!),
                             )
                           : null,
-                      suffixIcon: widget.suffixIcon != null ||
-                              widget.textAlign == TextAlign.end
+                      suffixIcon: widget.suffixIcon != null || widget.textAlign == TextAlign.end
                           ? widget.suffixIcon != null
                               ? Container(
                                   margin: const EdgeInsets.only(
@@ -520,15 +508,12 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                                     top: isTextArea ? 8 : 0,
                                   ),
                                   child: Column(
-                                    mainAxisAlignment: isTextArea
-                                        ? MainAxisAlignment.start
-                                        : MainAxisAlignment.center,
+                                    mainAxisAlignment: isTextArea ? MainAxisAlignment.start : MainAxisAlignment.center,
                                     children: [
                                       FocusScope(
                                         canRequestFocus: false,
                                         child: CustomIconButton(
-                                          message:
-                                              obscureText ? "Hide" : "Show",
+                                          message: obscureText ? "Hide" : "Show",
                                           // hoverColor: Colors.transparent,
                                           // highlightColor: Colors.transparent,
                                           onPressed: () {
@@ -536,9 +521,7 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                                               () => obscureText = !obscureText,
                                             );
                                           },
-                                          icon: obscureText
-                                              ? Icons.visibility_off
-                                              : Icons.visibility,
+                                          icon: obscureText ? Icons.visibility_off : Icons.visibility,
                                           enabled: widget.enabled,
                                           color: theme.colorScheme.onSurface,
                                         ),
@@ -548,9 +531,7 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                                 )
                               : isFocus && !widget.readOnly && !widget.hideClean
                                   ? Column(
-                                      mainAxisAlignment: isTextArea
-                                          ? MainAxisAlignment.start
-                                          : MainAxisAlignment.center,
+                                      mainAxisAlignment: isTextArea ? MainAxisAlignment.start : MainAxisAlignment.center,
                                       children: [
                                         FocusScope(
                                           canRequestFocus: false,
@@ -564,8 +545,7 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                                             },
                                             icon: Icons.close,
                                             enabled: widget.enabled,
-                                            color: theme.colorScheme.onSurface
-                                                .withOpacity(.5),
+                                            color: theme.colorScheme.onSurface.withOpacity(.5),
                                           ),
                                         ),
                                       ],
@@ -583,9 +563,7 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                 children: [
                   Icon(
                     Icons.warning,
-                    color: errorCodeTranslated.isNotEmpty
-                        ? theme.colorScheme.error
-                        : Colors.transparent,
+                    color: errorCodeTranslated.isNotEmpty ? theme.colorScheme.error : Colors.transparent,
                     size: 20,
                   ),
                   const SizedBox(

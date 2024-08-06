@@ -44,23 +44,17 @@ class TooltipTextWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (config == null) return child;
-    final theme = Theme.of(context);
     final textScaler = MediaQuery.of(context).textScaler;
     return LayoutBuilder(
       builder: (context, constraints) {
-        final width = config!.isMenuAnchor
-            ? constraints.maxWidth
-            : config!.maxWidthMessage;
+        final width = config!.isMenuAnchor ? constraints.maxWidth : config!.maxWidthMessage;
         Size messageSize;
         if (config!.message != null) {
-          messageSize = _calculateTextSize(
-              config!.message!, width, TextStyle(), textScaler);
+          messageSize = _calculateTextSize(config!.message!, width, const TextStyle(), textScaler);
         } else {
-          messageSize =
-              _calculateInlineSpanSize(config!.richMessage!, width, textScaler);
+          messageSize = _calculateInlineSpanSize(config!.richMessage!, width, textScaler);
         }
-        final calculatedWidth =
-            messageSize.width <= width ? messageSize.width + 16 : width + 16;
+        final calculatedWidth = messageSize.width <= width ? messageSize.width + 16 : width + 16;
         final calculatedHeight = messageSize.height + 12;
         return TooltipWidget(
           widthMessage: calculatedWidth,
@@ -77,9 +71,7 @@ class TooltipTextWidget extends StatelessWidget {
           ),
           isMenuAnchor: config!.isMenuAnchor,
           showArrow: false,
-          messageWidget:
-              (context, messageWidth, isBetterBottom, showScrollBar) =>
-                  Container(
+          messageWidget: (context, messageWidth, isBetterBottom, showScrollBar) => Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
             width: config!.isMenuAnchor ? messageWidth : null,
             child: config!.message != null

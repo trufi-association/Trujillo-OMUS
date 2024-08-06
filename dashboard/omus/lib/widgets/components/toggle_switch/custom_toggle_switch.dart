@@ -1,6 +1,5 @@
 import "package:flutter/material.dart";
 import "package:omus/widgets/components/helpers/form_loading_helper_new.dart";
-import "package:omus/widgets/components/spacing/space_values.dart";
 import "package:omus/widgets/components/textfield/form_request_field.dart";
 import "package:omus/widgets/components/textfield/helpers/form_container.dart";
 import "package:omus/widgets/components/tooltips/tooltip_widgets.dart";
@@ -104,13 +103,11 @@ class FormItemToggleSwitch extends FormField<bool?> {
           ),
         );
 
-  static String? validateRequired(
-          {required bool? value, required bool required}) =>
-      required
-          ? value == null
-              ? ""
-              : null
-          : null;
+  static String? validateRequired({required bool? value, required bool required}) => required
+      ? value == null
+          ? ""
+          : null
+      : null;
 }
 
 class CustomToggleSwitch extends StatefulWidget {
@@ -185,9 +182,7 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
                       width: 48,
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: isFocus
-                              ? theme.colorScheme.primary.withOpacity(.15)
-                              : Colors.transparent,
+                          color: isFocus ? theme.colorScheme.primary.withOpacity(.15) : Colors.transparent,
                           width: 3,
                         ),
                         borderRadius: BorderRadius.circular(24),
@@ -196,14 +191,10 @@ class _CustomToggleSwitchState extends State<CustomToggleSwitch> {
                         scale: 0.8,
                         child: Switch(
                           inactiveThumbColor: theme.colorScheme.surface,
-                          inactiveTrackColor:
-                              theme.colorScheme.surfaceContainerHigh,
+                          inactiveTrackColor: theme.colorScheme.surfaceContainerHigh,
                           activeTrackColor: const Color(0xFF35B611),
                           activeColor: theme.colorScheme.surface,
-                          trackOutlineColor: WidgetStatePropertyAll(
-                              isFocus && !value
-                                  ? theme.colorScheme.primary
-                                  : null),
+                          trackOutlineColor: WidgetStatePropertyAll(isFocus && !value ? theme.colorScheme.primary : null),
                           value: value,
                           onChanged: widget.enabled
                               ? widget.onChanged != null

@@ -32,7 +32,6 @@ class _AsyncHelperState extends State<AsyncHelper> {
       });
     } catch (e) {
       setState(() {
-        // TODO inject TOAST
         loadingStatus = LoadingStatus.error(e.toString());
       });
     }

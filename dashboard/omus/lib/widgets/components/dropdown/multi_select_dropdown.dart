@@ -67,9 +67,7 @@ class _MultiSelectFormDropdown extends FormField<List<String>> {
   }) : super(
           validator: (_) {
             final value = selectedItems;
-            final errorCodeResult = required
-                ? validateRequired(minSelectionRequired, value.length)
-                : null;
+            final errorCodeResult = required ? validateRequired(minSelectionRequired, value.length) : null;
             if (errorCode != errorCodeResult) onError?.call(errorCodeResult);
             return errorCodeResult;
           },
@@ -93,11 +91,10 @@ class _MultiSelectFormDropdown extends FormField<List<String>> {
             onSelectionItems: (value) {
               onSelectionItems?.call(value);
               if (errorCode != null) {
-                final errorCodeResult = required
-                    ? validateRequired(minSelectionRequired, value.length)
-                    : null;
-                if (errorCode != errorCodeResult)
+                final errorCodeResult = required ? validateRequired(minSelectionRequired, value.length) : null;
+                if (errorCode != errorCodeResult) {
                   onError?.call(errorCodeResult);
+                }
               }
             },
             enabled: onSelectionItems != null,
@@ -115,9 +112,7 @@ class _MultiSelectFormDropdown extends FormField<List<String>> {
         );
 
   static String? validateRequired(int minSelectionRequired, int numSelected) =>
-      minSelectionRequired > numSelected
-          ? "formValidator.error.fieldSelectAtLeastNroOptions:$minSelectionRequired"
-          : null;
+      minSelectionRequired > numSelected ? "formValidator.error.fieldSelectAtLeastNroOptions:$minSelectionRequired" : null;
 }
 
 class MultiSelectDropdown extends StatefulWidget {
@@ -163,8 +158,7 @@ class MultiSelectDropdown extends StatefulWidget {
   State<MultiSelectDropdown> createState() => _MultiSelectDropdownState();
 }
 
-class _MultiSelectDropdownState extends State<MultiSelectDropdown>
-    with SingleTickerProviderStateMixin {
+class _MultiSelectDropdownState extends State<MultiSelectDropdown> with SingleTickerProviderStateMixin {
   bool showSearchText = false;
   late int filteredItemsCount;
   List<DropdownItem> selectedItems = [];
@@ -192,9 +186,7 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown>
     return TooltipContainer(
       hideError: true,
       labelText: widget.labelText,
-      inputText: selectedItems.isNotEmpty
-          ? selectedItems.map((e) => e.text).join(", ")
-          : null,
+      inputText: selectedItems.isNotEmpty ? selectedItems.map((e) => e.text).join(", ") : null,
       required: widget.required,
       enabled: widget.enabled,
       readOnly: widget.readOnly,
@@ -208,14 +200,10 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown>
       heightMessage: widget.items.isEmpty
           ? 41
           : filteredItemsCount != widget.items.length || showSearchText
-              ? (filteredItemsCount > 0 ? filteredItemsCount * 41.0 : 1) +
-                  48 +
-                  2.0
+              ? (filteredItemsCount > 0 ? filteredItemsCount * 41.0 : 1) + 48 + 2.0
               : widget.items.length >= widget.minItemsForSearch
                   ? (widget.items.length * 41.0) + 48 + 2
-                  : (widget.items.isNotEmpty
-                      ? (widget.items.length * 41.0) + 2
-                      : 1),
+                  : (widget.items.isNotEmpty ? (widget.items.length * 41.0) + 2 : 1),
       isMenuAnchor: true,
       widthMessage: 0,
       messageWidget: (context, messageWidth, isBetterBottom, showScrollBar) {
@@ -237,10 +225,8 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown>
               ? Container(
                   width: messageWidth,
                   height: 41,
-                  padding: const EdgeInsets.only(
-                      bottom: 4, left: 4, right: 4, top: 4),
+                  padding: const EdgeInsets.only(bottom: 4, left: 4, right: 4, top: 4),
                   child: Center(
-                    // TODO LocalizationKey.withoutTranslate
                     child: Text(
                       widget.noItemsText ?? "No items available",
                       textAlign: TextAlign.center,
@@ -251,10 +237,7 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown>
                   width: messageWidth,
                   items: widget.items,
                   selectedItems: selectedItems,
-                  enableFilter: filteredItemsCount != widget.items.length ||
-                          showSearchText
-                      ? true
-                      : widget.items.length >= widget.minItemsForSearch,
+                  enableFilter: filteredItemsCount != widget.items.length || showSearchText ? true : widget.items.length >= widget.minItemsForSearch,
                   onItemChange: (item, value) {
                     _setCheck(item: item, value: value);
                     widget.onItemChange?.call(item.id, value);

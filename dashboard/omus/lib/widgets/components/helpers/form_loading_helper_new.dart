@@ -110,8 +110,7 @@ class FormRequestHelper<R, M extends FormRequest, H> extends StatefulWidget {
   State createState() => _FormRequestHelperState<R, M, H>();
 }
 
-class _FormRequestHelperState<R, M extends FormRequest, H>
-    extends State<FormRequestHelper<R, M, H>> {
+class _FormRequestHelperState<R, M extends FormRequest, H> extends State<FormRequestHelper<R, M, H>> {
   ResponseModelContainer<R, H>? responseModel;
 
   @override
@@ -124,9 +123,9 @@ class _FormRequestHelperState<R, M extends FormRequest, H>
 
   @override
   Widget build(BuildContext context) {
-    if (widget.asyncHelperParams.loadingStatus.isLoading &&
-        responseModel?.response == null)
+    if (widget.asyncHelperParams.loadingStatus.isLoading && responseModel?.response == null) {
       return const Center(child: CircularProgressIndicator());
+    }
 
     if (widget.asyncHelperParams.loadingStatus.errorCode != null) {
       return Center(
@@ -134,20 +133,19 @@ class _FormRequestHelperState<R, M extends FormRequest, H>
           children: [
             Text(widget.asyncHelperParams.loadingStatus.errorCode!),
             ElevatedButton(
-              child: Text("Try again"),
               onPressed: loadModel,
+              child: const Text("Try again"),
             ),
           ],
         ),
       );
     }
-    if (responseModel == null)
+    if (responseModel == null) {
       return const Center(child: CircularProgressIndicator());
+    }
 
     return FormRequestContainer<M>(
-      create: () => responseModel!.response == null
-          ? widget.defaultCreate()
-          : widget.convertModel(responseModel!.response as R),
+      create: () => responseModel!.response == null ? widget.defaultCreate() : widget.convertModel(responseModel!.response as R),
       builder: (formRequestParams) => AsyncHelper(
         builder: (params) => widget.builder(
           FormRequestHelperParams<R, M, H>(
@@ -189,8 +187,7 @@ class _FormRequestHelperState<R, M extends FormRequest, H>
             if (widget.loadExtraModel != null) widget.loadExtraModel!(),
           ]);
           final modelResponse = response[0] as R;
-          final helperModelResponse =
-              widget.loadExtraModel != null ? response[1] as H : null;
+          final helperModelResponse = widget.loadExtraModel != null ? response[1] as H : null;
           setState(() {
             responseModel = ResponseModelContainer(
               response: modelResponse,

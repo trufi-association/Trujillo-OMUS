@@ -1,34 +1,5 @@
 stop_id,stop_name,stop_lat,stop_lon
-1873334296,Avenida Miguel Grau,-8.0144992,-79.0677498
-1098621624,Avenida Miguel Grau,-8.0154657,-79.0674321
-1873334317,Avenida Miguel Grau,-8.0165412,-79.0670709
-1873334321,Avenida Miguel Grau,-8.0174155,-79.0667816
-1098609636,Avenida Miguel Grau,-8.0187303,-79.0663502
-1098599021,Avenida Miguel Grau,-8.0197057,-79.0660266
-1098649119,Avenida Miguel Grau,-8.020741,-79.0657266
-1098625991,Avenida Miguel Grau,-8.02175,-79.0653948
-1873334364,Avenida Miguel Grau,-8.0227735,-79.06505
-1098618780,Avenida Miguel Grau,-8.0236644,-79.0647442
-5463851058,Avenida Miguel Grau,-8.0246215,-79.0644435
-1098607101,Avenida Miguel Grau,-8.0265007,-79.0638236
-1098589764,Avenida Miguel Grau,-8.0274584,-79.0635083
-1098646213,Avenida Miguel Grau,-8.0284624,-79.0631824
-1873334391,Avenida Miguel Grau,-8.02939,-79.0628901
-1873334400,Avenida Miguel Grau,-8.0303459,-79.0625942
-1873334402,Avenida Miguel Grau,-8.0313187,-79.0622953
-11023223487,Avenida Miguel Grau,-8.0326105,-79.0618874
-1098640018,Avenida Miguel Grau,-8.0335434,-79.0615845
-11023223486,Avenida Miguel Grau y Avenida 45,-8.0346473,-79.0612267
-5491760454,Avenida Miguel Grau,-8.0360555,-79.0607618
-8089658062,Avenida Miguel Grau,-8.0372841,-79.0603767
-3110225076,Avenida Miguel Grau,-8.0384175,-79.0600244
-4438549628,Avenida Miguel Grau,-8.0394936,-79.0596857
-1873334431,Avenida Miguel Grau,-8.0405215,-79.0593414
-11023365338,Avenida Miguel Grau,-8.041676,-79.0589773
-1098594821,Avenida Miguel Grau,-8.0433406,-79.0584628
-1098612209,Avenida Miguel Grau,-8.0443879,-79.0581179
-8134298763,Avenida Miguel Grau,-8.046071,-79.0575908
-11023223472,Avenida Miguel Grau,-8.0470778,-79.0572741
+1286991513,Avenida Miguel Grau,-8.0477341,-79.0570924
 1286991524,Avenida Miguel Grau,-8.0486276,-79.0569175
 1286991489,Avenida José Gabriel Condorcanqui,-8.0497849,-79.0567069
 1286991454,Avenida José Gabriel Condorcanqui,-8.0506948,-79.0565538
@@ -243,17 +214,36 @@ stop_id,stop_name,stop_lat,stop_lon
 5453884050,Avenida José Gabriel Condorcanqui y Avenida 1,-8.0519812,-79.0557002
 1098586464,Avenida José Gabriel Condorcanqui,-8.0501681,-79.0562631
 1098614755,Avenida José Gabriel Condorcanqui y Avenida Miguel Grau,-8.0489378,-79.0566535
-1286991513,Avenida Miguel Grau,-8.0477341,-79.0570924
+8134298763,Avenida Miguel Grau,-8.046071,-79.0575908
 8134298762,Avenida Miguel Grau,-8.0451626,-79.0578769
+1098594821,Avenida Miguel Grau,-8.0433406,-79.0584628
 5463865441,Avenida Miguel Grau,-8.0422399,-79.0588091
 11023223476,Avenida Miguel Grau,-8.0406688,-79.0592911
 11023223477,Avenida Miguel Grau,-8.0396448,-79.0596323
+3110225076,Avenida Miguel Grau,-8.0384175,-79.0600244
 3110225074,Avenida Miguel Grau,-8.0373562,-79.0603568
+5491760454,Avenida Miguel Grau,-8.0360555,-79.0607618
+11023223486,Avenida Miguel Grau y Avenida 45,-8.0346473,-79.0612267
+1098640018,Avenida Miguel Grau,-8.0335434,-79.0615845
 1873334412,Avenida Miguel Grau,-8.0326655,-79.0618761
 1098601279,Avenida Miguel Grau,-8.0315161,-79.0622332
+1873334400,Avenida Miguel Grau,-8.0303459,-79.0625942
+1873334391,Avenida Miguel Grau,-8.02939,-79.0628901
+1098646213,Avenida Miguel Grau,-8.0284624,-79.0631824
+1098589764,Avenida Miguel Grau,-8.0274584,-79.0635083
+1098607101,Avenida Miguel Grau,-8.0265007,-79.0638236
 1098617982,Avenida Miguel Grau,-8.0254533,-79.0641691
 9148497683,Avenida Miguel Grau,-8.0242201,-79.0645712
+1873334364,Avenida Miguel Grau,-8.0227735,-79.06505
+1098625991,Avenida Miguel Grau,-8.02175,-79.0653948
+1098649119,Avenida Miguel Grau,-8.020741,-79.0657266
+1098599021,Avenida Miguel Grau,-8.0197057,-79.0660266
+1098609636,Avenida Miguel Grau,-8.0187303,-79.0663502
 1098630656,Avenida Miguel Grau,-8.0177196,-79.066681
+1873334317,Avenida Miguel Grau,-8.0165412,-79.0670709
+1098621624,Avenida Miguel Grau,-8.0154657,-79.0674321
+1873334301,Avenida Miguel Grau,-8.0145374,-79.0677509
+1873334296,Avenida Miguel Grau,-8.0143077,-79.0678331
 11793990948,Carretera Panamericana Norte,-7.9930206,-79.0745743
 5252493420,Carretera Panamericana Norte,-7.9920813,-79.0748766
 11087490489,Carretera Panamericana Norte,-7.9944451,-79.0743091
@@ -270,6 +260,18 @@ stop_id,stop_name,stop_lat,stop_lon
 5079648965,innominada,-8.0103589,-79.0698273
 5622983455,Avenida Miguel Grau,-8.0110427,-79.0689043
 1286991453,Avenida Miguel Grau,-8.0128547,-79.0683061
+3981106611,Avenida Miguel Grau,-8.015276,-79.0674919
+1873334321,Avenida Miguel Grau,-8.0174155,-79.0667816
+1098618780,Avenida Miguel Grau,-8.0236644,-79.0647442
+5463851058,Avenida Miguel Grau,-8.0246215,-79.0644435
+1873334402,Avenida Miguel Grau,-8.0313187,-79.0622953
+11023223487,Avenida Miguel Grau,-8.0326105,-79.0618874
+8089658062,Avenida Miguel Grau,-8.0372841,-79.0603767
+4438549628,Avenida Miguel Grau,-8.0394936,-79.0596857
+1873334431,Avenida Miguel Grau,-8.0405215,-79.0593414
+11023365338,Avenida Miguel Grau,-8.041676,-79.0589773
+1098612209,Avenida Miguel Grau,-8.0443879,-79.0581179
+11023223472,Avenida Miguel Grau,-8.0470778,-79.0572741
 5489234454,Avenida 4,-8.0571947,-79.0534188
 1098595369,Avenida 4,-8.0568434,-79.0523473
 5489234434,Avenida 4,-8.0562774,-79.050735
@@ -396,9 +398,8 @@ stop_id,stop_name,stop_lat,stop_lon
 10980257049,Carretera Panamericana Norte,-8.001526,-79.0718935
 9099253135,Carretera Panamericana Norte,-8.0006347,-79.0721756
 3743516627,Carretera Panamericana Norte,-7.9994173,-79.0725512
-11539601154,Carretera Panamericana Norte,-7.9974556,-79.0731686
-11539601124,Carretera Panamericana Norte,-7.9966162,-79.0728548
-11539601148,Carretera Panamericana Norte,-7.9958274,-79.0734208
+11539601121,Carretera Panamericana Norte,-7.9974556,-79.0731686
+11539601145,innominada,-7.9958539,-79.073685
 11087490488,Carretera Panamericana Norte,-7.994375,-79.0741495
 4427239257,Calle Guadalupe de Victoria y Calle Pedro Domingo Murillo Sapiola,-8.0809971,-79.0463039
 1098635083,Avenida Metropolitana 1,-8.0913903,-79.0416828
@@ -452,7 +453,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098589453,Jirón Desamparados,-8.1419388,-79.0561838
 1091301934,Jirón Desamparados,-8.1413584,-79.0569657
 1098627824,Jirón Desamparados y Calle Jose Pardo,-8.1406992,-79.0578132
-5073743821,Avenida Libertad,-8.1394614,-79.0579045
+5073743821,Avenida Libertad,-8.1397691,-79.0581436
 11828708308,Avenida Libertad,-8.1385973,-79.0572438
 3918770220,Avenida Libertad,-8.1390309,-79.057649
 2481694306,Avenida Libertad y Jirón Desamparados,-8.1401616,-79.0585535
@@ -594,10 +595,10 @@ stop_id,stop_name,stop_lat,stop_lon
 4452550920,Avenida Perú y Avenida América Sur,-8.0995142,-79.0141167
 5098743745,Prolongación Avenida Perú,-8.0985189,-79.0131942
 1050964095,Prolongación Avenida Perú,-8.0977145,-79.0122114
-5432184395,Prolongación Avenida Perú y Avenida Federico Villarreal,-8.0966034,-79.0114639
+5432184395,Prolongación Avenida Perú y Avenida Federico Villarreal,-8.0966151,-79.0114521
 1098600772,Avenida Federico Villarreal y Calle Julio Cesar Tello,-8.0955952,-79.012748
 5480827368,Avenida Federico Villarreal,-8.0950845,-79.0135335
-1098618318,Avenida Federico Villarreal y Avenida Prolongación Santa,-8.094103,-79.0150487
+1098618318,Avenida Federico Villarreal y Avenida Prolongación Santa,-8.094128,-79.0150384
 1098614032,Avenida Prolongación Santa,-8.0922298,-79.0140877
 5098526275,Avenida Prolongación Santa,-8.0912664,-79.0135709
 1098635222,Avenida Prolongación Santa,-8.089975,-79.0128941
@@ -660,7 +661,6 @@ stop_id,stop_name,stop_lat,stop_lon
 1098625124,Avenida Manuel Vera Enríquez,-8.1015177,-79.0350404
 2591048778,Avenida Teodoro Valcárcel,-8.1011366,-79.0357156
 1098636126,Avenida Nicolás de Piérola,-8.1007516,-79.0363835
-11539601145,innominada,-7.9958539,-79.073685
 1098632446,Avenida Jesús de Nazareth y Avenida Roma,-8.1100254,-79.0380882
 4453868027,Avenida Victor Larco Herrera,-8.1177891,-79.0330129
 1088227386,Avenida Victor Larco Herrera y Calle Isabel de Bobadilla,-8.1186447,-79.0337683
@@ -704,7 +704,6 @@ stop_id,stop_name,stop_lat,stop_lon
 5089509044,Avenida América Oeste,-8.0951998,-79.0397004
 1098590748,innominada,-8.0949124,-79.0389067
 11851386300,Pasaje A,-8.015139,-79.0682035
-3981106611,Avenida Miguel Grau,-8.015276,-79.0674919
 360997596,Avenida América Oeste,-8.09533,-79.0402661
 1088227189,Avenida América Oeste,-8.0963566,-79.041656
 1088227362,Avenida América Oeste,-8.0972682,-79.0428649
@@ -724,9 +723,9 @@ stop_id,stop_name,stop_lat,stop_lon
 1098599256,Avenida Jesús de Nazareth,-8.1098066,-79.038469
 11794015159,Prolongación Avenida 12 de Noviembre,-8.0637021,-79.0225101
 5483476444,Avenida Dinamarca,-8.0635152,-79.0235875
-5488971793,Avenida Dinamarca,-8.0639937,-79.0260634
-2339884501,Avenida Dinamarca,-8.0640939,-79.0270922
-2339884514,Avenida Dinamarca y Prolongación Calle 7 de Julio,-8.0643167,-79.0282221
+5488971793,Avenida Dinamarca,-8.0640229,-79.02605
+2339884501,Avenida Dinamarca,-8.0641895,-79.0270707
+2339884498,Avenida Dinamarca y Prolongación Calle 7 de Julio,-8.0643711,-79.0281907
 3135885778,Avenida Dinamarca,-8.0645544,-79.0292565
 2339884520,Avenida Dinamarca,-8.0647434,-79.0302633
 3135885808,Avenida Dinamarca,-8.0649725,-79.0314947
@@ -756,8 +755,8 @@ stop_id,stop_name,stop_lat,stop_lon
 1098647345,Calle Santa Rosa,-8.0797281,-79.0339717
 1098625099,Calle Santa Rosa y Calle José Baquijano y Carrillo,-8.0805787,-79.0335138
 1098618976,Calle José Baquijano y Carrillo y Calle 25 de Diciembre,-8.0798337,-79.032193
-1098609071,Calle 25 de Diciembre y Calle José Cabrera,-8.0796373,-79.0308543
-1098621096,Calle José Cabrera y Calle 9 de Octubre,-8.0806175,-79.0307559
+1098609071,Calle 25 de Diciembre y Calle José Cabrera,-8.0796379,-79.0308583
+1098621096,Calle José Cabrera y Calle 9 de Octubre,-8.0806181,-79.0307599
 1098630076,Calle 9 de Octubre,-8.0804317,-79.0290383
 5456201437,Calle 9 de Octubre y Calle 7 de Julio,-8.0802892,-79.0276213
 1098597081,Calle 9 de Octubre,-8.0802117,-79.0266891
@@ -836,7 +835,7 @@ stop_id,stop_name,stop_lat,stop_lon
 5072432981,Panamericana Norte,-8.1657599,-79.0087651
 5072432982,Panamericana Norte,-8.1664456,-79.0080783
 5072432984,Panamericana Norte,-8.1671249,-79.0072939
-1098595391,Panamericana Norte y Jirón Salaverry,-8.1678882,-79.0063237
+12068793060,Panamericana Norte,-8.1678323,-79.0063947
 5072494784,Panamericana Norte,-8.1695095,-79.0041994
 5072432974,Panamericana Norte,-8.1720925,-79.000799
 3728277804,Panamericana Norte,-8.1731878,-78.9993664
@@ -881,7 +880,7 @@ stop_id,stop_name,stop_lat,stop_lon
 5390095639,Calle Lambayeque,-8.2181616,-78.9772797
 5390152081,Avenida Petro Peru,-8.2180951,-78.9782106
 11022903059,Avenida Petro Peru,-8.2183557,-78.979316
-1145579862,Avenida de La Marina,-8.2175478,-78.979713
+1145579862,Avenida de La Marina,-8.2175459,-78.9797014
 1145579807,Avenida de La Marina,-8.2162006,-78.9799703
 11022980552,Avenida de La Marina,-8.215092,-78.9801929
 1145579815,Avenida de La Marina,-8.2133296,-78.9805315
@@ -988,7 +987,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098588454,Calle 9 de Octubre,-8.0801607,-79.0261147
 1098620692,Calle 9 de Octubre,-8.0804104,-79.0288326
 1098642109,Calle 9 de Octubre,-8.0805242,-79.0299305
-5483466880,Calle José Cabrera,-8.0799035,-79.0308276
+5483466880,Calle José Cabrera,-8.0799041,-79.0308316
 5456201433,Calle 25 de Diciembre,-8.0796235,-79.0317005
 1098650325,Calle José Baquijano y Carrillo,-8.0801748,-79.0327977
 1098591362,Calle Santa Rosa y Calle Carlos Maria de Alvear,-8.0786953,-79.0345482
@@ -1012,8 +1011,7 @@ stop_id,stop_name,stop_lat,stop_lon
 2339884527,Avenida Dinamarca,-8.064976,-79.0319455
 2339884511,Avenida Dinamarca,-8.0648559,-79.0309567
 3271170669,Avenida Dinamarca,-8.0646605,-79.0298215
-2339884498,Avenida Dinamarca,-8.064403,-79.0285743
-3112071211,Avenida Dinamarca,-8.0641537,-79.0274352
+2589604488,Avenida Dinamarca,-8.0642152,-79.0272344
 5483508447,Avenida Dinamarca,-8.0636859,-79.0244709
 5483476443,Avenida Dinamarca,-8.063426,-79.0231265
 11829089034,Avenida Dinamarca,-8.0632573,-79.0221675
@@ -1024,13 +1022,13 @@ stop_id,stop_name,stop_lat,stop_lon
 2589604586,Calle China y Calle Taiwan,-8.0615205,-79.0253438
 2589604585,Calle China,-8.0625657,-79.0260238
 2589604584,Calle China,-8.0633308,-79.0265298
-5082559144,Prolongación Avenida Las Margaritas,-8.0643126,-79.026525
+5082559145,Prolongación Avenida Las Margaritas,-8.0646897,-79.0264607
 1098594175,Prolongación Avenida Las Margaritas,-8.0658831,-79.0265413
 5456236182,Prolongación Avenida Las Margaritas,-8.0668221,-79.0264232
 1098635568,Prolongación Avenida Las Margaritas,-8.068242,-79.0261923
 1098646120,Prolongación Avenida Las Margaritas,-8.069157,-79.0260288
 1098618237,Prolongación Avenida Las Margaritas,-8.07005,-79.0258454
-1098646755,Prolongación Avenida Las Margaritas y Calle las Margaritas,-8.0712417,-79.0255981
+1098646755,Prolongación Avenida Las Margaritas y Calle las Margaritas,-8.0712922,-79.0255981
 4636386919,Calle las Margaritas y Avenida los Laureles,-8.0722707,-79.0254682
 4442749837,Avenida los Laureles y Calle 7 de Julio,-8.0723501,-79.0275896
 1098619940,Calle 7 de Julio,-8.0734203,-79.0275262
@@ -1038,9 +1036,9 @@ stop_id,stop_name,stop_lat,stop_lon
 1098630882,Avenida Wichanzao,-8.0747053,-79.0290948
 5483391118,Avenida Wichanzao,-8.0743405,-79.030265
 1098596748,Calle José Cabrera,-8.0745598,-79.0309295
-3416626107,Calle José Cabrera,-8.0754979,-79.0312134
-11028298092,Calle José Cabrera,-8.0767579,-79.03125
-1098596052,Calle José Cabrera y Calle Húsares de Junín,-8.0780955,-79.0310808
+3416626107,Calle José Cabrera,-8.0754985,-79.0312174
+11028298092,Calle José Cabrera,-8.0767585,-79.031254
+1098596052,Calle José Cabrera y Calle Húsares de Junín,-8.0780961,-79.0310848
 1098625463,Calle Húsares de Junín,-8.0780583,-79.0300257
 5483392766,Calle Húsares de Junín,-8.0780404,-79.0290402
 1098618701,Calle Húsares de Junín y Calle 7 de Julio,-8.0782042,-79.0279145
@@ -1074,7 +1072,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1026647291,Avenida César Vallejo,-8.1059559,-79.0138809
 11023313862,Avenida César Vallejo,-8.1067307,-79.0145402
 1098622308,Calle San Andrés,-8.1773121,-78.9960766
-1098625834,Calle San Andrés,-8.1779812,-78.9951995
+1098625834,Calle San Andrés,-8.1779953,-78.9951917
 1098598944,Calle San Andrés,-8.1787113,-78.9942446
 1098643750,Calle San Andrés y Jirón Santa Maria,-8.1794626,-78.9933193
 1098641814,Calle San Andrés,-8.1801686,-78.9923622
@@ -1111,7 +1109,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1088227363,Avenida César Vallejo y Avenida América Sur,-8.1027749,-79.0110643
 316265104,Avenida América Sur,-8.1019145,-79.0114159
 8845540452,Avenida América Sur,-8.10082,-79.0123764
-5079396735,Avenida América Sur y Calle Prolongación Unión,-8.1002451,-79.0130754
+11033509209,Avenida América Sur y Calle Prolongación Unión,-8.1001744,-79.013115
 4452550923,Avenida Perú y Prolongación Avenida Perú y Avenida América Sur,-8.099438,-79.0140374
 1098598186,Avenida América Norte,-8.0983201,-79.0153502
 1098607852,Avenida América Norte y Avenida Prolongación Santa,-8.0975504,-79.0162565
@@ -1131,9 +1129,9 @@ stop_id,stop_name,stop_lat,stop_lon
 5456201439,Calle 7 de Julio y Calle Alfonso Ugarte,-8.0817189,-79.0274123
 1098639976,Calle 7 de Julio y Calle 3 de Octubre,-8.0789474,-79.0278125
 1098598707,Calle Húsares de Junín,-8.0781625,-79.0283767
-3290788664,Calle José Cabrera,-8.0770808,-79.0312043
-3416626108,Calle José Cabrera,-8.0759086,-79.0313534
-1098611396,Calle José Cabrera,-8.0750091,-79.031068
+3290788664,Calle José Cabrera,-8.0770814,-79.0312083
+3416626108,Calle José Cabrera,-8.0759092,-79.0313574
+1098611396,Calle José Cabrera,-8.0750097,-79.031072
 1098643814,Calle 7 de Julio y Avenida Wichanzao,-8.07512,-79.0277645
 4437896109,Calle 7 de Julio,-8.0740962,-79.0275066
 5483391631,Calle 7 de Julio,-8.0729495,-79.027555
@@ -1141,7 +1139,6 @@ stop_id,stop_name,stop_lat,stop_lon
 1098590552,Calle las Margaritas,-8.0718065,-79.0255291
 1098628439,Prolongación Avenida Las Margaritas y Prolongación Avenida Uno,-8.0705431,-79.0257424
 1098607416,Prolongación Avenida Las Margaritas,-8.0696139,-79.0259364
-5082559145,Prolongación Avenida Las Margaritas,-8.0646897,-79.0264607
 2589604583,Calle China,-8.0636686,-79.0266069
 3265943091,Calle Taiwan,-8.0616871,-79.0239461
 11812523500,Prolongación Avenida 12 de Noviembre y Avenida Dinamarca,-8.0633489,-79.0226286
@@ -1165,7 +1162,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098595506,Calle Ascencio Vergara,-8.0756149,-78.9932793
 1098614160,Calle Ascencio Vergara,-8.0752552,-78.994189
 4744108526,Calle Ascencio Vergara y Avenida Jaime Blanco,-8.0749074,-78.9950834
-1098618097,Calle Ascencio Vergara,-8.0744091,-78.9961308
+1098618097,Calle Ascencio Vergara,-8.0744848,-78.9961523
 1098639402,Calle Ascencio Vergara,-8.0740796,-78.9971221
 5083910159,Calle Ascencio Vergara y Avenida José Faustino Sánchez Carrión,-8.0737208,-78.9981739
 1098600715,Avenida José Faustino Sánchez Carrión,-8.0746691,-78.9985835
@@ -1189,7 +1186,7 @@ stop_id,stop_name,stop_lat,stop_lon
 5480659671,Avenida Federico Villarreal,-8.0973613,-79.0102078
 5088910540,Avenida Federico Villarreal,-8.097864,-79.0089463
 1098607239,Avenida Federico Villarreal y Avenida César Vallejo,-8.098572,-79.0076517
-5087053971,Avenida César Vallejo,-8.0994155,-79.0083646
+5087053971,Avenida César Vallejo,-8.0994314,-79.0083944
 11023671194,Avenida César Vallejo,-8.1001416,-79.008991
 5087163891,Avenida César Vallejo,-8.1009069,-79.009639
 5087163889,Avenida César Vallejo,-8.1020404,-79.0105971
@@ -1234,9 +1231,10 @@ stop_id,stop_name,stop_lat,stop_lon
 316488509,Avenida España y Avenida Miraflores,-8.1053011,-79.0255188
 5037697942,Avenida Miraflores,-8.1043546,-79.0247505
 2481283834,Avenida Miraflores y Calle Amazonas y Avenida Túpac Amaru,-8.10322,-79.0238307
-1287009757,Calle Amazonas y Avenida del Ejército,-8.1042198,-79.0230189
-1287009730,Calle Amazonas,-8.1053827,-79.0225275
-1098606892,Jirón Rimac,-8.1059376,-79.0221407
+12023652480,Calle Amazonas,-8.1040795,-79.0231329
+1287009853,Calle Amazonas,-8.1048776,-79.0226939
+4633930962,Calle Amazonas y Avenida Prolongación Santa,-8.1059846,-79.022375
+1098617860,Jirón Rimac,-8.1055776,-79.0218001
 1098639136,Jirón Rimac,-8.1047758,-79.0210953
 1098628533,Jirón Rimac y Calle Huallaga,-8.1040297,-79.0204394
 5089717642,Avenida Prolongación Unión,-8.0964457,-79.0105852
@@ -1265,7 +1263,7 @@ stop_id,stop_name,stop_lat,stop_lon
 5083910157,Avenida José Faustino Sánchez Carrión,-8.0715623,-78.997534
 5083910156,Avenida José Faustino Sánchez Carrión y Calle Tacna,-8.0705257,-78.9972313
 5456072890,Calle Tacna,-8.0710194,-78.9959338
-1098644657,Calle Tacna,-8.0713747,-78.9948995
+1098644657,Calle Tacna,-8.0714451,-78.9949183
 1098596862,Calle Tacna y Avenida Jaime Blanco,-8.071799,-78.9939764
 1098644841,Calle Tacna,-8.0721803,-78.9929553
 1098645546,Calle Tacna,-8.0725239,-78.9920465
@@ -1276,16 +1274,16 @@ stop_id,stop_name,stop_lat,stop_lon
 5480717081,Calle Tomas Solano,-8.0710268,-78.987426
 5480717069,Calle Tomas Solano,-8.0702999,-78.986747
 1098621597,Calle Tomas Solano y Calle Miguel Barreto,-8.0696058,-78.9860443
-9712736763,innominada,-8.0690603,-78.9854886
-5480717005,innominada,-8.0692283,-78.9845954
-5480717006,innominada,-8.0685883,-78.9838618
-5480717004,innominada,-8.067275,-78.9822203
+9712736764,innominada,-8.069126,-78.9853504
+5480717049,innominada,-8.0688878,-78.9842773
+5480717054,Jirón César Vallejo,-8.0682961,-78.9835802
+5480717011,innominada,-8.067356,-78.9823785
 9712753929,innominada,-8.0673258,-78.9812562
 3157983276,innominada,-8.0676541,-78.980267
 5480716988,innominada,-8.0667532,-78.9796535
 5480716979,innominada,-8.0655414,-78.9796415
-3157983293,innominada,-8.0648367,-78.9797376
-8137731540,innominada,-8.0641402,-78.9793841
+3157983293,innominada,-8.0647916,-78.9799227
+5480716966,innominada,-8.0640272,-78.979286
 5480716962,innominada,-8.0631335,-78.9787656
 5480716959,innominada,-8.0624138,-78.9780937
 8137714533,innominada,-8.0615266,-78.9777269
@@ -1313,20 +1311,22 @@ stop_id,stop_name,stop_lat,stop_lon
 3209521669,innominada,-8.1881285,-78.9798389
 3209521670,innominada,-8.1891462,-78.9794207
 3939107727,innominada,-8.1900434,-78.9790534
-3939107729,innominada,-8.1907888,-78.9808756
+12065662712,innominada,-8.1905716,-78.9803446
+12065651872,innominada,-8.1910031,-78.9814093
 3209521675,innominada,-8.1914216,-78.9824513
-8100820317,innominada,-8.1921594,-78.984315
-3209521246,innominada,-8.1912702,-78.9846852
-3209521245,innominada,-8.190973,-78.9834385
-3209521686,innominada,-8.1903551,-78.9828918
-3209521683,Calle San Martín,-8.1895505,-78.9838418
-1098627288,Calle San Martín y Avenida Abelardo Quiñones,-8.1888251,-78.9847979
-5390456316,Calle San Martín y Avenida Jose Olaya,-8.1882245,-78.9856021
-1098609292,Jirón Santa Maria y Panamericana Norte,-8.1783825,-78.9925279
+12065662751,innominada,-8.1918357,-78.9835002
+3209521246,innominada,-8.1912652,-78.9846496
+12065660950,innominada,-8.1910372,-78.9835313
+3209521685,innominada,-8.1905275,-78.9828206
+12065633232,Calle San Martín,-8.1898357,-78.98348
+5390456276,Calle San Martín,-8.1891662,-78.9843258
+12066304446,Calle San Martín,-8.1885296,-78.9851935
+1098609292,Jirón Santa Maria y Panamericana Norte,-8.1784063,-78.9924933
 1098598884,Panamericana Norte,-8.1776787,-78.9934479
 1098635985,Panamericana Norte,-8.176977,-78.9943582
 1098625711,Panamericana Norte,-8.1762594,-78.9953105
 316492404,Avenida de La Marina y Panamericana Norte,-8.1754456,-78.9963904
+12077636348,Panamericana Norte,-8.1747751,-78.9972067
 1088227364,Calle Huayna Capac y Ollantay,-8.1197363,-79.0208652
 1088227267,Calle Huayna Capac,-8.118344,-79.0213725
 1088227377,Calle Huayna Capac,-8.1171632,-79.0222697
@@ -1342,9 +1342,9 @@ stop_id,stop_name,stop_lat,stop_lon
 1098587526,Calle 20 de Junio,-8.0838385,-79.027635
 1098605243,Calle 20 de Junio,-8.0839169,-79.0289563
 5429866053,Calle 20 de Junio y Calle José Cabrera,-8.083964,-79.0300938
-5483079095,Calle José Cabrera y Calle Cesar Vallejo,-8.0827492,-79.0304983
-5456201428,Calle José Cabrera y Calle José Antonio Paez,-8.0812979,-79.0306876
-1098617978,Calle José Cabrera y Calle 3 de Octubre,-8.0790037,-79.0309344
+5483079095,Calle José Cabrera y Calle Cesar Vallejo,-8.0827498,-79.0305023
+5456201428,Calle José Cabrera y Calle José Antonio Paez,-8.0812985,-79.0306916
+1098617978,Calle José Cabrera y Calle 3 de Octubre,-8.0790043,-79.0309384
 1098607098,Calle 3 de Octubre,-8.0789447,-79.029991
 1098597739,Calle 3 de Octubre,-8.0789006,-79.0290399
 1098599982,Calle 7 de Julio,-8.0777189,-79.0279836
@@ -1357,7 +1357,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098629949,Calle 7 de Julio,-8.0685935,-79.0280549
 1098620493,Calle 7 de Julio,-8.0677085,-79.0282183
 1098644361,Avenida Dos,-8.0672603,-79.0287983
-1098621901,Avenida Dos,-8.0674501,-79.0297637
+1098621901,Avenida Dos,-8.0674501,-79.0297422
 1098648829,innominada,-8.0660685,-79.0300289
 5483457814,innominada,-8.0637003,-79.0320914
 3112071200,Avenida Francisco Bolognesi,-8.0634865,-79.0330511
@@ -1368,9 +1368,6 @@ stop_id,stop_name,stop_lat,stop_lon
 8129796284,innominada,-8.0620097,-79.0338966
 5483458623,innominada,-8.0619889,-79.0334263
 1098602056,innominada,-8.0142711,-79.0659779
-5491760591,innominada,-8.0142313,-79.067198
-1098597044,Avenida Miguel Grau y Pasaje A,-8.0149433,-79.0675968
-1098615155,Avenida Miguel Grau,-8.015987,-79.067254
 1098590644,Avenida Ricardo Palma,-8.1108674,-79.0168213
 11033100544,Avenida Ricardo Palma,-8.1115769,-79.015975
 1007782487,Avenida Ricardo Palma y Calle Abraham Valdelomar,-8.1123722,-79.0146258
@@ -1406,11 +1403,10 @@ stop_id,stop_name,stop_lat,stop_lon
 1026646833,Avenida Ricardo Palma,-8.1118631,-79.0154053
 1098608294,Avenida Ricardo Palma,-8.1111327,-79.0163712
 1026647173,Avenida Ricardo Palma,-8.1105384,-79.0170644
-5491760595,innominada,-8.0145022,-79.0672892
-5491760588,innominada,-8.0143222,-79.066157
-1098593877,Jirón Salaverry,-8.1687616,-79.0067654
-1098622612,Jirón Salaverry y Jirón José Galvez,-8.1698733,-79.0070688
-5465526567,Jirón Rodolfo Espinar,-8.1702822,-79.0078231
+1098620431,innominada,-8.0144374,-79.0664814
+1098593877,Jirón Salaverry,-8.1687794,-79.0067485
+1098622612,Jirón Salaverry y Jirón José Galvez,-8.1698871,-79.0070439
+12068808669,Jirón Rodolfo Espinar,-8.1702926,-79.007818
 1098640476,Jirón Rodolfo Espinar,-8.17005,-79.0088223
 1094849946,Jirón Rodolfo Espinar,-8.1698138,-79.0097803
 1098598270,Jirón Rodolfo Espinar y Avenida La Marina,-8.1695564,-79.0108239
@@ -1481,7 +1477,7 @@ stop_id,stop_name,stop_lat,stop_lon
 11016646718,Avenida Túpac Amaru,-8.1011259,-79.0260867
 1098644998,Avenida Túpac Amaru,-8.1019013,-79.0252929
 11114371936,Avenida Túpac Amaru,-8.1026847,-79.024522
-5676451883,Jirón Rimac,-8.1062875,-79.0225567
+1098589553,Avenida España y Jirón Rimac,-8.1065413,-79.0229807
 1098592541,Avenida América Norte,-8.1041335,-79.0336554
 2587893378,Avenida América Norte,-8.1050007,-79.0341355
 3386747956,innominada,-8.1052429,-79.0350511
@@ -1494,6 +1490,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098614317,Jirón José Galvez,-8.1690747,-79.010099
 1098590283,Jirón José Galvez,-8.1693597,-79.0090164
 1098612550,Jirón José Galvez,-8.1698271,-79.0072408
+1098595391,Panamericana Norte y Jirón Salaverry,-8.1679141,-79.0062875
 1088227274,Delfin Corcuera,-8.1181194,-79.0235041
 1088227353,Delfin Corcuera y Capac Yupanqui,-8.1198367,-79.022648
 1050893658,Delfin Corcuera,-8.1214342,-79.0221564
@@ -1568,28 +1565,29 @@ stop_id,stop_name,stop_lat,stop_lon
 10948398472,innominada,-8.0440969,-79.0024891
 8167819304,innominada,-8.0451521,-79.0028722
 10948398479,innominada,-8.0460465,-79.003138
-8167819295,innominada,-8.0468711,-79.0022538
+8167819295,Av Rodolfo Gonzalez Cruz,-8.0468711,-79.0022538
 8098589317,innominada,-8.0478232,-79.0025836
 3133843834,innominada,-8.0487568,-79.00285
 4749844476,innominada,-8.0488778,-79.001863
 4749844479,innominada,-8.0492675,-79.0006939
-4749844486,innominada,-8.0503442,-79.001052
-3133827226,innominada,-8.0513948,-79.001384
-3133827222,innominada,-8.0523073,-79.0017094
-3133827208,innominada,-8.0531683,-79.0020213
-3133822698,innominada,-8.0541093,-79.0023291
-3133822713,innominada,-8.0552395,-79.0026469
+4749844486,Av Barcelona,-8.0503442,-79.001052
+3133827226,Av Barcelona,-8.0513948,-79.001384
+3133827222,Av Barcelona,-8.0523073,-79.0017094
+3133827208,Av Barcelona,-8.0531683,-79.0020213
+3133822698,Av Barcelona,-8.0541093,-79.0023291
+3133822713,Av Barcelona,-8.0552395,-79.0026469
 4749820333,innominada,-8.0559837,-79.0018215
 3133822716,innominada,-8.0562315,-79.0009175
 3133822717,innominada,-8.0566365,-78.9992062
 4749820337,innominada,-8.057068,-78.9978592
 10948398518,innominada,-8.0581083,-78.9976139
 9898343681,innominada,-8.0590079,-78.9973935
-9898343676,innominada,-8.0596409,-78.9964412
-8167854036,innominada,-8.0607597,-78.997253
-8167841439,innominada,-8.0617206,-78.9977618
-8097579389,innominada,-8.0626968,-78.9981676
-8167843449,innominada,-8.0642337,-78.9986316
+9898343677,innominada,-8.0595704,-78.9965303
+8167854028,innominada,-8.0602925,-78.9969651
+8167854040,innominada,-8.0612044,-78.9975033
+5481049967,innominada,-8.0621735,-78.9979783
+4749681624,innominada,-8.0634016,-78.9984101
+4749694260,innominada,-8.0648892,-78.9988134
 4749694262,innominada,-8.0660418,-78.9989555
 4749694268,Calle Hipolito Unanue,-8.0671734,-78.9990578
 1098607485,Calle Hipolito Unanue,-8.0684976,-78.9995313
@@ -1642,8 +1640,8 @@ stop_id,stop_name,stop_lat,stop_lon
 1026647917,Avenida César Vallejo,-8.0910976,-79.0031369
 1098596159,innominada,-8.0914923,-79.0036246
 1026647939,Avenida César Vallejo,-8.092879,-79.003851
-11030377676,Avenida César Vallejo,-8.0940217,-79.0042541
-10735933685,Avenida César Vallejo,-8.0949351,-79.0047445
+11030377676,Avenida César Vallejo,-8.0940319,-79.0042375
+10735933685,Avenida César Vallejo,-8.0949788,-79.0047055
 1026647947,Avenida César Vallejo,-8.0959397,-79.0054266
 5089132050,Avenida César Vallejo,-8.0969863,-79.0063125
 1026647950,Avenida César Vallejo,-8.0980367,-79.0071993
@@ -1677,7 +1675,6 @@ stop_id,stop_name,stop_lat,stop_lon
 5456051641,Avenida Prolongación Unión,-8.08699,-79.0041399
 5457488567,Avenida Prolongación Unión y Jirón Maria Parado de Bellido y Avenida Pumacahua,-8.086761,-79.0032608
 5480717009,innominada,-8.0679562,-78.983328
-5480717011,innominada,-8.067356,-78.9823785
 5432232482,Avenida E,-8.0620727,-79.0046856
 5480821145,Avenida E,-8.0632607,-79.0047799
 5458516807,Avenida E,-8.0642156,-79.0046061
@@ -1696,22 +1693,17 @@ stop_id,stop_name,stop_lat,stop_lon
 5432222088,Calle Hipolito Unanue,-8.0674941,-78.9991317
 4749694264,innominada,-8.0663149,-78.9990029
 8167843432,innominada,-8.0650886,-78.998838
-4749681624,innominada,-8.0634016,-78.9984101
 4749681622,innominada,-8.0623102,-78.9980346
-8167854040,innominada,-8.0612044,-78.9975033
-8167854028,innominada,-8.0602925,-78.9969651
-9898343677,innominada,-8.059427,-78.996659
-4749820349,innominada,-8.0585975,-78.9979011
 4749820340,innominada,-8.0572346,-78.9973804
 10948398514,innominada,-8.056787,-78.9987355
 3157970486,innominada,-8.0562668,-79.0004044
-3133822715,innominada,-8.0556372,-79.0027549
-3133822700,innominada,-8.0545303,-79.0024464
-3133822682,innominada,-8.0536093,-79.0021897
-3133827213,innominada,-8.052731,-79.0018585
-3133827224,innominada,-8.0518716,-79.001552
-8167819239,innominada,-8.0509054,-79.0012294
-3133822684,innominada,-8.0498149,-79.000853
+3133822715,Av Barcelona,-8.0556372,-79.0027549
+3133822700,Av Barcelona,-8.0545303,-79.0024464
+3133822682,Av Barcelona,-8.0536093,-79.0021897
+3133827213,Av Barcelona,-8.052731,-79.0018585
+3133827224,Av Barcelona,-8.0518716,-79.001552
+8167819239,Av Barcelona,-8.0509054,-79.0012294
+3133822684,Av Barcelona,-8.0498149,-79.000853
 8167819229,innominada,-8.0489484,-79.0005823
 8167810193,innominada,-8.0480505,-79.0002615
 11038119782,Avenida Juan Pablo II,-8.120873,-79.0416463
@@ -1765,7 +1757,7 @@ stop_id,stop_name,stop_lat,stop_lon
 5054197902,Avenida Miraflores y Prolongación Miraflores,-8.0925975,-79.0180446
 5054197904,Prolongación Miraflores,-8.0912864,-79.0173493
 5054197905,Prolongación Miraflores,-8.0893798,-79.0163724
-5054197898,Prolongación Miraflores,-8.0884519,-79.0158904
+5054197898,Prolongación Miraflores,-8.0884515,-79.0158902
 5054197900,Prolongación Miraflores,-8.0869087,-79.0150788
 5054197908,Prolongación Miraflores,-8.0860829,-79.0146423
 1098614980,Avenida 12 de Noviembre y Calle 3 de Octubre,-8.077948,-79.0200182
@@ -1794,7 +1786,6 @@ stop_id,stop_name,stop_lat,stop_lon
 1098602712,Calle Huallaga y Avenida Prolongación Santa,-8.1037599,-79.0207602
 1098592673,Avenida Prolongación Santa,-8.1048494,-79.0218373
 10726871715,Avenida Prolongación Santa,-8.1056613,-79.0222571
-1098589553,Avenida España y Jirón Rimac,-8.1065413,-79.0229807
 1051000272,Jirón Rimac y Avenida Prolongación Santa,-8.102128,-79.019025
 1098586441,Avenida Prolongación Santa,-8.1013517,-79.0182168
 5079131743,Avenida Prolongación Santa,-8.1004853,-79.0174009
@@ -1809,10 +1800,9 @@ stop_id,stop_name,stop_lat,stop_lon
 1098617538,Calle las Margaritas,-8.0742483,-79.0251682
 11028337410,Calle las Margaritas,-8.0733311,-79.0253091
 1098595694,Avenida los Laureles y Calle las Margaritas,-8.0723877,-79.0254541
-5488980961,Avenida Dinamarca,-8.0640884,-79.0269088
-4438549687,Prolongación Calle 7 de Julio,-8.0652124,-79.0283863
-1098620973,Prolongación Calle 7 de Julio,-8.0662491,-79.028539
-1098587226,Calle 7 de Julio y Avenida Dos y Prolongación Calle 7 de Julio,-8.0671698,-79.0283428
+5488980961,Avenida Dinamarca,-8.0641628,-79.0268954
+1098643712,Prolongación Calle 7 de Julio,-8.0657485,-79.0284846
+1098630488,Prolongación Calle 7 de Julio,-8.0666979,-79.028446
 1098619530,Calle 7 de Julio,-8.0704063,-79.0277209
 1098597961,Prolongación Avenida Uno,-8.0706668,-79.0264332
 5432216554,Avenida Wichanzao,-8.0755341,-79.0264361
@@ -1822,6 +1812,9 @@ stop_id,stop_name,stop_lat,stop_lon
 1098637238,Avenida del Ejército,-8.0987172,-79.0185429
 1098592887,Avenida del Ejército,-8.0995696,-79.0190552
 5483110143,Avenida del Ejército,-8.1005206,-79.0198527
+1287009757,Calle Amazonas y Avenida del Ejército,-8.1042198,-79.0230189
+1287009730,Calle Amazonas,-8.1053827,-79.0225275
+5676451883,Jirón Rimac,-8.1062875,-79.0225567
 1098628812,Avenida Ricardo Palma,-8.0520697,-79.0740014
 1098640078,Avenida Ricardo Palma y Jirón Paraguay,-8.0527718,-79.0748167
 5463885532,Avenida Ricardo Palma y Avenida los Cipreses y Jirón Uruguay,-8.0535081,-79.0756555
@@ -1875,9 +1868,10 @@ stop_id,stop_name,stop_lat,stop_lon
 1015292423,Avenida América Sur,-8.1157663,-79.0159535
 316488151,Avenida América Sur y Jirón Francisco de Zela,-8.1165661,-79.0165503
 288407624,Plaza Miguel Grau,-8.1240401,-79.0236063
-3209521696,innominada,-8.1882826,-78.9804795
+12065651886,innominada,-8.1882192,-78.980433
 3209521695,innominada,-8.1894672,-78.9814124
-3209521685,innominada,-8.1905275,-78.9828206
+3939107729,innominada,-8.1907888,-78.9808756
+12065633261,innominada,-8.191208,-78.9819195
 4427239258,Calle Marco del Pont,-8.0810831,-79.0478814
 1098646719,Calle Mateo de Toro y Zambrano,-8.0808735,-79.048734
 1098621980,Calle Mateo de Toro y Zambrano y Jirón Chancay,-8.0814676,-79.0499476
@@ -1972,11 +1966,10 @@ stop_id,stop_name,stop_lat,stop_lon
 11030541737,innominada,-8.0527961,-79.0701109
 11030541734,innominada,-8.0536034,-79.0706138
 11030571980,innominada,-8.0571205,-79.0724626
-2339886605,innominada,-8.0547069,-79.0233573
-2339886607,innominada,-8.0560075,-79.0228601
-2589604615,innominada,-8.0571262,-79.0227741
-2339886621,innominada,-8.0578394,-79.0224777
-8741510666,innominada,-8.0588363,-79.0222868
+2339886605,Via Evitamiento Milagro,-8.0547069,-79.0233573
+2339886607,Via Evitamiento Milagro,-8.0560075,-79.0228601
+2589604615,Via Evitamiento Milagro,-8.0571262,-79.0227741
+8741510666,Via Evitamiento Milagro,-8.0588363,-79.0222868
 5456236181,Avenida Albania y Calle Hungria,-8.0600652,-79.0220679
 1098591439,Avenida Albania,-8.0612863,-79.0218415
 1098634159,Avenida Albania,-8.0626053,-79.0215797
@@ -2056,8 +2049,9 @@ stop_id,stop_name,stop_lat,stop_lon
 1098625550,Calle Hungria y Calle Alemania,-8.0597881,-79.0206799
 1098615080,Calle Hungria,-8.0599681,-79.021591
 8129893734,Avenida Albania,-8.0595775,-79.0221527
-2589604594,innominada,-8.0561139,-79.0228546
-5491760458,innominada,-8.0550203,-79.0231884
+2339886621,Via Evitamiento Milagro,-8.0578394,-79.0224777
+2339886633,Via Evitamiento Milagro,-8.0566671,-79.0227566
+2339886649,Via Evitamiento Milagro,-8.0554797,-79.0229899
 3135885802,innominada,-8.0634763,-79.0334681
 5483458622,innominada,-8.0637892,-79.0326961
 5524505333,Avenida Dinamarca,-8.0649793,-79.0318694
@@ -2123,8 +2117,11 @@ stop_id,stop_name,stop_lat,stop_lon
 5480722113,innominada,-8.0638426,-78.995162
 5480722115,innominada,-8.0634456,-78.9962335
 4749681623,innominada,-8.062669,-78.9973099
+8167841439,innominada,-8.0617206,-78.9977618
+8167854036,innominada,-8.0607597,-78.9972423
 8167854023,innominada,-8.0600613,-78.9966782
 9898343678,innominada,-8.0593531,-78.9967874
+4749820349,innominada,-8.0585975,-78.9979011
 3133822712,innominada,-8.0553205,-79.000128
 3133822675,innominada,-8.0543298,-78.9998336
 4749743811,innominada,-8.0547136,-78.9986047
@@ -2142,7 +2139,7 @@ stop_id,stop_name,stop_lat,stop_lon
 4749743810,innominada,-8.0545848,-78.9990467
 3133827217,innominada,-8.0548639,-78.9999932
 10948398510,innominada,-8.055807,-79.0002691
-5480722116,innominada,-8.0632777,-78.9966715
+1098595975,innominada,-8.063125,-78.9966447
 5480747712,innominada,-8.0636206,-78.9957434
 8098058326,Avenida José Faustino Sánchez Carrión,-8.0639826,-78.994821
 1098642223,Avenida José Faustino Sánchez Carrión,-8.0630582,-78.9939776
@@ -2188,7 +2185,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098610101,Avenida César Vallejo,-8.097717,-79.0067798
 1026647819,Avenida César Vallejo,-8.0964965,-79.0057526
 11032459662,Avenida César Vallejo,-8.0957116,-79.0050954
-11030395407,Avenida César Vallejo,-8.0947746,-79.0043037
+11030395407,Avenida César Vallejo,-8.0947882,-79.0042997
 11030377667,Avenida César Vallejo,-8.0940375,-79.0037003
 1026647835,Avenida César Vallejo y Avenida Pesqueda,-8.0920154,-79.0019693
 1026647840,Avenida César Vallejo,-8.0906573,-79.0008035
@@ -2246,9 +2243,9 @@ stop_id,stop_name,stop_lat,stop_lon
 1051000197,Jirón Unión,-8.10233,-79.015459
 5079519218,Jirón Unión,-8.1013795,-79.0144606
 1098585486,Jirón Unión,-8.1005491,-79.0133908
-8764355700,Calle Prolongación Unión,-8.0997071,-79.0127226
-5475283792,Calle Prolongación Unión,-8.0985987,-79.0119985
-5456051621,Calle Prolongación Unión,-8.0975515,-79.0113172
+8764355700,Calle Prolongación Unión,-8.0997242,-79.012708
+5475283792,Calle Prolongación Unión,-8.0986303,-79.0119773
+5456051621,Calle Prolongación Unión,-8.0975713,-79.0112979
 5456051645,Avenida Pumacahua,-8.0868069,-79.0027528
 1098627268,Calle Hermanos Angulo y Avenida Pumacahua,-8.0872648,-79.0010137
 5087298903,Avenida Pumacahua,-8.0882191,-78.9975572
@@ -2296,6 +2293,7 @@ stop_id,stop_name,stop_lat,stop_lon
 11037529608,Avenida Perú,-8.1060136,-79.0208806
 5084195946,Avenida José Faustino Sánchez Carrión,-8.0636528,-78.9944568
 4744095516,Calle Wichanzao,-8.0630845,-78.9949755
+5480722116,innominada,-8.0632777,-78.9966715
 11032885363,Avenida Libertad,-8.0892708,-78.9950317
 5087571032,Avenida Libertad,-8.0907775,-78.9955369
 5087571033,Avenida Libertad,-8.0919537,-78.9959142
@@ -2306,10 +2304,10 @@ stop_id,stop_name,stop_lat,stop_lon
 1098604966,Avenida Pesqueda,-8.0923817,-79.0008423
 1098614080,Las Poncianas y Calle las Esmeraldas,-8.0943862,-79.0031809
 11030377668,Calle las Esmeraldas,-8.0937195,-79.0039678
-11030395412,Avenida César Vallejo,-8.0942664,-79.0043706
+11030395412,Avenida César Vallejo,-8.0943141,-79.0043419
 1098621018,Avenida César Vallejo,-8.0953752,-79.0049896
 11030395406,Avenida César Vallejo,-8.0961646,-79.0056093
-11120020174,Calle Prolongación Unión,-8.0994819,-79.012576
+11120020174,Calle Prolongación Unión,-8.099501,-79.0125634
 1189509258,Avenida Antenor Orrego,-8.0861649,-78.9562662
 1189509290,Avenida Antenor Orrego y Avenida Pedro García García,-8.0856007,-78.9572041
 8156274586,Avenida Pedro García García,-8.0864327,-78.957513
@@ -2372,9 +2370,9 @@ stop_id,stop_name,stop_lat,stop_lon
 11860264535,Avenida José María Eguren y Carretera Industrial,-8.1218508,-79.0063606
 1188181943,Carretera Industrial,-8.1209705,-79.005728
 1188181835,Carretera Industrial,-8.1202217,-79.0051728
-6603468094,Carretera Industrial,-8.1189051,-79.0041965
+6603468094,Carretera Industrial,-8.1189157,-79.0041817
 10726871373,Avenida Santa Rosa,-8.1193452,-79.0032188
-10726871372,Avenida Santa Rosa,-8.1197643,-79.0023599
+10726871372,Avenida Santa Rosa,-8.1197872,-79.002319
 2465880250,Avenida Santa Rosa,-8.1198502,-79.0018143
 4924821025,Avenida Santa Rosa,-8.1193547,-79.0027958
 10726925955,Avenida Santa Rosa,-8.1189337,-79.0036377
@@ -2527,7 +2525,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098638810,Avenida Ramón Castilla,-8.0882704,-79.0935344
 1098627674,Avenida Ramón Castilla,-8.0886713,-79.092358
 5079514205,Avenida Ramón Castilla,-8.0890876,-79.0911145
-10818868949,Avenida Ramón Castilla,-8.0894944,-79.089877
+12062325458,Avenida Ramón Castilla,-8.089463,-79.0899724
 10722318766,Avenida Ramón Castilla,-8.0899142,-79.0886055
 316491272,Avenida Ramón Castilla,-8.0902516,-79.0875731
 10722318767,Avenida Ramón Castilla,-8.0905805,-79.086564
@@ -2578,14 +2576,14 @@ stop_id,stop_name,stop_lat,stop_lon
 1098595338,Avenida Federico Villarreal Sur,-8.1077433,-78.9979075
 11030850217,Carretera Industrial,-8.1099233,-78.997157
 1007782444,Carretera Industrial,-8.1125352,-78.9994414
-288407583,Carretera Industrial y Avenida Santa Rosa,-8.1187959,-79.0041054
+12081593552,Carretera Industrial,-8.1187545,-79.0040637
 6603459279,Carretera Industrial,-8.1195822,-79.0046968
 9528847022,Carretera Industrial,-8.1205321,-79.0054028
 1188181926,Carretera Industrial,-8.1214006,-79.0060498
 1195994983,Avenida José María Eguren y Avenida del Contador,-8.1206869,-79.007748
 10726927275,Avenida José María Eguren,-8.1199714,-79.0087154
 1195995725,Avenida José María Eguren y Avenida del Contador,-8.1205963,-79.0080741
-1088227207,Calle Victor Andrés Belaunde,-8.113461,-79.0067211
+1088227207,Calle Victor Andrés Belaunde,-8.1134889,-79.0067171
 999068980,Calle Victor Andrés Belaunde y Carlos Wiesse y Avenida Victor Andres Belaunde,-8.1148169,-79.0065052
 1007816512,Carlos Wiesse,-8.1151535,-79.007997
 2604148417,Carlos Wiesse,-8.115381,-79.0090003
@@ -2641,6 +2639,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098607662,Avenida América Oeste y Calle 21,-8.1107841,-79.0477809
 5066876364,Avenida América Oeste,-8.1095204,-79.0474402
 1098646793,Avenida América Oeste,-8.1086312,-79.0472002
+5489652623,innominada,-8.0142387,-79.0665764
 1633196988,Avenida Miguel Grau y Avenida José Gabriel Condorcanqui,-8.04901,-79.056839
 5463885533,Jirón Uruguay,-8.0526547,-79.0763304
 5463831050,Jirón Álamos,-8.0478513,-79.0674892
@@ -2662,7 +2661,6 @@ stop_id,stop_name,stop_lat,stop_lon
 5480659590,Calle Sara Sara y Calle Misti,-8.090216,-78.9945674
 1098615485,Avenida Camino Real,-8.093626,-78.9999188
 11030714827,Avenida Camino Real,-8.0953639,-79.0013826
-1098625750,Avenida Camino Real,-8.0960563,-79.0019659
 10735860566,Avenida Camino Real,-8.0967655,-79.0025806
 1098648721,Avenida Camino Real,-8.0981758,-79.0037865
 1098620918,Avenida Camino Real y Calle los Rubies,-8.0993884,-79.0048087
@@ -2756,7 +2754,7 @@ stop_id,stop_name,stop_lat,stop_lon
 5082064376,Avenida Manuel Seoane,-8.1376403,-79.0441871
 5082089641,Avenida Manuel Seoane,-8.1366539,-79.0433341
 1015292528,Avenida Manuel Seoane y Avenida Huamán,-8.1359052,-79.0427061
-2600311955,Avenida Huamán,-8.13611,-79.0416958
+2600311955,Avenida Huamán,-8.1361259,-79.0416287
 5436439967,Avenida Huamán,-8.137166,-79.0389247
 1557312594,Avenida Huamán,-8.1376065,-79.0378535
 1557312571,Avenida Prolongación César Vallejo,-8.1368612,-79.0373976
@@ -2814,8 +2812,9 @@ stop_id,stop_name,stop_lat,stop_lon
 5463792605,Avenida Uno y Calle Miguel Grau,-8.0477432,-79.0509157
 1098597239,Calle Miguel Grau,-8.0478424,-79.0518429
 1098633581,Calle Miguel Grau,-8.0482357,-79.053083
-1098583806,Avenida Abelardo Quiñones y Calle Ciro Alegria,-8.1897231,-78.9854944
+1098638216,Avenida Abelardo Quiñones,-8.1892777,-78.9851546
 5390456317,Calle Ciro Alegria y Avenida Jose Olaya,-8.1891276,-78.9862868
+5390456316,Calle San Martín y Avenida Jose Olaya,-8.1882245,-78.9856021
 5483458621,innominada,-8.0633752,-79.0327719
 5483457819,innominada,-8.0628599,-79.0321708
 5483457815,innominada,-8.0620208,-79.0318519
@@ -3007,7 +3006,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098606627,Avenida Jaime Blanco,-8.0758316,-78.9955606
 1098646407,Avenida Jaime Blanco,-8.0769488,-78.9960053
 11033282949,Avenida Jaime Blanco,-8.0779348,-78.9964017
-1098599114,Calle Santa Clara,-8.0775837,-78.9974317
+1098599114,Calle Santa Clara,-8.0776474,-78.9974491
 5086307012,Calle Ramirez de Arellano,-8.0776261,-78.9985139
 5432246031,Avenida José Faustino Sánchez Carrión,-8.0793966,-79.0000087
 5482905646,Avenida César Vallejo,-8.1021316,-79.0105134
@@ -3101,8 +3100,8 @@ stop_id,stop_name,stop_lat,stop_lon
 8098041590,innominada,-8.0597006,-78.9843519
 8098041576,innominada,-8.0611152,-78.985168
 8098041565,innominada,-8.0622945,-78.9856799
-9411290444,innominada,-8.0631236,-78.9861854
-10859181180,innominada,-8.062861,-78.9870791
+8098041572,innominada,-8.0631335,-78.9860317
+10859181180,innominada,-8.0628318,-78.9870737
 10733802744,Avenida Revolución,-8.0738945,-78.9914558
 5467613101,Avenida Revolución y Calle Ascencio Vergara,-8.0760131,-78.992272
 5467613107,Avenida Revolución,-8.0784446,-78.9931919
@@ -3142,17 +3141,14 @@ stop_id,stop_name,stop_lat,stop_lon
 5455912216,innominada,-8.096543,-79.0489467
 3128372042,innominada,-8.09806,-79.0494838
 3392598291,innominada,-8.0991349,-79.0498784
-5483559827,innominada,-8.0999506,-79.0502075
-2979717598,Avenida Mansiche y Avenida Paisajista,-8.1008178,-79.0503593
+5483559212,innominada,-8.100642,-79.0504564
 1098610151,Calle Santa Clara,-8.0784293,-78.9954626
 5480680620,Calle Santa Clara,-8.0787411,-78.9937685
 5467613102,Avenida Revolución,-8.0760562,-78.992163
 5480717230,Avenida Revolución,-8.0749092,-78.9917155
 5480717222,Avenida Revolución,-8.0739396,-78.9913324
 5467620841,Calle Tacna y Avenida Revolución,-8.0729628,-78.9909377
-9411290433,innominada,-8.0628317,-78.9871878
-8098041574,innominada,-8.0623501,-78.9857018
-8098041575,innominada,-8.0614657,-78.9853531
+9411290433,innominada,-8.0627919,-78.9871744
 8098041583,innominada,-8.0587487,-78.983822
 8098041584,innominada,-8.0580828,-78.9839891
 8098054551,innominada,-8.0577446,-78.9852449
@@ -3160,7 +3156,7 @@ stop_id,stop_name,stop_lat,stop_lon
 10962626701,innominada,-8.0574527,-78.9871469
 8098054619,innominada,-8.0572299,-78.9881882
 11240262326,innominada,-8.0481128,-79.0085012
-3135885826,Prolongación Avenida A,-8.0478287,-79.0094092
+3135885826,Prolongación Avenida A,-8.0479084,-79.0093985
 5491786810,Prolongación Avenida A,-8.0492502,-79.0098387
 3135885825,Prolongación Avenida A,-8.050592,-79.010244
 3135885827,Prolongación Avenida A,-8.051609,-79.0105479
@@ -3236,6 +3232,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098616227,Avenida Antenor Orrego,-8.111664,-79.0402078
 5480747703,Calle Sinchi Roca,-8.0697297,-79.003944
 5432222091,Calle Sinchi Roca,-8.0686573,-79.0036726
+12066359603,San Valentin,-8.0679369,-79.0051708
 1098604186,San Valentin,-8.0682034,-79.0065526
 1098629452,innominada,-8.0694646,-79.0061291
 1098608041,Jirón Huayna Cápac y Jirón Inca Roca,-8.0740631,-79.0074156
@@ -3260,9 +3257,9 @@ stop_id,stop_name,stop_lat,stop_lon
 5491760469,innominada,-8.0502964,-79.0146571
 8098589250,innominada,-8.048017,-79.0138945
 8098589251,innominada,-8.0470848,-79.0136048
-8098589261,innominada,-8.0466944,-79.0130872
-8098589263,innominada,-8.0470199,-79.0120105
-8098589277,innominada,-8.0473866,-79.0107389
+5491786796,innominada,-8.046899,-79.0126366
+8098589281,innominada,-8.0472734,-79.0114349
+3135890889,innominada,-8.0476155,-79.0103035
 8098589244,innominada,-8.0482993,-79.0129607
 5491786799,innominada,-8.0496052,-79.0133822
 3135885828,innominada,-8.0506211,-79.0137109
@@ -3328,9 +3325,9 @@ stop_id,stop_name,stop_lat,stop_lon
 1098625691,Calle 5 y Calle 51,-8.0664224,-79.0166323
 5483458666,Calle 5,-8.0666008,-79.0176016
 5491786798,innominada,-8.0473956,-79.0126768
-8098589282,innominada,-8.047523,-79.0103111
-8098585693,innominada,-8.0472459,-79.0111904
-5491786797,innominada,-8.0468697,-79.0125668
+8098589263,innominada,-8.0470943,-79.0120078
+8098589277,innominada,-8.0474742,-79.0107389
+8098585693,innominada,-8.0473309,-79.0111958
 8098589245,innominada,-8.0478541,-79.0128208
 3265943047,innominada,-8.0472651,-79.0078893
 3265943042,innominada,-8.0463822,-79.0075969
@@ -3341,7 +3338,7 @@ stop_id,stop_name,stop_lat,stop_lon
 8098589361,innominada,-8.0446958,-79.0044628
 8167819305,innominada,-8.0450036,-79.0033196
 8167819302,innominada,-8.0455943,-79.0030004
-8167819312,innominada,-8.0465485,-79.0032908
+8167819312,Av Rodolfo Gonzalez Cruz,-8.0465485,-79.0032908
 8098589318,innominada,-8.0475912,-79.0035742
 3133843840,innominada,-8.0484773,-79.0038507
 3133843838,innominada,-8.049665,-79.0031141
@@ -3440,8 +3437,8 @@ stop_id,stop_name,stop_lat,stop_lon
 1098641166,Calle Oswaldo Hercelles,-8.0934572,-79.0092958
 1098595502,Calle Oswaldo Hercelles,-8.0927764,-79.0103624
 1098650059,Calle Oswaldo Hercelles,-8.0920117,-79.0115604
-1098592125,Calle Oswaldo Hercelles,-8.0915162,-79.0123367
-5098526274,Calle Oswaldo Hercelles,-8.0908956,-79.013309
+1098592125,Calle Oswaldo Hercelles,-8.0915162,-79.0123304
+5098526274,Calle Oswaldo Hercelles,-8.0909024,-79.0132838
 1098634223,Calle 8 de Octubre,-8.0811413,-79.0287636
 5456201429,Calle José Antonio Paez,-8.0812192,-79.0299038
 5456201427,Calle José Antonio Paez,-8.0813424,-79.0313332
@@ -3479,8 +3476,6 @@ stop_id,stop_name,stop_lat,stop_lon
 1098615152,Avenida 26 de Marzo,-8.0873201,-79.027435
 5429866057,Avenida 26 de Marzo,-8.0874353,-79.0288519
 5458538373,Avenida 26 de Marzo,-8.087568,-79.03031
-5489652623,innominada,-8.0142387,-79.0665764
-5491760593,innominada,-8.0144358,-79.067646
 1098645371,Pasaje A,-8.0154835,-79.0692716
 1098622463,Pasaje A,-8.0159994,-79.0708887
 1098599967,Pasaje A y Avenida Victor Raul Haya de la Torre,-8.0163988,-79.0721538
@@ -3536,8 +3531,8 @@ stop_id,stop_name,stop_lat,stop_lon
 1098612357,Pasaje A,-8.0161707,-79.071443
 1098633156,Pasaje A,-8.0156405,-79.0698361
 1098588295,Pasaje A,-8.0153353,-79.0688119
-5491760594,innominada,-8.0144252,-79.0668574
-5491760589,innominada,-8.0142934,-79.0663548
+1098597044,Avenida Miguel Grau y Pasaje A,-8.0149433,-79.0675968
+5491760594,innominada,-8.0144624,-79.0668762
 2979738068,Avenida América Oeste,-8.101963,-79.0446351
 11086134223,Avenida Prolongación César Vallejo,-8.1287731,-79.0312791
 1089222592,Prolongación Avenida Bolivia,-8.1446985,-79.0514498
@@ -3549,13 +3544,14 @@ stop_id,stop_name,stop_lat,stop_lon
 1098597568,Jirón Desamparados,-8.141591,-79.0566639
 1098617808,Jirón Desamparados,-8.1409576,-79.057468
 5073743822,Jirón Desamparados y Avenida Libertad,-8.1402068,-79.0584937
+5073742020,Avenida Libertad,-8.1394228,-79.0578684
 1091301963,Prolongación Avenida Bolivia,-8.1431896,-79.0533545
 1091301831,Prolongación Avenida Bolivia,-8.1441759,-79.0522236
 1091302029,Prolongación Avenida Bolivia,-8.1449876,-79.0512686
 5432184380,Avenida Prolongación Santa,-8.0967911,-79.016003
 1098595542,Avenida Prolongación Santa,-8.0958071,-79.0156579
-1098602620,Avenida Prolongación Santa,-8.0947814,-79.0152837
-1098602278,Avenida Prolongación Santa,-8.0934912,-79.0147926
+1098602620,Avenida Prolongación Santa,-8.0947979,-79.0152722
+1098602278,Avenida Prolongación Santa,-8.093515,-79.0147708
 1195995358,Avenida Pedro García García,-8.0844864,-78.9565246
 1189509253,Avenida Pedro García García,-8.0834836,-78.9558837
 5491451769,Avenida Pedro García García,-8.0826444,-78.9554626
@@ -3588,14 +3584,14 @@ stop_id,stop_name,stop_lat,stop_lon
 5491451722,Avenida Pedro García García,-8.0834331,-78.9559642
 2604535930,Avenida Pedro García García,-8.0844319,-78.9566183
 2604535932,Avenida Antenor Orrego y Avenida Pedro García García,-8.085551,-78.9572861
-1145579840,Avenida Pesqueda,-8.0893558,-79.0073886
-4528585022,Avenida Pesqueda,-8.088939,-79.0082577
+12042960492,Avenida Pesqueda,-8.0893559,-79.0073883
+12042960493,Avenida Pesqueda,-8.0889607,-79.0082359
 5480862050,Calle Ramon Castilla,-8.0886013,-79.0091516
 5480862053,Calle Ramon Castilla y Calle Leonardo Yong,-8.0880771,-79.0102558
 10735865077,Calle Enrique Leon,-8.0890282,-79.0122759
 5089097711,Avenida Prolongación Santa,-8.0917839,-79.0139751
 5089097713,Avenida Prolongación Santa,-8.0934613,-79.0148547
-1098634919,Avenida Prolongación Santa,-8.094734,-79.0153675
+1098634919,Avenida Prolongación Santa,-8.0947647,-79.0153549
 1098624772,Avenida Prolongación Santa,-8.0957707,-79.0157298
 5098557137,Avenida Prolongación Santa,-8.0967645,-79.0160754
 1051035591,Avenida Prolongación Santa,-8.0988748,-79.01684
@@ -3659,9 +3655,10 @@ stop_id,stop_name,stop_lat,stop_lon
 5457488521,Avenida las Animas,-8.0844206,-79.0096173
 5457488543,Pasaje Maria Antonia de Pardo,-8.085044,-79.0103473
 5480874794,Pasaje Maria Antonia de Pardo y Avenida Prolongación Santa,-8.0862376,-79.0105025
+1098607308,Avenida Prolongación Santa y Avenida Federico Villarreal,-8.0942699,-79.0150811
 10735814568,Avenida Federico Villarreal,-8.0949883,-79.0139377
 5432184401,Avenida Federico Villarreal y Calle Julio Cesar Tello,-8.095722,-79.0128139
-5432184397,Avenida Federico Villarreal,-8.0962654,-79.0119817
+5432184397,Avenida Federico Villarreal,-8.0962983,-79.011999
 1051000245,Avenida Perú,-8.1001876,-79.0149133
 316264048,innominada,-8.1076849,-79.0219509
 4438560864,Avenida Albania y Avenida Dinamarca,-8.063148,-79.0215196
@@ -3728,7 +3725,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098618273,Jirón Diego Ferré,-8.1716353,-79.0092014
 9498344252,Jirón Diego Ferré,-8.1719117,-79.0080178
 1098597128,Jirón Salaverry y Jirón Leoncio Prado,-8.1714666,-79.0073868
-5465519414,Jirón Leoncio Prado,-8.171246,-79.008609
+5465519414,Jirón Leoncio Prado,-8.1712493,-79.0085896
 5465519406,Jirón Leoncio Prado,-8.1710092,-79.0096212
 1098650757,Calle los Diamantes,-8.1015262,-79.0373027
 5425488948,Calle los Diamantes,-8.1026817,-79.0378775
@@ -3769,11 +3766,12 @@ stop_id,stop_name,stop_lat,stop_lon
 5457466225,Avenida José Faustino Sánchez Carrión y Calle Tomas Moscoso,-8.0777969,-78.9995297
 8101076444,innominada,-8.0485402,-79.0824088
 4427182279,innominada,-8.0496043,-79.0830003
-4427182267,innominada,-8.0504559,-79.0834841
-4427182264,Avenida las Orquídeas,-8.0513563,-79.0839457
+4427182266,innominada,-8.0506666,-79.0830862
+4427182268,innominada,-8.0508771,-79.0837125
 4427182256,Avenida las Orquídeas,-8.0509217,-79.0847607
 4427182249,Avenida las Orquídeas,-8.0504858,-79.0855735
 1098589067,Avenida las Orquídeas,-8.0500102,-79.0865592
+4427182264,Avenida las Orquídeas,-8.0513563,-79.0839457
 4427182274,Avenida las Orquídeas,-8.0521849,-79.0823554
 1098591895,Avenida las Orquídeas,-8.0526627,-79.0814225
 5463831076,Avenida las Orquídeas,-8.0532448,-79.0803233
@@ -3844,6 +3842,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098599330,Avenida Nuevo Trujillo,-8.0670275,-79.0689185
 5467507240,Avenida San Pedro y Avenida el Sol y Avenida Nuevo Trujillo,-8.0677191,-79.07053
 5474276650,Cajabamba y Avenida Nuevo Trujillo,-8.0691464,-79.0736994
+4427182267,innominada,-8.0504559,-79.0834841
 316489821,Calle Amazonas y Jirón Rimac,-8.1061357,-79.0223401
 1098627884,Jirón Rimac y Pasaje Callao,-8.1053088,-79.0215638
 1098584065,Jirón Rimac,-8.1044306,-79.0207918
@@ -3853,7 +3852,7 @@ stop_id,stop_name,stop_lat,stop_lon
 1098598164,Calle Cesar Vallejo,-8.0823669,-79.0265562
 1098598183,Calle Cesar Vallejo,-8.0825617,-79.0286297
 5483079097,Calle Cesar Vallejo,-8.0826741,-79.029789
-1098623756,Calle José Cabrera y Calle Francisco José de Caldas,-8.0832087,-79.0304331
+1098623756,Calle José Cabrera y Calle Francisco José de Caldas,-8.0832093,-79.0304371
 1098595705,Calle Francisco José de Caldas,-8.0838101,-79.031687
 10735691979,Avenida 26 de Marzo,-8.0871029,-79.0245064
 1098597685,Calle Amazonas y Avenida Prolongación Santa,-8.1057296,-79.0224401
@@ -3888,8 +3887,6 @@ stop_id,stop_name,stop_lat,stop_lon
 1098586320,Calle 5 de Noviembre,-8.0786784,-79.0248121
 11027891721,Avenida 12 de Noviembre,-8.0816392,-79.0193563
 10736258690,Pasaje Inambari,-8.1020022,-79.0216399
-4633930962,Calle Amazonas y Avenida Prolongación Santa,-8.1059846,-79.022375
-1098617860,Jirón Rimac,-8.1055776,-79.0218001
 7228981317,Avenida Prolongación Santa,-8.1048919,-79.021793
 1098625209,Avenida Wichanzao,-8.0739177,-79.0316213
 5483391621,Avenida Wichanzao y Calle 9,-8.0735893,-79.0326749
@@ -4014,18 +4011,17 @@ stop_id,stop_name,stop_lat,stop_lon
 1098621447,Calle Julio Cesar Tello,-8.092895,-79.0110076
 1098621930,Calle Julio Cesar Tello,-8.0938362,-79.0116079
 5480827366,Calle Julio Cesar Tello,-8.0951918,-79.0124971
-2481304397,Calle Julio Cesar Tello,-8.0961759,-79.0131138
-5432184390,Calle Julio Cesar Tello,-8.0970132,-79.0136748
-5432184398,Avenida Benjamin Franklin,-8.0981367,-79.0136102
+2481304397,Calle Julio Cesar Tello,-8.0961861,-79.013096
+5432184390,Calle Julio Cesar Tello,-8.0970087,-79.0136438
+5432184398,Avenida Benjamin Franklin,-8.0981486,-79.0135889
 5390646245,Jirón Real,-8.1796644,-79.013696
-5390643533,Avenida La Marina,-8.17976,-79.0128994
-5390643531,Avenida La Marina,-8.1809706,-79.0124247
+5390643533,Avenida La Marina,-8.1797399,-79.0129077
+5390643526,Avenida La Marina,-8.1805981,-79.0125961
 5390642396,Avenida La Marina,-8.1818894,-79.0120121
 5390642387,Avenida Independencia y Jirón Ascenso Segura,-8.1822581,-79.0109345
 1098598333,Calle Huancavelica,-8.1768643,-79.013295
 8101076465,innominada,-8.0491776,-79.0827495
-4427182266,innominada,-8.0500306,-79.0832289
-4427182277,innominada,-8.0504933,-79.0823403
+4427182277,innominada,-8.0511293,-79.0821976
 4427182255,innominada,-8.0500221,-79.0814406
 1098648153,Jirón Venezuela,-8.0516019,-79.0801445
 1098586081,Jirón Venezuela y Avenida José Sabogal,-8.0524133,-79.0794298
@@ -4057,7 +4053,6 @@ stop_id,stop_name,stop_lat,stop_lon
 1098619236,Avenida Metropolitana II,-8.0986737,-79.0488383
 1098630168,Avenida Metropolitana II,-8.0999974,-79.0491832
 5488997023,innominada,-8.0997601,-79.0500881
-5483559212,innominada,-8.100642,-79.0504564
 5489240132,innominada,-8.0628255,-79.0587543
 1098615908,Calle J,-8.0621285,-79.0595503
 1098595589,Alberto Fujimori,-8.0628536,-79.060341
