@@ -13,10 +13,12 @@ namespace OMUS.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly OMUSContext _context;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public CategoriesController(OMUSContext context)
+        public CategoriesController(OMUSContext context, IHttpClientFactory httpClientFactory)
         {
             _context = context;
+            _httpClientFactory = httpClientFactory;
         }
 
 
@@ -94,6 +96,29 @@ namespace OMUS.Controllers
                     var responseBody = await response.Content.ReadAsStringAsync();
                     return StatusCode((int)response.StatusCode, responseBody);
                 }
+            }
+        }
+        [HttpGet("proxy")]
+        public async Task<IActionResult> Proxy([FromQuery] string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                return BadRequest("Missing 'url' query parameter.");
+            }
+
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync(url);
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var contentType = responseMessage.Content.Headers.ContentType?.ToString() ?? "application/octet-stream";
+                var contentStream = await responseMessage.Content.ReadAsStreamAsync();
+                return File(contentStream, contentType);
+            }
+            else
+            {
+                var responseBody = await responseMessage.Content.ReadAsStringAsync();
+                return StatusCode((int)responseMessage.StatusCode, responseBody);
             }
         }
 
