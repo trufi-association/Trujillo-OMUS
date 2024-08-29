@@ -32,7 +32,7 @@ public class AuthController : ControllerBase
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: new List<Claim>(),
-                expires: DateTime.Now.AddMinutes(30),
+                expires: DateTime.Now.AddDays(7),
                 signingCredentials: signinCredentials
             );
 
