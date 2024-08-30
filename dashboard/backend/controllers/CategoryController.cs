@@ -29,30 +29,45 @@ namespace OMUS.Controllers
         }
 
         [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> SaveCategory(Category category)
+        [HttpPost("AddCategory")]
+        public async Task<IActionResult> AddCategory(Category category)
         {
             if (category.ParentId.HasValue)
             {
-                var categoryFind = await _context.Categories.FindAsync(category.ParentId.Value);
-                if (categoryFind == null) return NotFound("ParentId");
+                var parentCategory = await _context.Categories.FindAsync(category.ParentId.Value);
+                if (parentCategory == null)
+                {
+                    return NotFound("ParentId");
+                }
             }
 
-            if (category.Id == 0) // Assuming 0 is the default value for uninitialized int
-            {
-                _context.Categories.Add(category);
-                await _context.SaveChangesAsync();
-                return NoContent();
-            }
-            else
-            {
-                var categoryFind = await _context.Categories.FindAsync(category.Id);
-                if (categoryFind == null) return NotFound();
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
 
-                _context.Entry(categoryFind).CurrentValues.SetValues(category);
-                await _context.SaveChangesAsync();
-                return NoContent();
+        [Authorize]
+        [HttpPut("UpdateCategory")]
+        public async Task<IActionResult> UpdateCategory(Category category)
+        {
+            var categoryFind = await _context.Categories.FindAsync(category.Id);
+            if (categoryFind == null)
+            {
+                return NotFound();
             }
+
+            if (category.ParentId.HasValue)
+            {
+                var parentCategory = await _context.Categories.FindAsync(category.ParentId.Value);
+                if (parentCategory == null)
+                {
+                    return NotFound("ParentId");
+                }
+            }
+
+            _context.Entry(categoryFind).CurrentValues.SetValues(category);
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
 
 
