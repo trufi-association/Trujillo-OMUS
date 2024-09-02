@@ -89581,7 +89581,7 @@ $1(a){return a.b},
 $S:229}
 A.arI.prototype={
 $4(a,b,c,d){var s,r,q=null,p=this.a,o=p.d=d,n=A.kV(this.b.ax.b,-1,1),m=c?B.zN:B.ia,l=p.a,k=l.e,j=k.length
-if(j===0)p=A.bO(q,A.ew(A.cI("No items available",q,q,q,q,B.hC,q),q,q),B.l,q,q,q,41,q,B.mC,b)
+if(j===0)p=A.bO(q,A.ew(A.cI("No hay items",q,q,q,q,B.hC,q),q,q),B.l,q,q,q,41,q,B.mC,b)
 else{s=p.f
 r=p.e
 r===$&&A.a()

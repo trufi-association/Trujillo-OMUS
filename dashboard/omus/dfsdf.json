@@ -1,0 +1,487 @@
+[
+    {
+        "id": 1,
+        "parentId": null,
+        "categoryName": "Inseguridad vial",
+        "hasVictim": true,
+        "hasDateTime": true,
+        "sub-categories": [
+            {
+                "id": 2,
+                "parentId": 1,
+                "categoryName": "Near-miss",
+                "hasVictim": true,
+                "hasDateTime": true
+            },
+            {
+                "id": 3,
+                "parentId": 1,
+                "categoryName": "Atropello",
+                "hasVictim": true,
+                "hasDateTime": true
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "parentId": null,
+        "categoryName": "Inseguridad personal",
+        "hasVictim": true,
+        "hasDateTime": true
+    },
+    {
+        "id": 7,
+        "parentId": null,
+        "categoryName": "Huecos, algo malo en las pistas, veredas u otra afectación a la infraestructura.",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 8,
+        "parentId": 7,
+        "categoryName": "Hueco o daño en infraestructura",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 9,
+        "parentId": 7,
+        "categoryName": "Hay una calle/vereda o ciclovía que no conecta con nada",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 10,
+        "parentId": null,
+        "categoryName": "Algo anda mal con las pistas, veredas, ciclovías, etc.",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 11,
+        "parentId": 7,
+        "categoryName": "Semáforo dañado",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 12,
+        "parentId": 10,
+        "categoryName": "El bus/combi no pasa a tiempo",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 13,
+        "parentId": null,
+        "categoryName": "Otro actor maltrata o acosa",
+        "hasVictim": true,
+        "hasDateTime": true
+    },
+    {
+        "id": 14,
+        "parentId": null,
+        "categoryName": "Quiero reportar una infracción que cometió un conductor, peatón o ciclista",
+        "hasVictim": true,
+        "hasDateTime": true
+    },
+    {
+        "id": 15,
+        "parentId": null,
+        "categoryName": "Buen comportamiento de algún actor",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 16,
+        "parentId": 4,
+        "categoryName": "Robaron un carro",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 17,
+        "parentId": 4,
+        "categoryName": "Hurto de motocicletas",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 18,
+        "parentId": 4,
+        "categoryName": "Hurto de bicicletas o patinetas",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 19,
+        "parentId": 4,
+        "categoryName": "Delitos en transporte público (incluye TransMilenio, tranvía Cuenca)",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 20,
+        "parentId": 14,
+        "categoryName": "(c) por lugares y en horarios que estén permitidos",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 21,
+        "parentId": 14,
+        "categoryName": "Alguien no respetó el semáforo en rojo",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 22,
+        "parentId": 14,
+        "categoryName": "(e) respetando la luz roja del semáforo)",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 23,
+        "parentId": 14,
+        "categoryName": "Un vehículo pisó el cruce peatonal",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 24,
+        "parentId": 15,
+        "categoryName": "Ceder la vía a peatón",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 25,
+        "parentId": 15,
+        "categoryName": "Ayudar a alguien",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 27,
+        "parentId": 7,
+        "categoryName": "Falta de señalización",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 28,
+        "parentId": 7,
+        "categoryName": "No hay vereda o espacio suficiente para caminar",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 29,
+        "parentId": 7,
+        "categoryName": "Hay un obstáculo en la pista",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 30,
+        "parentId": 7,
+        "categoryName": "Falta de iluminación",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 31,
+        "parentId": 10,
+        "categoryName": "Semáforo con tiempo de verde muy corto",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 32,
+        "parentId": 10,
+        "categoryName": "Daño en el paradero de bus micros o combis",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 33,
+        "parentId": 10,
+        "categoryName": "Hay un bus/combi en malas condiciones o dañado",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 34,
+        "parentId": 10,
+        "categoryName": "Tuve que caminar más de 10 minutos para encontrar un paradero",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 35,
+        "parentId": 14,
+        "categoryName": "Motocicleta invade cicloinfraestructura",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 36,
+        "parentId": 14,
+        "categoryName": "Un vehículo está obstruyendo el paso o está estacionado en una zona prohibida",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 37,
+        "parentId": 15,
+        "categoryName": "Conducción segura de un conductor de bus o taxi",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 38,
+        "parentId": null,
+        "categoryName": "Propuestas ciudadanas",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 39,
+        "parentId": 38,
+        "categoryName": "Pedir una parada del sistema de Transporte Público",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 40,
+        "parentId": 38,
+        "categoryName": "Quiero que haya un paradero de bicicletas compartidas",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 41,
+        "parentId": 38,
+        "categoryName": "Pedir una estación de mecánica",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 42,
+        "parentId": 38,
+        "categoryName": "Quiero que instalen un estacionamiento para bicicletas",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 43,
+        "parentId": 38,
+        "categoryName": "Pedir una pacificación de tráfico o un cruce seguro en el barrio",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 46,
+        "parentId": 38,
+        "categoryName": "Pedir infraestructura para personas con discapacidad en un lugar específico",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 47,
+        "parentId": 38,
+        "categoryName": "Quiero que pongan un estacionamiento pagado en pista",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 48,
+        "parentId": null,
+        "categoryName": "Felicitar al sector de movilidad",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 50,
+        "parentId": 10,
+        "categoryName": "Información de rutas inexistente o robada",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 51,
+        "parentId": 10,
+        "categoryName": "La ruta del bus/combi se desvió o no realizó el recorrido acostumbrado",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 52,
+        "parentId": 13,
+        "categoryName": "Acoso sexual en transporte público",
+        "hasVictim": true,
+        "hasDateTime": true
+    },
+    {
+        "id": 53,
+        "parentId": 48,
+        "categoryName": "Pusieron ciclovía",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 54,
+        "parentId": 48,
+        "categoryName": "Arreglaron / instalaron vereda",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 56,
+        "parentId": 13,
+        "categoryName": "Me maltrataron verbalmente (o a alguien más) en el transporte público",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 57,
+        "parentId": 13,
+        "categoryName": "Violencia física en transporte público",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 58,
+        "parentId": 1,
+        "categoryName": "Choque con sólo daños",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 59,
+        "parentId": 1,
+        "categoryName": "Conducción peligrosa de un taxi",
+        "hasVictim": true,
+        "hasDateTime": true
+    },
+    {
+        "id": 60,
+        "parentId": 4,
+        "categoryName": "Otro (Inseguridad personal)",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 61,
+        "parentId": 7,
+        "categoryName": "Otro (Mala condición de infraestructura)",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 62,
+        "parentId": 10,
+        "categoryName": "Patineta o bici compartida mal parqueada/bloqueando vereda, o no en paradero",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 63,
+        "parentId": 13,
+        "categoryName": "Otro (Otro actor maltrata o acosa)",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 64,
+        "parentId": 14,
+        "categoryName": "Otro (Otro actor infringe alguna norma)",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 65,
+        "parentId": 15,
+        "categoryName": "Otro (Buen comportamiento de algún actor)",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 66,
+        "parentId": 38,
+        "categoryName": "Otro (Propuestas ciudadanas)",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 67,
+        "parentId": 48,
+        "categoryName": "Otro (Felicitar al sector de movilidad)",
+        "hasVictim": false,
+        "hasDateTime": false
+    },
+    {
+        "id": 68,
+        "parentId": 1,
+        "categoryName": "Otro (Inseguridad vial)",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 69,
+        "parentId": 10,
+        "categoryName": "Otro (Mala condición de red y su operación)",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 70,
+        "parentId": 57,
+        "categoryName": "Me agredieron por mi expresión de género u orientación sexual",
+        "hasVictim": true,
+        "hasDateTime": true
+    },
+    {
+        "id": 71,
+        "parentId": null,
+        "categoryName": "Me siento insegura(o) en este lugar",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 72,
+        "parentId": 7,
+        "categoryName": "No hay rampas adecuadas para circular en silla de ruedas",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 73,
+        "parentId": 7,
+        "categoryName": "Falta señalización táctil o de piso para personas con discapacidad visual",
+        "hasVictim": false,
+        "hasDateTime": true
+    },
+    {
+        "id": 74,
+        "parentId": 13,
+        "categoryName": "No me recogieron por ser estudiante",
+        "hasVictim": true,
+        "hasDateTime": true
+    },
+    {
+        "id": 75,
+        "parentId": 13,
+        "categoryName": "No me recogieron por tener una discapacidad",
+        "hasVictim": true,
+        "hasDateTime": true
+    },
+    {
+        "id": 76,
+        "parentId": 13,
+        "categoryName": "No me recogieron por ser adulto mayor",
+        "hasVictim": true,
+        "hasDateTime": true
+    }
+]

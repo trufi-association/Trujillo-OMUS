@@ -1,10 +1,15 @@
+import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
+import 'package:go_router/go_router.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:omus/env.dart';
@@ -13,16 +18,21 @@ import 'package:omus/services/api_service.dart';
 import 'package:omus/services/models/category.dart';
 import 'package:omus/services/models/report.dart';
 import 'package:omus/services/models/vial_actor.dart';
+import 'package:omus/widgets/components/checkbox/custom_checkbox.dart';
 import 'package:omus/widgets/components/dropdown/helpers/dropdown_item.dart';
 import 'package:omus/widgets/components/dropdown/multi_select_dropdown.dart';
+import 'package:omus/widgets/components/fleaflet_map_controller.dart';
 import 'package:omus/widgets/components/helpers/form_loading_helper_new.dart';
 import 'package:omus/widgets/components/textfield/form_request_date_range_field.dart';
 import 'package:omus/widgets/components/textfield/form_request_field.dart';
 import 'package:omus/widgets/components/toggle_switch/custom_toggle_switch.dart';
+import 'package:omus/widgets/components/zoom_map_button.dart';
 import 'gtfs_service.dart';
 import 'package:provider/provider.dart';
 import 'gtfs.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+import 'package:flutter_map_heatmap/flutter_map_heatmap.dart';
 
 void main() {
   runApp(const MyApp());
@@ -50,26 +60,84 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider(create: (_) => GtfsService()),
-        FutureProvider<Gtfs>(
-          create: (context) => context.read<GtfsService>().loadGtfsData(),
-          initialData: Gtfs(
-            agencies: [],
-            routes: [],
-            stops: [],
-            shapes: [],
-            frequencies: [],
-            calendars: [],
-            stopTimes: [],
-            trips: [],
+    // Configuración del router
+    final GoRouter _router = GoRouter(
+      initialLocation: '/',
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (context, state) => const UnderConstructionPage(),
+        ),
+        GoRoute(
+          path: '/map-viewer',
+          builder: (context, state) => MultiProvider(
+            providers: [
+              Provider(create: (_) => GtfsService()),
+              FutureProvider<Gtfs>(
+                create: (context) => context.read<GtfsService>().loadGtfsData(),
+                initialData: Gtfs(
+                  agencies: [],
+                  routes: [],
+                  stops: [],
+                  shapes: [],
+                  frequencies: [],
+                  calendars: [],
+                  stopTimes: [],
+                  trips: [],
+                ),
+              ),
+            ],
+            child: const MainMap(),
           ),
         ),
       ],
-      child: const MaterialApp(
-        title: 'GTFS Route Viewer',
-        home: GtfsMap(),
+    );
+
+    return MaterialApp.router(
+      title: 'OMUS',
+      routerDelegate: _router.routerDelegate,
+      routeInformationParser: _router.routeInformationParser,
+      routeInformationProvider: _router.routeInformationProvider,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.blueAccent,
+        ),
+      ),
+    );
+  }
+}
+
+// Página de construcción
+class UnderConstructionPage extends StatelessWidget {
+  const UnderConstructionPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('En construcción'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              'Esta página está en construcción',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'De momento solo esta disponible el mapa',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                context.go("/map-viewer");
+              },
+              child: Text("ir al mapa"),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -78,52 +146,174 @@ class MyApp extends StatelessWidget {
 class ModelRequest extends FormRequest {
   ModelRequest({
     required this.categories,
+    required this.subCategories,
     required this.actors,
+    required this.agenciesSelection,
     required this.routesSelection,
     required this.dateRange,
-    required this.showAll,
+    required this.showRoutes,
+    required this.showAllRoutes,
+    required this.showHeatMap,
+    required this.heatMapFilter,
+    required this.showReports,
+    required this.showHeatMapReports,
+    required this.showStops,
+    required this.stopsFilter,
   });
 
   factory ModelRequest.fromScratch() => ModelRequest(
         categories: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
+        subCategories: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
         actors: FormItemContainer<List<String>>(fieldKey: "actors", value: []),
+        agenciesSelection: FormItemContainer<List<String>>(fieldKey: "ac", value: []),
         routesSelection: FormItemContainer<List<String>>(fieldKey: "ac", value: []),
         dateRange: FormItemContainer<DateTimeRange>(
           fieldKey: "keyStartDate",
         ),
-        showAll: FormItemContainer<bool>(fieldKey: "keyStartDate", value: false),
+        showRoutes: FormItemContainer<bool>(fieldKey: "keyShowAllRoutes", value: false),
+        showAllRoutes: FormItemContainer<bool>(fieldKey: "keyShowAllRoutes", value: true),
+        showHeatMap: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: false),
+        heatMapFilter: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
+        showReports: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
+        showHeatMapReports: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: false),
+        showStops: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
+        stopsFilter: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
       );
 
   final FormItemContainer<List<String>> categories;
+  final FormItemContainer<List<String>> subCategories;
   final FormItemContainer<List<String>> actors;
+  final FormItemContainer<List<String>> agenciesSelection;
   final FormItemContainer<List<String>> routesSelection;
   final FormItemContainer<DateTimeRange> dateRange;
-  final FormItemContainer<bool> showAll;
+  final FormItemContainer<bool> showRoutes;
+  final FormItemContainer<bool> showAllRoutes;
+  final FormItemContainer<bool> showHeatMap;
+  final FormItemContainer<bool> showReports;
+  final FormItemContainer<bool> showHeatMapReports;
+  final FormItemContainer<List<String>> heatMapFilter;
+  final FormItemContainer<bool> showStops;
+  final FormItemContainer<List<String>> stopsFilter;
 }
 
 class ServerOriginal {
-  final List<Category> categories;
+  final Map<int, Category> categories;
+  final List<Category> allCategories;
   final List<VialActor> actors;
   final List<Report> reports;
-
+  final List<GenderBoard> data;
+  final List<GeoFeature> stops;
   ServerOriginal({
     required this.categories,
+    required this.allCategories,
     required this.actors,
     required this.reports,
+    required this.data,
+    required this.stops,
   });
 }
 
-class GtfsMap extends StatefulWidget {
-  const GtfsMap({super.key});
+enum FeatureType {
+  advertising,
+  bench,
+  bicycleParking,
+  bin,
+  lit,
+  ramp,
+  shelter,
+}
+
+extension FeatureTypeExtension on FeatureType {
+  static const Map<FeatureType, String> _featureTypeMap = {
+    FeatureType.advertising: 'advertising',
+    FeatureType.bench: 'bench',
+    FeatureType.bicycleParking: 'bicycleParking',
+    FeatureType.bin: 'bin',
+    FeatureType.lit: 'lit',
+    FeatureType.ramp: 'ramp',
+    FeatureType.shelter: 'shelter',
+  };
+
+  String toValue() => _featureTypeMap[this]!;
+
+  static FeatureType fromValue(String value) => _featureTypeMap.entries.firstWhere((entry) => entry.value == value).key;
+}
+
+enum Gender {
+  men,
+  woman,
+}
+
+extension GenderExtension on Gender {
+  static const Map<String, Gender> _valueMap = {
+    'hombre': Gender.men,
+    'mujer': Gender.woman,
+  };
+
+  static Gender fromValue(String value) => _valueMap[value.toLowerCase()]!;
+  String toValue() => _valueMap.entries.firstWhere((entry) => entry.value == this).key;
+}
+
+class GeoFeature {
+  final LatLng coordinates;
+  final bool advertising;
+  final bool bench;
+  final bool bicycleParking;
+  final bool bin;
+  final bool lit;
+  final bool ramp;
+  final bool shelter;
+
+  GeoFeature({
+    required this.coordinates,
+    required this.advertising,
+    required this.bench,
+    required this.bicycleParking,
+    required this.bin,
+    required this.lit,
+    required this.ramp,
+    required this.shelter,
+  });
+
+  factory GeoFeature.fromJson(Map<String, dynamic> json) {
+    final coords = json['geometry']['coordinates'];
+    final latLng = LatLng(coords[1], coords[0]);
+    final properties = json['properties'];
+
+    return GeoFeature(
+      coordinates: latLng,
+      advertising: properties['advertising'] == 'yes',
+      bench: properties['bench'] == 'yes',
+      bicycleParking: properties['bicycle_parking'] == 'yes',
+      bin: properties['bin'] == 'yes',
+      lit: properties['lit'] == 'yes',
+      ramp: properties['ramp'] == 'yes',
+      shelter: properties['shelter'] == 'yes',
+    );
+  }
+}
+
+class GenderBoard {
+  final LatLng latLng;
+  final bool isMen;
+
+  GenderBoard({required this.latLng, required this.isMen});
+}
+
+class MainMap extends StatefulWidget {
+  const MainMap({super.key});
 
   @override
-  GtfsMapState createState() => GtfsMapState();
+  MainMapState createState() => MainMapState();
 }
 
 List<Report> filterReports({required ServerOriginal helper, required ModelRequest model}) {
-  var categories = model.categories.value ?? [];
+  var categories = [
+    ...(model.categories.value ?? []),
+    ...(model.subCategories.value ?? []),
+  ];
   if (categories.isEmpty) {
-    categories = helper.categories.map((value) => value.id.toString()).toList();
+    categories = helper.allCategories.map((value) => value.id.toString()).toList();
   }
   var actors = model.actors.value ?? [];
   if (actors.isEmpty) {
@@ -143,15 +333,26 @@ List<Report> filterReports({required ServerOriginal helper, required ModelReques
       }
     }
 
-    return (hasCategory || hasActor) && inDateRange;
+    return hasCategory && hasActor && inDateRange;
   }).toList();
 }
 
-class GtfsMapState extends State<GtfsMap> {
+class MainMapState extends State<MainMap> {
   double zoom = 13;
   Report? currentReport;
-  MapController mapController = MapController();
-  Uint8List bytes = base64Decode(logo);
+  bool showStats = false;
+  StreamController<void> _rebuildGenderStream = StreamController.broadcast();
+  StreamController<void> _rebuildGeneralStream = StreamController.broadcast();
+
+  LeafletMapController leafletMapController = LeafletMapController();
+
+  @override
+  dispose() {
+    _rebuildGenderStream.close();
+    _rebuildGeneralStream.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final gtfsData = context.watch<Gtfs>();
@@ -168,10 +369,31 @@ class GtfsMapState extends State<GtfsMap> {
                 ApiServices.getAllActors(),
                 ApiServices.getAllReports(),
               ]);
+              final allCategories = response[0] as List<Category>;
+              final categoriesMap = Map.fromEntries(
+                allCategories.where((value) => value.parentId == null).map((value) => MapEntry(value.id, value)),
+              );
+              allCategories.where((value) => value.parentId != null).forEach((value) {
+                categoriesMap[value.parentId]?.subcategories.add(value);
+              });
+              var heatMapData = await rootBundle.loadString('assets/mapa_de_calor.geojson');
+
+              final data = (jsonDecode(heatMapData)['features'] as List).map((feature) {
+                final coords = feature['geometry']['coordinates'];
+                final name = (feature['properties']['name']?.toString() ?? "").toLowerCase();
+                final latlng = LatLng(coords[1], coords[0]);
+                return GenderBoard(latLng: latlng, isMen: name.contains("hombre"));
+              }).toList();
+              var stopsData = await rootBundle.loadString('assets/stops.geojson');
+              final stops = (jsonDecode(stopsData)['features'] as List).map((feature) => GeoFeature.fromJson(feature)).toList();
+
               return ServerOriginal(
-                categories: response[0] as List<Category>,
+                allCategories: allCategories,
+                categories: categoriesMap,
                 actors: response[1] as List<VialActor>,
                 reports: response[2] as List<Report>,
+                data: data,
+                stops: stops,
               );
             },
             saveModel: (_, {id}) async => {},
@@ -180,10 +402,31 @@ class GtfsMapState extends State<GtfsMap> {
               final helper = params.responseModel.responseHelper!;
               final model = params.model;
               final filteredReports = filterReports(helper: helper, model: model);
+
+              final List<WeightedLatLng> genderMap = helper.data
+                  .where((value) {
+                    final stopsFilter = model.heatMapFilter.value?.map((value) => GenderExtension.fromValue(value)).toList() ?? [];
+                    if (stopsFilter.isEmpty) return true;
+                    for (final stopFeature in stopsFilter) {
+                      if (stopFeature == Gender.men && value.isMen) return true;
+                      if (stopFeature == Gender.woman && !value.isMen) return true;
+                    }
+
+                    return false;
+                  })
+                  .map(
+                    (value) => WeightedLatLng(value.latLng, 1),
+                  )
+                  .toList();
+              final List<WeightedLatLng> reportsFiltered = filteredReports
+                  .where((report) => report.latitude != null && report.longitude != null)
+                  .map((report) => WeightedLatLng(LatLng(report.latitude!, report.longitude!), 1))
+                  .toList();
+
               return Stack(
                 children: [
                   FlutterMap(
-                    mapController: mapController,
+                    mapController: leafletMapController.mapController,
                     options: MapOptions(
                         initialCenter: const LatLng(-8.1120, -79.0280),
                         initialZoom: zoom,
@@ -194,63 +437,140 @@ class GtfsMapState extends State<GtfsMap> {
                         }),
                     children: [
                       openStreetMapTileLayer,
-                      if (model.showAll.value == true)
-                        BaseMapLayer(
+                      if (model.showHeatMap.value == true && genderMap.isNotEmpty)
+                        HeatMapLayer(
+                          heatMapDataSource: InMemoryHeatMapDataSource(
+                            data: genderMap,
+                          ),
+                          reset: _rebuildGenderStream.stream,
+                        ),
+                      if (model.showRoutes.value == true) ...[
+                        if (model.showAllRoutes.value == true)
+                          BaseMapLayer(
+                            zoom: zoom,
+                            gtfsData: gtfsData,
+                          ),
+                        SelectedMapLayer(
                           zoom: zoom,
                           gtfsData: gtfsData,
+                          routeSelection: model.routesSelection.value ?? [],
                         ),
-                      SelectedMapLayer(
-                        zoom: zoom,
-                        gtfsData: gtfsData,
-                        routeSelection: model.routesSelection.value ?? [],
-                      ),
-                      MarkerClusterLayerWidget(
-                        options: MarkerClusterLayerOptions(
-                          maxClusterRadius: 45,
-                          size: const Size(30, 30),
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.all(50),
-                          maxZoom: 15,
-                          markers: filteredReports.map((report) {
+                      ],
+                      if (model.showStops.value == true)
+                        MarkerLayer(
+                          markers: helper.stops.where((value) {
+                            final stopsFilter = model.stopsFilter.value?.map((value) => FeatureTypeExtension.fromValue(value)).toList() ?? [];
+                            if (stopsFilter.isEmpty) return true;
+                            for (final stopFeature in stopsFilter) {
+                              if (stopFeature == FeatureType.advertising && value.advertising) return true;
+                              if (stopFeature == FeatureType.bench && value.bench) return true;
+                              if (stopFeature == FeatureType.bicycleParking && value.bicycleParking) return true;
+                              if (stopFeature == FeatureType.bin && value.bin) return true;
+                              if (stopFeature == FeatureType.lit && value.lit) return true;
+                              if (stopFeature == FeatureType.ramp && value.ramp) return true;
+                              if (stopFeature == FeatureType.shelter && value.shelter) return true;
+                            }
+
+                            return false;
+                          }).map((stop) {
                             return Marker(
-                              // width: 80.0,
-                              // height: 80.0,
-                              point: LatLng(report.latitude ?? 0, report.longitude ?? 0),
-                              alignment: Alignment.topCenter,
-                              child: MouseRegion(
-                                cursor: SystemMouseCursors.click,
-                                child: GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      currentReport = report;
-                                    });
-                                  },
-                                  child: const Icon(
-                                    Icons.location_on_rounded,
-                                    color: Colors.red,
-                                    size: 40,
-                                  ),
+                              width: 25,
+                              height: 25,
+                              point: stop.coordinates,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: const Color.fromRGBO(152, 195, 116, 1),
+                                    borderRadius: BorderRadius.circular(50),
+                                    border: Border.all(color: Colors.white)),
+                                child: Icon(
+                                  size: 20,
+                                  Icons.directions_bus,
+                                  color: Color.fromARGB(255, 41, 61, 43),
                                 ),
                               ),
                             );
                           }).toList(),
-                          builder: (context, markers) {
-                            return MouseRegion(
-                              cursor: SystemMouseCursors.click,
-                              child: Container(
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue),
-                                child: Center(
-                                  child: Text(
-                                    markers.length.toString(),
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
                         ),
-                      ),
+                      if (model.showReports.value == true) ...[
+                        if (model.showHeatMapReports.value == true && reportsFiltered.isNotEmpty)
+                          HeatMapLayer(
+                            heatMapOptions: HeatMapOptions(layerOpacity: 1),
+                            heatMapDataSource: InMemoryHeatMapDataSource(
+                              data: reportsFiltered,
+                            ),
+                            reset: _rebuildGeneralStream.stream,
+                          ),
+                        if (model.showHeatMapReports.value != true)
+                          MarkerClusterLayerWidget(
+                            options: MarkerClusterLayerOptions(
+                              maxClusterRadius: 45,
+                              size: const Size(30, 30),
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.all(50),
+                              maxZoom: 15,
+                              markers: filteredReports.map((report) {
+                                return Marker(
+                                  // width: 80.0,
+                                  // height: 80.0,
+                                  point: LatLng(report.latitude ?? 0, report.longitude ?? 0),
+                                  alignment: Alignment.topCenter,
+                                  child: MouseRegion(
+                                    cursor: SystemMouseCursors.click,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          currentReport = report;
+                                        });
+                                      },
+                                      child: const Icon(
+                                        Icons.location_on_rounded,
+                                        color: Colors.red,
+                                        size: 40,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
+                              builder: (context, markers) {
+                                return MouseRegion(
+                                  cursor: SystemMouseCursors.click,
+                                  child: Container(
+                                    decoration:
+                                        BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue, border: Border.all(color: Colors.white)),
+                                    child: Center(
+                                      child: Text(
+                                        markers.length.toString(),
+                                        style: const TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                      ],
                     ],
+                  ),
+                  // ReportBarChart(
+                  //   reports: helper.reports,
+                  //   categories: helper.categories,
+                  // ),
+
+                  MapLayer(
+                    leafletMapController: leafletMapController,
+                    model: model,
+                    helper: helper,
+                    onGenderUpdate: () {
+                      _rebuildGenderStream.add(null);
+                    },
+                    onGeneralUpdate: () {
+                      _rebuildGeneralStream.add(null);
+                    },
+                    onShowStats: () {
+                      setState(() {
+                        showStats = true;
+                      });
+                    },
                   ),
                   if (currentReport != null)
                     Align(
@@ -305,7 +625,7 @@ class GtfsMapState extends State<GtfsMap> {
                                               ),
                                               const SizedBox(height: 8.0),
                                               Text(
-                                                'Category: ${helper.categories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ?? "-"}',
+                                                'Category: ${helper.allCategories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ?? "-"}',
                                                 style: const TextStyle(fontSize: 14),
                                               ),
                                               const SizedBox(height: 4.0),
@@ -347,215 +667,461 @@ class GtfsMapState extends State<GtfsMap> {
                         ),
                       ),
                     ),
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 800),
-                      child: Container(
-                        margin: const EdgeInsets.only(
-                          top: 10,
-                          left: 10,
-                          right: 10,
-                        ),
-                        padding: const EdgeInsets.all(2),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 0, 153, 214),
-                          borderRadius: BorderRadius.circular(8),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Row(
-                              children: [
-                                Container(
-                                  width: 130,
-                                  height: 47,
-                                  decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                    borderRadius: BorderRadius.circular(5),
-                                    // boxShadow: [
-                                    //   BoxShadow(
-                                    //     color: Colors.grey.withOpacity(0.5),
-                                    //     spreadRadius: 2,
-                                    //     blurRadius: 5,
-                                    //     offset: Offset(0, 3),
-                                    //   ),
-                                    // ],
-                                  ),
-                                  margin: const EdgeInsets.symmetric(horizontal: 2),
-                                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                                  child: Image.memory(bytes),
-                                ),
-                                Flexible(
-                                  child: FormRequestMultiSelectField(
-                                    update: model.update,
-                                    field: model.categories,
-                                    label: "Category",
-                                    items: helper.categories
-                                        .map(
-                                          (e) => DropdownItem(
-                                            id: e.id.toString(),
-                                            text: e.categoryName.toString(),
-                                          ),
-                                        )
-                                        .toList(),
-                                    enabled: true,
-                                  ),
-                                ),
-                                Flexible(
-                                  child: FormRequestMultiSelectField(
-                                    update: model.update,
-                                    field: model.actors,
-                                    label: "Vial Actors",
-                                    items: helper.actors
-                                        .map(
-                                          (e) => DropdownItem(
-                                            id: e.id.toString(),
-                                            text: e.name.toString(),
-                                          ),
-                                        )
-                                        .toList(),
-                                    enabled: true,
-                                  ),
-                                ),
-                                Flexible(
-                                  // width: 220,
-                                  child: FormDateRangePickerField(
-                                    update: model.update,
-                                    label: "Date range",
-                                    field: model.dateRange,
-                                    enabled: true,
-                                  ),
-                                ),
-                                MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      model.update(() {
-                                        model.actors.value = [];
-                                        model.categories.value = [];
-                                      });
-                                    },
-                                    child: Container(
-                                      width: 50,
-                                      height: 47,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 255, 255, 255),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      margin: const EdgeInsets.symmetric(horizontal: 2),
-                                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                                      child: const Icon(Icons.close),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                MouseRegion(
-                                  cursor: SystemMouseCursors.click,
-                                  child: GestureDetector(
-                                    onTap: () {},
-                                    child: Container(
-                                      width: 130,
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 255, 255, 255),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      margin: const EdgeInsets.symmetric(horizontal: 2),
-                                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                const Text(
-                                                  "Reports",
-                                                  style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Color.fromARGB(255, 150, 196, 115),
-                                                  ),
-                                                ),
-                                                // SizedBox(height: 4),
-                                                Text(
-                                                  "${filteredReports.length}",
-                                                  style: const TextStyle(
-                                                    fontSize: 20,
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Color.fromARGB(255, 64, 79, 115),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          const Icon(
-                                            Icons.query_stats,
-                                            color: Color.fromARGB(255, 255, 130, 159),
-                                            size: 30,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                Flexible(
-                                  child: FormRequestMultiSelectField(
-                                    update: model.update,
-                                    field: model.routesSelection,
-                                    label: "Routes",
-                                    items: gtfsData.routes
-                                        .map(
-                                          (e) => DropdownItem(
-                                            id: e.routeId,
-                                            text: e.routeShortName,
-                                          ),
-                                        )
-                                        .toList(),
-                                    enabled: true,
-                                  ),
-                                ),
-                                Container(
-                                  height: 47,
-                                  width: 170,
-                                  decoration: BoxDecoration(
-                                    color: const Color.fromARGB(255, 255, 255, 255),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  margin: const EdgeInsets.symmetric(horizontal: 2),
-                                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      FormRequestToggleSwitch(
-                                        update: model.update,
-                                        label: "Show all routes",
-                                        field: model.showAll,
-                                        enabled: true,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+
+                  if (showStats)
+                    ReportPieChart(
+                      reports: helper.reports,
+                      categories: helper.categories,
+                      onClose: () {
+                        setState(() {
+                          showStats = false;
+                        });
+                      },
                     ),
-                  ),
                 ],
               );
             }),
+      ),
+    );
+  }
+}
+
+class MapLayer extends StatefulWidget {
+  const MapLayer({
+    super.key,
+    required this.leafletMapController,
+    required this.model,
+    required this.helper,
+    required this.onGenderUpdate,
+    required this.onGeneralUpdate,
+    required this.onShowStats,
+  });
+
+  final LeafletMapController leafletMapController;
+  final ModelRequest model;
+  final ServerOriginal helper;
+  final void Function() onGenderUpdate;
+  final void Function() onGeneralUpdate;
+  final void Function() onShowStats;
+
+  @override
+  State<MapLayer> createState() => _MapLayerState();
+}
+
+enum ShowMapLayer { routes }
+
+class _MapLayerState extends State<MapLayer> {
+  ShowMapLayer? showMapLayer = ShowMapLayer.routes;
+  Uint8List bytes = base64Decode(logo);
+  @override
+  Widget build(BuildContext context) {
+    final gtfsData = context.watch<Gtfs>();
+    return Positioned(
+      right: 0,
+      top: 0,
+      bottom: 0,
+      child: Row(
+        // mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.all(5),
+            child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              // mainAxisSize: MainAxisSize.min,
+              children: [
+                ZoomInOutMapButton(
+                  leafletMapController: widget.leafletMapController,
+                ),
+                Container(
+                  height: 5,
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Column(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            if (showMapLayer != ShowMapLayer.routes) {
+                              showMapLayer = ShowMapLayer.routes;
+                            } else {
+                              showMapLayer = null;
+                            }
+                          });
+                        },
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: Icon(
+                            Icons.layers,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          widget.onShowStats();
+                        },
+                        child: SizedBox(
+                          width: 30,
+                          height: 30,
+                          child: Icon(
+                            Icons.query_stats,
+                            color: Color.fromARGB(255, 255, 130, 159),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (showMapLayer == ShowMapLayer.routes)
+            Container(
+              width: 350,
+              // height: 500,
+              margin: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.white, // Color de fondo blanco
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5),
+                ), // Bordes redondeados
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5), // Color de sombra con opacidad
+                    spreadRadius: 5, // Extensión de la sombra
+                    blurRadius: 10, // Difuminado de la sombra
+                    offset: Offset(0, 3), // Desplazamiento de la sombra (x, y)
+                  ),
+                ],
+              ),
+
+              child: ListView(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(5),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.memory(bytes),
+                        Divider(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "Reportes", // Cambia "Título Bonito" por el texto que desees
+                                style: TextStyle(
+                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
+                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
+                                  color: Colors.blue, // Color azul o el que prefieras
+                                ),
+                              ),
+                            ),
+                            FormRequestToggleSwitch(
+                              update: widget.model.update,
+
+                              // label: "Option Sample",
+                              field: widget.model.showReports,
+                              enabled: true,
+                              onChanged: (_) {
+                                widget.onGeneralUpdate();
+                              },
+                            ),
+                          ],
+                        ),
+                        if (widget.model.showReports.value == true)
+                          Container(
+                            margin: EdgeInsets.all(5),
+                            child: Column(
+                              children: [
+                                FormRequestMultiSelectField(
+                                  update: widget.model.update,
+                                  field: widget.model.categories,
+                                  label: "Categorias",
+                                  items: widget.helper.categories.values
+                                      .map(
+                                        (e) => DropdownItem(
+                                          id: e.id.toString(),
+                                          text: e.categoryName.toString(),
+                                        ),
+                                      )
+                                      .toList(),
+                                  enabled: true,
+                                  onChanged: (items) {
+                                    final categoryChanged = widget.helper.categories.values
+                                        .where((value) => items.contains(value.id.toString()))
+                                        .expand((category) => category.subcategories)
+                                        .toList();
+                                    final currentFilter = widget.model.subCategories.value ?? [];
+                                    final currentSubCategories =
+                                        widget.helper.allCategories.where((value) => currentFilter.contains(value.id.toString())).toList();
+                                    final newSubCategoryList = currentSubCategories
+                                        .where((value) => categoryChanged.contains(value))
+                                        .map(
+                                          (value) => value.id.toString(),
+                                        )
+                                        .toList();
+                                    widget.model.update(() {
+                                      widget.model.subCategories.value = newSubCategoryList;
+                                    });
+                                    widget.onGeneralUpdate();
+                                  },
+                                ),
+                                FormRequestMultiSelectField(
+                                  update: widget.model.update,
+                                  field: widget.model.subCategories,
+                                  label: "Sub-Categorias",
+                                  items: widget.helper.allCategories
+                                      .where((value) {
+                                        return widget.model.categories.value?.contains(value.parentId.toString()) ?? false;
+                                      })
+                                      .toList()
+                                      .map(
+                                        (e) => DropdownItem(
+                                          id: e.id.toString(),
+                                          text: e.categoryName.toString(),
+                                        ),
+                                      )
+                                      .toList(),
+                                  enabled: true,
+                                  onChanged: (_) {
+                                    widget.onGeneralUpdate();
+                                  },
+                                ),
+                                FormRequestMultiSelectField(
+                                  update: widget.model.update,
+                                  field: widget.model.actors,
+                                  label: "Actores viales",
+                                  items: widget.helper.actors
+                                      .map(
+                                        (e) => DropdownItem(
+                                          id: e.id.toString(),
+                                          text: e.name.toString(),
+                                        ),
+                                      )
+                                      .toList(),
+                                  enabled: true,
+                                  onChanged: (_) {
+                                    widget.onGeneralUpdate();
+                                  },
+                                ),
+                                FormDateRangePickerField(
+                                  update: widget.model.update,
+                                  label: "Rango de fechas",
+                                  field: widget.model.dateRange,
+                                  enabled: true,
+                                  onChanged: (_) {
+                                    widget.onGeneralUpdate();
+                                  },
+                                ),
+                                Container(
+                                  height: 10,
+                                ),
+                                FormRequestCheckBox(
+                                  update: widget.model.update,
+                                  label: "Mapa de calor",
+                                  field: widget.model.showHeatMapReports,
+                                  enabled: true,
+                                ),
+                                Container(
+                                  height: 10,
+                                ),
+                                ElevatedButton(
+                                  child: Text("Limpiar filtro"),
+                                  onPressed: () {
+                                    widget.model.update(() {
+                                      widget.model.categories.value = null;
+                                      widget.model.subCategories.value = null;
+                                      widget.model.actors.value = null;
+                                      widget.model.dateRange.value = null;
+                                      widget.model.showHeatMapReports.value = false;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        Divider(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "Abordajes", // Cambia "Título Bonito" por el texto que desees
+                                style: TextStyle(
+                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
+                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
+                                  color: Colors.blue, // Color azul o el que prefieras
+                                ),
+                              ),
+                            ),
+                            FormRequestToggleSwitch(
+                              update: widget.model.update,
+
+                              // label: "Option Sample",
+                              field: widget.model.showHeatMap,
+                              enabled: true,
+                              onChanged: (_) {
+                                widget.onGenderUpdate();
+                              },
+                            ),
+                          ],
+                        ),
+                        if (widget.model.showHeatMap.value == true)
+                          Container(
+                            margin: EdgeInsets.all(5),
+                            child: Column(
+                              children: [
+                                FormRequestMultiSelectField(
+                                  update: widget.model.update,
+                                  field: widget.model.heatMapFilter,
+                                  label: "Genero",
+                                  items: Gender.values
+                                      .map(
+                                        (e) => DropdownItem(
+                                          id: e.toValue(),
+                                          text: e.toValue(),
+                                        ),
+                                      )
+                                      .toList(),
+                                  enabled: true,
+                                  onChanged: (_) {
+                                    widget.onGenderUpdate();
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        Divider(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "Rutas", // Cambia "Título Bonito" por el texto que desees
+                                style: TextStyle(
+                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
+                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
+                                  color: Colors.blue, // Color azul o el que prefieras
+                                ),
+                              ),
+                            ),
+                            FormRequestToggleSwitch(
+                              update: widget.model.update,
+
+                              // label: "Option Sample",
+                              field: widget.model.showRoutes,
+                              enabled: true,
+                            ),
+                          ],
+                        ),
+                        if (widget.model.showRoutes.value == true)
+                          Container(
+                            margin: EdgeInsets.all(5),
+                            child: Column(
+                              children: [
+                                FormRequestMultiSelectField(
+                                  update: widget.model.update,
+                                  field: widget.model.agenciesSelection,
+                                  label: "Operadores",
+                                  items: gtfsData.agencies
+                                      .map(
+                                        (e) => DropdownItem(
+                                          id: e.agencyId,
+                                          text: e.agencyName,
+                                        ),
+                                      )
+                                      .toList(),
+                                  enabled: true,
+                                  onChanged: (items) {
+                                    final routesSelected = widget.model.routesSelection.value ?? [];
+                                    final routes = routesSelected
+                                        .map((value) => gtfsData.routes.findOrNull((route) => route.routeId == value)!)
+                                        .where((value) => items.contains(value.agencyId))
+                                        .map((value) => value.routeId)
+                                        .toList();
+                                    widget.model.update(() {
+                                      widget.model.routesSelection.value = routes;
+                                    });
+                                  },
+                                ),
+                                FormRequestMultiSelectField(
+                                  update: widget.model.update,
+                                  field: widget.model.routesSelection,
+                                  label: "Rutas",
+                                  items: gtfsData.routes
+                                      .where((value) => widget.model.agenciesSelection.value?.contains(value.agencyId) ?? false)
+                                      .map(
+                                        (e) => DropdownItem(
+                                          id: e.routeId,
+                                          text: e.routeShortName,
+                                        ),
+                                      )
+                                      .toList(),
+                                  enabled: true,
+                                ),
+                                FormRequestCheckBox(
+                                  update: widget.model.update,
+                                  label: "Mostrar todas las rutas",
+                                  field: widget.model.showAllRoutes,
+                                  enabled: true,
+                                ),
+                              ],
+                            ),
+                          ),
+                        Divider(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "Paradas", // Cambia "Título Bonito" por el texto que desees
+                                style: TextStyle(
+                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
+                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
+                                  color: Colors.blue, // Color azul o el que prefieras
+                                ),
+                              ),
+                            ),
+                            FormRequestToggleSwitch(
+                              update: widget.model.update,
+
+                              // label: "Option Sample",
+                              field: widget.model.showStops,
+                              enabled: true,
+                            ),
+                          ],
+                        ),
+                        if (widget.model.showStops.value == true)
+                          Container(
+                            margin: EdgeInsets.all(5),
+                            child: Column(
+                              children: [
+                                FormRequestMultiSelectField(
+                                  update: widget.model.update,
+                                  field: widget.model.stopsFilter,
+                                  label: "Paradas",
+                                  items: FeatureType.values
+                                      .map(
+                                        (e) => DropdownItem(
+                                          id: e.toValue(),
+                                          text: e.toValue(),
+                                        ),
+                                      )
+                                      .toList(),
+                                  enabled: true,
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            )
+        ],
       ),
     );
   }
@@ -624,7 +1190,7 @@ class _BaseMapLayerState extends State<BaseMapLayer> {
       return Polyline(
         points: entry.value,
         strokeWidth: 10,
-        color: Colors.red,
+        color: Colors.blueGrey,
         useStrokeWidthInMeter: true,
       );
     }).toList();
@@ -810,6 +1376,197 @@ class RouteTripsListState extends State<RouteTripsList> {
           );
         }).toList(),
       ),
+    );
+  }
+}
+
+class ReportPieChart extends StatefulWidget {
+  final List<Report> reports;
+  final Map<int, Category> categories; // Mapa de categorías principales
+  final void Function() onClose;
+  ReportPieChart({
+    required this.reports,
+    required this.categories,
+    required this.onClose,
+  });
+
+  @override
+  State<ReportPieChart> createState() => _ReportPieChartState();
+}
+
+class _ReportPieChartState extends State<ReportPieChart> {
+  int touchedIndex = -1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white, // Color de fondo blanco
+        borderRadius: BorderRadius.all(
+          Radius.circular(5),
+        ), // Bordes redondeados
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5), // Color de sombra con opacidad
+            spreadRadius: 5, // Extensión de la sombra
+            blurRadius: 10, // Difuminado de la sombra
+            offset: Offset(0, 3), // Desplazamiento de la sombra (x, y)
+          ),
+        ],
+      ),
+      margin: EdgeInsets.all(10),
+      padding: EdgeInsets.all(20),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  "Estadisticas de reportes", // Cambia "Título Bonito" por el texto que desees
+                  style: TextStyle(
+                    fontSize: 30, // Tamaño de fuente mayor para hacerlo destacar
+                    fontWeight: FontWeight.bold, // Negrita para más énfasis
+                    color: Colors.blue, // Color azul o el que prefieras
+                  ),
+                ),
+              ),
+              IconButton(
+                  onPressed: widget.onClose,
+                  icon: Icon(
+                    Icons.close,
+                    size: 30,
+                  )),
+            ],
+          ),
+          Expanded(
+            child: LayoutBuilder(builder: (context, constraints) {
+              final shortesSide = constraints.biggest.shortestSide;
+              return PieChart(
+                PieChartData(
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
+                          touchedIndex = -1;
+                          return;
+                        }
+                        touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                      });
+                    },
+                  ),
+                  borderData: FlBorderData(
+                    show: false,
+                  ),
+                  sectionsSpace: 0,
+                  centerSpaceRadius: 20,
+                  sections: showingSections(shortesSide / 2.5),
+                ),
+              );
+            }),
+          ),
+          Column(
+            children: widget.categories.entries.map((entry) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4.0),
+                child: Indicator(
+                  color: entry.value.color, // Utiliza el color de la categoría
+                  text: entry.value.categoryName ?? 'Unknown',
+                  isSquare: true,
+                ),
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  List<PieChartSectionData> showingSections(double shortesSide) {
+    Map<int, int> categoryCounts = {};
+    for (var report in widget.reports) {
+      int? subCategoryId = report.categoryId;
+      Category? category = widget.categories[subCategoryId];
+      if (category == null) {
+        for (final categoryItem in widget.categories.values) {
+          for (final subCategory in categoryItem.subcategories) {
+            if (subCategory.id == subCategoryId) {
+              category = categoryItem;
+              break;
+            }
+          }
+          if (category != null) break;
+        }
+      }
+      if (category != null) {
+        int mainCategoryId = category.parentId ?? category.id;
+        categoryCounts[mainCategoryId] = (categoryCounts[mainCategoryId] ?? 0) + 1;
+      }
+    }
+
+    int index = 0;
+    return categoryCounts.entries.map((entry) {
+      final isTouched = index == touchedIndex;
+      final fontSize = isTouched ? 25.0 : 16.0;
+      final radius = isTouched ? shortesSide + 10 : shortesSide;
+      final double percentage = entry.value.toDouble() / widget.reports.length * 100;
+      index++;
+
+      return PieChartSectionData(
+        color: widget.categories[entry.key]?.color ?? Colors.grey, // Utiliza el color de la categoría o gris por defecto
+        value: percentage,
+        title: '${percentage.toStringAsFixed(1)}%',
+        radius: radius,
+        titleStyle: TextStyle(
+          fontSize: fontSize,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
+          shadows: [Shadow(color: Colors.black, blurRadius: 2)],
+        ),
+      );
+    }).toList();
+  }
+}
+
+class Indicator extends StatelessWidget {
+  const Indicator({
+    super.key,
+    required this.color,
+    required this.text,
+    required this.isSquare,
+    this.size = 16,
+    this.textColor,
+  });
+  final Color color;
+  final String text;
+  final bool isSquare;
+  final double size;
+  final Color? textColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: <Widget>[
+        Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            shape: isSquare ? BoxShape.rectangle : BoxShape.circle,
+            color: color,
+          ),
+        ),
+        const SizedBox(
+          width: 4,
+        ),
+        Text(
+          text,
+          style: TextStyle(
+            fontSize: 16,
+            overflow: TextOverflow.ellipsis,
+            fontWeight: FontWeight.bold,
+            color: textColor,
+          ),
+        )
+      ],
     );
   }
 }

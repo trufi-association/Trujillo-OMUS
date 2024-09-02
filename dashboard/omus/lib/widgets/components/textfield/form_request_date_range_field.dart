@@ -7,8 +7,7 @@ import "package:omus/widgets/components/tooltips/tooltip_widget.dart";
 
 extension DateTimeRangeExtension on DateTimeRange {
   // Convert DateTimeRange to String
-  String toFormattedString() =>
-      "${start.toIso8601String()} to ${end.toIso8601String()}";
+  String toFormattedString() => "${start.toIso8601String()} to ${end.toIso8601String()}";
 
   // Create DateTimeRange from String
   static DateTimeRange fromFormattedString(String range) {
@@ -30,6 +29,7 @@ class FormDateRangePickerField extends StatelessWidget {
     this.endDateTime,
     this.margin,
     required this.update,
+    this.onChanged,
   });
 
   final FormItemContainer<DateTimeRange> field;
@@ -40,6 +40,7 @@ class FormDateRangePickerField extends StatelessWidget {
   final DateTime? endDateTime;
   final EdgeInsetsGeometry? margin;
   final void Function(void Function()) update;
+  final void Function(DateTimeRange?)? onChanged;
 
   @override
   Widget build(BuildContext context) => FormElementDateRangePicker(
@@ -48,11 +49,11 @@ class FormDateRangePickerField extends StatelessWidget {
         initialValue: field.value,
         onChanged: (value) => update(() {
           field.value = value;
+          onChanged?.call(value);
         }),
         errorCode: field.errorCode,
         onError: (value) => update(() => field.errorCode = value),
-        validator: (dateTimeRange) =>
-            field.validator?.call(dateTimeRange?.toFormattedString()),
+        validator: (dateTimeRange) => field.validator?.call(dateTimeRange?.toFormattedString()),
         enabled: enabled,
         autofocus: autofocus,
         startDateTime: startDateTime,
@@ -149,8 +150,7 @@ class _DateRangePickerTextField extends StatefulWidget {
   final EdgeInsetsGeometry? margin;
 
   @override
-  State<_DateRangePickerTextField> createState() =>
-      _DateRangePickerTextFieldState();
+  State<_DateRangePickerTextField> createState() => _DateRangePickerTextFieldState();
 }
 
 class _DateRangePickerTextFieldState extends State<_DateRangePickerTextField> {
@@ -168,9 +168,7 @@ class _DateRangePickerTextFieldState extends State<_DateRangePickerTextField> {
     return TooltipContainer(
       hideError: true,
       labelText: widget.labelText,
-      inputText: selectedDateRange != null
-          ? getRangeDateText(selectedDateRange!)
-          : null,
+      inputText: selectedDateRange != null ? getRangeDateText(selectedDateRange!) : null,
       required: widget.required,
       enabled: widget.enabled,
       readOnly: widget.readOnly,
@@ -189,9 +187,7 @@ class _DateRangePickerTextFieldState extends State<_DateRangePickerTextField> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: theme.brightness == Brightness.dark
-                  ? Colors.white.withOpacity(0.2)
-                  : Colors.black.withOpacity(0.2),
+              color: theme.brightness == Brightness.dark ? Colors.white.withOpacity(0.2) : Colors.black.withOpacity(0.2),
               offset: const Offset(0, 2),
               blurRadius: 4,
             ),

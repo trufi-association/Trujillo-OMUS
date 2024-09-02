@@ -244,7 +244,7 @@ class _SingleSelectDropdownState extends State<_SingleSelectDropdown> with Singl
                   padding: const EdgeInsets.only(bottom: 4, left: 4, right: 4, top: 4),
                   child: Center(
                     child: Text(
-                      widget.noItemsText ?? "No items available",
+                      widget.noItemsText ?? "No hay items",
                       textAlign: TextAlign.center,
                     ),
                   ),
