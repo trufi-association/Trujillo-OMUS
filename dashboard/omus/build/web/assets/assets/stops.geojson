@@ -1,0 +1,3456 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2024-09-02T01:07:51Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4126657191",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Buses to Huaca del Sol y de la Luna",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0199982,
+          -8.1128442
+        ]
+      },
+      "id": "node/4126657191"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4280736889",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "yes",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Paradero carros Simbal",
+        "name:es": "Paradero Simbal",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0116561,
+          -8.1013361
+        ]
+      },
+      "id": "node/4280736889"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4346105642",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Bus a Trujillo",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.118394,
+          -8.0796661
+        ]
+      },
+      "id": "node/4346105642"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4346707989",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Bus Stop",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0237962,
+          -8.1238688
+        ]
+      },
+      "id": "node/4346707989"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4357890717",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Bus Stop",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0516312,
+          -8.064337
+        ]
+      },
+      "id": "node/4357890717"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4934626821",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Bus para Huacas del Sol y la Luna",
+        "name:en": "Bus to Huacas del Sol y la Luna",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0231138,
+          -8.1162336
+        ]
+      },
+      "id": "node/4934626821"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4937067022",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Del Ejército",
+        "name:de": "Bus B nach Chan Chan und Huanchaco",
+        "name:en": "Bus B to Chan Chan and Huanchaco",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0240072,
+          -8.1056158
+        ]
+      },
+      "id": "node/4937067022"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5067622117",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Victor Larco Herrera",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "source": "Kaart Ground Survey",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0376674,
+          -8.1247917
+        ]
+      },
+      "id": "node/5067622117"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5069447475",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "yes",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "source": "Kaart Ground Survey",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0360248,
+          -8.125677
+        ]
+      },
+      "id": "node/5069447475"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5069523013",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "yes",
+        "source": "Kaart Ground Survey"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0277456,
+          -8.1259685
+        ]
+      },
+      "id": "node/5069523013"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5082686253",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Panamericana Norte",
+        "public_transport": "platform",
+        "shelter": "yes",
+        "source": "Reconocimiento terrestre cartográfico realizado por Kaart en 2017"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0190363,
+          -8.1336578
+        ]
+      },
+      "id": "node/5082686253"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5099440457",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "yes",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Jirón Independencia",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "source": "Reconocimiento terrestre cartográfico realizado por Kaart en 2017",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0322849,
+          -8.1145182
+        ]
+      },
+      "id": "node/5099440457"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5099494788",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "check_date:shelter": "2022-06-18",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Miraflores",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "source": "Reconocimiento terrestre cartográfico realizado por Kaart en 2017",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0250708,
+          -8.1053555
+        ]
+      },
+      "id": "node/5099494788"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5099494789",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "check_date:shelter": "2022-06-18",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Jirón Rimac",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "source": "Reconocimiento terrestre cartográfico realizado por Kaart en 2017",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0227491,
+          -8.106684
+        ]
+      },
+      "id": "node/5099494789"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5099494790",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Perú",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "source": "Reconocimiento terrestre cartográfico realizado por Kaart en 2017",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0220781,
+          -8.1072731
+        ]
+      },
+      "id": "node/5099494790"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5099494791",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "check_date:shelter": "2024-03-05",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Jirón Unión",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "source": "Reconocimiento terrestre cartográfico realizado por Kaart en 2017",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.02188,
+          -8.1080252
+        ]
+      },
+      "id": "node/5099494791"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5310732024",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Chan Chan",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0695211,
+          -8.0974278
+        ]
+      },
+      "id": "node/5310732024"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5456901360",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0660551,
+          -8.0193846
+        ]
+      },
+      "id": "node/5456901360"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5467988221",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "yes",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Parada Mall (huanchaco-trujillo)",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0492709,
+          -8.1009416
+        ]
+      },
+      "id": "node/5467988221"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6051245685",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Bus a Huacas del Sol y Luna",
+        "name:en": "Bus to Huacas del Sol y Luna",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0234628,
+          -8.1241802
+        ]
+      },
+      "id": "node/6051245685"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6696035186",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Bus a Trujillo",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1190671,
+          -8.0733835
+        ]
+      },
+      "id": "node/6696035186"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6698159386",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Bus a Huanchaco",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0227922,
+          -8.1230348
+        ]
+      },
+      "id": "node/6698159386"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6818401085",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Jesús de Nazareth",
+        "name:en": "Bus stop to Huanchaco",
+        "name:it": "Fermata bus per Huanchaco",
+        "operator": "here you can catch a combi bus or a bigger bus for Huancacho",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0344986,
+          -8.1127548
+        ]
+      },
+      "id": "node/6818401085"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8743805428",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Perú",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0125262,
+          -8.1806225
+        ]
+      },
+      "id": "node/8743805428"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9727882976",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Terrapuerto",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0165248,
+          -8.1372323
+        ]
+      },
+      "id": "node/9727882976"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11480776773",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Colectivos a Huanchaco",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0330471,
+          -8.110608
+        ]
+      },
+      "id": "node/11480776773"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11895923334",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Jirón Unión",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0219425,
+          -8.1082273
+        ]
+      },
+      "id": "node/11895923334"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11895953681",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Perú",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0226351,
+          -8.1069826
+        ]
+      },
+      "id": "node/11895953681"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11895957224",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Jirón Estete",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0277112,
+          -8.105858
+        ]
+      },
+      "id": "node/11895957224"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11895957225",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Calle Agricultura",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0276442,
+          -8.1056576
+        ]
+      },
+      "id": "node/11895957225"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11895957226",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "yes",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Miraflores",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0257378,
+          -8.1053701
+        ]
+      },
+      "id": "node/11895957226"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11895968651",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Avenida del Ejército",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0245107,
+          -8.1056463
+        ]
+      },
+      "id": "node/11895968651"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11896286019",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "yes",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Teodoro Valcárcel",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0359838,
+          -8.1015489
+        ]
+      },
+      "id": "node/11896286019"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11896286020",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida America Norte",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0333539,
+          -8.1028601
+        ]
+      },
+      "id": "node/11896286020"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910241197",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "José Maria Eguren",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0216139,
+          -8.1099454
+        ]
+      },
+      "id": "node/11910241197"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910241198",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "José Maria Eguren",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0217526,
+          -8.1103671
+        ]
+      },
+      "id": "node/11910241198"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910356666",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Avenida Antenor Orrego",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0438883,
+          -8.1164736
+        ]
+      },
+      "id": "node/11910356666"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910356667",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Angel María Tanya",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0413952,
+          -8.1188594
+        ]
+      },
+      "id": "node/11910356667"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910356668",
+        "bench": "no",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Paradero de Taxi Santa Clara",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0408561,
+          -8.1192829
+        ]
+      },
+      "id": "node/11910356668"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359969",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "yes",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Pasaje las Garzas",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.039177,
+          -8.1236761
+        ]
+      },
+      "id": "node/11910359969"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359970",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida los Colibries",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0397792,
+          -8.1258395
+        ]
+      },
+      "id": "node/11910359970"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359971",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida los Colibries",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0397108,
+          -8.125483
+        ]
+      },
+      "id": "node/11910359971"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359972",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Húsares de Junín",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0352502,
+          -8.1257419
+        ]
+      },
+      "id": "node/11910359972"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359973",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Calle República Dominicana II",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0323038,
+          -8.1267788
+        ]
+      },
+      "id": "node/11910359973"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359974",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Calle República Dominicana",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0324862,
+          -8.1267576
+        ]
+      },
+      "id": "node/11910359974"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359975",
+        "advertising": "yes",
+        "bench": "yes",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Prolongación Cesar Vallejo",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0311438,
+          -8.12682
+        ]
+      },
+      "id": "node/11910359975"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359976",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Australia",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0311411,
+          -8.1265956
+        ]
+      },
+      "id": "node/11910359976"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910359977",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Victor Larco Herrera",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0314231,
+          -8.1156149
+        ]
+      },
+      "id": "node/11910359977"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518830",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Avenida España",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0328291,
+          -8.1110655
+        ]
+      },
+      "id": "node/11910518830"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518831",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "yes",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Jesús de Nazareth",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.034349,
+          -8.1123007
+        ]
+      },
+      "id": "node/11910518831"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518832",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Juan Pablo II",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0348895,
+          -8.1123724
+        ]
+      },
+      "id": "node/11910518832"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518834",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Salaverry",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0360898,
+          -8.1062889
+        ]
+      },
+      "id": "node/11910518834"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518835",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Santiago de Chile",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0362453,
+          -8.1061083
+        ]
+      },
+      "id": "node/11910518835"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518836",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Avenida Roma",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0360187,
+          -8.1047116
+        ]
+      },
+      "id": "node/11910518836"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518837",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle los Zafiros",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0367255,
+          -8.1041048
+        ]
+      },
+      "id": "node/11910518837"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518838",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Pasaje E. Dunker la Valle",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0381108,
+          -8.0968833
+        ]
+      },
+      "id": "node/11910518838"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518839",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle los Brillantes",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.038489,
+          -8.096485
+        ]
+      },
+      "id": "node/11910518839"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518840",
+        "bench": "no",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pasaje Elvira Esparza",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0337227,
+          -8.1045124
+        ]
+      },
+      "id": "node/11910518840"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518841",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Carlos Valderrama",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0315059,
+          -8.1004005
+        ]
+      },
+      "id": "node/11910518841"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518842",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Carlos Valderrama",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0314724,
+          -8.0999683
+        ]
+      },
+      "id": "node/11910518842"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518843",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Túpac Amaru",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.029861,
+          -8.0978818
+        ]
+      },
+      "id": "node/11910518843"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518844",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida America Norte",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0294459,
+          -8.0976209
+        ]
+      },
+      "id": "node/11910518844"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518845",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Túpac Amaru",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0295854,
+          -8.0973308
+        ]
+      },
+      "id": "node/11910518845"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518846",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Calle 8 de Octubre",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0254575,
+          -8.0939317
+        ]
+      },
+      "id": "node/11910518846"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518847",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Julio Chiriboga",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0236919,
+          -8.0938786
+        ]
+      },
+      "id": "node/11910518847"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518848",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida del Ejército",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0182678,
+          -8.0961398
+        ]
+      },
+      "id": "node/11910518848"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518849",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida del Ejército",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "yes",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0178601,
+          -8.0961305
+        ]
+      },
+      "id": "node/11910518849"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518850",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "yes",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Prolongación Unión",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "yes",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0130306,
+          -8.1002215
+        ]
+      },
+      "id": "node/11910518850"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518851",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Aristoteles",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0102588,
+          -8.1049041
+        ]
+      },
+      "id": "node/11910518851"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518852",
+        "bench": "no",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Santa Cruz",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0168154,
+          -8.1171401
+        ]
+      },
+      "id": "node/11910518852"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910518853",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Calcuchimac",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0213577,
+          -8.1220046
+        ]
+      },
+      "id": "node/11910518853"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910645397",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle 26",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0479103,
+          -8.1129353
+        ]
+      },
+      "id": "node/11910645397"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11910645398",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Antenor Orrego",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0443416,
+          -8.1163833
+        ]
+      },
+      "id": "node/11910645398"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11911534027",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "yes",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Ovalo Mochica",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0393943,
+          -8.0944907
+        ]
+      },
+      "id": "node/11911534027"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11911534028",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Avenida Indomerica",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0391207,
+          -8.0945319
+        ]
+      },
+      "id": "node/11911534028"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11911534029",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Calle 1",
+        "passenger_information_display:speech_output": "no",
+        "public_transport": "stop_position",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0432835,
+          -8.0859161
+        ]
+      },
+      "id": "node/11911534029"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11911534030",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Calle Alfonso Ugarte",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0648297,
+          -8.0235139
+        ]
+      },
+      "id": "node/11911534030"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11911534031",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Tupac Amaru",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0651073,
+          -8.0227291
+        ]
+      },
+      "id": "node/11911534031"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11911534032",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "yes",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida las Palmeras",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1193187,
+          -8.0896152
+        ]
+      },
+      "id": "node/11911534032"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11911534033",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Los Pinos",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0626329,
+          -8.1002956
+        ]
+      },
+      "id": "node/11911534033"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11911534034",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Chan Chan",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0816391,
+          -8.0923716
+        ]
+      },
+      "id": "node/11911534034"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11913698214",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida 12 de Noviembre",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.018752,
+          -8.08624
+        ]
+      },
+      "id": "node/11913698214"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11913698215",
+        "advertising": "no",
+        "bench": "no",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Hermelinda Express",
+        "passenger_information_display:speech_output": "no",
+        "pole": "yes",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "no",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0250545,
+          -8.0889905
+        ]
+      },
+      "id": "node/11913698215"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12094668588",
+        "bench": "no",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Calle Prolongación Unión",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0129678,
+          -8.1002172
+        ]
+      },
+      "id": "node/12094668588"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155275",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Panamericana Norte",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0192297,
+          -8.1336752
+        ]
+      },
+      "id": "node/12121155275"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155276",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Avenida Fátima",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0414086,
+          -8.1277108
+        ]
+      },
+      "id": "node/12121155276"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155277",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Avenida del Ejército",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.019224,
+          -8.0997472
+        ]
+      },
+      "id": "node/12121155277"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155278",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida la Rivera",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1210555,
+          -8.0790674
+        ]
+      },
+      "id": "node/12121155278"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155279",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Jirón Libertad",
+        "pole": "yes",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1190961,
+          -8.0814487
+        ]
+      },
+      "id": "node/12121155279"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155280",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Avenida la Rivera",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1195454,
+          -8.089278
+        ]
+      },
+      "id": "node/12121155280"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155281",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida la Rivera",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1192503,
+          -8.0894041
+        ]
+      },
+      "id": "node/12121155281"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155282",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida la Rivera",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1175149,
+          -8.0917874
+        ]
+      },
+      "id": "node/12121155282"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155283",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle Dean Saavedra",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1089694,
+          -8.0968143
+        ]
+      },
+      "id": "node/12121155283"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155284",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida la Rivera",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.1042903,
+          -8.0911806
+        ]
+      },
+      "id": "node/12121155284"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155285",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle las Tunas",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0835944,
+          -8.0915936
+        ]
+      },
+      "id": "node/12121155285"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155286",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Calle el Aromo",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0863611,
+          -8.090688
+        ]
+      },
+      "id": "node/12121155286"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155287",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "no",
+        "name": "Avenida Ramón Castilla",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0881897,
+          -8.0900932
+        ]
+      },
+      "id": "node/12121155287"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155288",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Ramón Castilla",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0892981,
+          -8.0897347
+        ]
+      },
+      "id": "node/12121155288"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155289",
+        "advertising": "yes",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Ramón Castilla",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.089687,
+          -8.0894293
+        ]
+      },
+      "id": "node/12121155289"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155290",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Ramón Castilla",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0951963,
+          -8.0876209
+        ]
+      },
+      "id": "node/12121155290"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155291",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida Ramón Castilla",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0954216,
+          -8.0877378
+        ]
+      },
+      "id": "node/12121155291"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155292",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Plaza San Jose",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9995098,
+          -8.1444957
+        ]
+      },
+      "id": "node/12121155292"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155293",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Panamericana Norte",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0115824,
+          -8.1490573
+        ]
+      },
+      "id": "node/12121155293"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155294",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Calle Ramal La Esperanza",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0115395,
+          -8.1492896
+        ]
+      },
+      "id": "node/12121155294"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155295",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Avenida Delfin",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0112505,
+          -8.1509417
+        ]
+      },
+      "id": "node/12121155295"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155296",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Calle Los Geranios",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.011679,
+          -8.1522998
+        ]
+      },
+      "id": "node/12121155296"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155297",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Jirón Ascenso Segura",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0102299,
+          -8.18351
+        ]
+      },
+      "id": "node/12121155297"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155298",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida de La Marina",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0127418,
+          -8.177711
+        ]
+      },
+      "id": "node/12121155298"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155299",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida de La Marina",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0125514,
+          -8.1768674
+        ]
+      },
+      "id": "node/12121155299"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121155300",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "yes",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Jirón Rodolfo Espinar",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0107952,
+          -8.1696167
+        ]
+      },
+      "id": "node/12121155300"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121157801",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "yes",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Jirón José Galvez",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "yes",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0107644,
+          -8.1694508
+        ]
+      },
+      "id": "node/12121157801"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121157802",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pasaje el Altarito",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0100831,
+          -8.1663059
+        ]
+      },
+      "id": "node/12121157802"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121157803",
+        "bench": "yes",
+        "bus": "yes",
+        "highway": "bus_stop",
+        "name": "Pasaje el Altarito",
+        "pole": "no",
+        "public_transport": "platform",
+        "shelter": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0099972,
+          -8.1662634
+        ]
+      },
+      "id": "node/12121157803"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121157804",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Pasaje el Altarito",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.009957,
+          -8.1658028
+        ]
+      },
+      "id": "node/12121157804"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121157805",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Panamericana Norte",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.0061696,
+          -8.1680737
+        ]
+      },
+      "id": "node/12121157805"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121157806",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida de La Marina",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9857132,
+          -8.2018211
+        ]
+      },
+      "id": "node/12121157806"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121157807",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Avenida de La Marina",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.984132,
+          -8.2042044
+        ]
+      },
+      "id": "node/12121157807"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/12121157808",
+        "advertising": "no",
+        "bench": "yes",
+        "bicycle_parking": "no",
+        "bin": "no",
+        "bus": "yes",
+        "departures_board": "no",
+        "highway": "bus_stop",
+        "level": "0",
+        "lit": "yes",
+        "name": "Av. Petro Peru",
+        "passenger_information_display:speech_output": "no",
+        "pole": "no",
+        "public_transport": "platform",
+        "ramp": "no",
+        "shelter": "yes",
+        "tactile_paving": "no",
+        "tactile_writing:braille:es": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.9795096,
+          -8.2182873
+        ]
+      },
+      "id": "node/12121157808"
+    }
+  ]
+}
