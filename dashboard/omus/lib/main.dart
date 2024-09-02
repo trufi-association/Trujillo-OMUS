@@ -237,6 +237,16 @@ extension FeatureTypeExtension on FeatureType {
   String toValue() => _featureTypeMap[this]!;
 
   static FeatureType fromValue(String value) => _featureTypeMap.entries.firstWhere((entry) => entry.value == value).key;
+  static const Map<FeatureType, String> _featureTypeSpanishMap = {
+    FeatureType.advertising: 'Publicidad',
+    FeatureType.bench: 'Banco',
+    FeatureType.bicycleParking: 'Estacionamiento para bicicletas',
+    FeatureType.bin: 'Papelera',
+    FeatureType.lit: 'Iluminado',
+    FeatureType.ramp: 'Rampa',
+    FeatureType.shelter: 'Refugio',
+  };
+  String toText() => _featureTypeSpanishMap[this]!;
 }
 
 enum Gender {
@@ -1106,7 +1116,7 @@ class _MapLayerState extends State<MapLayer> {
                                       .map(
                                         (e) => DropdownItem(
                                           id: e.toValue(),
-                                          text: e.toValue(),
+                                          text: e.toText(),
                                         ),
                                       )
                                       .toList(),
