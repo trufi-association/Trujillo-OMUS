@@ -50,7 +50,7 @@ extension FindOrNullExtension<T> on List<T> {
 }
 
 TileLayer get openStreetMapTileLayer => TileLayer(
-      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+      urlTemplate: 'https://tile.openstreetmap.de/{z}/{x}/{y}.png',
       userAgentPackageName: 'dev.fleaflet.flutter_map.example',
       tileProvider: CancellableNetworkTileProvider(),
     );
