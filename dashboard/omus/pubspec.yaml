@@ -51,6 +51,7 @@ dependencies:
   flutter_map_heatmap: ^0.0.7
   fl_chart: ^0.69.0
   go_router: ^14.2.7
+  url_launcher: ^6.3.0
 
 dev_dependencies:
   flutter_test:
@@ -84,6 +85,8 @@ flutter:
     - assets/gtfs/trips.txt
     - assets/mapa_de_calor.geojson
     - assets/stops.geojson
+    - assets/background.jpg
+    - assets/Logo_OMUS.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
