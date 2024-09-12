@@ -499,17 +499,18 @@ class MainMapState extends State<MainMap> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Flexible(
-                                flex: 1,
-                                child: InstaImageViewer(
-                                  child: CachedNetworkImage(
-                                    fit: BoxFit.contain,
-                                    imageUrl: '$apiUrl/Categories/proxy?url=${Uri.encodeComponent(currentReport?.images?.first ?? "")}',
-                                    placeholder: (context, url) => const SizedBox(width: 100, child: Center(child: CircularProgressIndicator())),
-                                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                              if (currentReport?.images?.length == 1)
+                                Flexible(
+                                  flex: 1,
+                                  child: InstaImageViewer(
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.contain,
+                                      imageUrl: '$apiUrl/Categories/proxy?url=${Uri.encodeComponent(currentReport?.images?.first ?? "")}',
+                                      placeholder: (context, url) => const SizedBox(width: 100, child: Center(child: CircularProgressIndicator())),
+                                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                                    ),
                                   ),
                                 ),
-                              ),
                               Flexible(
                                 flex: 2,
                                 child: Stack(
