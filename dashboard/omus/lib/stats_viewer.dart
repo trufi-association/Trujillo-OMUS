@@ -16,6 +16,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:omus/env.dart';
 import 'package:omus/logo.dart';
 import 'package:omus/main.dart';
+import 'package:omus/map_viewer.dart';
 import 'package:omus/services/api_service.dart';
 import 'package:omus/services/models/category.dart';
 import 'package:omus/services/models/report.dart';
@@ -106,42 +107,6 @@ class ServerOriginal {
   });
 }
 
-enum FeatureType {
-  advertising,
-  bench,
-  bicycleParking,
-  bin,
-  lit,
-  ramp,
-  shelter,
-}
-
-extension FeatureTypeExtension on FeatureType {
-  static const Map<FeatureType, String> _featureTypeMap = {
-    FeatureType.advertising: 'advertising',
-    FeatureType.bench: 'bench',
-    FeatureType.bicycleParking: 'bicycleParking',
-    FeatureType.bin: 'bin',
-    FeatureType.lit: 'lit',
-    FeatureType.ramp: 'ramp',
-    FeatureType.shelter: 'shelter',
-  };
-
-  String toValue() => _featureTypeMap[this]!;
-
-  static FeatureType fromValue(String value) => _featureTypeMap.entries.firstWhere((entry) => entry.value == value).key;
-  static const Map<FeatureType, String> _featureTypeSpanishMap = {
-    FeatureType.advertising: 'Publicidad',
-    FeatureType.bench: 'Banco',
-    FeatureType.bicycleParking: 'Estacionamiento para bicicletas',
-    FeatureType.bin: 'Papelera',
-    FeatureType.lit: 'Iluminado',
-    FeatureType.ramp: 'Rampa',
-    FeatureType.shelter: 'Refugio',
-  };
-  String toText() => _featureTypeSpanishMap[this]!;
-}
-
 enum Gender {
   men,
   woman,
@@ -159,23 +124,33 @@ extension GenderExtension on Gender {
 
 class GeoFeature {
   final LatLng coordinates;
-  final bool advertising;
-  final bool bench;
-  final bool bicycleParking;
-  final bool bin;
-  final bool lit;
-  final bool ramp;
-  final bool shelter;
+  final bool? advertising;
+  final bool? bench;
+  final bool? bicycleParking;
+  final bool? bin;
+  final bool? lit;
+  final bool? ramp;
+  final bool? shelter;
+  final bool? level;
+  final bool? passengerInformationDisplaySpeechOutput;
+  final bool? tactileWritingBrailleEs;
+  final bool? tactilePaving;
+  final bool? departuresBoard;
 
   GeoFeature({
     required this.coordinates,
-    required this.advertising,
-    required this.bench,
-    required this.bicycleParking,
-    required this.bin,
-    required this.lit,
-    required this.ramp,
-    required this.shelter,
+    this.advertising,
+    this.bench,
+    this.bicycleParking,
+    this.bin,
+    this.lit,
+    this.ramp,
+    this.shelter,
+    this.level,
+    this.passengerInformationDisplaySpeechOutput,
+    this.tactileWritingBrailleEs,
+    this.tactilePaving,
+    this.departuresBoard,
   });
 
   factory GeoFeature.fromJson(Map<String, dynamic> json) {
@@ -185,14 +160,33 @@ class GeoFeature {
 
     return GeoFeature(
       coordinates: latLng,
-      advertising: properties['advertising'] == 'yes',
-      bench: properties['bench'] == 'yes',
-      bicycleParking: properties['bicycle_parking'] == 'yes',
-      bin: properties['bin'] == 'yes',
-      lit: properties['lit'] == 'yes',
-      ramp: properties['ramp'] == 'yes',
-      shelter: properties['shelter'] == 'yes',
+      advertising: _boolFromProperty(properties['advertising']),
+      bench: _boolFromProperty(properties['bench']),
+      bicycleParking: _boolFromProperty(properties['bicycle_parking']),
+      bin: _boolFromProperty(properties['bin']),
+      lit: _boolFromProperty(properties['lit']),
+      ramp: _boolFromProperty(properties['ramp']),
+      shelter: _boolFromProperty(properties['shelter']),
+      level: properties['level'] == '1'
+          ? true
+          : properties['level'] == '0'
+              ? false
+              : null,
+      passengerInformationDisplaySpeechOutput: _boolFromProperty(properties['passenger_information_display:speech_output']),
+      tactileWritingBrailleEs: _boolFromProperty(properties['tactile_writing:braille:es']),
+      tactilePaving: _boolFromProperty(properties['tactile_paving']),
+      departuresBoard: _boolFromProperty(properties['departures_board']),
     );
+  }
+
+  static bool? _boolFromProperty(String? propertyValue) {
+    if (propertyValue == 'yes') {
+      return true;
+    } else if (propertyValue == 'no') {
+      return false;
+    } else {
+      return null;
+    }
   }
 }
 
@@ -226,42 +220,50 @@ extension CategoryExtension on CategoryEnum {
   Color get color => Color(int.parse(_colors[this]!));
 
   Widget buildBody(ServerOriginal model) {
-    // switch (this) {
-    //   case CategoryEnum.genderMobilityInclusive:
-    return ListView(
-      children: [
-        Wrap(
-          crossAxisAlignment: WrapCrossAlignment.center,
-          alignment: WrapAlignment.center,
-          spacing: 0,
+    switch (this) {
+      case CategoryEnum.genderMobilityInclusive:
+        return ListView(
           children: [
-            MonthlyReportChart(
-              reports: model.reports,
-              title: "Número de reportes de acoso sexual",
-            ),
-            MonthlyReportChart(
-              reports: model.reports,
-              title: "Número de reportes de barreras de accesibilidad en el TPU",
-            ),
-            MonthlyReportChart(
-              reports: model.reports,
-              title: "Número de reportes de discriminación en el transporte público por tipo",
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              alignment: WrapAlignment.center,
+              spacing: 0,
+              children: [
+                MonthlyReportChart(
+                  reports: model.reports.where((value) => value.categoryId == 52).toList(),
+                  title: "Número de reportes de acoso sexual",
+                ),
+                StopFeaturesChart(
+                  stops: model.stops,
+                  title: "Número de estaciones y paraderos accesibles a personas con movilidad reducida",
+                ),
+                MonthlyReportChart(
+                  reports: model.reports.where((value) => value.categoryId == 72 || value.categoryId == 73).toList(),
+                  title: "Número de reportes de barreras de accesibilidad en el TPU",
+                ),
+                MonthlyReportChart(
+                  reports: model.reports
+                      .where(
+                        (value) => value.categoryId == 74 || value.categoryId == 75 || value.categoryId == 76,
+                      )
+                      .toList(),
+                  title: "Número de reportes de discriminación en el transporte público por tipo",
+                ),
+              ],
             ),
           ],
-        ),
-      ],
-    );
-    // case CategoryEnum.roadSafety:
-    //   return Container();
-    // case CategoryEnum.citizenBehavior:
-    //   return Container();
-    // case CategoryEnum.infrastructureAccess:
-    //   return Container();
-    // case CategoryEnum.cleanEfficientMobility:
-    //   return Container();
-    // default:
-    //   return Container();
-    // }
+        );
+      case CategoryEnum.roadSafety:
+        return Container();
+      case CategoryEnum.citizenBehavior:
+        return Container();
+      case CategoryEnum.infrastructureAccess:
+        return Container();
+      case CategoryEnum.cleanEfficientMobility:
+        return Container();
+      default:
+        return Container();
+    }
   }
 }
 
@@ -758,7 +760,7 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
             style: TextStyle(fontSize: 30),
           ),
           Container(
-            width: 800,
+            // width: 800,
             height: 500,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(color: const Color.fromARGB(255, 206, 206, 206), borderRadius: BorderRadius.circular(10)),
@@ -915,5 +917,222 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
         ],
       );
     });
+  }
+}
+
+class StopFeaturesChart extends StatefulWidget {
+  final List<GeoFeature> stops;
+  final String title;
+
+  StopFeaturesChart({required this.stops, required this.title});
+
+  @override
+  State<StatefulWidget> createState() => StopFeaturesChartState();
+}
+
+class StopFeaturesChartState extends State<StopFeaturesChart> {
+  final Color dark = const Color.fromARGB(255, 141, 182, 243)!;
+  final Color normal = Colors.red[400]!;
+  final Color light = Colors.yellow[600]!;
+
+  late Map<FeatureType, Map<String, double>> featurePercentages;
+
+  @override
+  void initState() {
+    super.initState();
+    _calculateFeaturePercentages();
+  }
+
+  void _calculateFeaturePercentages() {
+    final featureCounts = <FeatureType, Map<String, int>>{};
+
+    for (var featureType in FeatureType.values) {
+      featureCounts[featureType] = {'yes': 0, 'no': 0, 'unknown': 0};
+    }
+
+    for (var stop in widget.stops) {
+      _updateFeatureCount(stop.advertising, featureCounts[FeatureType.advertising]!);
+      _updateFeatureCount(stop.bench, featureCounts[FeatureType.bench]!);
+      _updateFeatureCount(stop.bicycleParking, featureCounts[FeatureType.bicycleParking]!);
+      _updateFeatureCount(stop.bin, featureCounts[FeatureType.bin]!);
+      _updateFeatureCount(stop.lit, featureCounts[FeatureType.lit]!);
+      _updateFeatureCount(stop.ramp, featureCounts[FeatureType.ramp]!);
+      _updateFeatureCount(stop.shelter, featureCounts[FeatureType.shelter]!);
+      _updateFeatureCount(stop.level, featureCounts[FeatureType.level]!);
+      _updateFeatureCount(stop.passengerInformationDisplaySpeechOutput, featureCounts[FeatureType.passengerInformationDisplaySpeechOutput]!);
+      _updateFeatureCount(stop.tactileWritingBrailleEs, featureCounts[FeatureType.tactileWritingBrailleEs]!);
+      _updateFeatureCount(stop.tactilePaving, featureCounts[FeatureType.tactilePaving]!);
+      _updateFeatureCount(stop.departuresBoard, featureCounts[FeatureType.departuresBoard]!);
+    }
+
+    featurePercentages = {};
+
+    for (var featureType in featureCounts.keys) {
+      var total = widget.stops.length;
+      var yes = featureCounts[featureType]!['yes']! / total * 100;
+      var no = featureCounts[featureType]!['no']! / total * 100;
+      var unknown = featureCounts[featureType]!['unknown']! / total * 100;
+
+      featurePercentages[featureType] = {
+        'yes': yes,
+        'no': no,
+        'unknown': unknown,
+      };
+    }
+    print("object");
+  }
+
+  void _updateFeatureCount(bool? featureValue, Map<String, int> countMap) {
+    if (featureValue == null) {
+      countMap['unknown'] = countMap['unknown']! + 1;
+    } else if (featureValue) {
+      countMap['yes'] = countMap['yes']! + 1;
+    } else {
+      countMap['no'] = countMap['no']! + 1;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AspectRatio(
+      aspectRatio: 1.66,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final barsSpace = 4.0 * constraints.maxHeight / 400;
+            final barsWidth = 8.0 * constraints.maxHeight / 400;
+            return BarChart(
+              BarChartData(
+                alignment: BarChartAlignment.center,
+                barTouchData: BarTouchData(
+                  enabled: false,
+                ),
+                titlesData: FlTitlesData(
+                  show: true,
+                  leftTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 120,
+                      getTitlesWidget: leftTitles, // Títulos en la izquierda
+                    ),
+                  ),
+                  bottomTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 40,
+                      getTitlesWidget: bottomTitles, // Títulos en la parte inferior
+                    ),
+                  ),
+                  topTitles: const AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
+                  rightTitles: const AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
+                ),
+                gridData: FlGridData(
+                  show: true,
+                  checkToShowVerticalLine: (value) => value % 10 == 0,
+                  getDrawingVerticalLine: (value) => FlLine(
+                    color: Colors.grey.withOpacity(0.1),
+                    strokeWidth: 1,
+                  ),
+                  drawHorizontalLine: false,
+                ),
+                borderData: FlBorderData(
+                  show: false,
+                ),
+                groupsSpace: barsSpace,
+                barGroups: _buildFeatureBarGroups(barsWidth, barsSpace),
+                // barTouchData: BarTouchData(enabled: false),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  List<BarChartGroupData> _buildFeatureBarGroups(double barsWidth, double barsSpace) {
+    return List.generate(FeatureType.values.length, (index) {
+      var featureType = FeatureType.values[index];
+      var percentages = featurePercentages[featureType]!;
+
+      return BarChartGroupData(
+        x: index,
+        barsSpace: barsSpace,
+        barRods: [
+          BarChartRodData(
+            toY: 100,
+            rodStackItems: [
+              BarChartRodStackItem(0, percentages['yes']!, dark),
+              BarChartRodStackItem(percentages['yes']!, percentages['yes']! + percentages['no']!, normal),
+              BarChartRodStackItem(percentages['yes']! + percentages['no']!, 100, light),
+            ],
+            borderRadius: BorderRadius.zero,
+            width: barsWidth,
+          ),
+        ],
+      );
+    });
+  }
+
+  Widget bottomTitles(double value, TitleMeta meta) {
+    const style = TextStyle(fontSize: 10, color: Colors.black);
+    String text;
+    switch (value.toInt()) {
+      case 0:
+        text = 'Advertising';
+        break;
+      case 1:
+        text = 'Bench';
+        break;
+      case 2:
+        text = 'Bicycle Parking';
+        break;
+      case 3:
+        text = 'Bin';
+        break;
+      case 4:
+        text = 'Lit';
+        break;
+      case 5:
+        text = 'Ramp';
+        break;
+      case 6:
+        text = 'Shelter';
+        break;
+      case 7:
+        text = 'Level';
+        break;
+      case 8:
+        text = 'Passenger Info Display';
+        break;
+      case 9:
+        text = 'Tactile Writing Braille';
+        break;
+      case 10:
+        text = 'Tactile Paving';
+        break;
+      case 11:
+        text = 'Departures Board';
+        break;
+      default:
+        text = '';
+        break;
+    }
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      child: Text(text, style: style),
+    );
+  }
+
+  Widget leftTitles(double value, TitleMeta meta) {
+    const style = TextStyle(fontSize: 10, color: Colors.black);
+    return SideTitleWidget(
+      axisSide: meta.axisSide,
+      child: Text('${value.toInt()}%', style: style),
+    );
   }
 }

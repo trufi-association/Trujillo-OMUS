@@ -20,6 +20,7 @@ import 'package:omus/services/api_service.dart';
 import 'package:omus/services/models/category.dart';
 import 'package:omus/services/models/report.dart';
 import 'package:omus/services/models/vial_actor.dart';
+import 'package:omus/stats_viewer.dart';
 import 'package:omus/widgets/components/checkbox/custom_checkbox.dart';
 import 'package:omus/widgets/components/dropdown/helpers/dropdown_item.dart';
 import 'package:omus/widgets/components/dropdown/multi_select_dropdown.dart';
@@ -115,6 +116,11 @@ enum FeatureType {
   lit,
   ramp,
   shelter,
+  level,
+  passengerInformationDisplaySpeechOutput,
+  tactileWritingBrailleEs,
+  tactilePaving,
+  departuresBoard,
 }
 
 extension FeatureTypeExtension on FeatureType {
@@ -126,11 +132,17 @@ extension FeatureTypeExtension on FeatureType {
     FeatureType.lit: 'lit',
     FeatureType.ramp: 'ramp',
     FeatureType.shelter: 'shelter',
+    FeatureType.level: 'level',
+    FeatureType.passengerInformationDisplaySpeechOutput: 'passenger_information_display:speech_output',
+    FeatureType.tactileWritingBrailleEs: 'tactile_writing:braille:es',
+    FeatureType.tactilePaving: 'tactile_paving',
+    FeatureType.departuresBoard: 'departures_board',
   };
 
   String toValue() => _featureTypeMap[this]!;
 
   static FeatureType fromValue(String value) => _featureTypeMap.entries.firstWhere((entry) => entry.value == value).key;
+
   static const Map<FeatureType, String> _featureTypeSpanishMap = {
     FeatureType.advertising: 'Publicidad',
     FeatureType.bench: 'Banco',
@@ -139,7 +151,13 @@ extension FeatureTypeExtension on FeatureType {
     FeatureType.lit: 'Iluminado',
     FeatureType.ramp: 'Rampa',
     FeatureType.shelter: 'Refugio',
+    FeatureType.level: 'Nivel',
+    FeatureType.passengerInformationDisplaySpeechOutput: 'Pantalla de información al pasajero: salida de voz',
+    FeatureType.tactileWritingBrailleEs: 'Escritura táctil: Braille (es)',
+    FeatureType.tactilePaving: 'Pavimento táctil',
+    FeatureType.departuresBoard: 'Tablero de salidas',
   };
+
   String toText() => _featureTypeSpanishMap[this]!;
 }
 
@@ -156,45 +174,6 @@ extension GenderExtension on Gender {
 
   static Gender fromValue(String value) => _valueMap[value.toLowerCase()]!;
   String toValue() => _valueMap.entries.firstWhere((entry) => entry.value == this).key;
-}
-
-class GeoFeature {
-  final LatLng coordinates;
-  final bool advertising;
-  final bool bench;
-  final bool bicycleParking;
-  final bool bin;
-  final bool lit;
-  final bool ramp;
-  final bool shelter;
-
-  GeoFeature({
-    required this.coordinates,
-    required this.advertising,
-    required this.bench,
-    required this.bicycleParking,
-    required this.bin,
-    required this.lit,
-    required this.ramp,
-    required this.shelter,
-  });
-
-  factory GeoFeature.fromJson(Map<String, dynamic> json) {
-    final coords = json['geometry']['coordinates'];
-    final latLng = LatLng(coords[1], coords[0]);
-    final properties = json['properties'];
-
-    return GeoFeature(
-      coordinates: latLng,
-      advertising: properties['advertising'] == 'yes',
-      bench: properties['bench'] == 'yes',
-      bicycleParking: properties['bicycle_parking'] == 'yes',
-      bin: properties['bin'] == 'yes',
-      lit: properties['lit'] == 'yes',
-      ramp: properties['ramp'] == 'yes',
-      shelter: properties['shelter'] == 'yes',
-    );
-  }
 }
 
 class GenderBoard {
@@ -366,13 +345,20 @@ class MainMapState extends State<MainMap> {
                             final stopsFilter = model.stopsFilter.value?.map((value) => FeatureTypeExtension.fromValue(value)).toList() ?? [];
                             if (stopsFilter.isEmpty) return true;
                             for (final stopFeature in stopsFilter) {
-                              if (stopFeature == FeatureType.advertising && value.advertising) return true;
-                              if (stopFeature == FeatureType.bench && value.bench) return true;
-                              if (stopFeature == FeatureType.bicycleParking && value.bicycleParking) return true;
-                              if (stopFeature == FeatureType.bin && value.bin) return true;
-                              if (stopFeature == FeatureType.lit && value.lit) return true;
-                              if (stopFeature == FeatureType.ramp && value.ramp) return true;
-                              if (stopFeature == FeatureType.shelter && value.shelter) return true;
+                              if (stopFeature == FeatureType.advertising && value.advertising == true) return true;
+                              if (stopFeature == FeatureType.bench && value.bench == true) return true;
+                              if (stopFeature == FeatureType.bicycleParking && value.bicycleParking == true) return true;
+                              if (stopFeature == FeatureType.bin && value.bin == true) return true;
+                              if (stopFeature == FeatureType.lit && value.lit == true) return true;
+                              if (stopFeature == FeatureType.ramp && value.ramp == true) return true;
+                              if (stopFeature == FeatureType.shelter && value.shelter == true) return true;
+                              if (stopFeature == FeatureType.level && value.level == true) return true;
+                              if (stopFeature == FeatureType.passengerInformationDisplaySpeechOutput && value.passengerInformationDisplaySpeechOutput == true) {
+                                return true;
+                              }
+                              if (stopFeature == FeatureType.tactileWritingBrailleEs && value.tactileWritingBrailleEs == true) return true;
+                              if (stopFeature == FeatureType.tactilePaving && value.tactilePaving == true) return true;
+                              if (stopFeature == FeatureType.departuresBoard && value.departuresBoard == true) return true;
                             }
 
                             return false;
