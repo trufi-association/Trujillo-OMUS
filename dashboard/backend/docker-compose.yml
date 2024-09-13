@@ -8,6 +8,7 @@ services:
       MYSQL_DATABASE: omus
     # ports:
     #   - "3306:3306"
+    restart: unless-stopped
     volumes:
       - ./db/conf.d:/etc/mysql/conf.d
       - ./db/logs:/logs
@@ -20,6 +21,7 @@ services:
 
   api:
     build: .
+    restart: unless-stopped
     depends_on:
       db:
         condition: service_healthy
