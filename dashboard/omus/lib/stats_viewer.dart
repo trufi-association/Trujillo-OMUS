@@ -196,6 +196,7 @@ enum CategoryEnum {
   citizenBehavior,
   infrastructureAccess,
   cleanEfficientMobility,
+  userExperience,
 }
 
 extension CategoryExtension on CategoryEnum {
@@ -205,6 +206,7 @@ extension CategoryExtension on CategoryEnum {
     CategoryEnum.citizenBehavior: "Comportamiento ciudadano e infracciones",
     CategoryEnum.infrastructureAccess: "Infraestructura y acceso",
     CategoryEnum.cleanEfficientMobility: "Movilidad limpia y eficiente",
+    CategoryEnum.userExperience: "Experiencia de usuario",
   };
 
   static const Map<CategoryEnum, String> _colors = {
@@ -213,6 +215,7 @@ extension CategoryExtension on CategoryEnum {
     CategoryEnum.citizenBehavior: "0xFFCDDC39",
     CategoryEnum.infrastructureAccess: "0xFF66BB6A",
     CategoryEnum.cleanEfficientMobility: "0xFF388E3C",
+    CategoryEnum.userExperience: "0xFF398E3C",
   };
 
   String get title => _titles[this]!;
@@ -254,12 +257,29 @@ extension CategoryExtension on CategoryEnum {
           ],
         );
       case CategoryEnum.roadSafety:
-        return Container();
+        return ListView(
+          children: [
+            Wrap(
+              crossAxisAlignment: WrapCrossAlignment.center,
+              alignment: WrapAlignment.center,
+              spacing: 0,
+              children: [
+                ReportPieChart(
+                  title: "Número y ubicación de reportes de incidentes viales por tipo y severidad",
+                  reports: model.reports,
+                  categories: model.categories,
+                )
+              ],
+            ),
+          ],
+        );
       case CategoryEnum.citizenBehavior:
         return Container();
       case CategoryEnum.infrastructureAccess:
         return Container();
       case CategoryEnum.cleanEfficientMobility:
+        return Container();
+      case CategoryEnum.userExperience:
         return Container();
       default:
         return Container();
@@ -322,9 +342,14 @@ class StatsViewerState extends State<StatsViewer> {
           'Estadísticas de movilidad',
           style: TextStyle(color: Colors.white),
         ),
-        leading: const Icon(
-          Icons.bar_chart,
-          color: Colors.white,
+        leading: InkWell(
+          onTap: () {
+            context.go("/");
+          },
+          child: const Icon(
+            Icons.bar_chart,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Colors.blueGrey[900],
       ),
@@ -471,14 +496,14 @@ void _showFullScreenPopup(
                     Expanded(
                       child: Text(
                         title,
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       ),
                     ),
                     IconButton(
                       onPressed: () {
                         Navigator.of(context).pop(); // Cerrar el popup
                       },
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                     ),
                   ],
                 ),
@@ -497,12 +522,12 @@ void _showFullScreenPopup(
 
 class ReportPieChart extends StatefulWidget {
   final List<Report> reports;
-  final Map<int, Category> categories; // Mapa de categorías principales
-  final void Function() onClose;
+  final Map<int, Category> categories;
+  final String title;
   ReportPieChart({
     required this.reports,
     required this.categories,
-    required this.onClose,
+    required this.title,
   });
 
   @override
@@ -515,69 +540,43 @@ class _ReportPieChartState extends State<ReportPieChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white, // Color de fondo blanco
-        borderRadius: BorderRadius.all(
-          Radius.circular(5),
-        ), // Bordes redondeados
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5), // Color de sombra con opacidad
-            spreadRadius: 5, // Extensión de la sombra
-            blurRadius: 10, // Difuminado de la sombra
-            offset: Offset(0, 3), // Desplazamiento de la sombra (x, y)
-          ),
-        ],
-      ),
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  "Estadisticas de reportes", // Cambia "Título Bonito" por el texto que desees
-                  style: TextStyle(
-                    fontSize: 30, // Tamaño de fuente mayor para hacerlo destacar
-                    fontWeight: FontWeight.bold, // Negrita para más énfasis
-                    color: Colors.blue, // Color azul o el que prefieras
-                  ),
-                ),
-              ),
-              IconButton(
-                  onPressed: widget.onClose,
-                  icon: Icon(
-                    Icons.close,
-                    size: 30,
-                  )),
-            ],
+          Text(
+            widget.title,
+            style: const TextStyle(fontSize: 30),
           ),
-          Expanded(
-            child: LayoutBuilder(builder: (context, constraints) {
-              final shortesSide = constraints.biggest.shortestSide;
-              return PieChart(
-                PieChartData(
-                  pieTouchData: PieTouchData(
-                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                      setState(() {
-                        if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
-                          touchedIndex = -1;
-                          return;
-                        }
-                        touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
-                      });
-                    },
+          Container(
+            height: 500,
+            child: Expanded(
+              child: LayoutBuilder(builder: (context, constraints) {
+                final shortesSide = constraints.biggest.shortestSide;
+                return PieChart(
+                  PieChartData(
+                    pieTouchData: PieTouchData(
+                      touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                        setState(() {
+                          if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
+                            touchedIndex = -1;
+                            return;
+                          }
+                          touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                        });
+                      },
+                    ),
+                    borderData: FlBorderData(
+                      show: false,
+                    ),
+                    sectionsSpace: 0,
+                    centerSpaceRadius: 20,
+                    sections: showingSections(shortesSide / 2.5),
                   ),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
-                  sectionsSpace: 0,
-                  centerSpaceRadius: 20,
-                  sections: showingSections(shortesSide / 2.5),
-                ),
-              );
-            }),
+                );
+              }),
+            ),
           ),
           Column(
             children: widget.categories.entries.map((entry) {
@@ -635,7 +634,7 @@ class _ReportPieChartState extends State<ReportPieChart> {
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
           color: Colors.white,
-          shadows: [Shadow(color: Colors.black, blurRadius: 2)],
+          shadows: [const Shadow(color: Colors.black, blurRadius: 2)],
         ),
       );
     }).toList();
@@ -750,19 +749,19 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(20),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             widget.title,
-            style: TextStyle(fontSize: 30),
+            style: const TextStyle(fontSize: 30),
           ),
           Container(
             // width: 800,
             height: 500,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(color: const Color.fromARGB(255, 206, 206, 206), borderRadius: BorderRadius.circular(10)),
             child: Column(
               children: [
@@ -776,7 +775,7 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                             showingDays = false; // Regresa a la vista de meses
                           });
                         },
-                        child: Text('Volver a meses'),
+                        child: const Text('Volver a meses'),
                       ),
                     DropdownButton<int>(
                       value: selectedYear,
@@ -804,7 +803,7 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                         barGroups: showingDays ? _buildDayBarGroups() : _buildMonthBarGroups(),
                         borderData: FlBorderData(show: false),
                         titlesData: FlTitlesData(
-                          topTitles: AxisTitles(
+                          topTitles: const AxisTitles(
                             sideTitles: SideTitles(showTitles: false), // Oculta el eje superior
                           ),
                           bottomTitles: AxisTitles(
@@ -837,7 +836,7 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                               getTitlesWidget: (value, _) {
                                 return Text(
                                   value.toInt().toString(), // Muestra solo enteros
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.black,
                                     fontSize: 16, // Ajusta el tamaño de la fuente
                                     fontWeight: FontWeight.bold, // Aumenta el grosor
@@ -847,11 +846,11 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                               reservedSize: 40, // Aumenta el ancho de la barra izquierda
                             ),
                           ),
-                          rightTitles: AxisTitles(
+                          rightTitles: const AxisTitles(
                             sideTitles: SideTitles(showTitles: false),
                           ),
                         ),
-                        gridData: FlGridData(show: false), // Oculta las líneas de cuadrícula
+                        gridData: const FlGridData(show: false), // Oculta las líneas de cuadrícula
                         // barTouchData: BarTouchData(
                         //   touchCallback: (FlTouchEvent event, barTouchResponse) {
                         //     if (!event.isInterestedForInteractions || barTouchResponse == null || barTouchResponse.spot == null) {
@@ -920,66 +919,91 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
   }
 }
 
-class StopFeaturesChart extends StatefulWidget {
+class StopFeaturesChart extends StatelessWidget {
   final List<GeoFeature> stops;
   final String title;
 
   StopFeaturesChart({required this.stops, required this.title});
 
   @override
-  State<StatefulWidget> createState() => StopFeaturesChartState();
-}
+  Widget build(BuildContext context) {
+    final featurePercentages = _calculateFeaturePercentages(stops);
 
-class StopFeaturesChartState extends State<StopFeaturesChart> {
-  final Color dark = const Color.fromARGB(255, 141, 182, 243)!;
-  final Color normal = Colors.red[400]!;
-  final Color light = Colors.yellow[600]!;
-
-  late Map<FeatureType, Map<String, double>> featurePercentages;
-
-  @override
-  void initState() {
-    super.initState();
-    _calculateFeaturePercentages();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ),
+        for (var feature in featurePercentages.keys) _buildFeatureBar(feature, featurePercentages[feature]!),
+        Padding(
+          padding: const EdgeInsets.only(right: 16, left: 230),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(11, (index) {
+              // Calcula los porcentajes desde 0% a 100%
+              int percentage = index * 10;
+              return Text(
+                '$percentage%',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+              );
+            }),
+          ),
+        )
+      ],
+    );
   }
 
-  void _calculateFeaturePercentages() {
-    final featureCounts = <FeatureType, Map<String, int>>{};
+  Map<String, Map<String, double>> _calculateFeaturePercentages(List<GeoFeature> stops) {
+    final featureCounts = {
+      'Advertising': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Bench': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Bicycle Parking': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Bin': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Lit': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Ramp': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Shelter': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Level': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Passenger Info Display': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Tactile Writing Braille': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Tactile Paving': {'yes': 0, 'no': 0, 'unknown': 0},
+      'Departures Board': {'yes': 0, 'no': 0, 'unknown': 0},
+    };
 
-    for (var featureType in FeatureType.values) {
-      featureCounts[featureType] = {'yes': 0, 'no': 0, 'unknown': 0};
+    for (var stop in stops) {
+      _updateFeatureCount(stop.advertising, featureCounts['Advertising']!);
+      _updateFeatureCount(stop.bench, featureCounts['Bench']!);
+      _updateFeatureCount(stop.bicycleParking, featureCounts['Bicycle Parking']!);
+      _updateFeatureCount(stop.bin, featureCounts['Bin']!);
+      _updateFeatureCount(stop.lit, featureCounts['Lit']!);
+      _updateFeatureCount(stop.ramp, featureCounts['Ramp']!);
+      _updateFeatureCount(stop.shelter, featureCounts['Shelter']!);
+      _updateFeatureCount(stop.level, featureCounts['Level']!);
+      _updateFeatureCount(stop.passengerInformationDisplaySpeechOutput, featureCounts['Passenger Info Display']!);
+      _updateFeatureCount(stop.tactileWritingBrailleEs, featureCounts['Tactile Writing Braille']!);
+      _updateFeatureCount(stop.tactilePaving, featureCounts['Tactile Paving']!);
+      _updateFeatureCount(stop.departuresBoard, featureCounts['Departures Board']!);
     }
 
-    for (var stop in widget.stops) {
-      _updateFeatureCount(stop.advertising, featureCounts[FeatureType.advertising]!);
-      _updateFeatureCount(stop.bench, featureCounts[FeatureType.bench]!);
-      _updateFeatureCount(stop.bicycleParking, featureCounts[FeatureType.bicycleParking]!);
-      _updateFeatureCount(stop.bin, featureCounts[FeatureType.bin]!);
-      _updateFeatureCount(stop.lit, featureCounts[FeatureType.lit]!);
-      _updateFeatureCount(stop.ramp, featureCounts[FeatureType.ramp]!);
-      _updateFeatureCount(stop.shelter, featureCounts[FeatureType.shelter]!);
-      _updateFeatureCount(stop.level, featureCounts[FeatureType.level]!);
-      _updateFeatureCount(stop.passengerInformationDisplaySpeechOutput, featureCounts[FeatureType.passengerInformationDisplaySpeechOutput]!);
-      _updateFeatureCount(stop.tactileWritingBrailleEs, featureCounts[FeatureType.tactileWritingBrailleEs]!);
-      _updateFeatureCount(stop.tactilePaving, featureCounts[FeatureType.tactilePaving]!);
-      _updateFeatureCount(stop.departuresBoard, featureCounts[FeatureType.departuresBoard]!);
-    }
+    final featurePercentages = <String, Map<String, double>>{};
+    for (var feature in featureCounts.keys) {
+      var total = stops.length;
+      var yes = featureCounts[feature]!['yes']! / total * 100;
+      var no = featureCounts[feature]!['no']! / total * 100;
+      var unknown = featureCounts[feature]!['unknown']! / total * 100;
 
-    featurePercentages = {};
-
-    for (var featureType in featureCounts.keys) {
-      var total = widget.stops.length;
-      var yes = featureCounts[featureType]!['yes']! / total * 100;
-      var no = featureCounts[featureType]!['no']! / total * 100;
-      var unknown = featureCounts[featureType]!['unknown']! / total * 100;
-
-      featurePercentages[featureType] = {
+      featurePercentages[feature] = {
         'yes': yes,
         'no': no,
         'unknown': unknown,
       };
     }
-    print("object");
+
+    return featurePercentages;
   }
 
   void _updateFeatureCount(bool? featureValue, Map<String, int> countMap) {
@@ -992,147 +1016,66 @@ class StopFeaturesChartState extends State<StopFeaturesChart> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.66,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final barsSpace = 4.0 * constraints.maxHeight / 400;
-            final barsWidth = 8.0 * constraints.maxHeight / 400;
-            return BarChart(
-              BarChartData(
-                alignment: BarChartAlignment.center,
-                barTouchData: BarTouchData(
-                  enabled: false,
-                ),
-                titlesData: FlTitlesData(
-                  show: true,
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 120,
-                      getTitlesWidget: leftTitles, // Títulos en la izquierda
-                    ),
-                  ),
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 40,
-                      getTitlesWidget: bottomTitles, // Títulos en la parte inferior
-                    ),
-                  ),
-                  topTitles: const AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                  rightTitles: const AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                ),
-                gridData: FlGridData(
-                  show: true,
-                  checkToShowVerticalLine: (value) => value % 10 == 0,
-                  getDrawingVerticalLine: (value) => FlLine(
-                    color: Colors.grey.withOpacity(0.1),
-                    strokeWidth: 1,
-                  ),
-                  drawHorizontalLine: false,
-                ),
-                borderData: FlBorderData(
-                  show: false,
-                ),
-                groupsSpace: barsSpace,
-                barGroups: _buildFeatureBarGroups(barsWidth, barsSpace),
-                // barTouchData: BarTouchData(enabled: false),
+  Widget _buildFeatureBar(String feature, Map<String, double> percentages) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
+      child: Row(
+        children: [
+          Container(
+            width: 200,
+            margin: const EdgeInsets.only(right: 10),
+            child: Text(
+              _translateFeature(feature),
+              textAlign: TextAlign.end,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
-            );
-          },
-        ),
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                _buildBarSegment(percentages['yes']!, Colors.blue),
+                _buildBarSegment(percentages['no']!, Colors.red),
+                _buildBarSegment(percentages['unknown']!, const Color.fromARGB(255, 239, 197, 28)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  List<BarChartGroupData> _buildFeatureBarGroups(double barsWidth, double barsSpace) {
-    return List.generate(FeatureType.values.length, (index) {
-      var featureType = FeatureType.values[index];
-      var percentages = featurePercentages[featureType]!;
+  String _translateFeature(String feature) {
+    // Mapa que traduce los nombres de las características al español
+    const Map<String, String> featureTranslationMap = {
+      'Advertising': 'Panel Publicidad',
+      'Bench': 'Tiene Banco',
+      'Bicycle Parking': 'Tiene Aparcabici',
+      'Bin': 'Tiene Tacho',
+      'Lit': 'Iluminacion',
+      'Ramp': 'Rampas Acera',
+      'Shelter': 'Tiene Techo',
+      'Level': 'Acceso Nivel',
+      'Passenger Info Display': 'Guia Sonora',
+      'Tactitle Writing Braille': 'Señal Braille',
+      'Tactile Paving': 'Guia Podotactil',
+      'Departure Board': 'Info Rutas',
+    };
 
-      return BarChartGroupData(
-        x: index,
-        barsSpace: barsSpace,
-        barRods: [
-          BarChartRodData(
-            toY: 100,
-            rodStackItems: [
-              BarChartRodStackItem(0, percentages['yes']!, dark),
-              BarChartRodStackItem(percentages['yes']!, percentages['yes']! + percentages['no']!, normal),
-              BarChartRodStackItem(percentages['yes']! + percentages['no']!, 100, light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-        ],
-      );
-    });
+    // Retorna la traducción correspondiente o el texto original si no se encuentra
+    return featureTranslationMap[feature] ?? feature;
   }
 
-  Widget bottomTitles(double value, TitleMeta meta) {
-    const style = TextStyle(fontSize: 10, color: Colors.black);
-    String text;
-    switch (value.toInt()) {
-      case 0:
-        text = 'Advertising';
-        break;
-      case 1:
-        text = 'Bench';
-        break;
-      case 2:
-        text = 'Bicycle Parking';
-        break;
-      case 3:
-        text = 'Bin';
-        break;
-      case 4:
-        text = 'Lit';
-        break;
-      case 5:
-        text = 'Ramp';
-        break;
-      case 6:
-        text = 'Shelter';
-        break;
-      case 7:
-        text = 'Level';
-        break;
-      case 8:
-        text = 'Passenger Info Display';
-        break;
-      case 9:
-        text = 'Tactile Writing Braille';
-        break;
-      case 10:
-        text = 'Tactile Paving';
-        break;
-      case 11:
-        text = 'Departures Board';
-        break;
-      default:
-        text = '';
-        break;
-    }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: Text(text, style: style),
-    );
-  }
-
-  Widget leftTitles(double value, TitleMeta meta) {
-    const style = TextStyle(fontSize: 10, color: Colors.black);
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      child: Text('${value.toInt()}%', style: style),
+  Widget _buildBarSegment(double percentage, Color color) {
+    return Expanded(
+      flex: percentage.round(),
+      child: Container(
+        height: 20,
+        color: color,
+        // child: Text('${percentage.toStringAsFixed(1)}%'),
+      ),
     );
   }
 }

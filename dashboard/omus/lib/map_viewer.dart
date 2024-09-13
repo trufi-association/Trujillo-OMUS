@@ -144,18 +144,18 @@ extension FeatureTypeExtension on FeatureType {
   static FeatureType fromValue(String value) => _featureTypeMap.entries.firstWhere((entry) => entry.value == value).key;
 
   static const Map<FeatureType, String> _featureTypeSpanishMap = {
-    FeatureType.advertising: 'Publicidad',
-    FeatureType.bench: 'Banco',
-    FeatureType.bicycleParking: 'Estacionamiento para bicicletas',
-    FeatureType.bin: 'Papelera',
-    FeatureType.lit: 'Iluminado',
-    FeatureType.ramp: 'Rampa',
-    FeatureType.shelter: 'Refugio',
-    FeatureType.level: 'Nivel',
-    FeatureType.passengerInformationDisplaySpeechOutput: 'Pantalla de información al pasajero: salida de voz',
-    FeatureType.tactileWritingBrailleEs: 'Escritura táctil: Braille (es)',
-    FeatureType.tactilePaving: 'Pavimento táctil',
-    FeatureType.departuresBoard: 'Tablero de salidas',
+    FeatureType.advertising: 'Panel Publicidad',
+    FeatureType.bench: 'Tiene Banco',
+    FeatureType.bicycleParking: 'Tiene Aparcabici',
+    FeatureType.bin: 'Tiene Tacho',
+    FeatureType.lit: 'Iluminacion',
+    FeatureType.ramp: 'Rampas Acera',
+    FeatureType.shelter: 'Tiene Techo',
+    FeatureType.level: 'Acceso Nivel',
+    FeatureType.passengerInformationDisplaySpeechOutput: 'Guia Sonora',
+    FeatureType.tactileWritingBrailleEs: 'Señal Braille',
+    FeatureType.tactilePaving: 'Guia Podotactil',
+    FeatureType.departuresBoard: 'Info Rutas',
   };
 
   String toText() => _featureTypeSpanishMap[this]!;
@@ -223,7 +223,6 @@ List<Report> filterReports({required ServerOriginal helper, required ModelReques
 class MainMapState extends State<MainMap> {
   double zoom = 13;
   Report? currentReport;
-  bool showStats = false;
   StreamController<void> _rebuildGenderStream = StreamController.broadcast();
   StreamController<void> _rebuildGeneralStream = StreamController.broadcast();
 
@@ -456,11 +455,6 @@ class MainMapState extends State<MainMap> {
                     onGeneralUpdate: () {
                       _rebuildGeneralStream.add(null);
                     },
-                    onShowStats: () {
-                      setState(() {
-                        showStats = true;
-                      });
-                    },
                   ),
                   if (currentReport != null)
                     Align(
@@ -558,17 +552,6 @@ class MainMapState extends State<MainMap> {
                         ),
                       ),
                     ),
-
-                  if (showStats)
-                    ReportPieChart(
-                      reports: helper.reports,
-                      categories: helper.categories,
-                      onClose: () {
-                        setState(() {
-                          showStats = false;
-                        });
-                      },
-                    ),
                 ],
               );
             }),
@@ -585,7 +568,6 @@ class MapLayer extends StatefulWidget {
     required this.helper,
     required this.onGenderUpdate,
     required this.onGeneralUpdate,
-    required this.onShowStats,
   });
 
   final LeafletMapController leafletMapController;
@@ -593,7 +575,6 @@ class MapLayer extends StatefulWidget {
   final ServerOriginal helper;
   final void Function() onGenderUpdate;
   final void Function() onGeneralUpdate;
-  final void Function() onShowStats;
 
   @override
   State<MapLayer> createState() => _MapLayerState();
@@ -652,19 +633,19 @@ class _MapLayerState extends State<MapLayer> {
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
-                          widget.onShowStats();
-                        },
-                        child: SizedBox(
-                          width: 30,
-                          height: 30,
-                          child: Icon(
-                            Icons.query_stats,
-                            color: Color.fromARGB(255, 255, 130, 159),
-                          ),
-                        ),
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     widget.onShowStats();
+                      //   },
+                      //   child: SizedBox(
+                      //     width: 30,
+                      //     height: 30,
+                      //     child: Icon(
+                      //       Icons.query_stats,
+                      //       color: Color.fromARGB(255, 255, 130, 159),
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
