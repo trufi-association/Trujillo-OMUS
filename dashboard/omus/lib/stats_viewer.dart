@@ -543,7 +543,7 @@ class _ReportPieChartState extends State<ReportPieChart> {
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(20),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        // mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
             widget.title,
@@ -551,32 +551,30 @@ class _ReportPieChartState extends State<ReportPieChart> {
           ),
           Container(
             height: 500,
-            child: Expanded(
-              child: LayoutBuilder(builder: (context, constraints) {
-                final shortesSide = constraints.biggest.shortestSide;
-                return PieChart(
-                  PieChartData(
-                    pieTouchData: PieTouchData(
-                      touchCallback: (FlTouchEvent event, pieTouchResponse) {
-                        setState(() {
-                          if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
-                            touchedIndex = -1;
-                            return;
-                          }
-                          touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
-                        });
-                      },
-                    ),
-                    borderData: FlBorderData(
-                      show: false,
-                    ),
-                    sectionsSpace: 0,
-                    centerSpaceRadius: 20,
-                    sections: showingSections(shortesSide / 2.5),
+            child: LayoutBuilder(builder: (context, constraints) {
+              final shortesSide = constraints.biggest.shortestSide;
+              return PieChart(
+                PieChartData(
+                  pieTouchData: PieTouchData(
+                    touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                      setState(() {
+                        if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
+                          touchedIndex = -1;
+                          return;
+                        }
+                        touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                      });
+                    },
                   ),
-                );
-              }),
-            ),
+                  borderData: FlBorderData(
+                    show: false,
+                  ),
+                  sectionsSpace: 0,
+                  centerSpaceRadius: 20,
+                  sections: showingSections(shortesSide / 2.5),
+                ),
+              );
+            }),
           ),
           Column(
             children: widget.categories.entries.map((entry) {
