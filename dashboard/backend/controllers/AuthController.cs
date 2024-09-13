@@ -23,7 +23,7 @@ public class AuthController : ControllerBase
             return BadRequest("Invalid client request");
         }
 
-        if (login.Username == "admin" && login.Password == "password")
+        if (login.Username == "admin" && login.Password == "zjU2xUqZLriA2I-")
         {
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!));
             var signinCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
