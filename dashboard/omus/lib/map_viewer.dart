@@ -1231,13 +1231,13 @@ class _SelectedMapLayerState extends State<SelectedMapLayer> {
       return Polyline(
         points: entry.value,
         strokeWidth: 5,
-        color: hexToColor(route?.routeColor) ?? Colors.purple,
+        color: hexToColor(route?.routeColor) ?? const Color(0xFF808080),
       );
     }).toList();
   }
 
   Color? hexToColor(String? hex) {
-    if (hex == null) return null;
+    if (hex == null || hex.isEmpty) return null;
     hex = hex.replaceAll("#", "");
     if (hex.length == 6) {
       hex = "FF$hex";

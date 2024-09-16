@@ -5,9 +5,9 @@ import 'package:omus/gtfs.dart';
 class GtfsService {
   Future<Map<String, dynamic>> _loadCsv(String path) async {
     final data = await rootBundle.loadString(path);
-    final rows = const CsvToListConverter().convert(data, eol: '\n');
-    final headers = rows.first.map((header) => header.toString()).toList();
-    final dataRows = rows.skip(1).toList();
+    final rows = data.trim().split(RegExp(r'\r?\n'));
+    final headers = rows.first.split(',').map((header) => header.trim()).toList();
+    final dataRows = rows.skip(1).map((row) => row.split(',').map((item) => item.trim()).toList()).toList();
     return {'headers': headers, 'data': dataRows};
   }
 
@@ -21,33 +21,14 @@ class GtfsService {
     final stopTimesData = await _loadCsv('assets/gtfs/stop_times.txt');
     final tripsData = await _loadCsv('assets/gtfs/trips.txt');
 
-    List<Agency> agencies = agencyData['data']
-        .map<Agency>((data) => Agency.fromList(data, agencyData['headers']))
-        .toList();
-    List<Route> routes = routesData['data']
-        .map<Route>((data) => Route.fromList(data, routesData['headers']))
-        .toList();
-    List<Stop> stops = stopsData['data']
-        .map<Stop>((data) => Stop.fromList(data, stopsData['headers']))
-        .toList();
-    List<Shape> shapes = shapesData['data']
-        .map<Shape>((data) => Shape.fromList(data, shapesData['headers']))
-        .toList();
-    List<Frequency> frequencies = frequenciesData['data']
-        .map<Frequency>(
-            (data) => Frequency.fromList(data, frequenciesData['headers']))
-        .toList();
-    List<Calendar> calendars = calendarData['data']
-        .map<Calendar>(
-            (data) => Calendar.fromList(data, calendarData['headers']))
-        .toList();
-    List<StopTime> stopTimes = stopTimesData['data']
-        .map<StopTime>(
-            (data) => StopTime.fromList(data, stopTimesData['headers']))
-        .toList();
-    List<Trip> trips = tripsData['data']
-        .map<Trip>((data) => Trip.fromList(data, tripsData['headers']))
-        .toList();
+    List<Agency> agencies = agencyData['data'].map<Agency>((data) => Agency.fromList(data, agencyData['headers'])).toList();
+    List<Route> routes = routesData['data'].map<Route>((data) => Route.fromList(data, routesData['headers'])).toList();
+    List<Stop> stops = stopsData['data'].map<Stop>((data) => Stop.fromList(data, stopsData['headers'])).toList();
+    List<Shape> shapes = shapesData['data'].map<Shape>((data) => Shape.fromList(data, shapesData['headers'])).toList();
+    List<Frequency> frequencies = frequenciesData['data'].map<Frequency>((data) => Frequency.fromList(data, frequenciesData['headers'])).toList();
+    List<Calendar> calendars = calendarData['data'].map<Calendar>((data) => Calendar.fromList(data, calendarData['headers'])).toList();
+    List<StopTime> stopTimes = stopTimesData['data'].map<StopTime>((data) => StopTime.fromList(data, stopTimesData['headers'])).toList();
+    List<Trip> trips = tripsData['data'].map<Trip>((data) => Trip.fromList(data, tripsData['headers'])).toList();
 
     return Gtfs(
       agencies: agencies,

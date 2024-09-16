@@ -43,19 +43,17 @@ class Agency {
   });
 
   factory Agency.fromList(List<dynamic> data, List<String> headers) {
-    final map = Map<String, dynamic>.fromIterables(headers, data);
+    final headersCleaned = headers.map((header) => header.trim()).toList();
+    final map = Map<String, dynamic>.fromIterables(headersCleaned, data);
     return Agency(
       agencyId: "${map['agency_id']}",
       agencyName: "${map['agency_name']}",
       agencyUrl: "${map['agency_url']}",
       agencyTimezone: "${map['agency_timezone']}",
       agencyLang: map['agency_lang'] != null ? "${map['agency_lang']}" : null,
-      agencyPhone:
-          map['agency_phone'] != null ? "${map['agency_phone']}" : null,
-      agencyFareUrl:
-          map['agency_fare_url'] != null ? "${map['agency_fare_url']}" : null,
-      agencyEmail:
-          map['agency_email'] != null ? "${map['agency_email']}" : null,
+      agencyPhone: map['agency_phone'] != null ? "${map['agency_phone']}" : null,
+      agencyFareUrl: map['agency_fare_url'] != null ? "${map['agency_fare_url']}" : null,
+      agencyEmail: map['agency_email'] != null ? "${map['agency_email']}" : null,
     );
   }
 }
@@ -85,7 +83,11 @@ class Route {
   });
 
   factory Route.fromList(List<dynamic> data, List<String> headers) {
-    final map = Map<String, dynamic>.fromIterables(headers, data);
+    final headersCleaned = headers.map((header) => header.trim()).toList();
+    final map = Map<String, dynamic>.fromIterables(headersCleaned, data);
+    if ("${map['route_id']}" == "17419574") {
+      print("");
+    }
     return Route(
       routeId: "${map['route_id']}",
       agencyId: "${map['agency_id']}",
@@ -95,8 +97,7 @@ class Route {
       routeType: int.parse("${map['route_type']}"),
       routeUrl: map['route_url'] != null ? "${map['route_url']}" : null,
       routeColor: map['route_color'] != null ? "${map['route_color']}" : null,
-      routeTextColor:
-          map['route_text_color'] != null ? "${map['route_text_color']}" : null,
+      routeTextColor: map['route_text_color'] != null ? "${map['route_text_color']}" : null,
     );
   }
 }
@@ -130,7 +131,8 @@ class Stop {
   });
 
   factory Stop.fromList(List<dynamic> data, List<String> headers) {
-    final map = Map<String, dynamic>.fromIterables(headers, data);
+    final headersCleaned = headers.map((header) => header.trim()).toList();
+    final map = Map<String, dynamic>.fromIterables(headersCleaned, data);
     return Stop(
       stopId: "${map['stop_id']}",
       stopCode: "${map['stop_code']}",
@@ -139,16 +141,10 @@ class Stop {
       stopLon: double.parse("${map['stop_lon']}"),
       zoneId: map['zone_id'] != null ? "${map['zone_id']}" : null,
       stopUrl: map['stop_url'] != null ? "${map['stop_url']}" : null,
-      locationType: map['location_type'] != null
-          ? int.tryParse("${map['location_type']}")
-          : null,
-      parentStation:
-          map['parent_station'] != null ? "${map['parent_station']}" : null,
-      stopTimezone:
-          map['stop_timezone'] != null ? "${map['stop_timezone']}" : null,
-      wheelchairBoarding: map['wheelchair_boarding'] != null
-          ? "${map['wheelchair_boarding']}"
-          : null,
+      locationType: map['location_type'] != null ? int.tryParse("${map['location_type']}") : null,
+      parentStation: map['parent_station'] != null ? "${map['parent_station']}" : null,
+      stopTimezone: map['stop_timezone'] != null ? "${map['stop_timezone']}" : null,
+      wheelchairBoarding: map['wheelchair_boarding'] != null ? "${map['wheelchair_boarding']}" : null,
     );
   }
 }
@@ -170,15 +166,14 @@ class Shape {
   });
 
   factory Shape.fromList(List<dynamic> data, List<String> headers) {
-    final map = Map<String, dynamic>.fromIterables(headers, data);
+    final headersCleaned = headers.map((header) => header.trim()).toList();
+    final map = Map<String, dynamic>.fromIterables(headersCleaned, data);
     return Shape(
       shapeId: "${map['shape_id']}",
       shapePtLat: double.parse("${map['shape_pt_lat']}"),
       shapePtLon: double.parse("${map['shape_pt_lon']}"),
       shapePtSequence: int.parse("${map['shape_pt_sequence']}"),
-      shapeDistTraveled: map['shape_dist_traveled'] != null
-          ? double.tryParse("${map['shape_dist_traveled']}")
-          : null,
+      shapeDistTraveled: map['shape_dist_traveled'] != null ? double.tryParse("${map['shape_dist_traveled']}") : null,
     );
   }
 }
@@ -206,9 +201,7 @@ class Frequency {
       startTime: "${map['start_time']}",
       endTime: "${map['end_time']}",
       headwaySecs: int.parse("${map['headway_secs']}"),
-      exactTimes: map['exact_times'] != null
-          ? int.tryParse("${map['exact_times']}")
-          : null,
+      exactTimes: map['exact_times'] != null ? int.tryParse("${map['exact_times']}") : null,
     );
   }
 }
@@ -290,19 +283,11 @@ class StopTime {
       departureTime: "${map['departure_time']}",
       stopId: "${map['stop_id']}",
       stopSequence: int.parse("${map['stop_sequence']}"),
-      stopHeadsign:
-          map['stop_headsign'] != null ? "${map['stop_headsign']}" : null,
-      pickupType: map['pickup_type'] != null
-          ? int.tryParse("${map['pickup_type']}")
-          : null,
-      dropOffType: map['drop_off_type'] != null
-          ? int.tryParse("${map['drop_off_type']}")
-          : null,
-      shapeDistTraveled: map['shape_dist_traveled'] != null
-          ? double.tryParse("${map['shape_dist_traveled']}")
-          : null,
-      timepoint:
-          map['timepoint'] != null ? int.tryParse("${map['timepoint']}") : null,
+      stopHeadsign: map['stop_headsign'] != null ? "${map['stop_headsign']}" : null,
+      pickupType: map['pickup_type'] != null ? int.tryParse("${map['pickup_type']}") : null,
+      dropOffType: map['drop_off_type'] != null ? int.tryParse("${map['drop_off_type']}") : null,
+      shapeDistTraveled: map['shape_dist_traveled'] != null ? double.tryParse("${map['shape_dist_traveled']}") : null,
+      timepoint: map['timepoint'] != null ? int.tryParse("${map['timepoint']}") : null,
     );
   }
 }
@@ -339,21 +324,13 @@ class Trip {
       routeId: "${map['route_id']}",
       serviceId: "${map['service_id']}",
       tripId: "${map['trip_id']}",
-      tripHeadsign:
-          map['trip_headsign'] != null ? "${map['trip_headsign']}" : null,
-      tripShortName:
-          map['trip_short_name'] != null ? "${map['trip_short_name']}" : null,
-      directionId: map['direction_id'] != null
-          ? int.tryParse("${map['direction_id']}")
-          : null,
+      tripHeadsign: map['trip_headsign'] != null ? "${map['trip_headsign']}" : null,
+      tripShortName: map['trip_short_name'] != null ? "${map['trip_short_name']}" : null,
+      directionId: map['direction_id'] != null ? int.tryParse("${map['direction_id']}") : null,
       blockId: map['block_id'] != null ? "${map['block_id']}" : null,
       shapeId: map['shape_id'] != null ? "${map['shape_id']}" : null,
-      wheelchairAccessible: map['wheelchair_accessible'] != null
-          ? int.tryParse("${map['wheelchair_accessible']}")
-          : null,
-      bikesAllowed: map['bikes_allowed'] != null
-          ? int.tryParse("${map['bikes_allowed']}")
-          : null,
+      wheelchairAccessible: map['wheelchair_accessible'] != null ? int.tryParse("${map['wheelchair_accessible']}") : null,
+      bikesAllowed: map['bikes_allowed'] != null ? int.tryParse("${map['bikes_allowed']}") : null,
     );
   }
 }
