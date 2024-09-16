@@ -9,8 +9,6 @@ class GtfsService {
     final rows = normalizedData.trim().split('\n');
     final headers = rows.first.split(',').map((header) => header.trim()).toList();
     final dataRows = rows.skip(1).map((row) => row.split(',').map((item) => item.trim()).toList()).toList();
-    print(headers);
-    print(dataRows);
 
     return {'headers': headers, 'data': dataRows};
   }
