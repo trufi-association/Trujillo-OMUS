@@ -5,9 +5,11 @@ import 'package:omus/gtfs.dart';
 class GtfsService {
   Future<Map<String, dynamic>> _loadCsv(String path) async {
     final data = await rootBundle.loadString(path);
-    final rows = data.trim().split(RegExp(r'\r?\n'));
+    final normalizedData = data.replaceAll(RegExp(r'\r\n?'), '\n');
+    final rows = normalizedData.trim().split('\n');
     final headers = rows.first.split(',').map((header) => header.trim()).toList();
     final dataRows = rows.skip(1).map((row) => row.split(',').map((item) => item.trim()).toList()).toList();
+
     return {'headers': headers, 'data': dataRows};
   }
 

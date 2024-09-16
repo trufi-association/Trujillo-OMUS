@@ -43,8 +43,7 @@ class Agency {
   });
 
   factory Agency.fromList(List<dynamic> data, List<String> headers) {
-    final headersCleaned = headers.map((header) => header.trim()).toList();
-    final map = Map<String, dynamic>.fromIterables(headersCleaned, data);
+    final map = Map<String, dynamic>.fromIterables(headers, data);
     return Agency(
       agencyId: "${map['agency_id']}",
       agencyName: "${map['agency_name']}",
@@ -83,11 +82,7 @@ class Route {
   });
 
   factory Route.fromList(List<dynamic> data, List<String> headers) {
-    final headersCleaned = headers.map((header) => header.trim()).toList();
-    final map = Map<String, dynamic>.fromIterables(headersCleaned, data);
-    if ("${map['route_id']}" == "17419574") {
-      print("");
-    }
+    final map = Map<String, dynamic>.fromIterables(headers, data);
     return Route(
       routeId: "${map['route_id']}",
       agencyId: "${map['agency_id']}",
@@ -131,8 +126,7 @@ class Stop {
   });
 
   factory Stop.fromList(List<dynamic> data, List<String> headers) {
-    final headersCleaned = headers.map((header) => header.trim()).toList();
-    final map = Map<String, dynamic>.fromIterables(headersCleaned, data);
+    final map = Map<String, dynamic>.fromIterables(headers, data);
     return Stop(
       stopId: "${map['stop_id']}",
       stopCode: "${map['stop_code']}",
@@ -166,8 +160,7 @@ class Shape {
   });
 
   factory Shape.fromList(List<dynamic> data, List<String> headers) {
-    final headersCleaned = headers.map((header) => header.trim()).toList();
-    final map = Map<String, dynamic>.fromIterables(headersCleaned, data);
+    final map = Map<String, dynamic>.fromIterables(headers, data);
     return Shape(
       shapeId: "${map['shape_id']}",
       shapePtLat: double.parse("${map['shape_pt_lat']}"),
