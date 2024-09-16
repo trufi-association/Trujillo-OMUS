@@ -76,8 +76,7 @@ class _MultiDropdownOverlayState extends State<MultiDropdownOverlay> {
       children: [
         if (widget.enableFilter)
           Container(
-            padding:
-                const EdgeInsets.only(bottom: 4, left: 4, right: 4, top: 4),
+            padding: const EdgeInsets.only(bottom: 4, left: 4, right: 4, top: 4),
             child: FocusTraversalOrder(
               order: const NumericFocusOrder(1),
               child: CallbackShortcuts(
@@ -113,7 +112,7 @@ class _MultiDropdownOverlayState extends State<MultiDropdownOverlay> {
                       Icons.search,
                       size: 20,
                     ),
-                    hintText: "Search...",
+                    hintText: "Buscar...",
                     suffixIcon: _searchController.text.isNotEmpty
                         ? FocusScope(
                             canRequestFocus: false,
@@ -184,8 +183,7 @@ class _MultiDropdownOverlayState extends State<MultiDropdownOverlay> {
                             _handleItemChanged(item, !isChecked);
                           },
                           style: const ButtonStyle(
-                            backgroundColor:
-                                WidgetStatePropertyAll(Colors.transparent),
+                            backgroundColor: WidgetStatePropertyAll(Colors.transparent),
                           ),
                           child: SizedBox(
                             width: widget.width - 18 - 1,
@@ -226,9 +224,7 @@ class _MultiDropdownOverlayState extends State<MultiDropdownOverlay> {
     setState(() {
       _filteredItems = _baseItems
           .where(
-            (item) => item.text
-                .toLowerCase()
-                .contains(_searchController.text.toLowerCase()),
+            (item) => item.text.toLowerCase().contains(_searchController.text.toLowerCase()),
           )
           .toList();
     });

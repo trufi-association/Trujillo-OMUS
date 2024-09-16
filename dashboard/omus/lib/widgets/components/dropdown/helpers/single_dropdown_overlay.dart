@@ -44,9 +44,7 @@ class _SingleDropdownOverlayState extends State<SingleDropdownOverlay> {
     _searchController = TextEditingController();
     _baseItems = [...widget.items];
     _filteredItems = [...widget.items];
-    _selectedValue = widget.selectedItem != null
-        ? DropdownItem(id: widget.selectedItem!.id)
-        : null;
+    _selectedValue = widget.selectedItem != null ? DropdownItem(id: widget.selectedItem!.id) : null;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.enableFilter) {
         textFocusNode.requestFocus();
@@ -88,8 +86,7 @@ class _SingleDropdownOverlayState extends State<SingleDropdownOverlay> {
       children: [
         if (widget.enableFilter)
           Container(
-            padding:
-                const EdgeInsets.only(bottom: 4, left: 4, right: 4, top: 4),
+            padding: const EdgeInsets.only(bottom: 4, left: 4, right: 4, top: 4),
             child: FocusTraversalOrder(
               order: const NumericFocusOrder(1),
               child: CallbackShortcuts(
@@ -125,7 +122,7 @@ class _SingleDropdownOverlayState extends State<SingleDropdownOverlay> {
                       Icons.search,
                       size: 20,
                     ),
-                    hintText: "Search...",
+                    hintText: "Buscar...",
                     suffixIcon: _searchController.text.isNotEmpty
                         ? FocusScope(
                             canRequestFocus: false,
@@ -194,8 +191,7 @@ class _SingleDropdownOverlayState extends State<SingleDropdownOverlay> {
                           _handleItemChanged(item);
                         },
                         style: const ButtonStyle(
-                          backgroundColor:
-                              WidgetStatePropertyAll(Colors.transparent),
+                          backgroundColor: WidgetStatePropertyAll(Colors.transparent),
                         ),
                         child: SizedBox(
                           width: widget.width - 19,
@@ -232,9 +228,7 @@ class _SingleDropdownOverlayState extends State<SingleDropdownOverlay> {
     setState(() {
       _filteredItems = _baseItems
           .where(
-            (item) => item.text
-                .toLowerCase()
-                .contains(_searchController.text.toLowerCase()),
+            (item) => item.text.toLowerCase().contains(_searchController.text.toLowerCase()),
           )
           .toList();
     });

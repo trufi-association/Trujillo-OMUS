@@ -12,6 +12,7 @@ import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_ti
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:go_router/go_router.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
+import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:omus/env.dart';
 import 'package:omus/logo.dart';
@@ -174,6 +175,10 @@ extension GenderExtension on Gender {
 
   static Gender fromValue(String value) => _valueMap[value.toLowerCase()]!;
   String toValue() => _valueMap.entries.firstWhere((entry) => entry.value == this).key;
+  String toText() {
+    String value = toValue();
+    return value[0].toUpperCase() + value.substring(1);
+  }
 }
 
 class GenderBoard {
@@ -510,29 +515,81 @@ class MainMapState extends State<MainMap> {
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Text(
-                                                'Report ID: ${currentReport!.id}',
-                                                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'ID: ',
+                                                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                                                    ),
+                                                    TextSpan(
+                                                      text: '${currentReport!.id}',
+                                                      style: const TextStyle(fontSize: 16, color: Colors.black),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                               const SizedBox(height: 8.0),
-                                              Text(
-                                                'Category: ${helper.allCategories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ?? "-"}',
-                                                style: const TextStyle(fontSize: 14),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'Categoría: ',
+                                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                    ),
+                                                    TextSpan(
+                                                      text:
+                                                          '${helper.allCategories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ?? "-"}',
+                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                               const SizedBox(height: 4.0),
-                                              Text(
-                                                'Actor: ${helper.actors.findOrNull((value) => value.id == currentReport!.involvedActorId)?.name ?? "-"}',
-                                                style: const TextStyle(fontSize: 14),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'Actor vial/víctima: ',
+                                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                    ),
+                                                    TextSpan(
+                                                      text: '${helper.actors.findOrNull((value) => value.id == currentReport!.involvedActorId)?.name ?? "-"}',
+                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                               const SizedBox(height: 4.0),
-                                              Text(
-                                                'Description: ${currentReport!.description}',
-                                                style: const TextStyle(fontSize: 14),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'Descripción: ',
+                                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                    ),
+                                                    TextSpan(
+                                                      text: '${currentReport!.description}',
+                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                               const SizedBox(height: 4.0),
-                                              Text(
-                                                'Date: ${currentReport!.reportDate?.toLocal()}'.split('-')[0],
-                                                style: const TextStyle(fontSize: 14),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    TextSpan(
+                                                      text: 'Fecha: ',
+                                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                    ),
+                                                    TextSpan(
+                                                      text:
+                                                          '${DateFormat('yyyy-MM-dd kk:mm').format(currentReport!.reportDate!.add(DateTime.now().timeZoneOffset))}',
+                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -854,12 +911,12 @@ class _MapLayerState extends State<MapLayer> {
                                 FormRequestMultiSelectField(
                                   update: widget.model.update,
                                   field: widget.model.heatMapFilter,
-                                  label: "Genero",
+                                  label: "Género",
                                   items: Gender.values
                                       .map(
                                         (e) => DropdownItem(
                                           id: e.toValue(),
-                                          text: e.toValue(),
+                                          text: e.toText(),
                                         ),
                                       )
                                       .toList(),
