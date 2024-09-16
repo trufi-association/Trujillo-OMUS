@@ -297,11 +297,11 @@ extension CategoryExtension on CategoryEnum {
               alignment: WrapAlignment.center,
               spacing: 0,
               children: [
-                ReportPieChart(
-                  title: "Número y ubicación de reportes de incidentes viales por tipo y severidad",
-                  reports: model.reports,
-                  categories: model.categories,
-                )
+                // ReportPieChart(
+                //   title: "Número y ubicación de reportes de incidentes viales por tipo y severidad",
+                //   reports: model.reports,
+                //   categories: model.categories,
+                // ),
               ],
             ),
           ],
@@ -371,20 +371,10 @@ class StatsViewerState extends State<StatsViewer> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Estadísticas de movilidad',
-          style: TextStyle(color: Colors.white),
+        backgroundColor: Colors.white,
+        title: GeneralAppBar(
+          title: "Estadísticas de movilidad",
         ),
-        leading: InkWell(
-          onTap: () {
-            context.go("/");
-          },
-          child: const Icon(
-            Icons.bar_chart,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.blueGrey[900],
       ),
       body: Stack(
         children: [
@@ -566,7 +556,7 @@ void _showFullScreenPopup(
           width: MediaQuery.of(context).size.width, // Ocupa todo el ancho de la pantalla
           height: MediaQuery.of(context).size.height, // Ocupa todo el alto de la pantalla
           decoration: BoxDecoration(
-            color: Colors.white, // Color del fondo
+            color: Color(0xFFD4DFE9), // Color del fondo
             borderRadius: BorderRadius.circular(10), // Ajuste opcional para esquinas redondeadas
           ),
           child: Column(
@@ -579,7 +569,11 @@ void _showFullScreenPopup(
                     Expanded(
                       child: Text(
                         title,
-                        style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                     IconButton(
@@ -837,13 +831,13 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
         children: [
           Text(
             widget.title,
-            style: const TextStyle(fontSize: 30),
+            style: const TextStyle(fontSize: 20),
           ),
           Container(
             // width: 800,
             height: 500,
             padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(color: const Color.fromARGB(255, 206, 206, 206), borderRadius: BorderRadius.circular(10)),
+            decoration: BoxDecoration(color: const Color.fromARGB(255, 255, 255, 255), borderRadius: BorderRadius.circular(10)),
             child: Column(
               children: [
                 Row(
@@ -1013,32 +1007,43 @@ class StopFeaturesChart extends StatelessWidget {
   Widget build(BuildContext context) {
     final featurePercentages = _calculateFeaturePercentages(stops);
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Text(
-            title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return Container(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
-        ),
-        for (var feature in featurePercentages.keys) _buildFeatureBar(feature, featurePercentages[feature]!),
-        Padding(
-          padding: const EdgeInsets.only(right: 16, left: 230),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(11, (index) {
-              // Calcula los porcentajes desde 0% a 100%
-              int percentage = index * 10;
-              return Text(
-                '$percentage%',
-                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-              );
-            }),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 10),
+            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+            child: Column(
+              children: featurePercentages.keys.map((feature) {
+                return _buildFeatureBar(feature, featurePercentages[feature]!);
+              }).toList(),
+            ),
           ),
-        )
-      ],
+          Padding(
+            padding: const EdgeInsets.only(right: 16, left: 230),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(11, (index) {
+                // Calcula los porcentajes desde 0% a 100%
+                int percentage = index * 10;
+                return Text(
+                  '$percentage%',
+                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+                );
+              }),
+            ),
+          )
+        ],
+      ),
     );
   }
 
@@ -1120,9 +1125,9 @@ class StopFeaturesChart extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                _buildBarSegment(percentages['yes']!, Colors.blue),
-                _buildBarSegment(percentages['no']!, Colors.red),
-                _buildBarSegment(percentages['unknown']!, const Color.fromARGB(255, 239, 197, 28)),
+                _buildBarSegment(percentages['yes']!, Color(0xFF99C76D)),
+                _buildBarSegment(percentages['no']!, Color(0xFF0095DA)),
+                _buildBarSegment(percentages['unknown']!, const Color(0xFF606060)),
               ],
             ),
           ),

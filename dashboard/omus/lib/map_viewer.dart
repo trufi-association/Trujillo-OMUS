@@ -239,6 +239,12 @@ class MainMapState extends State<MainMap> {
   Widget build(BuildContext context) {
     final gtfsData = context.watch<Gtfs>();
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: GeneralAppBar(
+          title: "Visor geográfico",
+        ),
+      ),
       body: SafeArea(
         child: FormRequestManager<Never, ModelRequest, ServerOriginal>(
             id: null,
@@ -679,12 +685,6 @@ class _MapLayerState extends State<MapLayer> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        InkWell(
-                            onTap: () {
-                              context.go("/");
-                            },
-                            child: Image.memory(bytes)),
-                        Divider(),
                         Row(
                           children: [
                             Expanded(
@@ -977,7 +977,7 @@ class _MapLayerState extends State<MapLayer> {
                                 FormRequestMultiSelectField(
                                   update: widget.model.update,
                                   field: widget.model.stopsFilter,
-                                  label: "Paradas",
+                                  label: "Paraderos",
                                   items: FeatureType.values
                                       .map(
                                         (e) => DropdownItem(

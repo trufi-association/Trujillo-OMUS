@@ -121,7 +121,7 @@ class UnderConstructionPage extends StatelessWidget {
   UnderConstructionPage({super.key});
   // Función para abrir el enlace de WhatsApp
   void _launchWhatsApp() async {
-    const url = 'https://wa.me/1234567890'; // Reemplaza con el enlace de tu chatbot de WhatsApp
+    const url = 'https://wa.me/0051959312613'; // Reemplaza con el enlace de tu chatbot de WhatsApp
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -134,16 +134,9 @@ class UnderConstructionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            Container(
-              height: 50,
-              child: Image.asset(
-                'assets/Logo_OMUS.png', // Ruta de la imagen
-                fit: BoxFit.cover, // Ajusta la imagen para que cubra toda la pantalla
-              ),
-            )
-          ],
+        backgroundColor: Colors.white,
+        title: GeneralAppBar(
+          title: "",
         ),
       ),
       body: Stack(
@@ -180,7 +173,7 @@ class UnderConstructionPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Welcome to OMUS',
+                        'Bienvenido a OMUS',
                         style: TextStyle(
                           fontSize: 50,
                           fontWeight: FontWeight.bold,
@@ -190,7 +183,9 @@ class UnderConstructionPage extends StatelessWidget {
                       ),
                       SizedBox(height: 16),
                       Text(
-                        'Una plataforma para gestionar y compartir datos del transporte público urbano, con énfasis en la igualdad de género y de capacidades y la movilidad sostenible, proporcionando información actualizada accesible para toda la ciudadanía.',
+                        """Una plataforma de gestión, análisis y difusión de datos del transporte público urbano de la ciudad con enfoque de género y movilidad sostenible que permitirá contar con información actualizada y disponible para los agentes sociales, económicos, comunicacionales e institucionales, así como la ciudadanía en general.
+
+¿Incidentes en el transporte público?""",
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.white,
@@ -204,14 +199,14 @@ class UnderConstructionPage extends StatelessWidget {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: 'Ayúdenos proporcionando información de transporte a través del ',
+                              text: 'Repórtalo a Truxi, envía un WhatsApp al ',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.white,
                               ),
                             ),
                             TextSpan(
-                              text: 'whatsapp chatbot',
+                              text: '+51 959 312 613',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.white, // Color del enlace
@@ -235,77 +230,25 @@ class UnderConstructionPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           // Opción 1: Visor geográfico
-                          InkWell(
-                            onTap: () {
+                          ElevatedButton(
+                            onPressed: () {
                               context.go("/map-viewer");
                             }, // Acción al presionar
-                            child: Container(
-                              width: 150,
-                              height: 150,
-                              decoration: BoxDecoration(color: Colors.orange, borderRadius: BorderRadius.circular(10)),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    height: 100,
-                                    child: Icon(
-                                      Icons.map,
-                                      color: Colors.white,
-                                      size: 80,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        'Visor geográfico',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: const Color.fromARGB(255, 255, 255, 255),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            child: Text(
+                              'Visor geográfico',
                             ),
                           ),
                           // Opción 2: Estadísticas de movilidad
-                          InkWell(
-                            onTap: () {
+                          ElevatedButton(
+                            onPressed: () {
                               context.go("/stats-viewer");
-                            }, // Acción al presionar
-                            child: Container(
-                              width: 150,
-                              height: 150,
-                              decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(10)),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Container(
-                                    height: 100,
-                                    child: Icon(
-                                      Icons.bar_chart,
-                                      color: Colors.white,
-                                      size: 80,
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        'Estadísticas de movilidad',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: const Color.fromARGB(255, 255, 255, 255),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue, // La propiedad actual
+                            ), // Acción al presionar
+                            child: Text(
+                              'Estadísticas de movilidad',
+                              style: TextStyle(color: Colors.white),
                             ),
                           ),
                         ],
@@ -318,6 +261,51 @@ class UnderConstructionPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class GeneralAppBar extends StatelessWidget {
+  const GeneralAppBar({
+    super.key,
+    required this.title,
+  });
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        InkWell(
+          onTap: () {
+            context.go("/");
+          },
+          child: Container(
+            height: 50,
+            child: Image.asset(
+              'assets/Logo_OMUS.png', // Ruta de la imagen
+              fit: BoxFit.cover, // Ajusta la imagen para que cubra toda la pantalla
+            ),
+          ),
+        ),
+        Expanded(
+          child: Text(
+            title,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Colors.blue,
+            ),
+          ),
+        ),
+        Container(
+          height: 50,
+          width: 500,
+          child: Image.asset(
+            'assets/logos.png', // Ruta de la imagen
+            fit: BoxFit.contain, // Ajusta la imagen para que cubra toda la pantalla
+          ),
+        )
+      ],
     );
   }
 }
