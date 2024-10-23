@@ -1,0 +1,9 @@
+airtable:
+  api_key: "Bearer patFb ..."
+  base_id: " xxx "
+  table_name: "Arbol_categorias"
+  view_name: "Basico"
+
+trufi_api:
+  base_url: "https://omus-dev.trufi.dev"
+  token: "eyJhbGciO  ..."
