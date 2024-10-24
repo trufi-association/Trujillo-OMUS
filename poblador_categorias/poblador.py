@@ -133,7 +133,20 @@ def imprimir_arbol_categorias():
         print(f"Error al obtener las categorías: {response.status_code}")
         print(response.text)
 
+def sincronizar_text_it():
+    """Ejecuta la sincronización con TextIt mediante una solicitud GET."""
+    sync_url = f"{trufi_base_url}/api/Categories/SyncTextIt"
+    print("\nSincronizando con TextIt...")
+    response = requests.get(sync_url, headers=target_api_headers)
+
+    if response.status_code == 200:
+        print("Sincronización con TextIt exitosa.")
+    else:
+        print(f"Error en la sincronización con TextIt: {response.status_code}")
+        print(response.text)
+
 # Ejecutar las funciones en orden
 eliminar_todas_las_categorias()
 crear_categorias()
 imprimir_arbol_categorias()
+sincronizar_text_it()
