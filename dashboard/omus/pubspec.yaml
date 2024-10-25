@@ -91,6 +91,7 @@ flutter:
     - assets/background.jpg
     - assets/Logo_OMUS.png
     - assets/logos.png
+    - assets/merged_stations.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

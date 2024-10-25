@@ -1,0 +1,1421 @@
+[
+  {
+    "_id": "66481540d0de6700b0425508",
+    "name": "Estación Colegio Sagrado Corazón, Trujillo",
+    "type": "STARTER",
+    "desc": "Estación Colegio Sagrado Corazón, Trujillo",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.0108901274471,
+        -8.097161382399534
+      ]
+    },
+    "status": true,
+    "online": true,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0001",
+    "createdAt": "2024-05-18T02:41:05.065Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b0425526",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425527",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425528",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425529",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042552a",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b042552b",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042552c",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b042552d",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042552e",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042552f",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425530",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "6680bc1469a2532da4ce6c35",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481541d0de6700b042550a",
+    "name": "Estación Piscina Gildemeister, Trujillo",
+    "type": "STARTER",
+    "desc": "Estación ambiental Piscina Gildemeister, Trujillo",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.02458626958797,
+        -8.116875756189287
+      ]
+    },
+    "status": true,
+    "online": false,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0001",
+    "createdAt": "2024-05-18T02:41:05.068Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b0425532",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425533",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425534",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425535",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425536",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425537",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425538",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425539",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042553a",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042553b",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042553c",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "66808df869a2532da4cda174",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481541d0de6700b042550c",
+    "name": "Estación Ministerio Público Trujillo",
+    "type": "STARTER",
+    "desc": "Estación ambiental Ministerio Público Trujillo",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.04778516576336,
+        -8.112539575121772
+      ]
+    },
+    "status": true,
+    "online": false,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0001",
+    "createdAt": "2024-05-18T02:41:05.071Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b042553e",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042553f",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425540",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425541",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425542",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425543",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425544",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425545",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425546",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425547",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425548",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "66a09537a8dac1e8da0d5045",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481540d0de6700b0425504",
+    "name": "Estación Sede PLANDET, Trujillo ",
+    "type": "STARTER",
+    "desc": "Estación ambiental Estación Sede Plandet, Trujillo ",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.03010265773804,
+        -8.10741500604918
+      ]
+    },
+    "status": true,
+    "online": true,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0001",
+    "createdAt": "2024-05-18T02:41:05.074Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b042550e",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042550f",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425510",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425511",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425512",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425513",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425514",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425515",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425516",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425517",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425518",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "6680cc6369a2532da4ceb29e",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481541d0de6700b042554a",
+    "name": "Estación taller mecánica SEGAT, Trujillo",
+    "type": "STARTER",
+    "desc": "Estación ambiental  taller mecánica SEGAT, Trujillo",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.02523300129609,
+        -8.093635913868965
+      ]
+    },
+    "status": true,
+    "online": false,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0001",
+    "createdAt": "2024-05-18T02:41:05.096Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b0425551",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425552",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425553",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425554",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425555",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425556",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425557",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425558",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425559",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042555a",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042555b",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "668095df69a2532da4cdc494",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481541d0de6700b042555d",
+    "name": "Estación Hospital Regional de Trujillo",
+    "type": "STARTER",
+    "desc": "Estación ambiental Hospital Regional de Trujillo",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.03573578329573,
+        -8.104623924018284
+      ]
+    },
+    "status": true,
+    "online": true,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0006",
+    "createdAt": "2024-05-18T02:41:05.117Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b0425562",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425563",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425564",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425565",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425566",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425567",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425568",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425569",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042556a",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042556b",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042556c",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "667f551769a2532da4c884a6",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481541d0de6700b0425560",
+    "name": "Estación Casa Juventud (El Molino), Trujillo",
+    "type": "STARTER",
+    "desc": "Estación ambiental Casa Juventud (El Molino), Trujillo",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.01809083542618,
+        -8.096237306491304
+      ]
+    },
+    "status": true,
+    "online": false,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0007",
+    "createdAt": "2024-05-18T02:41:05.133Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b0425571",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425572",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425573",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425574",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425575",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425576",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425577",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425578",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425579",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042557a",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042557b",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "668e81e26db6697486893073",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481541d0de6700b042556e",
+    "name": "Estación SUNARP, Trujiilo, Perú",
+    "type": "STARTER",
+    "desc": "Estación del Meteorológica SUNARP, Trujiilo, Perú",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.039889,
+        -8.125789
+      ]
+    },
+    "status": true,
+    "online": true,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0007",
+    "createdAt": "2024-05-18T02:41:05.149Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b0425580",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425581",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425582",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425583",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425584",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425585",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425586",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425587",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425588",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425589",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042558a",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "667ec56a69a2532da4c62024",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481541d0de6700b042557d",
+    "name": "Estación Gran Unidad Escolar, Trujillo",
+    "type": "STARTER",
+    "desc": "Estación ambiental Gran Unidad Escolar, Trujillo",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.02357547867706,
+        -8.124343306288608
+      ]
+    },
+    "status": true,
+    "online": true,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0008",
+    "createdAt": "2024-05-18T02:41:05.171Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b042558f",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425590",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425591",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425592",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425593",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425594",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425595",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b0425596",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425597",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425598",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b0425599",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "6680c27069a2532da4ce8890",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "66481541d0de6700b042558c",
+    "name": "Estación Gerencia de Transportes, Trujillo",
+    "type": "STARTER",
+    "desc": "Estación ambiental Gerencia de Transportes, Trujillo",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.05267667372132,
+        -8.140308520851022
+      ]
+    },
+    "status": true,
+    "online": false,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6647e5c651ccdcf2c3ca7704",
+      "name": "Municipalidad de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Trujillo"
+    },
+    "serial": "NCLNL-EM20240518B0009",
+    "createdAt": "2024-05-18T02:41:05.174Z",
+    "sensors": [
+      {
+        "_id": "66481541d0de6700b042559b",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "mdi-oil-temperature",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042559c",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "mdi-water-percent",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042559d",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "mdi-gauge",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042559e",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "mdi-svg",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b042559f",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "mdi-pool",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b04255a0",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "mdi-metronome",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b04255a1",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "mdi-meteor",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "66481541d0de6700b04255a2",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "mdi-cloud",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b04255a3",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-waves",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b04255a4",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy-variant",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "66481541d0de6700b04255a5",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "mdi-weather-windy",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "66a09838a8dac1e8da0d6641",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "",
+        "description": "Ozono (O3)",
+        "status": true
+      }
+    ]
+  },
+  {
+    "_id": "667ec96969a2532da4c63189",
+    "name": "Cede Municipal: Estación PRO de Trujillo",
+    "type": "PRO",
+    "desc": "Estación ambiental Pro Trujillo-Perú Ubicada en la Cede Municipal",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        -79.02820404686065,
+        -8.112824312895526
+      ]
+    },
+    "status": true,
+    "online": false,
+    "owner": {
+      "_id": "66c362181fd46f9b2b63e29d",
+      "fullName": "MUNICIPALIDAD PROVINCIAL DE TRUJILLO",
+      "photo": "/media/profile/users/Municipalidadtrujillo-431615.jpg",
+      "gender": "Male"
+    },
+    "institution": {
+      "_id": "6650d2986e56559d4c0e3a51",
+      "name": "Servicio de gestión ambiental de Trujillo",
+      "sector": "Publica",
+      "country": "Perú",
+      "province": "Trujillo",
+      "address": "Manuel Vera Enriquezs 171"
+    },
+    "serial": "NCLNL-EM20240628P000153",
+    "createdAt": "2024-06-28T14:32:09.858Z",
+    "sensors": [
+      {
+        "_id": "667ec96969a2532da4c6318b",
+        "name": "Temperatura",
+        "measure_unit": "°C",
+        "icon": "sin_imagen",
+        "description": "Temperatura",
+        "status": true
+      },
+      {
+        "_id": "667ec96969a2532da4c6318c",
+        "name": "Humedad",
+        "measure_unit": "%",
+        "icon": "sin_imagen",
+        "description": "Humedad",
+        "status": true
+      },
+      {
+        "_id": "667ec96969a2532da4c6318d",
+        "name": "MQ136",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Dióxido de azufre (SO²)",
+        "status": true
+      },
+      {
+        "_id": "667ec96969a2532da4c6318e",
+        "name": "NH3",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Sensor que permite medir niveles potencialmente explosivos de vapores de amoníaco en el aire",
+        "status": false
+      },
+      {
+        "_id": "667ec96969a2532da4c6318f",
+        "name": "MQ3",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Sensor que permite analizar la presencia de sustancias volátiles en el aire",
+        "status": false
+      },
+      {
+        "_id": "667ec96969a2532da4c63190",
+        "name": "UVm30a",
+        "measure_unit": "nm",
+        "icon": "sin_imagen",
+        "description": "Índice UV",
+        "status": true
+      },
+      {
+        "_id": "667ec96969a2532da4c63191",
+        "name": "Sensor_CO",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Monóxido de carbono (CO)",
+        "status": true
+      },
+      {
+        "_id": "667ec96969a2532da4c63192",
+        "name": "PM1",
+        "measure_unit": "µg/m³",
+        "icon": "sin_imagen",
+        "description": "Partículas PM1.0",
+        "status": true
+      },
+      {
+        "_id": "667ec96969a2532da4c63193",
+        "name": "PM2_5",
+        "measure_unit": "µg/m³",
+        "icon": "sin_imagen",
+        "description": "Partículas PM2.5",
+        "status": true
+      },
+      {
+        "_id": "667ec96969a2532da4c63194",
+        "name": "PM10",
+        "measure_unit": "µg/m³",
+        "icon": "sin_imagen",
+        "description": "Partículas PM10",
+        "status": true
+      },
+      {
+        "_id": "667ec96969a2532da4c63195",
+        "name": "Ozono",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Ozono (O3)",
+        "status": true
+      },
+      {
+        "_id": "668e84fa6db669748689377a",
+        "name": "NO2",
+        "measure_unit": "ppm",
+        "icon": "sin_imagen",
+        "description": "Dióxido de nitrógeno (NO2)",
+        "status": true
+      }
+    ]
+  }
+]

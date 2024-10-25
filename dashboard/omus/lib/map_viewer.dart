@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'dart:typed_data';
 
+import 'package:http/http.dart' as http;
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +22,7 @@ import 'package:omus/services/api_service.dart';
 import 'package:omus/services/models/category.dart';
 import 'package:omus/services/models/report.dart';
 import 'package:omus/services/models/vial_actor.dart';
+import 'package:omus/stations.dart';
 import 'package:omus/stats_viewer.dart';
 import 'package:omus/widgets/components/checkbox/custom_checkbox.dart';
 import 'package:omus/widgets/components/dropdown/helpers/dropdown_item.dart';
@@ -54,6 +56,7 @@ class ModelRequest extends FormRequest {
     required this.showReports,
     required this.showHeatMapReports,
     required this.showStops,
+    required this.showStations,
     required this.stopsFilter,
   });
 
@@ -73,6 +76,7 @@ class ModelRequest extends FormRequest {
         showReports: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
         showHeatMapReports: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: false),
         showStops: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
+        showStations: FormItemContainer<bool>(fieldKey: "shotStations", value: false),
         stopsFilter: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
       );
 
@@ -89,6 +93,7 @@ class ModelRequest extends FormRequest {
   final FormItemContainer<bool> showHeatMapReports;
   final FormItemContainer<List<String>> heatMapFilter;
   final FormItemContainer<bool> showStops;
+  final FormItemContainer<bool> showStations;
   final FormItemContainer<List<String>> stopsFilter;
 }
 
@@ -99,6 +104,7 @@ class ServerOriginal {
   final List<Report> reports;
   final List<GenderBoard> data;
   final List<GeoFeature> stops;
+  final List<Station> stations;
   ServerOriginal({
     required this.categories,
     required this.allCategories,
@@ -106,6 +112,7 @@ class ServerOriginal {
     required this.reports,
     required this.data,
     required this.stops,
+    required this.stations,
   });
 }
 
@@ -279,6 +286,8 @@ class MainMapState extends State<MainMap> {
               }).toList();
               var stopsData = await rootBundle.loadString('assets/stops.geojson');
               final stops = (jsonDecode(stopsData)['features'] as List).map((feature) => GeoFeature.fromJson(feature)).toList();
+              var stationsData = await rootBundle.loadString('assets/merged_stations.json');
+              final stations = (jsonDecode(stationsData) as List).map((feature) => Station.fromJson(feature)).toList();
 
               return ServerOriginal(
                 allCategories: allCategories,
@@ -287,6 +296,7 @@ class MainMapState extends State<MainMap> {
                 reports: response[2] as List<Report>,
                 data: data,
                 stops: stops,
+                stations: stations,
               );
             },
             saveModel: (_, {id}) async => {},
@@ -388,6 +398,17 @@ class MainMapState extends State<MainMap> {
                                   color: Color.fromARGB(255, 41, 61, 43),
                                 ),
                               ),
+                            );
+                          }).toList(),
+                        ),
+                      if (model.showStations.value == true)
+                        MarkerLayer(
+                          markers: helper.stations.map((station) {
+                            return Marker(
+                              width: 25,
+                              height: 25,
+                              point: station.location,
+                              child: StationStatus(station: station),
                             );
                           }).toList(),
                         ),
@@ -618,6 +639,141 @@ class MainMapState extends State<MainMap> {
                 ],
               );
             }),
+      ),
+    );
+  }
+}
+
+class StationStatus extends StatefulWidget {
+  final Station station;
+  const StationStatus({super.key, required this.station});
+
+  @override
+  StationStatusState createState() => StationStatusState();
+}
+
+class SensorReading {
+  final String payload;
+  final DateTime createdAt;
+  final String sensor;
+  final String icon;
+  final String description;
+  final String measureUnit;
+
+  SensorReading({
+    required this.payload,
+    required this.createdAt,
+    required this.sensor,
+    required this.icon,
+    required this.description,
+    required this.measureUnit,
+  });
+
+  factory SensorReading.fromJson(Map<String, dynamic> json) {
+    return SensorReading(
+      payload: json['payload'] as String,
+      createdAt: DateTime.parse(json['createdAt']),
+      sensor: json['sensor'] as String,
+      icon: json['icon'] as String,
+      description: json['description'] as String,
+      measureUnit: json['measure_unit'] as String,
+    );
+  }
+}
+
+class StationStatusState extends State<StationStatus> {
+  List<SensorReading> _readings = [];
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+    _timer = Timer.periodic(const Duration(minutes: 1), (timer) => _fetchData());
+  }
+
+  Future<void> _fetchData() async {
+    final url = 'https://tudata.info/api/v1/register/${widget.station.id}/last-register';
+
+    var headers = {
+      'x-api-key': '821303c9-yyqr-1860-vt4t',
+    };
+
+    try {
+      final response = await http.get(Uri.parse(url), headers: headers);
+
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        if (mounted)
+          setState(() {
+            _readings = data.map((json) => SensorReading.fromJson(json)).toList();
+          });
+      } else {
+        print('Failed to fetch data: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  String? _calculateAirQuality() {
+    double? getSensorValue(String sensorName) {
+      final index = _readings.indexWhere((r) => r.sensor == sensorName);
+      if (index == -1) return null;
+
+      return double.tryParse(_readings[index].payload);
+    }
+
+    final pm2_5Value = getSensorValue('PM2_5');
+    final pm10Value = getSensorValue('PM10');
+
+    if (pm2_5Value == null || pm10Value == null) {
+      return null;
+    }
+
+    if (pm2_5Value > 50 || pm10Value > 100) {
+      return 'Poor';
+    } else if (pm2_5Value > 25 || pm10Value > 50) {
+      return 'Moderate';
+    } else {
+      return 'Good';
+    }
+  }
+
+  Color _getColorBasedOnQuality(String? quality) {
+    switch (quality) {
+      case 'Good':
+        return Colors.green;
+      case 'Moderate':
+        return Colors.orange;
+      case 'Poor':
+        return Colors.red;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final airQuality = _calculateAirQuality();
+    final color = _getColorBasedOnQuality(airQuality);
+
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(50),
+        border: Border.all(color: Colors.white),
+      ),
+      child: Icon(
+        Icons.sensors,
+        size: 20,
+        color: Colors.white,
       ),
     );
   }
@@ -1048,6 +1204,28 @@ class _MapLayerState extends State<MapLayer> {
                               ],
                             ),
                           ),
+                        Divider(),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                "Sensores de Aire", // Cambia "Título Bonito" por el texto que desees
+                                style: TextStyle(
+                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
+                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
+                                  color: Colors.blue, // Color azul o el que prefieras
+                                ),
+                              ),
+                            ),
+                            FormRequestToggleSwitch(
+                              update: widget.model.update,
+
+                              // label: "Option Sample",
+                              field: widget.model.showStations,
+                              enabled: true,
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
