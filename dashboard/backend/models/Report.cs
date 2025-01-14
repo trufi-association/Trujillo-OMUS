@@ -17,4 +17,13 @@ public class Report
     public int? InvolvedActorId { get; set; }
     public int? VictimActorId { get; set; }
 
+    [ForeignKey("CategoryId")]
+    public virtual required Category Category { get; set; }
+
+    [ForeignKey("InvolvedActorId")]
+    public virtual VialActor? InvolvedActor { get; set; }
+
+    [ForeignKey("VictimActorId")]
+    public virtual VialActor? VictimActor { get; set; }
+
 }

@@ -24,6 +24,18 @@ namespace OMUS.Controllers
             return await _context.Reports.ToListAsync();
         }
 
+        [HttpGet("complete-reports")]
+        public async Task<ActionResult<IEnumerable<Report>>> GetCompleteReports()
+        {
+            var reports = await _context.Reports
+           .Include(r => r.Category)
+           .Include(r => r.InvolvedActor)
+           .Include(r => r.VictimActor)
+           .ToListAsync();
+
+            return Ok(reports);
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> SaveReport([FromQuery] string apiKey, Report report)
