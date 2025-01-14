@@ -1,1 +1,1 @@
-const String apiUrl = "https://omus-dev.trufi.dev/api";
+const String apiUrl = "https://omus.tmt.gob.pe/api";
