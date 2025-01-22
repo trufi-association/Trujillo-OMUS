@@ -38,7 +38,7 @@ namespace OMUS.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> SaveReport([FromQuery] string apiKey, Report report)
+        public async Task<IActionResult> SaveReport([FromQuery] string apiKey, ReportRequestDto reportDto)
         {
             var configuredApiKey = _configuration.GetValue<string>("ApiKey");
 
@@ -46,11 +46,25 @@ namespace OMUS.Controllers
             {
                 return Unauthorized("Invalid API Key");
             }
-            if (report.Id == 0) // Assuming 0 is the default value for uninitialized int
+
+            var report = new Report
+            {
+                Id = reportDto.Id,
+                UserId = reportDto.UserId,
+                CategoryId = reportDto.CategoryId,
+                CreateDate = reportDto.CreateDate,
+                ReportDate = reportDto.ReportDate,
+                Latitude = reportDto.Latitude,
+                Longitude = reportDto.Longitude,
+                Images = reportDto.Images,
+                Description = reportDto.Description,
+                InvolvedActorId = reportDto.InvolvedActorId,
+                VictimActorId = reportDto.VictimActorId
+            };
+
+            if (report.Id == 0)
             {
                 _context.Reports.Add(report);
-                await _context.SaveChangesAsync();
-                return NoContent();
             }
             else
             {
@@ -58,9 +72,10 @@ namespace OMUS.Controllers
                 if (reportFind == null) return NotFound();
 
                 _context.Entry(reportFind).CurrentValues.SetValues(report);
-                await _context.SaveChangesAsync();
-                return NoContent();
             }
+
+            await _context.SaveChangesAsync();
+            return NoContent();
         }
 
 
