@@ -35,6 +35,7 @@ import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_map_heatmap/flutter_map_heatmap.dart';
 
 class ModelRequest extends FormRequest {
@@ -309,9 +310,19 @@ extension CategoryExtension on CategoryEnum {
       case CategoryEnum.citizenBehavior:
         return Container();
       case CategoryEnum.infrastructureAccess:
-        return Container();
+        return InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: WebUri(
+                'https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
+          ),
+        );
       case CategoryEnum.cleanEfficientMobility:
-        return Container();
+        return InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: WebUri(
+                'https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
+          ),
+        );
       case CategoryEnum.userExperience:
         return Container();
       default:
