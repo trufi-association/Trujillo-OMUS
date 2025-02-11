@@ -259,53 +259,18 @@ extension CategoryExtension on CategoryEnum {
   Widget buildBody(ServerOriginal model) {
     switch (this) {
       case CategoryEnum.genderMobilityInclusive:
-        return ListView(
-          children: [
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              alignment: WrapAlignment.center,
-              spacing: 0,
-              children: [
-                MonthlyReportChart(
-                  reports: model.reports.where((value) => value.categoryId == 52).toList(),
-                  title: "Número de reportes de acoso sexual",
-                ),
-                StopFeaturesChart(
-                  stops: model.stops,
-                  title: "Número de estaciones y paraderos accesibles a personas con movilidad reducida",
-                ),
-                MonthlyReportChart(
-                  reports: model.reports.where((value) => value.categoryId == 72 || value.categoryId == 73).toList(),
-                  title: "Número de reportes de barreras de accesibilidad en el TPU",
-                ),
-                MonthlyReportChart(
-                  reports: model.reports
-                      .where(
-                        (value) => value.categoryId == 74 || value.categoryId == 75 || value.categoryId == 76,
-                      )
-                      .toList(),
-                  title: "Número de reportes de discriminación en el transporte público por tipo",
-                ),
-              ],
-            ),
-          ],
+        return InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: WebUri(
+                'https://app.powerbi.com/view?r=eyJrIjoiMDI2Yjk4NjktYzMzYS00NDRjLTlhOTYtMTQwZTVlYmI4ODIwIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
+          ),
         );
       case CategoryEnum.roadSafety:
-        return ListView(
-          children: [
-            Wrap(
-              crossAxisAlignment: WrapCrossAlignment.center,
-              alignment: WrapAlignment.center,
-              spacing: 0,
-              children: [
-                // ReportPieChart(
-                //   title: "Número y ubicación de reportes de incidentes viales por tipo y severidad",
-                //   reports: model.reports,
-                //   categories: model.categories,
-                // ),
-              ],
-            ),
-          ],
+        return InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: WebUri(
+                'https://app.powerbi.com/view?r=eyJrIjoiMGFmZDU2NzItOTAyMS00ZTFmLWJmNjctOTMzNTU0MGNiMDNjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
+          ),
         );
       case CategoryEnum.citizenBehavior:
         return Container();
@@ -324,7 +289,12 @@ extension CategoryExtension on CategoryEnum {
           ),
         );
       case CategoryEnum.userExperience:
-        return Container();
+        return InAppWebView(
+          initialUrlRequest: URLRequest(
+            url: WebUri(
+                'https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
+          ),
+        );
       default:
         return Container();
     }
