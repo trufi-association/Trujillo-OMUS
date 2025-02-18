@@ -256,48 +256,103 @@ extension CategoryExtension on CategoryEnum {
 
   Color get color => Color(int.parse(_colors[this]!));
 
-  Widget buildBody(ServerOriginal model) {
+  Widget buildBody(ServerOriginal model, BoxConstraints boxConstraints) {
+    final height = boxConstraints.maxHeight;
     switch (this) {
       case CategoryEnum.genderMobilityInclusive:
-        return InAppWebView(
-          initialUrlRequest: URLRequest(
-            url: WebUri(
-                'https://app.powerbi.com/view?r=eyJrIjoiMDI2Yjk4NjktYzMzYS00NDRjLTlhOTYtMTQwZTVlYmI4ODIwIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
-          ),
+        return CustomReportContainer(
+          height: height,
+          urls: [
+            "https://app.powerbi.com/view?r=eyJrIjoiZTNhODczZmQtNGM2Ni00MGViLTllYTEtNmIzYWVhNTg5Y2EzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+            "https://app.powerbi.com/view?r=eyJrIjoiZWIzODAzZTAtY2JiMC00MGMyLTllZjktZjY5MTg2ZGJmNmQyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
+          ],
         );
       case CategoryEnum.roadSafety:
-        return InAppWebView(
-          initialUrlRequest: URLRequest(
-            url: WebUri(
-                'https://app.powerbi.com/view?r=eyJrIjoiMGFmZDU2NzItOTAyMS00ZTFmLWJmNjctOTMzNTU0MGNiMDNjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
-          ),
+        return CustomReportContainer(
+          height: height,
+          urls: [
+            "https://app.powerbi.com/view?r=eyJrIjoiYjExYTYyZGMtY2NjNy00MDdlLTg3M2MtZDQwMjY2YzNhMGRmIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+          ],
         );
       case CategoryEnum.citizenBehavior:
-        return Container();
+        return CustomReportContainer(
+          height: height,
+          urls: [
+            "https://app.powerbi.com/view?r=eyJrIjoiNTE2ZmFiYWEtZmFiOC00N2IyLWJmZWYtYjEzMmRhNTIwZDdiIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
+          ],
+        );
       case CategoryEnum.infrastructureAccess:
-        return InAppWebView(
-          initialUrlRequest: URLRequest(
-            url: WebUri(
-                'https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
-          ),
+        return CustomReportContainer(
+          height: height,
+          urls: [
+            "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=280a214230072e3bd9e6",
+            "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+            "https://app.powerbi.com/view?r=eyJrIjoiNjBiNThkZDctYjE1ZS00N2RiLWI0MjMtM2IyZjA3NTY4MjU0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+            "https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
+          ],
         );
       case CategoryEnum.cleanEfficientMobility:
-        return InAppWebView(
-          initialUrlRequest: URLRequest(
-            url: WebUri(
-                'https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
-          ),
+        return CustomReportContainer(
+          height: height,
+          urls: [
+            "https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+            "https://app.powerbi.com/view?r=eyJrIjoiZjdlMDRjMzMtNTBjYS00ZGNmLWIwZTItYmI4NDA1NTFjYzY0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
+          ],
         );
       case CategoryEnum.userExperience:
-        return InAppWebView(
-          initialUrlRequest: URLRequest(
-            url: WebUri(
-                'https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9'),
-          ),
+        return CustomReportContainer(
+          height: height,
+          urls: [
+            "https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=66e31f7e13353871eb02"
+          ],
         );
       default:
         return Container();
     }
+  }
+}
+
+class CustomReportContainer extends StatefulWidget {
+  const CustomReportContainer({
+    super.key,
+    required this.height,
+    required this.urls,
+  });
+
+  final double height;
+  final List<String> urls;
+
+  @override
+  State<CustomReportContainer> createState() => _CustomReportContainerState();
+}
+
+class _CustomReportContainerState extends State<CustomReportContainer> {
+  final _scrollController = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scrollbar(
+      controller: _scrollController,
+      thumbVisibility: true,
+      interactive: true,
+      child: SingleChildScrollView(
+        controller: _scrollController,
+        padding: const EdgeInsets.only(right: 20),
+        child: Column(
+            children: widget.urls
+                .map((element) => Container(
+                      height: widget.height,
+                      child: InAppWebView(
+                        initialUrlRequest: URLRequest(
+                          url: WebUri(
+                            element,
+                          ),
+                        ),
+                      ),
+                    ))
+                .toList()),
+      ),
+    );
   }
 }
 
@@ -484,7 +539,7 @@ class _CategoryButtonState extends State<CategoryButton> {
             _showFullScreenPopup(
               context,
               widget.category.title,
-              child: widget.category.buildBody(widget.params.responseModel.responseHelper!),
+              builder: (_, boxConstraints) => widget.category.buildBody(widget.params.responseModel.responseHelper!, boxConstraints),
             );
           },
           child: AnimatedContainer(
@@ -526,19 +581,19 @@ class _CategoryButtonState extends State<CategoryButton> {
 void _showFullScreenPopup(
   BuildContext context,
   String title, {
-  required Widget child,
+  required Widget Function(BuildContext, BoxConstraints) builder,
 }) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
-        backgroundColor: Colors.transparent, // Para que no haya bordes alrededor
+        backgroundColor: Colors.transparent,
         child: Container(
-          width: MediaQuery.of(context).size.width, // Ocupa todo el ancho de la pantalla
-          height: MediaQuery.of(context).size.height, // Ocupa todo el alto de la pantalla
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            color: Color(0xFFD4DFE9), // Color del fondo
-            borderRadius: BorderRadius.circular(10), // Ajuste opcional para esquinas redondeadas
+            color: Color(0xFFD4DFE9),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
             children: [
@@ -568,7 +623,7 @@ void _showFullScreenPopup(
               ),
               // Aquí puedes agregar más contenido
               Expanded(
-                child: child,
+                child: LayoutBuilder(builder: builder),
               ),
             ],
           ),
