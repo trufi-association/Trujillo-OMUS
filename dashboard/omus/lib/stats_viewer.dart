@@ -285,7 +285,6 @@ extension CategoryExtension on CategoryEnum {
         return CustomReportContainer(
           height: height,
           urls: [
-            "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=280a214230072e3bd9e6",
             "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
             "https://app.powerbi.com/view?r=eyJrIjoiNjBiNThkZDctYjE1ZS00N2RiLWI0MjMtM2IyZjA3NTY4MjU0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
             "https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
