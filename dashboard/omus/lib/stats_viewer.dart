@@ -38,6 +38,164 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_map_heatmap/flutter_map_heatmap.dart';
 
+final data = {
+  "genero_y_movilidad": {
+    "title": "Género y movilidad inclusiva",
+    "items": [
+      {
+        "title": "Reportes de vulnerabilidad",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiZTNhODczZmQtNGM2Ni00MGViLTllYTEtNmIzYWVhNTg5Y2EzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      },
+      {
+        "title": "Estaciones accesibles",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiZWIzODAzZTAtY2JiMC00MGMyLTllZjktZjY5MTg2ZGJmNmQyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      }
+    ]
+  },
+  "seguridad_vial": {
+    "title": "Seguridad vial",
+    "items": [
+      {
+        "title": "Riesgo en calles",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiZGQ4YTIyOTMtYzcxNC00NDJkLWI5Y2UtMjFjMGU5MGYwNTY4IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      },
+      {
+        "title": "Incidentes viales",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiYjExYTYyZGMtY2NjNy00MDdlLTg3M2MtZDQwMjY2YzNhMGRmIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      }
+    ]
+  },
+  "comportamiento_ciudadano_e_infracciones": {
+    "title": "Comportamiento ciudadano e infracciones",
+    "items": [
+      {
+        "title": "Reportes de infracción",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiNTE2ZmFiYWEtZmFiOC00N2IyLWJmZWYtYjEzMmRhNTIwZDdiIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      }
+    ]
+  },
+  "infraestructura_y_acceso": {
+    "title": "Infraestructura y acceso",
+    "items": [
+      {
+        "title": "Reportes de fallas",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=280a214230072e3bd9e6",
+        "type": "PowerBI"
+      },
+      {
+        "title": "Infraestructura ciclista",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiNTg5OTllNjQtNDE5OS00MTBiLThhOWQtMjc0MDYzZDQ3YzAzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      },
+      {
+        "title": "Infraestructura en buen estado",
+        "url": "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=1zehKI0mLcCdjnL-uxew8MrLcl0OEGQQd",
+        "type": "PDF"
+      },
+      {
+        "title": "Mantenimiento urbano",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiNjBiNThkZDctYjE1ZS00N2RiLWI0MjMtM2IyZjA3NTY4MjU0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      },
+      {
+        "title": "Vías señalizadas",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      }
+    ]
+  },
+  "movilidad_limpia_y_eficiente": {
+    "title": "Movilidad limpia y eficiente",
+    "items": [
+      {
+        "title": "Vehículos de TPU por tecnología",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      },
+      {
+        "title": "Vehículos obsoletos retirados",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiZjdlMDRjMzMtNTBjYS00ZGNmLWIwZTItYmI4NDA1NTFjYzY0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      }
+    ]
+  },
+  "experiencia_de_usuario": {
+    "title": "Experiencia de usuario",
+    "items": [
+      {
+        "title": "Reportes de calidad en TPU",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiY2EyNmVlOWItN2FlOC00MTBlLThkZWMtZjkwMjRmZDA5OTcwIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      },
+      {
+        "title": "Reportes de inseguridad",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiOTdiZDQ1YTktMThlZC00MThhLWJlMDQtZjZiZmVkMGMwMTBlIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+        "type": "PowerBI"
+      },
+      {
+        "title": "Viajes diarios",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=66e31f7e13353871eb02",
+        "type": "PowerBI"
+      }
+    ]
+  }
+};
+
+class CategoryReport {
+  final String title;
+  final List<ReportItem> items;
+
+  CategoryReport({
+    required this.title,
+    required this.items,
+  });
+
+  factory CategoryReport.fromJson(Map<String, dynamic> json) {
+    return CategoryReport(
+      title: json['title'] ?? '',
+      items: (json['items'] as List<dynamic>).map((item) => ReportItem.fromJson(item)).toList(),
+    );
+  }
+}
+
+class ReportItem {
+  final String title;
+  final String url;
+  final String type;
+
+  ReportItem({
+    required this.title,
+    required this.url,
+    required this.type,
+  });
+  factory ReportItem.fromJson(Map<String, dynamic> json) {
+    return ReportItem(
+      title: json['title'] ?? '',
+      url: json['url'] ?? '',
+      type: json['type'] ?? '',
+    );
+  }
+}
+
 class ModelRequest extends FormRequest {
   ModelRequest({
     required this.categories,
@@ -255,101 +413,179 @@ extension CategoryExtension on CategoryEnum {
   String get title => _titles[this]!;
 
   Color get color => Color(int.parse(_colors[this]!));
-
-  Widget buildBody(ServerOriginal model, BoxConstraints boxConstraints) {
-    final height = boxConstraints.maxHeight;
+  String get jsonKey {
     switch (this) {
       case CategoryEnum.genderMobilityInclusive:
-        return CustomReportContainer(
-          height: height,
-          urls: [
-            "https://app.powerbi.com/view?r=eyJrIjoiZTNhODczZmQtNGM2Ni00MGViLTllYTEtNmIzYWVhNTg5Y2EzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-            "https://app.powerbi.com/view?r=eyJrIjoiZWIzODAzZTAtY2JiMC00MGMyLTllZjktZjY5MTg2ZGJmNmQyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
-          ],
-        );
+        return "genero_y_movilidad";
       case CategoryEnum.roadSafety:
-        return CustomReportContainer(
-          height: height,
-          urls: [
-            "https://app.powerbi.com/view?r=eyJrIjoiYjExYTYyZGMtY2NjNy00MDdlLTg3M2MtZDQwMjY2YzNhMGRmIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-          ],
-        );
+        return "seguridad_vial";
       case CategoryEnum.citizenBehavior:
-        return CustomReportContainer(
-          height: height,
-          urls: [
-            "https://app.powerbi.com/view?r=eyJrIjoiNTE2ZmFiYWEtZmFiOC00N2IyLWJmZWYtYjEzMmRhNTIwZDdiIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
-          ],
-        );
+        return "comportamiento_ciudadano_e_infracciones";
       case CategoryEnum.infrastructureAccess:
-        return CustomReportContainer(
-          height: height,
-          urls: [
-            "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-            "https://app.powerbi.com/view?r=eyJrIjoiNjBiNThkZDctYjE1ZS00N2RiLWI0MjMtM2IyZjA3NTY4MjU0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-            "https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
-          ],
-        );
+        return "infraestructura_y_acceso";
       case CategoryEnum.cleanEfficientMobility:
-        return CustomReportContainer(
-          height: height,
-          urls: [
-            "https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-            "https://app.powerbi.com/view?r=eyJrIjoiZjdlMDRjMzMtNTBjYS00ZGNmLWIwZTItYmI4NDA1NTFjYzY0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
-          ],
-        );
+        return "movilidad_limpia_y_eficiente";
       case CategoryEnum.userExperience:
-        return CustomReportContainer(
-          height: height,
-          urls: [
-            "https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=66e31f7e13353871eb02"
-          ],
-        );
+        return "experiencia_de_usuario";
       default:
-        return Container();
+        throw Exception("Clave no encontrada para la categoría $this");
     }
+  }
+
+  Widget buildBody(ServerOriginal model, BoxConstraints boxConstraints) {
+    final Map<String, CategoryReport> categoryReports = data.map(
+      (key, value) => MapEntry(key, CategoryReport.fromJson(value)),
+    );
+    final height = boxConstraints.maxHeight;
+    categoryReports[jsonKey];
+    return CustomReportContainer(
+      height: height,
+      reportItems: categoryReports[jsonKey]!.items,
+    );
+    // switch (this) {
+    //   case CategoryEnum.genderMobilityInclusive:
+    //     return CustomReportContainer(
+    //       height: height,
+    //       urls: [
+    //         "https://app.powerbi.com/view?r=eyJrIjoiZTNhODczZmQtNGM2Ni00MGViLTllYTEtNmIzYWVhNTg5Y2EzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+    //         "https://app.powerbi.com/view?r=eyJrIjoiZWIzODAzZTAtY2JiMC00MGMyLTllZjktZjY5MTg2ZGJmNmQyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
+    //       ],
+    //     );
+    //   case CategoryEnum.roadSafety:
+    //     return CustomReportContainer(
+    //       height: height,
+    //       urls: [
+    //         "https://app.powerbi.com/view?r=eyJrIjoiYjExYTYyZGMtY2NjNy00MDdlLTg3M2MtZDQwMjY2YzNhMGRmIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+    //       ],
+    //     );
+    //   case CategoryEnum.citizenBehavior:
+    //     return CustomReportContainer(
+    //       height: height,
+    //       urls: [
+    //         "https://app.powerbi.com/view?r=eyJrIjoiNTE2ZmFiYWEtZmFiOC00N2IyLWJmZWYtYjEzMmRhNTIwZDdiIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
+    //       ],
+    //     );
+    //   case CategoryEnum.infrastructureAccess:
+    //     return CustomReportContainer(
+    //       height: height,
+    //       urls: [
+    //         "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+    //         "https://app.powerbi.com/view?r=eyJrIjoiNjBiNThkZDctYjE1ZS00N2RiLWI0MjMtM2IyZjA3NTY4MjU0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+    //         "https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
+    //       ],
+    //     );
+    //   case CategoryEnum.cleanEfficientMobility:
+    //     return CustomReportContainer(
+    //       height: height,
+    //       urls: [
+    //         "https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+    //         "https://app.powerbi.com/view?r=eyJrIjoiZjdlMDRjMzMtNTBjYS00ZGNmLWIwZTItYmI4NDA1NTFjYzY0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
+    //       ],
+    //     );
+    //   case CategoryEnum.userExperience:
+    //     return CustomReportContainer(
+    //       height: height,
+    //       urls: [
+    //         "https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=66e31f7e13353871eb02"
+    //       ],
+    //     );
+    //   default:
+    //     return Container();
+    // }
   }
 }
 
 class CustomReportContainer extends StatefulWidget {
+  final double height;
+  final List<ReportItem> reportItems;
+
   const CustomReportContainer({
     super.key,
     required this.height,
-    required this.urls,
+    required this.reportItems,
   });
-
-  final double height;
-  final List<String> urls;
 
   @override
   State<CustomReportContainer> createState() => _CustomReportContainerState();
 }
 
-class _CustomReportContainerState extends State<CustomReportContainer> {
-  final _scrollController = ScrollController();
+class _CustomReportContainerState extends State<CustomReportContainer> with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+  int _currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: widget.reportItems.length, vsync: this);
+    _tabController.addListener(() {
+      setState(() {
+        _currentIndex = _tabController.index;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      controller: _scrollController,
-      thumbVisibility: true,
-      interactive: true,
-      child: SingleChildScrollView(
-        controller: _scrollController,
-        padding: const EdgeInsets.only(right: 20),
-        child: Column(
-            children: widget.urls
-                .map((element) => Container(
-                      height: widget.height,
-                      child: InAppWebView(
-                        initialUrlRequest: URLRequest(
-                          url: WebUri(
-                            element,
-                          ),
-                        ),
-                      ),
-                    ))
-                .toList()),
+    return Column(
+      children: [
+        TabBar(
+          controller: _tabController,
+          isScrollable: true,
+          labelColor: Colors.blue,
+          unselectedLabelColor: Colors.grey,
+          indicatorColor: Colors.blue,
+          tabs: widget.reportItems.map((report) {
+            return Tab(
+              text: report.title,
+            );
+          }).toList(),
+        ),
+        Expanded(
+          child: IndexedStack(
+            index: _currentIndex,
+            children: widget.reportItems
+                .map(
+                  (report) => _PersistentTabContent(
+                    key: PageStorageKey(report.title),
+                    url: report.url,
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PersistentTabContent extends StatefulWidget {
+  final String url;
+
+  const _PersistentTabContent({
+    required Key key,
+    required this.url,
+  }) : super(key: key);
+
+  @override
+  _PersistentTabContentState createState() => _PersistentTabContentState();
+}
+
+class _PersistentTabContentState extends State<_PersistentTabContent> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true; // Mantener el estado de la pestaña
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return InAppWebView(
+      initialUrlRequest: URLRequest(
+        url: WebUri(widget.url),
       ),
     );
   }
