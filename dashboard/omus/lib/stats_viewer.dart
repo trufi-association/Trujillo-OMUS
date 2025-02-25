@@ -53,6 +53,12 @@ final data = {
         "url":
             "https://app.powerbi.com/view?r=eyJrIjoiZWIzODAzZTAtY2JiMC00MGMyLTllZjktZjY5MTg2ZGJmNmQyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
         "type": "PowerBI"
+      },
+      {
+        "title": "Personas con carnet de discapacidad",
+        "url":
+            "https://app.powerbi.com/view?r=eyJrIjoiMWU0YTk5NzYtZWY0YS00OTk5LTkyODQtODViMWRkNjFlYzk2IiwidCI6IjAyZTM0NDQzLWI5YzItNDBiMy1hYzM5LWYwMTI1YTFlMzkwNSIsImMiOjR9",
+        "type": "PowerBI"
       }
     ]
   },
