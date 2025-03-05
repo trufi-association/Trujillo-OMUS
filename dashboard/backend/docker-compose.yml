@@ -25,6 +25,10 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    volumes:
+      - ./scripts:/app/scripts
+      - ../../GTFS-Peru-Trujillo:/app/gtfs_builder
+      - ../../dashboard/omus/build/web/assets/assets/gtfs:/app/gtfs
     # ports:
     #   - "8080:8080"
     environment:
