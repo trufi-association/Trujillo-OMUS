@@ -87,9 +87,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors();
 app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
