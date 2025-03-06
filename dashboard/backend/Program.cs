@@ -31,13 +31,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
-builder.Services.AddCors(options =>
- {
-     options.AddDefaultPolicy(builder =>
-     {
-         builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-     });
- });
+
 // Configure Swagger to use JWT
 builder.Services.AddSwaggerGen(c =>
 {
@@ -87,7 +81,6 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
