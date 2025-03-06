@@ -1,4 +1,5 @@
 using Markdig;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Text;
@@ -10,7 +11,7 @@ public class GenerateGTFSController : ControllerBase
     private static CommandStatus? currentCommandStatus = null;
     private static readonly object lockObject = new();
 
-
+    [Authorize]
     [HttpPost("run")]
     public IActionResult RunCommand()
     {
