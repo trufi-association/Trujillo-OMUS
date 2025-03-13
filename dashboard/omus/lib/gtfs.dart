@@ -20,7 +20,6 @@ class Gtfs {
   });
 }
 
-// agency.dart
 class Agency {
   final String agencyId;
   final String agencyName;
@@ -57,7 +56,6 @@ class Agency {
   }
 }
 
-// route.dart
 class Route {
   final String routeId;
   final String agencyId;
@@ -97,7 +95,6 @@ class Route {
   }
 }
 
-// stop.dart
 class Stop {
   final String stopId;
   final String stopCode;
@@ -143,7 +140,6 @@ class Stop {
   }
 }
 
-// shape.dart
 class Shape {
   final String shapeId;
   final double shapePtLat;
@@ -171,7 +167,6 @@ class Shape {
   }
 }
 
-// frequency.dart
 class Frequency {
   final String tripId;
   final String startTime;
@@ -199,7 +194,6 @@ class Frequency {
   }
 }
 
-// calendar.dart
 class Calendar {
   final String serviceId;
   final int monday;
@@ -242,7 +236,6 @@ class Calendar {
   }
 }
 
-// stop_time.dart
 class StopTime {
   final String tripId;
   final String arrivalTime;
@@ -285,7 +278,6 @@ class StopTime {
   }
 }
 
-// trip.dart
 class Trip {
   final String routeId;
   final String serviceId;

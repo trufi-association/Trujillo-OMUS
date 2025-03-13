@@ -48,7 +48,6 @@ class FormRequestMultiSelectField extends StatelessWidget {
 class _MultiSelectFormDropdown extends FormField<List<String>> {
   _MultiSelectFormDropdown({
     super.key,
-    // Base configuration
     required String labelText,
     List<String> selectedItems = const [],
     required List<DropdownItem> items,
@@ -58,7 +57,6 @@ class _MultiSelectFormDropdown extends FormField<List<String>> {
     bool readOnly = false,
     bool autofocus = false,
     Function(String item, bool isChecked)? onItemChange,
-    // Additional configuration
     int minItemsForSearch = 10,
     EdgeInsetsGeometry? margin,
     String? errorCode,
@@ -74,7 +72,6 @@ class _MultiSelectFormDropdown extends FormField<List<String>> {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           builder: (_) => MultiSelectDropdown(
             key: key,
-            // Base configuration
             labelText: labelText,
             items: items,
             selectedItems: selectedItems
@@ -105,7 +102,6 @@ class _MultiSelectFormDropdown extends FormField<List<String>> {
             errorCode: errorCode,
             noItemsText: noItemsText,
             onItemChange: onItemChange,
-            // Additional configuration
             minItemsForSearch: minItemsForSearch,
             margin: margin,
           ),
@@ -118,7 +114,6 @@ class _MultiSelectFormDropdown extends FormField<List<String>> {
 class MultiSelectDropdown extends StatefulWidget {
   const MultiSelectDropdown({
     super.key,
-    // Base configuration
     required this.labelText,
     required this.items,
     this.selectedItems = const [],
@@ -131,12 +126,10 @@ class MultiSelectDropdown extends StatefulWidget {
     required this.errorCode,
     required this.noItemsText,
     this.onItemChange,
-    // Base configuration
     required this.minItemsForSearch,
     this.margin,
   });
 
-  // Base configuration
   final String labelText;
   final List<DropdownItem> selectedItems;
   final List<DropdownItem> items;
@@ -150,7 +143,6 @@ class MultiSelectDropdown extends StatefulWidget {
   final String? noItemsText;
   final Function(String, bool)? onItemChange;
 
-  // Additional configuration
   final EdgeInsetsGeometry? margin;
   final int minItemsForSearch;
 
@@ -194,9 +186,7 @@ class _MultiSelectDropdownState extends State<MultiSelectDropdown> with SingleTi
       hasValidator: widget.hasValidator,
       errorCode: widget.errorCode,
       //Additional Tooltip Configuration
-      // Calculate heightMessage:
-      // Sum of all filtered items'heights (filteredItemsCount * 41.0),
-      // TextField height (48.0), and border thickness (2.0).
+
       heightMessage: widget.items.isEmpty
           ? 41
           : filteredItemsCount != widget.items.length || showSearchText

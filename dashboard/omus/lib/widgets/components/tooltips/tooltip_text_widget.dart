@@ -97,7 +97,6 @@ class TooltipTextWidget extends StatelessWidget {
   ) {
     final textPainter = TextPainter(
       text: TextSpan(text: text, style: style),
-      // ignore: avoid_redundant_argument_values
       maxLines: null,
       textDirection: TextDirection.ltr,
       textScaler: textScaler,

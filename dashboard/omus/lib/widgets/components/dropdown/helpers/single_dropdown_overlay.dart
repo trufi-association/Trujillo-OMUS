@@ -155,7 +155,6 @@ class _SingleDropdownOverlayState extends State<SingleDropdownOverlay> {
               ),
             ),
           ),
-        // if (widget.enableFilter)
         const CustomDivider(margin: EdgeInsets.zero),
         Flexible(
           child: Padding(
@@ -176,9 +175,6 @@ class _SingleDropdownOverlayState extends State<SingleDropdownOverlay> {
                       ),
                     TooltipTextWidget(
                       config: null,
-                      // config: TooltipConfig(
-                      //   message: textTranslations,
-                      // ),
                       child: MenuItemButton(
                         key: ValueKey(item.id),
                         focusNode: index == 0

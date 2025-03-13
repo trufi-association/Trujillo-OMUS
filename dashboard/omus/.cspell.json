@@ -1,0 +1,35 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "files": [
+        "lib/**/*.dart"
+    ],
+    "words": [
+        "Acceso",
+        "Acera",
+        "Aparcabici",
+        "geográfico",
+        "gtfs",
+        "Guia",
+        "Iluminacion",
+        "insta",
+        "mapa",
+        "mujer",
+        "Nivel",
+        "omus",
+        "Podotactil",
+        "Publicidad",
+        "Rampas",
+        "Rutas",
+        "Señal",
+        "Tacho",
+        "Techo",
+        "Tiene"
+    ],
+    "ignorePaths": [
+        "analysis_options.yaml",
+        "lib/screens/session/session_container_backgrounds.dart",
+        "lib/screens/components/maps/map_component_screen.dart",
+        "lib/screens/components/dropdown/dropdown.dart"
+    ]
+}

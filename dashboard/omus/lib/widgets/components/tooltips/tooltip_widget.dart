@@ -260,7 +260,6 @@ class TooltipMaterialState extends State<TooltipWidget> with SingleTickerProvide
                             ),
                           ),
                         DecoratedBox(
-                          // margin: tooltipLayout.messageEdgeInsets.toEdgeInsets(),
                           decoration: widget.messageDecoration ??
                               BoxDecoration(
                                 color: widget.backgroundMessageColor ?? theme.colorScheme.surface,

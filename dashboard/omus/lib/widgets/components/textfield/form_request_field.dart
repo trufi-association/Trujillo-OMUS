@@ -200,7 +200,6 @@ class FormRequestField<T> extends StatelessWidget {
   }
 }
 
-// Form field base
 class FormElementTextField extends FormField<String> {
   FormElementTextField({
     super.key,
@@ -276,7 +275,6 @@ class FormElementTextField extends FormField<String> {
               if (errorCode != errorCodeResult) onError(errorCodeResult);
             },
             tooltipConfig: tooltipConfig,
-            // Custom params
             textLabel: textLabel,
             prefixText: prefixText,
             suffixText: suffixText,
@@ -304,11 +302,9 @@ class FormElementTextField extends FormField<String> {
       : null;
 }
 
-// Text field base
 class CustomFormBaseTextField extends StatefulWidget {
   const CustomFormBaseTextField({
     super.key,
-    // Custom params
     required this.textLabel,
     required this.hideTextLabel,
     this.textAreaHeight = 110,
@@ -321,7 +317,6 @@ class CustomFormBaseTextField extends StatefulWidget {
     this.backgroundColor,
     required this.margin,
     this.tooltipConfig,
-    // TextFormField native params
     this.initialValue,
     this.enabled = true,
     this.focusNode,
@@ -333,7 +328,6 @@ class CustomFormBaseTextField extends StatefulWidget {
     this.keyboardType,
     this.autofillHints,
     this.inputFormatters,
-    // Callbacks
     this.onChanged,
     this.onShowFocusHighlight,
     this.onFieldSubmitted,
@@ -342,7 +336,6 @@ class CustomFormBaseTextField extends StatefulWidget {
     required this.hintText,
   });
 
-  // Custom params
   final String textLabel;
   final bool hideTextLabel;
   final double textAreaHeight;
@@ -355,13 +348,13 @@ class CustomFormBaseTextField extends StatefulWidget {
   final Color? backgroundColor;
   final EdgeInsetsGeometry? margin;
   final TooltipConfig? tooltipConfig;
-  // TextFormField native params
+
   final String? initialValue;
   final bool enabled;
   final FocusNode? focusNode;
   final bool useObscureText;
   final bool readOnly;
-  // final bool expands;
+
   final int? minLines;
   final int? maxLines;
   final TextAlign textAlign;
@@ -451,7 +444,6 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                       widget.onChanged?.call(value);
                     },
                     onSubmitted: widget.onFieldSubmitted,
-                    // expands: false,
                     minLines: widget.minLines,
                     maxLines: widget.maxLines,
                     textAlign: widget.textAlign,
@@ -514,8 +506,6 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                                         canRequestFocus: false,
                                         child: CustomIconButton(
                                           message: obscureText ? "Hide" : "Show",
-                                          // hoverColor: Colors.transparent,
-                                          // highlightColor: Colors.transparent,
                                           onPressed: () {
                                             setState(
                                               () => obscureText = !obscureText,
@@ -537,8 +527,6 @@ class _CustomFormBaseTextFieldState extends State<CustomFormBaseTextField> {
                                           canRequestFocus: false,
                                           child: CustomIconButton(
                                             message: "close",
-                                            // hoverColor: Colors.transparent,
-                                            // highlightColor: Colors.transparent,
                                             onPressed: () {
                                               widget.onChanged?.call(null);
                                               _controller.clear();

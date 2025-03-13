@@ -60,7 +60,6 @@ class FormRequestSingleSelectField extends StatelessWidget {
 class _SingleSelectFormDropdown extends FormField<DropdownItem> {
   _SingleSelectFormDropdown({
     super.key,
-    // Base configuration
     required String labelText,
     String? selectedItem,
     String? errorCode,
@@ -69,7 +68,6 @@ class _SingleSelectFormDropdown extends FormField<DropdownItem> {
     bool required = false,
     bool readOnly = false,
     bool autofocus = false,
-    // Additional configuration
     int minItemsForSearch = 10,
     EdgeInsetsGeometry? margin,
     bool enabled = true,
@@ -86,7 +84,6 @@ class _SingleSelectFormDropdown extends FormField<DropdownItem> {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           builder: (_) => _SingleSelectDropdown(
             key: key,
-            // Base configuration
             labelText: labelText,
             hideError: hideError,
             items: items,
@@ -107,7 +104,6 @@ class _SingleSelectFormDropdown extends FormField<DropdownItem> {
             hasValidator: required,
             errorCode: errorCode,
             noItemsText: noItemsText,
-            // Additional configuration
             minItemsForSearch: minItemsForSearch,
             margin: margin,
           ),
@@ -130,7 +126,6 @@ class _SingleSelectFormDropdown extends FormField<DropdownItem> {
 class _SingleSelectDropdown extends StatefulWidget {
   const _SingleSelectDropdown({
     super.key,
-    // Base configuration
     required this.labelText,
     required this.items,
     this.selectedValue,
@@ -143,12 +138,10 @@ class _SingleSelectDropdown extends StatefulWidget {
     required this.hasValidator,
     required this.errorCode,
     required this.noItemsText,
-    // Additional configuration
     required this.minItemsForSearch,
     this.margin,
   });
 
-  // Base configuration
   final String labelText;
   final DropdownItem? selectedValue;
   final List<DropdownItem> items;
@@ -161,7 +154,7 @@ class _SingleSelectDropdown extends StatefulWidget {
   final String? errorCode;
   final String? noItemsText;
   final bool hideError;
-  // Additional configuration
+
   final int minItemsForSearch;
   final EdgeInsetsGeometry? margin;
 
@@ -210,9 +203,7 @@ class _SingleSelectDropdownState extends State<_SingleSelectDropdown> with Singl
       hasValidator: widget.hasValidator,
       errorCode: widget.errorCode,
       //Additional Tooltip Configuration
-      // Calculate heightMessage:
-      // Sum of all filtered items'heights (filteredItemsCount * 41.0),
-      // TextField height (48.0), and border thickness (2.0).
+
       heightMessage: widget.items.isEmpty
           ? 41
           : filteredItemsCount != widget.items.length || showSearchText

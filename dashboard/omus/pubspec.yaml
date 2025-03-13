@@ -56,6 +56,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_inappwebview: ^6.1.5
+  flutter_web_plugins:
+    sdk: flutter
+  shared_preferences: ^2.5.2
 
 dev_dependencies:
   flutter_test:

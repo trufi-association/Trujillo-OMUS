@@ -6,10 +6,8 @@ import "package:omus/widgets/components/textfield/helpers/tooltip_container.dart
 import "package:omus/widgets/components/tooltips/tooltip_widget.dart";
 
 extension DateTimeRangeExtension on DateTimeRange {
-  // Convert DateTimeRange to String
   String toFormattedString() => "${start.toIso8601String()} to ${end.toIso8601String()}";
 
-  // Create DateTimeRange from String
   static DateTimeRange fromFormattedString(String range) {
     final parts = range.split(" to ");
     final start = DateTime.parse(parts[0]);
@@ -117,7 +115,6 @@ class FormElementDateRangePicker extends FormField<DateTimeRange> {
 class _DateRangePickerTextField extends StatefulWidget {
   const _DateRangePickerTextField({
     super.key,
-    // Base configuration
     required this.labelText,
     this.initialDateRange,
     this.onChanged,
@@ -127,13 +124,11 @@ class _DateRangePickerTextField extends StatefulWidget {
     required this.autofocus,
     required this.hasValidator,
     required this.errorCode,
-    // Additional configuration
     required this.startDateTime,
     required this.endDateTime,
     this.margin,
   });
 
-  // Base configuration
   final String labelText;
   final DateTimeRange? initialDateRange;
   final ValueChanged<DateTimeRange?>? onChanged;
@@ -144,7 +139,6 @@ class _DateRangePickerTextField extends StatefulWidget {
   final bool hasValidator;
   final String? errorCode;
 
-  // Additional configuration
   final DateTime startDateTime;
   final DateTime endDateTime;
   final EdgeInsetsGeometry? margin;

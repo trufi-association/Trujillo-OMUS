@@ -1,17 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:http/http.dart' as http;
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
-import 'package:go_router/go_router.dart';
 import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
@@ -33,11 +28,9 @@ import 'package:omus/widgets/components/textfield/form_request_date_range_field.
 import 'package:omus/widgets/components/textfield/form_request_field.dart';
 import 'package:omus/widgets/components/toggle_switch/custom_toggle_switch.dart';
 import 'package:omus/widgets/components/zoom_map_button.dart';
-import 'gtfs_service.dart';
 import 'package:provider/provider.dart';
 import 'gtfs.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter_map_heatmap/flutter_map_heatmap.dart';
 
@@ -235,8 +228,8 @@ List<Report> filterReports({required ServerOriginal helper, required ModelReques
 class MainMapState extends State<MainMap> {
   double zoom = 13;
   Report? currentReport;
-  StreamController<void> _rebuildGenderStream = StreamController.broadcast();
-  StreamController<void> _rebuildGeneralStream = StreamController.broadcast();
+  final StreamController<void> _rebuildGenderStream = StreamController.broadcast();
+  final StreamController<void> _rebuildGeneralStream = StreamController.broadcast();
 
   LeafletMapController leafletMapController = LeafletMapController();
 
@@ -253,7 +246,7 @@ class MainMapState extends State<MainMap> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: GeneralAppBar(
+        title: const GeneralAppBar(
           title: "Visor geográfico",
         ),
       ),
@@ -392,7 +385,7 @@ class MainMapState extends State<MainMap> {
                                     color: const Color.fromRGBO(152, 195, 116, 1),
                                     borderRadius: BorderRadius.circular(50),
                                     border: Border.all(color: Colors.white)),
-                                child: Icon(
+                                child: const Icon(
                                   size: 20,
                                   Icons.directions_bus,
                                   color: Color.fromARGB(255, 41, 61, 43),
@@ -431,8 +424,6 @@ class MainMapState extends State<MainMap> {
                               maxZoom: 15,
                               markers: filteredReports.map((report) {
                                 return Marker(
-                                  // width: 80.0,
-                                  // height: 80.0,
                                   point: LatLng(report.latitude ?? 0, report.longitude ?? 0),
                                   alignment: Alignment.topCenter,
                                   child: MouseRegion(
@@ -472,11 +463,6 @@ class MainMapState extends State<MainMap> {
                       ],
                     ],
                   ),
-                  // ReportBarChart(
-                  //   reports: helper.reports,
-                  //   categories: helper.categories,
-                  // ),
-
                   MapLayer(
                     leafletMapController: leafletMapController,
                     model: model,
@@ -539,9 +525,9 @@ class MainMapState extends State<MainMap> {
                                               RichText(
                                                 text: TextSpan(
                                                   children: [
-                                                    TextSpan(
+                                                    const TextSpan(
                                                       text: 'ID: ',
-                                                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                                                     ),
                                                     TextSpan(
                                                       text: '${currentReport!.id}',
@@ -554,13 +540,13 @@ class MainMapState extends State<MainMap> {
                                               RichText(
                                                 text: TextSpan(
                                                   children: [
-                                                    TextSpan(
+                                                    const TextSpan(
                                                       text: 'Categoría: ',
-                                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
                                                     ),
                                                     TextSpan(
-                                                      text:
-                                                          '${helper.allCategories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ?? "-"}',
+                                                      text: helper.allCategories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ??
+                                                          "-",
                                                       style: const TextStyle(fontSize: 14, color: Colors.black),
                                                     ),
                                                   ],
@@ -570,12 +556,12 @@ class MainMapState extends State<MainMap> {
                                               RichText(
                                                 text: TextSpan(
                                                   children: [
-                                                    TextSpan(
+                                                    const TextSpan(
                                                       text: 'Actor vial/víctima: ',
-                                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
                                                     ),
                                                     TextSpan(
-                                                      text: '${helper.actors.findOrNull((value) => value.id == currentReport!.involvedActorId)?.name ?? "-"}',
+                                                      text: helper.actors.findOrNull((value) => value.id == currentReport!.involvedActorId)?.name ?? "-",
                                                       style: const TextStyle(fontSize: 14, color: Colors.black),
                                                     ),
                                                   ],
@@ -585,9 +571,9 @@ class MainMapState extends State<MainMap> {
                                               RichText(
                                                 text: TextSpan(
                                                   children: [
-                                                    TextSpan(
+                                                    const TextSpan(
                                                       text: 'Descripción: ',
-                                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
                                                     ),
                                                     TextSpan(
                                                       text: '${currentReport!.description}',
@@ -600,13 +586,13 @@ class MainMapState extends State<MainMap> {
                                               RichText(
                                                 text: TextSpan(
                                                   children: [
-                                                    TextSpan(
+                                                    const TextSpan(
                                                       text: 'Fecha: ',
-                                                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
                                                     ),
                                                     TextSpan(
                                                       text:
-                                                          '${DateFormat('yyyy-MM-dd kk:mm').format(currentReport!.reportDate!.add(DateTime.now().timeZoneOffset))}',
+                                                          DateFormat('yyyy-MM-dd kk:mm').format(currentReport!.reportDate!.add(DateTime.now().timeZoneOffset)),
                                                       style: const TextStyle(fontSize: 14, color: Colors.black),
                                                     ),
                                                   ],
@@ -704,10 +690,11 @@ class StationStatusState extends State<StationStatus> {
 
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        if (mounted)
+        if (mounted) {
           setState(() {
             _readings = data.map((json) => SensorReading.fromJson(json)).toList();
           });
+        }
       } else {
         print('Failed to fetch data: ${response.statusCode}');
       }
@@ -770,7 +757,7 @@ class StationStatusState extends State<StationStatus> {
         borderRadius: BorderRadius.circular(50),
         border: Border.all(color: Colors.white),
       ),
-      child: Icon(
+      child: const Icon(
         Icons.sensors,
         size: 20,
         color: Colors.white,
@@ -812,14 +799,10 @@ class _MapLayerState extends State<MapLayer> {
       top: 0,
       bottom: 0,
       child: Row(
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.all(5),
+            margin: const EdgeInsets.all(5),
             child: Column(
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              // mainAxisSize: MainAxisSize.min,
               children: [
                 ZoomInOutMapButton(
                   leafletMapController: widget.leafletMapController,
@@ -844,7 +827,7 @@ class _MapLayerState extends State<MapLayer> {
                             }
                           });
                         },
-                        child: SizedBox(
+                        child: const SizedBox(
                           width: 30,
                           height: 30,
                           child: Icon(
@@ -852,19 +835,6 @@ class _MapLayerState extends State<MapLayer> {
                           ),
                         ),
                       ),
-                      // InkWell(
-                      //   onTap: () {
-                      //     widget.onShowStats();
-                      //   },
-                      //   child: SizedBox(
-                      //     width: 30,
-                      //     height: 30,
-                      //     child: Icon(
-                      //       Icons.query_stats,
-                      //       color: Color.fromARGB(255, 255, 130, 159),
-                      //     ),
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
@@ -874,33 +844,31 @@ class _MapLayerState extends State<MapLayer> {
           if (showMapLayer == ShowMapLayer.routes)
             Container(
               width: 350,
-              // height: 500,
-              margin: EdgeInsets.all(5),
+              margin: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: Colors.white, // Color de fondo blanco
-                borderRadius: BorderRadius.all(
+                color: Colors.white,
+                borderRadius: const BorderRadius.all(
                   Radius.circular(5),
-                ), // Bordes redondeados
+                ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5), // Color de sombra con opacidad
-                    spreadRadius: 5, // Extensión de la sombra
-                    blurRadius: 10, // Difuminado de la sombra
-                    offset: Offset(0, 3), // Desplazamiento de la sombra (x, y)
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 10,
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
-
               child: ListView(
                 children: [
                   Container(
-                    margin: EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(5),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Row(
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Text(
                                 "Reportes",
                                 style: TextStyle(
@@ -912,8 +880,6 @@ class _MapLayerState extends State<MapLayer> {
                             ),
                             FormRequestToggleSwitch(
                               update: widget.model.update,
-
-                              // label: "Option Sample",
                               field: widget.model.showReports,
                               enabled: true,
                               onChanged: (_) {
@@ -924,7 +890,7 @@ class _MapLayerState extends State<MapLayer> {
                         ),
                         if (widget.model.showReports.value == true)
                           Container(
-                            margin: EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(5),
                             child: Column(
                               children: [
                                 FormRequestMultiSelectField(
@@ -1020,7 +986,7 @@ class _MapLayerState extends State<MapLayer> {
                                   height: 10,
                                 ),
                                 ElevatedButton(
-                                  child: Text("Limpiar filtro"),
+                                  child: const Text("Limpiar filtro"),
                                   onPressed: () {
                                     widget.model.update(() {
                                       widget.model.categories.value = null;
@@ -1034,23 +1000,21 @@ class _MapLayerState extends State<MapLayer> {
                               ],
                             ),
                           ),
-                        Divider(),
+                        const Divider(),
                         Row(
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Text(
-                                "Abordajes", // Cambia "Título Bonito" por el texto que desees
+                                "Abordajes",
                                 style: TextStyle(
-                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
-                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
-                                  color: Colors.blue, // Color azul o el que prefieras
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
                                 ),
                               ),
                             ),
                             FormRequestToggleSwitch(
                               update: widget.model.update,
-
-                              // label: "Option Sample",
                               field: widget.model.showHeatMap,
                               enabled: true,
                               onChanged: (_) {
@@ -1061,7 +1025,7 @@ class _MapLayerState extends State<MapLayer> {
                         ),
                         if (widget.model.showHeatMap.value == true)
                           Container(
-                            margin: EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(5),
                             child: Column(
                               children: [
                                 FormRequestMultiSelectField(
@@ -1084,23 +1048,21 @@ class _MapLayerState extends State<MapLayer> {
                               ],
                             ),
                           ),
-                        Divider(),
+                        const Divider(),
                         Row(
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Text(
-                                "Rutas", // Cambia "Título Bonito" por el texto que desees
+                                "Rutas",
                                 style: TextStyle(
-                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
-                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
-                                  color: Colors.blue, // Color azul o el que prefieras
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
                                 ),
                               ),
                             ),
                             FormRequestToggleSwitch(
                               update: widget.model.update,
-
-                              // label: "Option Sample",
                               field: widget.model.showRoutes,
                               enabled: true,
                             ),
@@ -1108,7 +1070,7 @@ class _MapLayerState extends State<MapLayer> {
                         ),
                         if (widget.model.showRoutes.value == true)
                           Container(
-                            margin: EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(5),
                             child: Column(
                               children: [
                                 FormRequestMultiSelectField(
@@ -1160,23 +1122,21 @@ class _MapLayerState extends State<MapLayer> {
                               ],
                             ),
                           ),
-                        Divider(),
+                        const Divider(),
                         Row(
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Text(
-                                "Paraderos", // Cambia "Título Bonito" por el texto que desees
+                                "Paraderos",
                                 style: TextStyle(
-                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
-                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
-                                  color: Colors.blue, // Color azul o el que prefieras
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
                                 ),
                               ),
                             ),
                             FormRequestToggleSwitch(
                               update: widget.model.update,
-
-                              // label: "Option Sample",
                               field: widget.model.showStops,
                               enabled: true,
                             ),
@@ -1184,7 +1144,7 @@ class _MapLayerState extends State<MapLayer> {
                         ),
                         if (widget.model.showStops.value == true)
                           Container(
-                            margin: EdgeInsets.all(5),
+                            margin: const EdgeInsets.all(5),
                             child: Column(
                               children: [
                                 FormRequestMultiSelectField(
@@ -1204,23 +1164,21 @@ class _MapLayerState extends State<MapLayer> {
                               ],
                             ),
                           ),
-                        Divider(),
+                        const Divider(),
                         Row(
                           children: [
-                            Expanded(
+                            const Expanded(
                               child: Text(
-                                "Sensores de Aire", // Cambia "Título Bonito" por el texto que desees
+                                "Sensores de Aire",
                                 style: TextStyle(
-                                  fontSize: 20, // Tamaño de fuente mayor para hacerlo destacar
-                                  fontWeight: FontWeight.bold, // Negrita para más énfasis
-                                  color: Colors.blue, // Color azul o el que prefieras
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.blue,
                                 ),
                               ),
                             ),
                             FormRequestToggleSwitch(
                               update: widget.model.update,
-
-                              // label: "Option Sample",
                               field: widget.model.showStations,
                               enabled: true,
                             ),
@@ -1493,9 +1451,10 @@ class RouteTripsListState extends State<RouteTripsList> {
 
 class ReportPieChart extends StatefulWidget {
   final List<Report> reports;
-  final Map<int, Category> categories; // Mapa de categorías principales
+  final Map<int, Category> categories;
   final void Function() onClose;
-  ReportPieChart({
+  const ReportPieChart({
+    super.key,
     required this.reports,
     required this.categories,
     required this.onClose,
@@ -1512,38 +1471,38 @@ class _ReportPieChartState extends State<ReportPieChart> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white, // Color de fondo blanco
-        borderRadius: BorderRadius.all(
+        color: Colors.white,
+        borderRadius: const BorderRadius.all(
           Radius.circular(5),
-        ), // Bordes redondeados
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5), // Color de sombra con opacidad
-            spreadRadius: 5, // Extensión de la sombra
-            blurRadius: 10, // Difuminado de la sombra
-            offset: Offset(0, 3), // Desplazamiento de la sombra (x, y)
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 10,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.all(20),
+      margin: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(20),
       child: Column(
         children: <Widget>[
           Row(
             children: [
-              Expanded(
+              const Expanded(
                 child: Text(
-                  "Estadisticas de reportes", // Cambia "Título Bonito" por el texto que desees
+                  "Estadisticas de reportes",
                   style: TextStyle(
-                    fontSize: 30, // Tamaño de fuente mayor para hacerlo destacar
-                    fontWeight: FontWeight.bold, // Negrita para más énfasis
-                    color: Colors.blue, // Color azul o el que prefieras
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
                   ),
                 ),
               ),
               IconButton(
                   onPressed: widget.onClose,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.close,
                     size: 30,
                   )),
@@ -1580,7 +1539,7 @@ class _ReportPieChartState extends State<ReportPieChart> {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: Indicator(
-                  color: entry.value.color, // Utiliza el color de la categoría
+                  color: entry.value.color,
                   text: entry.value.categoryName ?? 'Unknown',
                   isSquare: true,
                 ),
@@ -1623,7 +1582,7 @@ class _ReportPieChartState extends State<ReportPieChart> {
       index++;
 
       return PieChartSectionData(
-        color: widget.categories[entry.key]?.color ?? Colors.grey, // Utiliza el color de la categoría o gris por defecto
+        color: widget.categories[entry.key]?.color ?? Colors.grey,
         value: percentage,
         title: '${percentage.toStringAsFixed(1)}%',
         radius: radius,
@@ -1631,7 +1590,7 @@ class _ReportPieChartState extends State<ReportPieChart> {
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
           color: Colors.white,
-          shadows: [Shadow(color: Colors.black, blurRadius: 2)],
+          shadows: const [Shadow(color: Colors.black, blurRadius: 2)],
         ),
       );
     }).toList();

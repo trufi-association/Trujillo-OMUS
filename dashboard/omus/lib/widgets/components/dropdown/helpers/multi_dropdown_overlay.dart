@@ -167,9 +167,6 @@ class _MultiDropdownOverlayState extends State<MultiDropdownOverlay> {
                         ),
                       TooltipTextWidget(
                         config: null,
-                        // config: TooltipConfig(
-                        //   message: textTranslations,
-                        // ),
                         child: MenuItemButton(
                           key: ValueKey(item.id),
                           focusNode: index == 0

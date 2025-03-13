@@ -1,170 +1,19 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:math';
-import 'dart:typed_data';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
-import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
-import 'package:go_router/go_router.dart';
-import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:omus/env.dart';
-import 'package:omus/logo.dart';
 import 'package:omus/main.dart';
-import 'package:omus/map_viewer.dart';
 import 'package:omus/services/api_service.dart';
 import 'package:omus/services/models/category.dart';
 import 'package:omus/services/models/report.dart';
 import 'package:omus/services/models/vial_actor.dart';
-import 'package:omus/widgets/components/checkbox/custom_checkbox.dart';
-import 'package:omus/widgets/components/dropdown/helpers/dropdown_item.dart';
-import 'package:omus/widgets/components/dropdown/multi_select_dropdown.dart';
-import 'package:omus/widgets/components/fleaflet_map_controller.dart';
 import 'package:omus/widgets/components/helpers/form_loading_helper_new.dart';
-import 'package:omus/widgets/components/textfield/form_request_date_range_field.dart';
 import 'package:omus/widgets/components/textfield/form_request_field.dart';
-import 'package:omus/widgets/components/toggle_switch/custom_toggle_switch.dart';
-import 'package:omus/widgets/components/zoom_map_button.dart';
-import 'gtfs_service.dart';
-import 'package:provider/provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:flutter_map_heatmap/flutter_map_heatmap.dart';
-
-final data = {
-  "genero_y_movilidad": {
-    "title": "Género y movilidad inclusiva",
-    "items": [
-      {
-        "title": "Reportes de vulnerabilidad",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiZTNhODczZmQtNGM2Ni00MGViLTllYTEtNmIzYWVhNTg5Y2EzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Estaciones accesibles",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiZWIzODAzZTAtY2JiMC00MGMyLTllZjktZjY5MTg2ZGJmNmQyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Personas con carnet de discapacidad",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiMWU0YTk5NzYtZWY0YS00OTk5LTkyODQtODViMWRkNjFlYzk2IiwidCI6IjAyZTM0NDQzLWI5YzItNDBiMy1hYzM5LWYwMTI1YTFlMzkwNSIsImMiOjR9",
-        "type": "PowerBI"
-      }
-    ]
-  },
-  "seguridad_vial": {
-    "title": "Seguridad vial",
-    "items": [
-      {
-        "title": "Riesgo en calles",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiZGQ4YTIyOTMtYzcxNC00NDJkLWI5Y2UtMjFjMGU5MGYwNTY4IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Incidentes viales",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiYjExYTYyZGMtY2NjNy00MDdlLTg3M2MtZDQwMjY2YzNhMGRmIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      }
-    ]
-  },
-  "comportamiento_ciudadano_e_infracciones": {
-    "title": "Comportamiento ciudadano e infracciones",
-    "items": [
-      {
-        "title": "Reportes de infracción",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiNTE2ZmFiYWEtZmFiOC00N2IyLWJmZWYtYjEzMmRhNTIwZDdiIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      }
-    ]
-  },
-  "infraestructura_y_acceso": {
-    "title": "Infraestructura y acceso",
-    "items": [
-      {
-        "title": "Reportes de fallas",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=280a214230072e3bd9e6",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Infraestructura ciclista",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiNTg5OTllNjQtNDE5OS00MTBiLThhOWQtMjc0MDYzZDQ3YzAzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Infraestructura en buen estado",
-        "url": "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=1zehKI0mLcCdjnL-uxew8MrLcl0OEGQQd",
-        "type": "PDF"
-      },
-      {
-        "title": "Mantenimiento urbano",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiNjBiNThkZDctYjE1ZS00N2RiLWI0MjMtM2IyZjA3NTY4MjU0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Vías señalizadas",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      }
-    ]
-  },
-  "movilidad_limpia_y_eficiente": {
-    "title": "Movilidad limpia y eficiente",
-    "items": [
-      {
-        "title": "Vehículos de TPU por tecnología",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Vehículos obsoletos retirados",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiZjdlMDRjMzMtNTBjYS00ZGNmLWIwZTItYmI4NDA1NTFjYzY0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      }
-    ]
-  },
-  "experiencia_de_usuario": {
-    "title": "Experiencia de usuario",
-    "items": [
-      {
-        "title": "Reportes de calidad en TPU",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiY2EyNmVlOWItN2FlOC00MTBlLThkZWMtZjkwMjRmZDA5OTcwIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Reportes de inseguridad",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiOTdiZDQ1YTktMThlZC00MThhLWJlMDQtZjZiZmVkMGMwMTBlIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-        "type": "PowerBI"
-      },
-      {
-        "title": "Viajes diarios",
-        "url":
-            "https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=66e31f7e13353871eb02",
-        "type": "PowerBI"
-      }
-    ]
-  }
-};
 
 class CategoryReport {
   final String title;
@@ -433,81 +282,22 @@ extension CategoryExtension on CategoryEnum {
         return "movilidad_limpia_y_eficiente";
       case CategoryEnum.userExperience:
         return "experiencia_de_usuario";
-      default:
-        throw Exception("Clave no encontrada para la categoría $this");
     }
   }
 
-  Widget buildBody(ServerOriginal model, BoxConstraints boxConstraints) {
-    final Map<String, CategoryReport> categoryReports = data.map(
-      (key, value) => MapEntry(key, CategoryReport.fromJson(value)),
-    );
-    final height = boxConstraints.maxHeight;
+  Widget buildBody(Map<String, CategoryReport> categoryReports) {
     categoryReports[jsonKey];
     return CustomReportContainer(
-      height: height,
       reportItems: categoryReports[jsonKey]!.items,
     );
-    // switch (this) {
-    //   case CategoryEnum.genderMobilityInclusive:
-    //     return CustomReportContainer(
-    //       height: height,
-    //       urls: [
-    //         "https://app.powerbi.com/view?r=eyJrIjoiZTNhODczZmQtNGM2Ni00MGViLTllYTEtNmIzYWVhNTg5Y2EzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-    //         "https://app.powerbi.com/view?r=eyJrIjoiZWIzODAzZTAtY2JiMC00MGMyLTllZjktZjY5MTg2ZGJmNmQyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
-    //       ],
-    //     );
-    //   case CategoryEnum.roadSafety:
-    //     return CustomReportContainer(
-    //       height: height,
-    //       urls: [
-    //         "https://app.powerbi.com/view?r=eyJrIjoiYjExYTYyZGMtY2NjNy00MDdlLTg3M2MtZDQwMjY2YzNhMGRmIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-    //       ],
-    //     );
-    //   case CategoryEnum.citizenBehavior:
-    //     return CustomReportContainer(
-    //       height: height,
-    //       urls: [
-    //         "https://app.powerbi.com/view?r=eyJrIjoiNTE2ZmFiYWEtZmFiOC00N2IyLWJmZWYtYjEzMmRhNTIwZDdiIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
-    //       ],
-    //     );
-    //   case CategoryEnum.infrastructureAccess:
-    //     return CustomReportContainer(
-    //       height: height,
-    //       urls: [
-    //         "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-    //         "https://app.powerbi.com/view?r=eyJrIjoiNjBiNThkZDctYjE1ZS00N2RiLWI0MjMtM2IyZjA3NTY4MjU0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-    //         "https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
-    //       ],
-    //     );
-    //   case CategoryEnum.cleanEfficientMobility:
-    //     return CustomReportContainer(
-    //       height: height,
-    //       urls: [
-    //         "https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
-    //         "https://app.powerbi.com/view?r=eyJrIjoiZjdlMDRjMzMtNTBjYS00ZGNmLWIwZTItYmI4NDA1NTFjYzY0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9"
-    //       ],
-    //     );
-    //   case CategoryEnum.userExperience:
-    //     return CustomReportContainer(
-    //       height: height,
-    //       urls: [
-    //         "https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=66e31f7e13353871eb02"
-    //       ],
-    //     );
-    //   default:
-    //     return Container();
-    // }
   }
 }
 
 class CustomReportContainer extends StatefulWidget {
-  final double height;
   final List<ReportItem> reportItems;
 
   const CustomReportContainer({
     super.key,
-    required this.height,
     required this.reportItems,
   });
 
@@ -584,7 +374,7 @@ class _PersistentTabContent extends StatefulWidget {
 
 class _PersistentTabContentState extends State<_PersistentTabContent> with AutomaticKeepAliveClientMixin {
   @override
-  bool get wantKeepAlive => true; // Mantener el estado de la pestaña
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
@@ -644,12 +434,54 @@ List<Report> filterReports({required ServerOriginal helper, required ModelReques
 class StatsViewerState extends State<StatsViewer> {
   final List<CategoryEnum> categories = CategoryEnum.values;
 
+  Map<String, CategoryReport>? categoryReports;
+  bool isLoading = true;
+  bool hasError = false;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchData();
+  }
+
+  Future<void> fetchData() async {
+    try {
+      final response = await ApiHelper.get(path: '/ChartConfig/config');
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> data = Map<String, dynamic>.from(json.decode(response.body));
+
+        categoryReports = data.map(
+          (key, value) => MapEntry(key, CategoryReport.fromJson(value)),
+        );
+        setState(() {
+          isLoading = false;
+        });
+      } else {
+        throw Exception('Error al obtener los datos: ${response.statusCode}');
+      }
+    } catch (e) {
+      setState(() {
+        isLoading = false;
+        hasError = true;
+      });
+      debugPrint('Error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (hasError || categoryReports == null) {
+      return const Center(child: Text("Error al cargar datos"));
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: GeneralAppBar(
+        title: const GeneralAppBar(
           title: "Estadísticas de movilidad",
         ),
       ),
@@ -728,7 +560,11 @@ class StatsViewerState extends State<StatsViewer> {
                             runSpacing: 10,
                             alignment: WrapAlignment.center,
                             children: categories.map((category) {
-                              return CategoryButton(category: category, params: params);
+                              return CategoryButton(
+                                category: category,
+                                params: params,
+                                categoryReports: categoryReports!,
+                              );
                             }).toList(),
                           ),
                         ],
@@ -747,9 +583,11 @@ class CategoryButton extends StatefulWidget {
   const CategoryButton({
     super.key,
     required this.category,
+    required this.categoryReports,
     required this.params,
   });
   final CategoryEnum category;
+  final Map<String, CategoryReport> categoryReports;
   final FormRequestHelperParams<Never, ModelRequest, ServerOriginal> params;
 
   @override
@@ -780,7 +618,7 @@ class _CategoryButtonState extends State<CategoryButton> {
             _showFullScreenPopup(
               context,
               widget.category.title,
-              builder: (_, boxConstraints) => widget.category.buildBody(widget.params.responseModel.responseHelper!, boxConstraints),
+              builder: (_, boxConstraints) => widget.category.buildBody(widget.categoryReports),
             );
           },
           child: AnimatedContainer(
@@ -788,17 +626,15 @@ class _CategoryButtonState extends State<CategoryButton> {
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: hover
-                  ? const Color(0xFF0077AE) // Color oscuro (#0077AE) al hacer hover
-                  : const Color.fromRGBO(255, 255, 255, 0.8), // Color clarito (#FFFFFF con 80 de opacidad)
+              color: hover ? const Color(0xFF0077AE) : const Color.fromRGBO(255, 255, 255, 0.8),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SvgPicture.string(
-                  theme: SvgTheme(currentColor: Colors.red),
+                  theme: const SvgTheme(currentColor: Colors.red),
                   widget.category.svgString,
-                  height: 50, // Ajusta el tamaño según lo necesario
+                  height: 50,
                   width: 50,
                 ),
                 const SizedBox(height: 30),
@@ -833,12 +669,11 @@ void _showFullScreenPopup(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            color: Color(0xFFD4DFE9),
+            color: const Color(0xFFD4DFE9),
             borderRadius: BorderRadius.circular(10),
           ),
           child: Column(
             children: [
-              // Título del popup
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
@@ -846,7 +681,7 @@ void _showFullScreenPopup(
                     Expanded(
                       child: Text(
                         title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
                           color: Colors.blue,
@@ -855,14 +690,13 @@ void _showFullScreenPopup(
                     ),
                     IconButton(
                       onPressed: () {
-                        Navigator.of(context).pop(); // Cerrar el popup
+                        Navigator.of(context).pop();
                       },
                       icon: const Icon(Icons.close),
                     ),
                   ],
                 ),
               ),
-              // Aquí puedes agregar más contenido
               Expanded(
                 child: LayoutBuilder(builder: builder),
               ),
@@ -878,7 +712,8 @@ class ReportPieChart extends StatefulWidget {
   final List<Report> reports;
   final Map<int, Category> categories;
   final String title;
-  ReportPieChart({
+  const ReportPieChart({
+    super.key,
     required this.reports,
     required this.categories,
     required this.title,
@@ -897,13 +732,12 @@ class _ReportPieChartState extends State<ReportPieChart> {
       margin: const EdgeInsets.all(10),
       padding: const EdgeInsets.all(20),
       child: Column(
-        // mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
             widget.title,
             style: const TextStyle(fontSize: 30),
           ),
-          Container(
+          SizedBox(
             height: 500,
             child: LayoutBuilder(builder: (context, constraints) {
               final shortesSide = constraints.biggest.shortestSide;
@@ -935,7 +769,7 @@ class _ReportPieChartState extends State<ReportPieChart> {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4.0),
                 child: Indicator(
-                  color: entry.value.color, // Utiliza el color de la categoría
+                  color: entry.value.color,
                   text: entry.value.categoryName ?? 'Unknown',
                   isSquare: true,
                 ),
@@ -978,7 +812,7 @@ class _ReportPieChartState extends State<ReportPieChart> {
       index++;
 
       return PieChartSectionData(
-        color: widget.categories[entry.key]?.color ?? Colors.grey, // Utiliza el color de la categoría o gris por defecto
+        color: widget.categories[entry.key]?.color ?? Colors.grey,
         value: percentage,
         title: '${percentage.toStringAsFixed(1)}%',
         radius: radius,
@@ -986,7 +820,7 @@ class _ReportPieChartState extends State<ReportPieChart> {
           fontSize: fontSize,
           fontWeight: FontWeight.bold,
           color: Colors.white,
-          shadows: [const Shadow(color: Colors.black, blurRadius: 2)],
+          shadows: const [Shadow(color: Colors.black, blurRadius: 2)],
         ),
       );
     }).toList();
@@ -1041,15 +875,15 @@ class MonthlyReportChart extends StatefulWidget {
   final List<Report> reports;
   final String title;
 
-  MonthlyReportChart({required this.reports, required this.title});
+  const MonthlyReportChart({super.key, required this.reports, required this.title});
 
   @override
-  _MonthlyReportChartState createState() => _MonthlyReportChartState();
+  MonthlyReportChartState createState() => MonthlyReportChartState();
 }
 
-class _MonthlyReportChartState extends State<MonthlyReportChart> {
-  late Map<int, Map<int, int>> reportCountsByYear; // year -> month -> count
-  late Map<int, Map<int, Map<int, int>>> reportCountsByDay; // year -> month -> day -> count
+class MonthlyReportChartState extends State<MonthlyReportChart> {
+  late Map<int, Map<int, int>> reportCountsByYear;
+  late Map<int, Map<int, Map<int, int>>> reportCountsByDay;
   int selectedYear = DateTime.now().year;
   int? selectedMonth;
   bool showingDays = false;
@@ -1070,7 +904,6 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
         int month = report.reportDate!.month;
         int day = report.reportDate!.day;
 
-        // Conteo por año y mes
         if (!reportCountsByYear.containsKey(year)) {
           reportCountsByYear[year] = {};
         }
@@ -1079,7 +912,6 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
         }
         reportCountsByYear[year]![month] = reportCountsByYear[year]![month]! + 1;
 
-        // Conteo por día
         if (!reportCountsByDay.containsKey(year)) {
           reportCountsByDay[year] = {};
         }
@@ -1111,7 +943,6 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
             style: const TextStyle(fontSize: 20),
           ),
           Container(
-            // width: 800,
             height: 500,
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(color: const Color.fromARGB(255, 255, 255, 255), borderRadius: BorderRadius.circular(10)),
@@ -1126,7 +957,7 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                         child: ElevatedButton(
                           onPressed: () {
                             setState(() {
-                              showingDays = false; // Regresa a la vista de meses
+                              showingDays = false;
                             });
                           },
                           child: const Text('Volver a meses'),
@@ -1137,7 +968,7 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                       onChanged: (int? newValue) {
                         setState(() {
                           selectedYear = newValue!;
-                          showingDays = false; // Regresa a la vista mensual cuando se cambia el año
+                          showingDays = false;
                         });
                       },
                       items: reportCountsByYear.keys.map<DropdownMenuItem<int>>((int year) {
@@ -1159,14 +990,13 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                         borderData: FlBorderData(show: false),
                         titlesData: FlTitlesData(
                           topTitles: const AxisTitles(
-                            sideTitles: SideTitles(showTitles: false), // Oculta el eje superior
+                            sideTitles: SideTitles(showTitles: false),
                           ),
                           bottomTitles: AxisTitles(
                             sideTitles: SideTitles(
                               showTitles: true,
                               getTitlesWidget: (value, _) {
                                 if (showingDays) {
-                                  // Mostrar días del mes
                                   return Text(value.toInt().toString());
                                 } else {
                                   const months = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'];
@@ -1175,7 +1005,7 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                                         setState(() {
                                           if (!showingDays) {
                                             selectedMonth = value.toInt();
-                                            showingDays = true; // Cambia a la vista de días al hacer clic en un mes
+                                            showingDays = true;
                                           }
                                         });
                                       },
@@ -1190,35 +1020,22 @@ class _MonthlyReportChartState extends State<MonthlyReportChart> {
                               showTitles: true,
                               getTitlesWidget: (value, _) {
                                 return Text(
-                                  value.toInt().toString(), // Muestra solo enteros
+                                  value.toInt().toString(),
                                   style: const TextStyle(
                                     color: Colors.black,
-                                    fontSize: 16, // Ajusta el tamaño de la fuente
-                                    fontWeight: FontWeight.bold, // Aumenta el grosor
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 );
                               },
-                              reservedSize: 40, // Aumenta el ancho de la barra izquierda
+                              reservedSize: 40,
                             ),
                           ),
                           rightTitles: const AxisTitles(
                             sideTitles: SideTitles(showTitles: false),
                           ),
                         ),
-                        gridData: const FlGridData(show: false), // Oculta las líneas de cuadrícula
-                        // barTouchData: BarTouchData(
-                        //   touchCallback: (FlTouchEvent event, barTouchResponse) {
-                        //     if (!event.isInterestedForInteractions || barTouchResponse == null || barTouchResponse.spot == null) {
-                        //       return;
-                        //     }
-                        //     setState(() {
-                        //       if (!showingDays) {
-                        //         selectedMonth = barTouchResponse.spot!.touchedBarGroup.x.toInt();
-                        //         showingDays = true; // Cambia a la vista de días al hacer clic en un mes
-                        //       }
-                        //     });
-                        //   },
-                        // ),
+                        gridData: const FlGridData(show: false),
                       ),
                     ),
                   ),
@@ -1278,49 +1095,46 @@ class StopFeaturesChart extends StatelessWidget {
   final List<GeoFeature> stops;
   final String title;
 
-  StopFeaturesChart({required this.stops, required this.title});
+  const StopFeaturesChart({super.key, required this.stops, required this.title});
 
   @override
   Widget build(BuildContext context) {
     final featurePercentages = _calculateFeaturePercentages(stops);
 
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 20),
-            padding: EdgeInsets.symmetric(vertical: 10),
-            decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-            child: Column(
-              children: featurePercentages.keys.map((feature) {
-                return _buildFeatureBar(feature, featurePercentages[feature]!);
-              }).toList(),
-            ),
+        ),
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: Column(
+            children: featurePercentages.keys.map((feature) {
+              return _buildFeatureBar(feature, featurePercentages[feature]!);
+            }).toList(),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 16, left: 230),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: List.generate(11, (index) {
-                // Calcula los porcentajes desde 0% a 100%
-                int percentage = index * 10;
-                return Text(
-                  '$percentage%',
-                  style: TextStyle(fontSize: 14, color: Colors.grey[700]),
-                );
-              }),
-            ),
-          )
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: 16, left: 230),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(11, (index) {
+              int percentage = index * 10;
+              return Text(
+                '$percentage%',
+                style: TextStyle(fontSize: 14, color: Colors.grey[700]),
+              );
+            }),
+          ),
+        )
+      ],
     );
   }
 
@@ -1402,8 +1216,8 @@ class StopFeaturesChart extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                _buildBarSegment(percentages['yes']!, Color(0xFF99C76D)),
-                _buildBarSegment(percentages['no']!, Color(0xFF0095DA)),
+                _buildBarSegment(percentages['yes']!, const Color(0xFF99C76D)),
+                _buildBarSegment(percentages['no']!, const Color(0xFF0095DA)),
                 _buildBarSegment(percentages['unknown']!, const Color(0xFF606060)),
               ],
             ),
@@ -1414,7 +1228,6 @@ class StopFeaturesChart extends StatelessWidget {
   }
 
   String _translateFeature(String feature) {
-    // Mapa que traduce los nombres de las características al español
     const Map<String, String> featureTranslationMap = {
       'Advertising': 'Panel Publicidad',
       'Bench': 'Tiene Banco',
@@ -1430,7 +1243,6 @@ class StopFeaturesChart extends StatelessWidget {
       'Departure Board': 'Info Rutas',
     };
 
-    // Retorna la traducción correspondiente o el texto original si no se encuentra
     return featureTranslationMap[feature] ?? feature;
   }
 
@@ -1440,7 +1252,6 @@ class StopFeaturesChart extends StatelessWidget {
       child: Container(
         height: 20,
         color: color,
-        // child: Text('${percentage.toStringAsFixed(1)}%'),
       ),
     );
   }

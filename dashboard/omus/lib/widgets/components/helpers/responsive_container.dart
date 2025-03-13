@@ -32,16 +32,6 @@ class CustomResponsiveContainer extends StatelessWidget {
       );
 }
 
-/// Represents a custom responsive item that adapts to different screen sizes
-/// based on defined breakpoints.
-///
-/// The default breakpoints are defined as:
-/// - `xs` (extra small): < 576
-/// - `sm` (small): >= 576
-/// - `md` (medium): >= 768
-/// - `lg` (large): >= 992
-/// - `xl` (extra large): >= 1200
-/// - `xxl` (extra extra large): >= 1400
 class CustomResponsiveItem {
   CustomResponsiveItem({
     required this.breakpoints,
@@ -212,8 +202,7 @@ class CustomResponsiveItem {
     );
   }
 
-  factory CustomResponsiveItem.separator({double? height}) =>
-      CustomResponsiveItem(
+  factory CustomResponsiveItem.separator({double? height}) => CustomResponsiveItem(
         breakpoints: Breakpoints(
           xs: 12,
         ),

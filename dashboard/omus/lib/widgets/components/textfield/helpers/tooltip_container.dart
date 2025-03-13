@@ -14,7 +14,6 @@ class TooltipContainer extends StatefulWidget {
     required this.hasValidator,
     this.hideError = false,
     this.errorCode,
-    // this.margin,
     this.backgroundColor,
     required this.messageWidget,
     required this.heightMessage,
@@ -37,7 +36,7 @@ class TooltipContainer extends StatefulWidget {
   final bool hasValidator;
   final bool hideError;
   final String? errorCode;
-  // final EdgeInsetsGeometry? margin;
+
   final Color? backgroundColor;
 
   //Additional Tooltip Configuration

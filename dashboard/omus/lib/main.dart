@@ -1,45 +1,23 @@
-import 'dart:async';
-import 'dart:convert';
-import 'dart:math';
-import 'dart:typed_data';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
-import 'package:flutter_map_marker_cluster/flutter_map_marker_cluster.dart';
 import 'package:go_router/go_router.dart';
-import 'package:insta_image_viewer/insta_image_viewer.dart';
-import 'package:latlong2/latlong.dart';
-import 'package:omus/env.dart';
-import 'package:omus/logo.dart';
+import 'package:omus/admin.dart';
+import 'package:omus/authentication/authentication_bloc.dart';
+import 'package:omus/login.dart';
 import 'package:omus/map_viewer.dart';
-import 'package:omus/services/api_service.dart';
-import 'package:omus/services/models/category.dart';
-import 'package:omus/services/models/report.dart';
-import 'package:omus/services/models/vial_actor.dart';
 import 'package:omus/stats_viewer.dart';
-import 'package:omus/widgets/components/checkbox/custom_checkbox.dart';
-import 'package:omus/widgets/components/dropdown/helpers/dropdown_item.dart';
-import 'package:omus/widgets/components/dropdown/multi_select_dropdown.dart';
-import 'package:omus/widgets/components/fleaflet_map_controller.dart';
-import 'package:omus/widgets/components/helpers/form_loading_helper_new.dart';
-import 'package:omus/widgets/components/textfield/form_request_date_range_field.dart';
-import 'package:omus/widgets/components/textfield/form_request_field.dart';
-import 'package:omus/widgets/components/toggle_switch/custom_toggle_switch.dart';
-import 'package:omus/widgets/components/zoom_map_button.dart';
 import 'gtfs_service.dart';
 import 'package:provider/provider.dart';
 import 'gtfs.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import 'package:flutter_map_heatmap/flutter_map_heatmap.dart';
+import 'package:flutter_web_plugins/url_strategy.dart';
 
 void main() {
+  usePathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -65,13 +43,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Configuración del router
-    final GoRouter _router = GoRouter(
+    final GoRouter router = GoRouter(
       initialLocation: '/',
       routes: [
         GoRoute(
           path: '/',
-          builder: (context, state) => UnderConstructionPage(),
+          builder: (context, state) => const HomeScreen(),
+        ),
+        GoRoute(
+          path: '/admin',
+          builder: (context, state) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => AuthenticationBloc()),
+            ],
+            child: const AdminAuth(),
+          ),
         ),
         GoRoute(
           path: '/map-viewer',
@@ -97,16 +83,16 @@ class MyApp extends StatelessWidget {
         ),
         GoRoute(
           path: '/stats-viewer',
-          builder: (context, state) => StatsViewer(),
+          builder: (context, state) => const StatsViewer(),
         ),
       ],
     );
 
     return MaterialApp.router(
       title: 'OMUS',
-      routerDelegate: _router.routerDelegate,
-      routeInformationParser: _router.routeInformationParser,
-      routeInformationProvider: _router.routeInformationProvider,
+      routerDelegate: router.routerDelegate,
+      routeInformationParser: router.routeInformationParser,
+      routeInformationProvider: router.routeInformationProvider,
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -126,45 +112,41 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Página de construcción
-class UnderConstructionPage extends StatelessWidget {
-  UnderConstructionPage({super.key});
-  // Función para abrir el enlace de WhatsApp
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
   void _launchWhatsApp() async {
-    const url = 'https://wa.me/0051959312613'; // Reemplaza con el enlace de tu chatbot de WhatsApp
+    const url = 'https://wa.me/0051959312613';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
       throw 'No se pudo abrir el enlace de WhatsApp $url';
     }
-  } // Función para manejar la acción de "Visor geográfico"
+  }
 
-// final Uint8List bytes = base64Decode(logo);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: GeneralAppBar(
+        title: const GeneralAppBar(
           title: "",
         ),
       ),
       body: Stack(
         children: [
-          // Imagen de fondo
           Positioned.fill(
             child: Image.asset(
-              'assets/background.jpg', // Ruta de la imagen
-              fit: BoxFit.cover, // Ajusta la imagen para que cubra toda la pantalla
+              'assets/background.jpg',
+              fit: BoxFit.cover,
             ),
-          ), // Gradiente sobre la imagen
+          ),
           Positioned.fill(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    const Color.fromARGB(153, 17, 81, 134), // Celeste con transparencia en la parte inferior
-                    const Color.fromARGB(125, 0, 0, 0), // Parte superior sin color
+                    Color.fromARGB(153, 17, 81, 134),
+                    Color.fromARGB(125, 0, 0, 0),
                   ],
                   begin: Alignment.bottomRight,
                   end: Alignment.topLeft,
@@ -172,17 +154,16 @@ class UnderConstructionPage extends StatelessWidget {
               ),
             ),
           ),
-          // Contenido sobre la imagen
           Positioned.fill(
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(maxWidth: 500),
+                  constraints: const BoxConstraints(maxWidth: 500),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Bienvenido a OMUS',
                         style: TextStyle(
                           fontSize: 50,
@@ -191,8 +172,8 @@ class UnderConstructionPage extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 16),
-                      Text(
+                      const SizedBox(height: 16),
+                      const Text(
                         """Una plataforma de gestión, análisis y difusión de datos del transporte público urbano de la ciudad con enfoque de género y movilidad sostenible que permitirá contar con información actualizada y disponible para los agentes sociales, económicos, comunicacionales e institucionales, así como la ciudadanía en general.
 
 ¿Incidentes en el transporte público?""",
@@ -202,13 +183,12 @@ class UnderConstructionPage extends StatelessWidget {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 16),
-                      // Texto con el enlace de WhatsApp
+                      const SizedBox(height: 16),
                       RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
                           children: [
-                            TextSpan(
+                            const TextSpan(
                               text: 'Repórtalo a Truxi, envía un WhatsApp al ',
                               style: TextStyle(
                                 fontSize: 16,
@@ -217,15 +197,14 @@ class UnderConstructionPage extends StatelessWidget {
                             ),
                             TextSpan(
                               text: '+51 959 312 613',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 16,
-                                color: Colors.white, // Color del enlace
-                                decoration: TextDecoration.underline, // Subrayado del enlace
+                                color: Colors.white,
+                                decoration: TextDecoration.underline,
                               ),
-                              // Hace que el texto sea clicable
                               recognizer: TapGestureRecognizer()..onTap = _launchWhatsApp,
                             ),
-                            TextSpan(
+                            const TextSpan(
                               text: '.',
                               style: TextStyle(
                                 fontSize: 16,
@@ -235,28 +214,26 @@ class UnderConstructionPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 32),
+                      const SizedBox(height: 32),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          // Opción 1: Visor geográfico
                           ElevatedButton(
                             onPressed: () {
                               context.go("/map-viewer");
-                            }, // Acción al presionar
-                            child: Text(
+                            },
+                            child: const Text(
                               'Visor geográfico',
                             ),
                           ),
-                          // Opción 2: Estadísticas de movilidad
                           ElevatedButton(
                             onPressed: () {
                               context.go("/stats-viewer");
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue, // La propiedad actual
-                            ), // Acción al presionar
-                            child: Text(
+                              backgroundColor: Colors.blue,
+                            ),
+                            child: const Text(
                               'Estadísticas de movilidad',
                               style: TextStyle(color: Colors.white),
                             ),
@@ -289,33 +266,46 @@ class GeneralAppBar extends StatelessWidget {
           onTap: () {
             context.go("/");
           },
-          child: Container(
+          child: SizedBox(
             height: 50,
             child: Image.asset(
-              'assets/Logo_OMUS.png', // Ruta de la imagen
-              fit: BoxFit.cover, // Ajusta la imagen para que cubra toda la pantalla
+              'assets/Logo_OMUS.png',
+              fit: BoxFit.cover,
             ),
           ),
         ),
         Expanded(
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Colors.blue,
             ),
           ),
         ),
-        Container(
+        SizedBox(
           height: 50,
           width: 500,
           child: Image.asset(
-            'assets/logos.png', // Ruta de la imagen
-            fit: BoxFit.contain, // Ajusta la imagen para que cubra toda la pantalla
+            'assets/logos.png',
+            fit: BoxFit.contain,
           ),
         )
       ],
     );
+  }
+}
+
+class AdminAuth extends StatelessWidget {
+  const AdminAuth({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    if (context.watch<AuthenticationBloc>().state.isAuthenticated) {
+      return const AdminScreen();
+    } else {
+      return const LoginScreen();
+    }
   }
 }

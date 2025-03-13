@@ -19,9 +19,6 @@ class MenuTooltip extends StatelessWidget {
         tooltipTriggerMode: CustomTooltipTriggerMode.onPressed,
         showArrow: false,
         widthMessage: width,
-        // Calculate heightMessage:
-        // Sum of all filtered items'heights (filteredItemsCount * 41.0),
-        // TextField height (48.0), and border thickness (2.0).
         heightMessage: (items.isNotEmpty ? items.length * 48.0 : 1),
         messageWidget: (context, _, __, ___) => SizedBox(
           width: width,

@@ -3,9 +3,6 @@ import "package:omus/widgets/async_handler.dart";
 import "package:omus/widgets/components/helpers/form_request_container.dart";
 import "package:omus/widgets/components/textfield/form_request_field.dart";
 
-// R is Response model
-// M is request Model with mutate during the manipulation of the form
-// H is the extra model with Help the mail model
 class ResponseModelContainer<R, H> {
   const ResponseModelContainer({
     required this.response,
@@ -88,7 +85,6 @@ class FormRequestHelper<R, M extends FormRequest, H> extends StatefulWidget {
     required this.loadModel,
     required this.convertModel,
     this.loadExtraModel,
-    // this.onExtraFunction,
     required this.saveModel,
     required this.onSaveChanges,
     required this.builder,
