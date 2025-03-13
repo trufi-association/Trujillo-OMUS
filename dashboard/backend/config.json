@@ -1,0 +1,112 @@
+{
+    "genero_y_movilidad": {
+        "title": "Género y movilidad inclusiva",
+        "items": [
+            {
+                "title": "Reportes de vulnerabilidad",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiZTNhODczZmQtNGM2Ni00MGViLTllYTEtNmIzYWVhNTg5Y2EzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Estaciones accesibles",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiZWIzODAzZTAtY2JiMC00MGMyLTllZjktZjY5MTg2ZGJmNmQyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Personas con carnet de discapacidad",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiMWU0YTk5NzYtZWY0YS00OTk5LTkyODQtODViMWRkNjFlYzk2IiwidCI6IjAyZTM0NDQzLWI5YzItNDBiMy1hYzM5LWYwMTI1YTFlMzkwNSIsImMiOjR9",
+                "type": "PowerBI"
+            }
+        ]
+    },
+    "seguridad_vial": {
+        "title": "Seguridad vial",
+        "items": [
+            {
+                "title": "Riesgo en calles",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiZGQ4YTIyOTMtYzcxNC00NDJkLWI5Y2UtMjFjMGU5MGYwNTY4IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Incidentes viales",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiYjExYTYyZGMtY2NjNy00MDdlLTg3M2MtZDQwMjY2YzNhMGRmIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            }
+        ]
+    },
+    "comportamiento_ciudadano_e_infracciones": {
+        "title": "Comportamiento ciudadano e infracciones",
+        "items": [
+            {
+                "title": "Reportes de infracción",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiNTE2ZmFiYWEtZmFiOC00N2IyLWJmZWYtYjEzMmRhNTIwZDdiIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            }
+        ]
+    },
+    "infraestructura_y_acceso": {
+        "title": "Infraestructura y acceso",
+        "items": [
+            {
+                "title": "Reportes de fallas",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiNGU5ZWExNDctYmI4ZC00YzM0LWExNGMtNmQxNDBhMzViZmI2IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=280a214230072e3bd9e6",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Infraestructura ciclista",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiNTg5OTllNjQtNDE5OS00MTBiLThhOWQtMjc0MDYzZDQ3YzAzIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Infraestructura en buen estado",
+                "url": "https://drive.google.com/viewerng/viewer?embedded=true&url=https://drive.google.com/uc?id=1zehKI0mLcCdjnL-uxew8MrLcl0OEGQQd",
+                "type": "PDF"
+            },
+            {
+                "title": "Mantenimiento urbano",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiNjBiNThkZDctYjE1ZS00N2RiLWI0MjMtM2IyZjA3NTY4MjU0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Vías señalizadas",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiNzc0MjQwZGItNWU0Ny00YTMwLWFlYmYtZGU5YWI3YzY5MDA0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            }
+        ]
+    },
+    "movilidad_limpia_y_eficiente": {
+        "title": "Movilidad limpia y eficiente",
+        "items": [
+            {
+                "title": "Vehículos de TPU por tecnología",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiYWFmYTdkY2QtODE4ZC00ZDkwLTk1NWQtYmE0MGU4ZDYzMjEyIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Vehículos obsoletos retirados",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiZjdlMDRjMzMtNTBjYS00ZGNmLWIwZTItYmI4NDA1NTFjYzY0IiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            }
+        ]
+    },
+    "experiencia_de_usuario": {
+        "title": "Experiencia de usuario",
+        "items": [
+            {
+                "title": "Reportes de calidad en TPU",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiY2EyNmVlOWItN2FlOC00MTBlLThkZWMtZjkwMjRmZDA5OTcwIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Reportes de inseguridad",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiOTdiZDQ1YTktMThlZC00MThhLWJlMDQtZjZiZmVkMGMwMTBlIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9",
+                "type": "PowerBI"
+            },
+            {
+                "title": "Viajes diarios",
+                "url": "https://app.powerbi.com/view?r=eyJrIjoiYmE1MjY0MzEtMDgxOC00MGU1LTgwNzMtMjZmODQ4MzFiNjVjIiwidCI6IjRlOGJlNTQxLTQwMTYtNGMxZi04ZDVhLWQ1ZjQwODU1MjdhMCIsImMiOjR9&pageName=66e31f7e13353871eb02",
+                "type": "PowerBI"
+            }
+        ]
+    }
+}
