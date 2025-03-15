@@ -91,6 +91,19 @@ namespace OMUS.Controllers
 
             return NoContent();
         }
+        [Authorize]
+        [HttpDelete("{reportId}/images")]
+        public async Task<IActionResult> DeleteAllReportImages(int reportId)
+        {
+            var report = await _context.Reports.FindAsync(reportId);
+            if (report == null)
+                return NotFound();
+
+            report.Images.Clear();
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
 
     }
 }

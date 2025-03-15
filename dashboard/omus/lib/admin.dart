@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:omus/authentication/authentication_bloc.dart';
 import 'package:omus/chart_admin.dart';
 import 'package:omus/gtfs_admin.dart';
+import 'package:omus/image_manager_screen.dart';
 import 'package:omus/main.dart';
 import 'package:omus/services/api_service.dart';
 import 'package:omus/stats_viewer.dart';
@@ -116,9 +117,7 @@ class AdminScreen extends StatelessWidget {
                             _showFullScreenPopup(
                               context,
                               "Fotos de reportes",
-                              builder: (_, boxConstraints) => Container(
-                                color: Colors.red,
-                              ),
+                              builder: (_, boxConstraints) => const ImageManagerScreen(),
                             );
                           },
                           title: "Fotos de reportes",
