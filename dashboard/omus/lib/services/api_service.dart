@@ -93,7 +93,7 @@ abstract class ApiServices {
   }
 
   static Future<void> deleteAllReportImages(int reportId) async {
-    final response = await ApiHelper.delete(path: "/Reports/$reportId/images");
+    final response = await ApiHelper.delete(path: "/Reports/$reportId/images", useToken: true);
     if (response.statusCode != 204) {
       throw Exception(response.statusCode);
     }
