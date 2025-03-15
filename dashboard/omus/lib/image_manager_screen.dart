@@ -147,7 +147,6 @@ class ImageManagerScreen extends StatelessWidget {
           List<Report> filteredReports = filterReports(model: model, helper: params.responseModel.responseHelper!);
 
           return Scaffold(
-            appBar: AppBar(title: const Text("Administrar Imágenes")),
             body: Column(
               children: [
                 Padding(
