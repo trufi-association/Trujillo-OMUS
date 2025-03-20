@@ -40,9 +40,6 @@ namespace OMUS.Migrations
                     b.Property<bool>("hasDateTime")
                         .HasColumnType("tinyint(1)");
 
-                    b.Property<bool>("hasInvolvedActor")
-                        .HasColumnType("tinyint(1)");
-
                     b.Property<bool>("hasVictim")
                         .HasColumnType("tinyint(1)");
 

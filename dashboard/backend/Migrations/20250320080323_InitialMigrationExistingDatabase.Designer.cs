@@ -12,8 +12,8 @@ using OMUS.Data;
 namespace OMUS.Migrations
 {
     [DbContext(typeof(OMUSContext))]
-    [Migration("20250320074936_AddHasInvolvedActor")]
-    partial class AddHasInvolvedActor
+    [Migration("20250320080323_InitialMigrationExistingDatabase")]
+    partial class InitialMigrationExistingDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,9 +41,6 @@ namespace OMUS.Migrations
                         .HasColumnType("int");
 
                     b.Property<bool>("hasDateTime")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool>("hasInvolvedActor")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("hasVictim")
@@ -148,5 +145,4 @@ namespace OMUS.Migrations
 #pragma warning restore 612, 618
         }
     }
-    
 }
