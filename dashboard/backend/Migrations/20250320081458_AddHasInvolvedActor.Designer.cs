@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OMUS.Data;
 
@@ -11,9 +12,11 @@ using OMUS.Data;
 namespace OMUS.Migrations
 {
     [DbContext(typeof(OMUSContext))]
-    partial class OMUSContextModelSnapshot : ModelSnapshot
+    [Migration("20250320081458_AddHasInvolvedActor")]
+    partial class AddHasInvolvedActor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
