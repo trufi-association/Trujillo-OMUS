@@ -11,6 +11,7 @@ import 'package:insta_image_viewer/insta_image_viewer.dart';
 import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:omus/env.dart';
+import 'package:omus/geojson_models.dart';
 import 'package:omus/logo.dart';
 import 'package:omus/main.dart';
 import 'package:omus/services/api_service.dart';
@@ -51,6 +52,8 @@ class ModelRequest extends FormRequest {
     required this.showStops,
     required this.showStations,
     required this.stopsFilter,
+    required this.showRegions,
+    required this.selectedRegions,
   });
 
   factory ModelRequest.fromScratch() => ModelRequest(
@@ -71,6 +74,8 @@ class ModelRequest extends FormRequest {
         showStops: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
         showStations: FormItemContainer<bool>(fieldKey: "shotStations", value: false),
         stopsFilter: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
+        showRegions: FormItemContainer<bool>(fieldKey: "keyShowGeojsonRoutes", value: false),
+        selectedRegions: FormItemContainer<Map<String, List<String>>>(fieldKey: "selectedRegions", value: {}),
       );
 
   final FormItemContainer<List<String>> categories;
@@ -88,6 +93,8 @@ class ModelRequest extends FormRequest {
   final FormItemContainer<bool> showStops;
   final FormItemContainer<bool> showStations;
   final FormItemContainer<List<String>> stopsFilter;
+  final FormItemContainer<bool> showRegions;
+  final FormItemContainer<Map<String, List<String>?>> selectedRegions;
 }
 
 class ServerOriginal {
@@ -98,6 +105,7 @@ class ServerOriginal {
   final List<GenderBoard> data;
   final List<GeoFeature> stops;
   final List<Station> stations;
+  final Map<String, Region> finalRoutes;
   ServerOriginal({
     required this.categories,
     required this.allCategories,
@@ -106,6 +114,7 @@ class ServerOriginal {
     required this.data,
     required this.stops,
     required this.stations,
+    required this.finalRoutes,
   });
 }
 
@@ -281,7 +290,13 @@ class MainMapState extends State<MainMap> {
               final stops = (jsonDecode(stopsData)['features'] as List).map((feature) => GeoFeature.fromJson(feature)).toList();
               var stationsData = await rootBundle.loadString('assets/merged_stations.json');
               final stations = (jsonDecode(stationsData) as List).map((feature) => Station.fromJson(feature)).toList();
+              var finalRoutesData = await rootBundle.loadString('assets/combined_geojson.json');
+              final Map<String, dynamic> decodedData = jsonDecode(finalRoutesData);
 
+              final finalRoutes = decodedData.map((key, value) => MapEntry(
+                    key,
+                    Region.fromJson(value),
+                  ));
               return ServerOriginal(
                 allCategories: allCategories,
                 categories: categoriesMap,
@@ -290,6 +305,7 @@ class MainMapState extends State<MainMap> {
                 data: data,
                 stops: stops,
                 stations: stations,
+                finalRoutes: finalRoutes,
               );
             },
             saveModel: (_, {id}) async => {},
@@ -339,6 +355,18 @@ class MainMapState extends State<MainMap> {
                             data: genderMap,
                           ),
                           reset: _rebuildGenderStream.stream,
+                        ),
+                      if (model.showRegions.value == true)
+                        PolylineLayer(
+                          polylines: helper.finalRoutes.values.expand((route) {
+                            final selecteRegion = model.selectedRegions.value?[route.name];
+                            if (selecteRegion?.isEmpty ?? true) return <Polyline>[];
+                            return route.features.where((element) => selecteRegion!.contains(element.name)).map((feature) => Polyline(
+                                  points: feature.geometry.map((loc) => LatLng(loc.latitude, loc.longitude)).toList(),
+                                  strokeWidth: 4,
+                                  color: Colors.purple,
+                                ));
+                          }).toList(),
                         ),
                       if (model.showRoutes.value == true) ...[
                         if (model.showAllRoutes.value == true)
@@ -1184,6 +1212,75 @@ class _MapLayerState extends State<MapLayer> {
                             ),
                           ],
                         ),
+                        const Divider(),
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                "Plan regulador de rutas",
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
+                              ),
+                            ),
+                            FormRequestToggleSwitch(
+                              update: widget.model.update,
+                              field: widget.model.showRegions,
+                              enabled: true,
+                            ),
+                          ],
+                        ),
+                        if (widget.model.showRegions.value == true)
+                          Container(
+                            margin: const EdgeInsets.all(5),
+                            child: Column(
+                              children: widget.helper.finalRoutes.values.map((route) {
+                                final selecteRegion = widget.model.selectedRegions.value?[route.name];
+                                return Column(children: [
+                                  Row(
+                                    children: [
+                                      FormRequestToggleSwitch(
+                                        update: widget.model.update,
+                                        field: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: selecteRegion != null),
+                                        enabled: true,
+                                        onChanged: (changed) {
+                                          widget.model.update(() {
+                                            if (changed == true) {
+                                              widget.model.selectedRegions.value?[route.name] = [];
+                                            } else {
+                                              widget.model.selectedRegions.value?.remove(route.name);
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          route.name,
+                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.blue),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  if (selecteRegion != null)
+                                    ...route.features
+                                        .map((feature) => FormRequestCheckBox(
+                                              update: widget.model.update,
+                                              label: feature.name,
+                                              field: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: selecteRegion?.contains(feature.name) ?? false),
+                                              enabled: true,
+                                              onChanged: (changed) {
+                                                widget.model.update(() {
+                                                  if (changed == true) {
+                                                    selecteRegion?.add(feature.name);
+                                                  } else {
+                                                    selecteRegion?.remove(feature.name);
+                                                  }
+                                                });
+                                              },
+                                            ))
+                                        .toList(),
+                                ]);
+                              }).toList(),
+                            ),
+                          ),
                       ],
                     ),
                   ),
