@@ -90,6 +90,8 @@ using (var scope = app.Services.CreateScope())
     var services = scope.ServiceProvider;
     try
     {
+        var context = services.GetRequiredService<OMUSContext>();
+        context.Database.Migrate();
         DbInitializer.Initialize(services);
     }
     catch (Exception ex)

@@ -10,6 +10,7 @@ public class Category
 
     public required string CategoryName { get; set; }
     public required bool hasVictim { get; set; }
+    public required bool hasInvolvedActor { get; set; }
     public required bool hasDateTime { get; set; }
 
 }
