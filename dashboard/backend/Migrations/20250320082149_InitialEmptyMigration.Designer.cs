@@ -12,8 +12,8 @@ using OMUS.Data;
 namespace OMUS.Migrations
 {
     [DbContext(typeof(OMUSContext))]
-    [Migration("20250320081458_AddHasInvolvedActor")]
-    partial class AddHasInvolvedActor
+    [Migration("20250320082149_InitialEmptyMigration")]
+    partial class InitialEmptyMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
