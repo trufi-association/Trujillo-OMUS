@@ -6,7 +6,7 @@ class Report {
   final DateTime? reportDate;
   final double? latitude;
   final double? longitude;
-  final List<String>? images;
+  List<String>? images;
   final String? description;
   final int? involvedActorId;
   final int? victimActorId;
@@ -32,12 +32,8 @@ class Report {
       categoryId: json['categoryId'],
       createDate: DateTime.tryParse(json['createDate'] ?? ""),
       reportDate: DateTime.tryParse(json['reportDate'] ?? ""),
-      latitude: json['latitude'] != null
-          ? (json['latitude'] as num).toDouble()
-          : null,
-      longitude: json['longitude'] != null
-          ? (json['longitude'] as num).toDouble()
-          : null,
+      latitude: json['latitude'] != null ? (json['latitude'] as num).toDouble() : null,
+      longitude: json['longitude'] != null ? (json['longitude'] as num).toDouble() : null,
       images: (json['images'] as List?)?.map((e) => e as String).toList(),
       description: json['description'],
       involvedActorId: json['involvedActorId'],

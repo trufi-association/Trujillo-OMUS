@@ -585,11 +585,26 @@ class MainMapState extends State<MainMap> {
                                                 text: TextSpan(
                                                   children: [
                                                     const TextSpan(
-                                                      text: 'Actor vial/víctima: ',
+                                                      text: 'Actor involucrado: ',
                                                       style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
                                                     ),
                                                     TextSpan(
                                                       text: helper.actors.findOrNull((value) => value.id == currentReport!.involvedActorId)?.name ?? "-",
+                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              const SizedBox(height: 4.0),
+                                              RichText(
+                                                text: TextSpan(
+                                                  children: [
+                                                    const TextSpan(
+                                                      text: 'Víctima: ',
+                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                    ),
+                                                    TextSpan(
+                                                      text: helper.actors.findOrNull((value) => value.id == currentReport!.victimActorId)?.name ?? "-",
                                                       style: const TextStyle(fontSize: 14, color: Colors.black),
                                                     ),
                                                   ],

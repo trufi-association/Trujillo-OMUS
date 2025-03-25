@@ -126,7 +126,7 @@ class ImageManagerScreen extends StatelessWidget {
           var stationsData = await rootBundle.loadString('assets/merged_stations.json');
           final stations = (jsonDecode(stationsData) as List).map((feature) => Station.fromJson(feature)).toList();
           var reports = response[2] as List<Report>;
-          reports = reports.where((element) => (element.images?.length == 1) && (element.images!.first.trim().isNotEmpty)).toList();
+          // reports = reports.where((element) => (element.images?.length == 1) && (element.images!.first.trim().isNotEmpty)).toList();
 
           return ServerOriginal(
             allCategories: allCategories,
@@ -209,42 +209,268 @@ class ImageManagerScreen extends StatelessWidget {
                   child: GridView.builder(
                     padding: const EdgeInsets.all(10),
                     gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 200,
+                      maxCrossAxisExtent: 300,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
-                      childAspectRatio: 1,
+                      childAspectRatio: .7,
                     ),
                     itemCount: filteredReports.length,
                     itemBuilder: (context, index) {
                       var report = filteredReports[index];
-                      String image = report.images!.first;
+                      String? image = (report.images?.length == 1 && report.images!.first.trim().isNotEmpty) ? report.images!.first.trim() : null;
 
-                      return Card(
-                        child: Stack(
+                      return Container(
+                        // padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              spreadRadius: 1,
+                              blurRadius: 3,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            Positioned.fill(
-                              child: InstaImageViewer(
-                                child: CachedNetworkImage(
-                                  fit: BoxFit.cover,
-                                  imageUrl: 'https://omus.tmt.gob.pe/api/Categories/proxy?url=${Uri.encodeComponent(image)}',
+                            AspectRatio(
+                              aspectRatio: 1,
+                              child: Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: Stack(
+                                  fit: StackFit.expand,
+                                  children: [
+                                    if (image != null)
+                                      InstaImageViewer(
+                                        child: CachedNetworkImage(
+                                          fit: BoxFit.cover,
+                                          imageUrl: 'https://omus.tmt.gob.pe/api/Categories/proxy?url=${Uri.encodeComponent(image)}',
+                                        ),
+                                      )
+                                    else
+                                      Container(
+                                        color: Colors.grey.shade200,
+                                        child: const Center(
+                                          child: Icon(
+                                            Icons.image_not_supported,
+                                            size: 50,
+                                            color: Colors.grey,
+                                          ),
+                                        ),
+                                      ),
+                                    Positioned(
+                                      bottom: 0,
+                                      right: 0,
+                                      child: IconButton(
+                                        icon: Icon(Icons.delete, color: image != null ? Colors.red : Colors.grey),
+                                        onPressed: image != null
+                                            ? () {
+                                                params.asyncHelperParams.runAsync(() async {
+                                                  await ApiServices.deleteAllReportImages(report.id);
+                                                  params.model.update(() {
+                                                    report.images = null;
+                                                  });
+                                                });
+                                              }
+                                            : null,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
-                              child: IconButton(
-                                icon: const Icon(Icons.delete, color: Colors.red),
-                                onPressed: () {
-                                  params.asyncHelperParams.runAsync(() async {
-                                    await ApiServices.deleteAllReportImages(report.id);
-                                    params.model.update(() {
-                                      params.responseModel.responseHelper!.reports.removeWhere((element) => element.id == report.id);
-                                    });
-                                  });
-                                },
+                            Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.all(5),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              report.description ?? "Sin descripción",
+                                              // maxLines: 2,
+                                              // overflow: TextOverflow.ellipsis,
+                                              style: const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8),
+                                          if (report.reportDate != null)
+                                            Text(
+                                              "Fecha: ${DateFormat('dd/MM/yyyy').format(report.reportDate!)}",
+                                              style: TextStyle(
+                                                fontSize: 10,
+                                                color: Colors.grey.shade700,
+                                              ),
+                                            ),
+                                        ],
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        IconButton(
+                                          icon: Icon(Icons.visibility, color: Colors.blue.shade400),
+                                          onPressed: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Dialog(
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(12),
+                                                  ),
+                                                  child: Stack(
+                                                    children: [
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(16),
+                                                        child: SingleChildScrollView(
+                                                          child: Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            mainAxisSize: MainAxisSize.min,
+                                                            children: [
+                                                              RichText(
+                                                                text: TextSpan(
+                                                                  children: [
+                                                                    const TextSpan(
+                                                                      text: 'ID: ',
+                                                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text: '${report.id}',
+                                                                      style: const TextStyle(fontSize: 16, color: Colors.black),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              const SizedBox(height: 8.0),
+                                                              RichText(
+                                                                text: TextSpan(
+                                                                  children: [
+                                                                    const TextSpan(
+                                                                      text: 'Categoría: ',
+                                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text: helper.allCategories
+                                                                              .findOrNull((value) => value.id == report.categoryId)
+                                                                              ?.categoryName ??
+                                                                          "-",
+                                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              const SizedBox(height: 4.0),
+                                                              RichText(
+                                                                text: TextSpan(
+                                                                  children: [
+                                                                    const TextSpan(
+                                                                      text: 'Actor involucrado: ',
+                                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text:
+                                                                          helper.actors.findOrNull((value) => value.id == report.involvedActorId)?.name ?? "-",
+                                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              const SizedBox(height: 4.0),
+                                                              RichText(
+                                                                text: TextSpan(
+                                                                  children: [
+                                                                    const TextSpan(
+                                                                      text: 'Víctima: ',
+                                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text: helper.actors.findOrNull((value) => value.id == report.victimActorId)?.name ?? "-",
+                                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              const SizedBox(height: 4.0),
+                                                              RichText(
+                                                                text: TextSpan(
+                                                                  children: [
+                                                                    const TextSpan(
+                                                                      text: 'Descripción: ',
+                                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text: '${report.description}',
+                                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                              const SizedBox(height: 4.0),
+                                                              RichText(
+                                                                text: TextSpan(
+                                                                  children: [
+                                                                    const TextSpan(
+                                                                      text: 'Fecha: ',
+                                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                                                    ),
+                                                                    TextSpan(
+                                                                      text: DateFormat('yyyy-MM-dd kk:mm')
+                                                                          .format(report.reportDate!.add(DateTime.now().timeZoneOffset)),
+                                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Positioned(
+                                                        top: 0,
+                                                        right: 0,
+                                                        child: IconButton(
+                                                          icon: const Icon(Icons.close),
+                                                          onPressed: () => Navigator.of(context).pop(),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        const SizedBox(height: 8),
+                                        IconButton(
+                                          icon: Icon(Icons.delete, color: Colors.red.shade400),
+                                          onPressed: () {
+                                            params.asyncHelperParams.runAsync(() async {
+                                              await ApiServices.deleteReport(report.id);
+                                              params.model.update(() {
+                                                params.responseModel.responseHelper!.reports.removeWhere((element) => element.id == report.id);
+                                              });
+                                            });
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
+                            )
                           ],
                         ),
                       );

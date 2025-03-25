@@ -116,11 +116,11 @@ class AdminScreen extends StatelessWidget {
                           onTap: () {
                             _showFullScreenPopup(
                               context,
-                              "Fotos de reportes",
+                              "Reportes",
                               builder: (_, boxConstraints) => const ImageManagerScreen(),
                             );
                           },
-                          title: "Fotos de reportes",
+                          title: "Reportes",
                           svgString: """
 <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
 

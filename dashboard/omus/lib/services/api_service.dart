@@ -92,6 +92,13 @@ abstract class ApiServices {
     }
   }
 
+  static Future<void> deleteReport(int reportId) async {
+    final response = await ApiHelper.delete(path: "/Reports/$reportId", useToken: true);
+    if (response.statusCode != 204) {
+      throw Exception(response.statusCode);
+    }
+  }
+
   static Future<void> deleteAllReportImages(int reportId) async {
     final response = await ApiHelper.delete(path: "/Reports/$reportId/images", useToken: true);
     if (response.statusCode != 204) {
