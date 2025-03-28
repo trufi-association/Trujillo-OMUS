@@ -77,7 +77,6 @@ class ImageManagerScreen extends StatelessWidget {
     DateTimeRange? dateRange = model.dateRange.value;
     return helper.reports.where((value) {
       final hasCategory = categories.contains(value.categoryId.toString());
-      final hasActor = actors.contains(value.involvedActorId.toString());
       bool inDateRange = true;
       final reportDate = value.reportDate;
       if (dateRange != null) {
@@ -88,7 +87,7 @@ class ImageManagerScreen extends StatelessWidget {
         }
       }
 
-      return hasCategory && hasActor && inDateRange;
+      return hasCategory && inDateRange;
     }).toList();
   }
 

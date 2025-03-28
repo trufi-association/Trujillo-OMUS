@@ -416,7 +416,6 @@ List<Report> filterReports({required ServerOriginal helper, required ModelReques
   DateTimeRange? dateRange = model.dateRange.value;
   return helper.reports.where((value) {
     final hasCategory = categories.contains(value.categoryId.toString());
-    final hasActor = actors.contains(value.involvedActorId.toString());
     bool inDateRange = true;
     final reportDate = value.reportDate;
     if (dateRange != null) {
@@ -427,7 +426,7 @@ List<Report> filterReports({required ServerOriginal helper, required ModelReques
       }
     }
 
-    return hasCategory && hasActor && inDateRange;
+    return hasCategory && inDateRange;
   }).toList();
 }
 
