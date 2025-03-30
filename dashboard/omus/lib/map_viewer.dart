@@ -52,8 +52,10 @@ class ModelRequest extends FormRequest {
     required this.showStops,
     required this.showStations,
     required this.stopsFilter,
-    required this.showRegions,
-    required this.selectedRegions,
+    required this.showSITT,
+    required this.showRegulated,
+    required this.selectedSITT,
+    required this.selectedRegulated,
   });
 
   factory ModelRequest.fromScratch() => ModelRequest(
@@ -74,8 +76,10 @@ class ModelRequest extends FormRequest {
         showStops: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
         showStations: FormItemContainer<bool>(fieldKey: "shotStations", value: false),
         stopsFilter: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
-        showRegions: FormItemContainer<bool>(fieldKey: "keyShowGeojsonRoutes", value: false),
-        selectedRegions: FormItemContainer<Map<String, List<String>>>(fieldKey: "selectedRegions", value: {}),
+        showSITT: FormItemContainer<bool>(fieldKey: "keyShowGeojsonRoutes", value: false),
+        showRegulated: FormItemContainer<bool>(fieldKey: "keyShowRegulatedRoutes", value: false),
+        selectedSITT: FormItemContainer<Map<String, List<String>>>(fieldKey: "selectedRegions", value: {}),
+        selectedRegulated: FormItemContainer<Map<String, List<String>>>(fieldKey: "selectedRegulated", value: {}),
       );
 
   final FormItemContainer<List<String>> categories;
@@ -93,8 +97,10 @@ class ModelRequest extends FormRequest {
   final FormItemContainer<bool> showStops;
   final FormItemContainer<bool> showStations;
   final FormItemContainer<List<String>> stopsFilter;
-  final FormItemContainer<bool> showRegions;
-  final FormItemContainer<Map<String, List<String>?>> selectedRegions;
+  final FormItemContainer<bool> showSITT;
+  final FormItemContainer<bool> showRegulated;
+  final FormItemContainer<Map<String, List<String>?>> selectedSITT;
+  final FormItemContainer<Map<String, List<String>?>> selectedRegulated;
 }
 
 class ServerOriginal {
@@ -105,7 +111,8 @@ class ServerOriginal {
   final List<GenderBoard> data;
   final List<GeoFeature> stops;
   final List<Station> stations;
-  final Map<String, Region> finalRoutes;
+  final Map<String, Region> sittRoutes;
+  final Map<String, Region> regulatedRoutes;
   ServerOriginal({
     required this.categories,
     required this.allCategories,
@@ -114,7 +121,8 @@ class ServerOriginal {
     required this.data,
     required this.stops,
     required this.stations,
-    required this.finalRoutes,
+    required this.sittRoutes,
+    required this.regulatedRoutes,
   });
 }
 
@@ -289,10 +297,17 @@ class MainMapState extends State<MainMap> {
               final stops = (jsonDecode(stopsData)['features'] as List).map((feature) => GeoFeature.fromJson(feature)).toList();
               var stationsData = await rootBundle.loadString('assets/merged_stations.json');
               final stations = (jsonDecode(stationsData) as List).map((feature) => Station.fromJson(feature)).toList();
-              var finalRoutesData = await rootBundle.loadString('assets/combined_geojson.json');
-              final Map<String, dynamic> decodedData = jsonDecode(finalRoutesData);
+              var sittRoutesData = await rootBundle.loadString('assets/RutasDelSITT.json');
+              final Map<String, dynamic> sittRoutesDecodedData = jsonDecode(sittRoutesData);
 
-              final finalRoutes = decodedData.map((key, value) => MapEntry(
+              final sittRoutes = sittRoutesDecodedData.map((key, value) => MapEntry(
+                    key,
+                    Region.fromJson(value),
+                  ));
+              var regulatedRoutesData = await rootBundle.loadString('assets/PlanReguladorDeRutas.json');
+              final Map<String, dynamic> regulatedRoutesDecodedData = jsonDecode(regulatedRoutesData);
+
+              final regulatedRoutes = regulatedRoutesDecodedData.map((key, value) => MapEntry(
                     key,
                     Region.fromJson(value),
                   ));
@@ -304,7 +319,8 @@ class MainMapState extends State<MainMap> {
                 data: data,
                 stops: stops,
                 stations: stations,
-                finalRoutes: finalRoutes,
+                sittRoutes: sittRoutes,
+                regulatedRoutes: regulatedRoutes,
               );
             },
             saveModel: (_, {id}) async => {},
@@ -355,15 +371,27 @@ class MainMapState extends State<MainMap> {
                           ),
                           reset: _rebuildGenderStream.stream,
                         ),
-                      if (model.showRegions.value == true)
+                      if (model.showSITT.value == true)
                         PolylineLayer(
-                          polylines: helper.finalRoutes.values.expand((route) {
-                            final selecteRegion = model.selectedRegions.value?[route.name];
+                          polylines: helper.sittRoutes.values.expand((route) {
+                            final selecteRegion = model.selectedSITT.value?[route.name];
                             if (selecteRegion?.isEmpty ?? true) return <Polyline>[];
                             return route.features.where((element) => selecteRegion!.contains(element.name)).map((feature) => Polyline(
                                   points: feature.geometry.map((loc) => LatLng(loc.latitude, loc.longitude)).toList(),
                                   strokeWidth: 4,
                                   color: Colors.purple,
+                                ));
+                          }).toList(),
+                        ),
+                      if (model.showRegulated.value == true)
+                        PolylineLayer(
+                          polylines: helper.regulatedRoutes.values.expand((route) {
+                            final selecteRegion = model.selectedRegulated.value?[route.name];
+                            if (selecteRegion?.isEmpty ?? true) return <Polyline>[];
+                            return route.features.where((element) => selecteRegion!.contains(element.name)).map((feature) => Polyline(
+                                  points: feature.geometry.map((loc) => LatLng(loc.latitude, loc.longitude)).toList(),
+                                  strokeWidth: 4,
+                                  color: const Color.fromARGB(255, 111, 4, 77),
                                 ));
                           }).toList(),
                         ),
@@ -1231,23 +1259,23 @@ class _MapLayerState extends State<MapLayer> {
                           children: [
                             const Expanded(
                               child: Text(
-                                "Plan regulador de rutas",
+                                "Rutas del SITT",
                                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
                               ),
                             ),
                             FormRequestToggleSwitch(
                               update: widget.model.update,
-                              field: widget.model.showRegions,
+                              field: widget.model.showSITT,
                               enabled: true,
                             ),
                           ],
                         ),
-                        if (widget.model.showRegions.value == true)
+                        if (widget.model.showSITT.value == true)
                           Container(
                             margin: const EdgeInsets.all(5),
                             child: Column(
-                              children: widget.helper.finalRoutes.values.map((route) {
-                                final selecteRegion = widget.model.selectedRegions.value?[route.name];
+                              children: widget.helper.sittRoutes.values.map((route) {
+                                final selecteRegion = widget.model.selectedSITT.value?[route.name];
                                 return Column(children: [
                                   Row(
                                     children: [
@@ -1258,9 +1286,78 @@ class _MapLayerState extends State<MapLayer> {
                                         onChanged: (changed) {
                                           widget.model.update(() {
                                             if (changed == true) {
-                                              widget.model.selectedRegions.value?[route.name] = [];
+                                              widget.model.selectedSITT.value?[route.name] = [];
                                             } else {
-                                              widget.model.selectedRegions.value?.remove(route.name);
+                                              widget.model.selectedSITT.value?.remove(route.name);
+                                            }
+                                          });
+                                        },
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          route.name,
+                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.blue),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  if (selecteRegion != null)
+                                    ...route.features
+                                        .map((feature) => FormRequestCheckBox(
+                                              update: widget.model.update,
+                                              label: feature.name,
+                                              field: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: selecteRegion?.contains(feature.name) ?? false),
+                                              enabled: true,
+                                              onChanged: (changed) {
+                                                widget.model.update(() {
+                                                  if (changed == true) {
+                                                    selecteRegion?.add(feature.name);
+                                                  } else {
+                                                    selecteRegion?.remove(feature.name);
+                                                  }
+                                                });
+                                              },
+                                            ))
+                                        .toList(),
+                                ]);
+                              }).toList(),
+                            ),
+                          ),
+                        const Divider(),
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                "Plan Regulador de Rutas",
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
+                              ),
+                            ),
+                            FormRequestToggleSwitch(
+                              update: widget.model.update,
+                              field: widget.model.showRegulated,
+                              enabled: true,
+                            ),
+                          ],
+                        ),
+                        if (widget.model.showRegulated.value == true)
+                          Container(
+                            margin: const EdgeInsets.all(5),
+                            child: Column(
+                              children: widget.helper.regulatedRoutes.values.map((route) {
+                                final selecteRegion = widget.model.selectedRegulated.value?[route.name];
+                                return Column(children: [
+                                  Row(
+                                    children: [
+                                      FormRequestToggleSwitch(
+                                        update: widget.model.update,
+                                        field: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: selecteRegion != null),
+                                        enabled: true,
+                                        onChanged: (changed) {
+                                          widget.model.update(() {
+                                            if (changed == true) {
+                                              widget.model.selectedRegulated.value?[route.name] = [];
+                                            } else {
+                                              widget.model.selectedRegulated.value?.remove(route.name);
                                             }
                                           });
                                         },

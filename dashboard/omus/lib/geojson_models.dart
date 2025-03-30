@@ -25,7 +25,7 @@ class Feature {
 
   factory Feature.fromJson(Map<String, dynamic> json) {
     return Feature(
-      name: json['properties']['Name'],
+      name: json['properties']['name'],
       geometry: (json['geometry']['coordinates'] as List).map((e) => Location(latitude: e[1], longitude: e[0])).toList(),
     );
   }

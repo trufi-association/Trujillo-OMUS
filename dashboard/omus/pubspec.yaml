@@ -91,7 +91,8 @@ flutter:
     - assets/gtfs/stop_times.txt
     - assets/gtfs/trips.txt
     - assets/mapa_de_calor.geojson
-    - assets/combined_geojson.json    
+    - assets/PlanReguladorDeRutas.json
+    - assets/RutasDelSITT.json
     - assets/stops.geojson
     - assets/background.jpg
     - assets/Logo_OMUS.png
