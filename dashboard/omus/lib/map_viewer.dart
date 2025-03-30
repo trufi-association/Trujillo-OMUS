@@ -244,6 +244,7 @@ List<Report> filterReports({required ServerOriginal helper, required ModelReques
 class MainMapState extends State<MainMap> {
   double zoom = 13;
   Report? currentReport;
+  Station? currentStation;
   final StreamController<void> _rebuildGenderStream = StreamController.broadcast();
   final StreamController<void> _rebuildGeneralStream = StreamController.broadcast();
 
@@ -456,7 +457,18 @@ class MainMapState extends State<MainMap> {
                               width: 25,
                               height: 25,
                               point: station.location,
-                              child: StationStatus(station: station),
+                              child: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      currentStation = station;
+                                      currentReport = null;
+                                    });
+                                  },
+                                  child: StationStatus(station: station),
+                                ),
+                              ),
                             );
                           }).toList(),
                         ),
@@ -487,6 +499,7 @@ class MainMapState extends State<MainMap> {
                                       onTap: () {
                                         setState(() {
                                           currentReport = report;
+                                          currentStation = null;
                                         });
                                       },
                                       child: const Icon(
@@ -530,159 +543,171 @@ class MainMapState extends State<MainMap> {
                     },
                   ),
                   if (currentReport != null)
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Container(
-                        margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
-                        clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8.0),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 10.0,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(maxHeight: 300, maxWidth: 1000),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
+                    CurrentReportRender(
+                      currentReport: currentReport!,
+                      helper: helper,
+                      onPressed: () {
+                        setState(() {
+                          currentReport = null;
+                        });
+                      },
+                    ),
+                  if (currentStation != null)
+                    StationInfoRender(
+                      station: currentStation!,
+                      onPressed: () {
+                        setState(() {
+                          currentStation = null;
+                        });
+                      },
+                    ),
+                ],
+              );
+            }),
+      ),
+    );
+  }
+}
+
+class CurrentReportRender extends StatelessWidget {
+  const CurrentReportRender({super.key, required this.currentReport, required this.helper, this.onPressed});
+  final Report currentReport;
+  final ServerOriginal helper;
+  final void Function()? onPressed;
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10.0,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxHeight: 300, maxWidth: 1000),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (currentReport?.images?.length == 1)
+                Flexible(
+                  flex: 1,
+                  child: InstaImageViewer(
+                    child: CachedNetworkImage(
+                      fit: BoxFit.contain,
+                      imageUrl: '$apiUrl/Categories/proxy?url=${Uri.encodeComponent(currentReport?.images?.first ?? "")}',
+                      placeholder: (context, url) => const SizedBox(width: 100, child: Center(child: CircularProgressIndicator())),
+                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                    ),
+                  ),
+                ),
+              Flexible(
+                flex: 2,
+                child: Stack(
+                  children: [
+                    ListView(
+                      shrinkWrap: true,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(10),
+                          child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              if (currentReport?.images?.length == 1)
-                                Flexible(
-                                  flex: 1,
-                                  child: InstaImageViewer(
-                                    child: CachedNetworkImage(
-                                      fit: BoxFit.contain,
-                                      imageUrl: '$apiUrl/Categories/proxy?url=${Uri.encodeComponent(currentReport?.images?.first ?? "")}',
-                                      placeholder: (context, url) => const SizedBox(width: 100, child: Center(child: CircularProgressIndicator())),
-                                      errorWidget: (context, url, error) => const Icon(Icons.error),
-                                    ),
-                                  ),
-                                ),
-                              Flexible(
-                                flex: 2,
-                                child: Stack(
+                              RichText(
+                                text: TextSpan(
                                   children: [
-                                    ListView(
-                                      shrinkWrap: true,
-                                      children: [
-                                        Container(
-                                          margin: const EdgeInsets.all(10),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: [
-                                                    const TextSpan(
-                                                      text: 'ID: ',
-                                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
-                                                    ),
-                                                    TextSpan(
-                                                      text: '${currentReport!.id}',
-                                                      style: const TextStyle(fontSize: 16, color: Colors.black),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(height: 8.0),
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: [
-                                                    const TextSpan(
-                                                      text: 'Categoría: ',
-                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
-                                                    ),
-                                                    TextSpan(
-                                                      text: helper.allCategories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ??
-                                                          "-",
-                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(height: 4.0),
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: [
-                                                    const TextSpan(
-                                                      text: 'Actor involucrado: ',
-                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
-                                                    ),
-                                                    TextSpan(
-                                                      text: helper.actors.findOrNull((value) => value.id == currentReport!.involvedActorId)?.name ?? "-",
-                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(height: 4.0),
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: [
-                                                    const TextSpan(
-                                                      text: 'Víctima: ',
-                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
-                                                    ),
-                                                    TextSpan(
-                                                      text: helper.actors.findOrNull((value) => value.id == currentReport!.victimActorId)?.name ?? "-",
-                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(height: 4.0),
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: [
-                                                    const TextSpan(
-                                                      text: 'Descripción: ',
-                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
-                                                    ),
-                                                    TextSpan(
-                                                      text: '${currentReport!.description}',
-                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              const SizedBox(height: 4.0),
-                                              RichText(
-                                                text: TextSpan(
-                                                  children: [
-                                                    const TextSpan(
-                                                      text: 'Fecha: ',
-                                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
-                                                    ),
-                                                    TextSpan(
-                                                      text:
-                                                          DateFormat('yyyy-MM-dd kk:mm').format(currentReport!.reportDate!.add(DateTime.now().timeZoneOffset)),
-                                                      style: const TextStyle(fontSize: 14, color: Colors.black),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
+                                    const TextSpan(
+                                      text: 'ID: ',
+                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
                                     ),
-                                    Align(
-                                      alignment: Alignment.topRight,
-                                      child: IconButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            currentReport = null;
-                                          });
-                                        },
-                                        icon: const Icon(Icons.close),
-                                      ),
+                                    TextSpan(
+                                      text: '${currentReport!.id}',
+                                      style: const TextStyle(fontSize: 16, color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 8.0),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                      text: 'Categoría: ',
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                    ),
+                                    TextSpan(
+                                      text: helper.allCategories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ?? "-",
+                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 4.0),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                      text: 'Actor involucrado: ',
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                    ),
+                                    TextSpan(
+                                      text: helper.actors.findOrNull((value) => value.id == currentReport!.involvedActorId)?.name ?? "-",
+                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 4.0),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                      text: 'Víctima: ',
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                    ),
+                                    TextSpan(
+                                      text: helper.actors.findOrNull((value) => value.id == currentReport!.victimActorId)?.name ?? "-",
+                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 4.0),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                      text: 'Descripción: ',
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                    ),
+                                    TextSpan(
+                                      text: '${currentReport!.description}',
+                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(height: 4.0),
+                              RichText(
+                                text: TextSpan(
+                                  children: [
+                                    const TextSpan(
+                                      text: 'Fecha: ',
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                    ),
+                                    TextSpan(
+                                      text: DateFormat('yyyy-MM-dd kk:mm').format(currentReport!.reportDate!.add(DateTime.now().timeZoneOffset)),
+                                      style: const TextStyle(fontSize: 14, color: Colors.black),
                                     ),
                                   ],
                                 ),
@@ -690,11 +715,159 @@ class MainMapState extends State<MainMap> {
                             ],
                           ),
                         ),
+                      ],
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: IconButton(
+                        onPressed: onPressed,
+                        icon: const Icon(Icons.close),
                       ),
                     ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class StationInfoRender extends StatelessWidget {
+  const StationInfoRender({super.key, required this.station, this.onPressed});
+
+  final Station station;
+  final void Function()? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 10.0,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxHeight: 200, maxWidth: 500),
+          child: Stack(
+            children: [
+              ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(10),
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Estación: ',
+                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: station.name,
+                          style: const TextStyle(fontSize: 16, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 8.0),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Código: ',
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: station.info.codigo,
+                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Lugar: ',
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: station.info.lugar,
+                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Ubicación: ',
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: station.info.ubicacion,
+                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Estado: ',
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: station.info.estado,
+                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 4.0),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Variables: ',
+                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: station.info.variables.join(', '),
+                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
-              );
-            }),
+              ),
+              Align(
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  onPressed: onPressed,
+                  icon: const Icon(Icons.close),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

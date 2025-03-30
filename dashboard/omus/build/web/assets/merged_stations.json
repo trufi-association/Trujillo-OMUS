@@ -2,6 +2,24 @@
   {
     "_id": "66481540d0de6700b0425508",
     "name": "Estación Colegio Sagrado Corazón, Trujillo",
+    "info": {
+      "codigo": "005",
+      "lugar": "Semáforo - II EE Sagrado Corazón",
+      "ubicacion": "Av. Federico Villarreal",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Activo"
+    },
     "type": "STARTER",
     "desc": "Estación Colegio Sagrado Corazón, Trujillo",
     "location": {
@@ -131,6 +149,24 @@
   {
     "_id": "66481541d0de6700b042550a",
     "name": "Estación Piscina Gildemeister, Trujillo",
+    "info": {
+      "codigo": "011",
+      "lugar": "SGD (Piscina Gildemeister)",
+      "ubicacion": "Ca. Lloque Yupanqui",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Inactivo"
+    },
     "type": "STARTER",
     "desc": "Estación ambiental Piscina Gildemeister, Trujillo",
     "location": {
@@ -260,6 +296,24 @@
   {
     "_id": "66481541d0de6700b042550c",
     "name": "Estación Ministerio Público Trujillo",
+    "info": {
+      "codigo": "010",
+      "lugar": "Semáforo - Ministerio Público",
+      "ubicacion": "Av. América Oeste",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Inactivo"
+    },
     "type": "STARTER",
     "desc": "Estación ambiental Ministerio Público Trujillo",
     "location": {
@@ -389,6 +443,24 @@
   {
     "_id": "66481540d0de6700b0425504",
     "name": "Estación Sede PLANDET, Trujillo ",
+    "info": {
+      "codigo": "002",
+      "lugar": "PLANDET",
+      "ubicacion": "Av. España",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Activo"
+    },
     "type": "STARTER",
     "desc": "Estación ambiental Estación Sede Plandet, Trujillo ",
     "location": {
@@ -518,6 +590,24 @@
   {
     "_id": "66481541d0de6700b042554a",
     "name": "Estación taller mecánica SEGAT, Trujillo",
+    "info": {
+      "codigo": "007",
+      "lugar": "Taller de mecánica - SEGAT",
+      "ubicacion": "Av. América Norte",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Inactivo"
+    },
     "type": "STARTER",
     "desc": "Estación ambiental  taller mecánica SEGAT, Trujillo",
     "location": {
@@ -647,6 +737,24 @@
   {
     "_id": "66481541d0de6700b042555d",
     "name": "Estación Hospital Regional de Trujillo",
+    "info": {
+      "codigo": "006",
+      "lugar": "Semáforo - Hospital Regional",
+      "ubicacion": "Av. Mansiche",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Activo"
+    },
     "type": "STARTER",
     "desc": "Estación ambiental Hospital Regional de Trujillo",
     "location": {
@@ -776,6 +884,24 @@
   {
     "_id": "66481541d0de6700b0425560",
     "name": "Estación Casa Juventud (El Molino), Trujillo",
+    "info": {
+      "codigo": "009",
+      "lugar": "Casa de Juventud",
+      "ubicacion": "Av. América Norte",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Inactivo"
+    },
     "type": "STARTER",
     "desc": "Estación ambiental Casa Juventud (El Molino), Trujillo",
     "location": {
@@ -905,6 +1031,24 @@
   {
     "_id": "66481541d0de6700b042556e",
     "name": "Estación SUNARP, Trujiilo, Perú",
+    "info": {
+      "codigo": "001",
+      "lugar": "SUNARP",
+      "ubicacion": "Av. Víctor Larco Herrera",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Activo"
+    },
     "type": "STARTER",
     "desc": "Estación del Meteorológica SUNARP, Trujiilo, Perú",
     "location": {
@@ -1034,6 +1178,24 @@
   {
     "_id": "66481541d0de6700b042557d",
     "name": "Estación Gran Unidad Escolar, Trujillo",
+    "info": {
+      "codigo": "003",
+      "lugar": "Semáforo - II EE GUE Faustino Sánchez Carrión",
+      "ubicacion": "Av. América Sur",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Activo"
+    },
     "type": "STARTER",
     "desc": "Estación ambiental Gran Unidad Escolar, Trujillo",
     "location": {
@@ -1163,6 +1325,24 @@
   {
     "_id": "66481541d0de6700b042558c",
     "name": "Estación Gerencia de Transportes, Trujillo",
+    "info": {
+      "codigo": "004",
+      "lugar": "Semáforo - Gerencia de Transporte",
+      "ubicacion": "Av. Víctor Larco Herrera",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Inactivo"
+    },
     "type": "STARTER",
     "desc": "Estación ambiental Gerencia de Transportes, Trujillo",
     "location": {
@@ -1292,6 +1472,24 @@
   {
     "_id": "667ec96969a2532da4c63189",
     "name": "Cede Municipal: Estación PRO de Trujillo",
+    "info": {
+      "codigo": "008",
+      "lugar": "Municipalidad Provincial de Trujillo",
+      "ubicacion": "Jr. Diego de Almagro",
+      "variables": [
+        "Temperatura",
+        "Humedad",
+        "SO2",
+        "UV",
+        "NO2",
+        "CO",
+        "PM1",
+        "PM2.5",
+        "PM10",
+        "O3"
+      ],
+      "estado": "Inactivo"
+    },
     "type": "PRO",
     "desc": "Estación ambiental Pro Trujillo-Perú Ubicada en la Cede Municipal",
     "location": {

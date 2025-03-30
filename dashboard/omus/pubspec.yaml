@@ -95,6 +95,7 @@ flutter:
     - assets/RutasDelSITT.json
     - assets/stops.geojson
     - assets/background.jpg
+    - assets/AsistenteVirtual.png
     - assets/Logo_OMUS.png
     - assets/logos.png
     - assets/merged_stations.json

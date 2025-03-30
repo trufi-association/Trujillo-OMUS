@@ -71,6 +71,7 @@ class ChartAdminScreen extends StatefulWidget {
 class _ChartAdminScreenState extends State<ChartAdminScreen> {
   late Map<String, dynamic> _editableData;
   final Map<String, TextEditingController> _titleControllers = {};
+  final Map<String, TextEditingController> _descriptionControllers = {};
   final Map<String, TextEditingController> _urlControllers = {};
 
   @override
@@ -86,6 +87,7 @@ class _ChartAdminScreenState extends State<ChartAdminScreen> {
       for (int i = 0; i < items.length; i++) {
         String key = "$sectionKey-$i";
         _titleControllers[key] = TextEditingController(text: items[i]["title"]);
+        _descriptionControllers[key] = TextEditingController(text: items[i]["description"]);
         _urlControllers[key] = TextEditingController(text: items[i]["url"]);
       }
     }
@@ -153,6 +155,7 @@ class _ChartAdminScreenState extends State<ChartAdminScreen> {
   Widget _buildEditableItem(String sectionKey, int index, Map<String, dynamic> item) {
     String key = "$sectionKey-$index";
     final titleController = _titleControllers[key]!;
+    final descriptionController = _descriptionControllers[key]!;
     final urlController = _urlControllers[key]!;
 
     return Card(
@@ -166,6 +169,11 @@ class _ChartAdminScreenState extends State<ChartAdminScreen> {
             TextField(
               controller: titleController,
               onChanged: (value) => _updateItem(sectionKey, index, "title", value),
+            ),
+            Text("Description:", style: TextStyle(fontWeight: FontWeight.bold)),
+            TextField(
+              controller: descriptionController,
+              onChanged: (value) => _updateItem(sectionKey, index, "description", value),
             ),
             const SizedBox(height: 8),
             Text("URL y Tipo:", style: TextStyle(fontWeight: FontWeight.bold)),
@@ -202,6 +210,7 @@ class _ChartAdminScreenState extends State<ChartAdminScreen> {
   @override
   void dispose() {
     _titleControllers.forEach((_, controller) => controller.dispose());
+    _descriptionControllers.forEach((_, controller) => controller.dispose());
     _urlControllers.forEach((_, controller) => controller.dispose());
     super.dispose();
   }

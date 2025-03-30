@@ -34,17 +34,20 @@ class CategoryReport {
 
 class ReportItem {
   final String title;
+  final String description;
   final String url;
   final String type;
 
   ReportItem({
     required this.title,
+    required this.description,
     required this.url,
     required this.type,
   });
   factory ReportItem.fromJson(Map<String, dynamic> json) {
     return ReportItem(
       title: json['title'] ?? '',
+      description: json['description'] ?? '',
       url: json['url'] ?? '',
       type: json['type'] ?? '',
     );
@@ -222,6 +225,52 @@ extension CategoryExtension on CategoryEnum {
     CategoryEnum.cleanEfficientMobility: "Movilidad limpia y eficiente",
     CategoryEnum.userExperience: "Experiencia de usuario",
   };
+  static const Map<CategoryEnum, String> _tooltips = {
+    CategoryEnum.genderMobilityInclusive: """
+Esta categoría busca garantizar que el sistema de transporte responda a las necesidades de todos los ciudadanos, con especial énfasis en la equidad de género y la inclusión de personas en situación de vulnerabilidad. Se monitoriza mediante indicadores que permiten identificar barreras, riesgos y oportunidades de mejora en el entorno vial, tales como:
+
+          -	Reportes de acoso sexual por tipo: Permite conocer la frecuencia y características de incidentes de acoso, facilitando la implementación de medidas de prevención y protocolos de atención.
+          -	Mapeo de reportes de lugares percibidos como inseguros por tipo: Identifica áreas críticas en el sistema de transporte, orientando intervenciones para mejorar la seguridad.
+          -	Mujeres empleadas en el sector transporte (número y proporción por nivel de empleo): Evalúa la equidad laboral y la representatividad femenina en los distintos niveles del sector.
+          -	Accesibilidad de estaciones, paraderos y vehículos de TPU: A través del número de estaciones y paraderos adaptados y la proporción de vehículos accesibles para personas con movilidad reducida, se mide el compromiso con una movilidad inclusiva.
+          -	Reportes de barreras de accesibilidad y discriminación en el TPU: Detecta obstáculos y actitudes discriminatorias que impiden el acceso pleno al sistema, permitiendo acciones correctivas.
+          -	Número de personas con carnet de discapacidad: Facilita el diseño de estrategias que respondan a las necesidades específicas de este grupo.
+""",
+    CategoryEnum.roadSafety: """
+Esta categoría se centra en la protección de todos los usuarios del sistema vial, minimizando riesgos y mejorando la respuesta ante incidentes. Se evalúa mediante indicadores que permiten un análisis desagregado por género, edad, tipo de usuario y características del siniestro:
+
+          -	Fatalidades y lesiones: Se registran por tipo de usuario vial, género, rango de edad, tipo de siniestro, y considerando el día y hora de ocurrencia, lo que permite identificar patrones y focalizar acciones de prevención.
+          -	Reportes de comportamientos riesgosos e incidentes viales: Se registran tanto en número como en ubicación, permitiendo identificar zonas de alta incidencia y la gravedad de los eventos para implementar medidas correctivas en la vía pública.
+""",
+    CategoryEnum.citizenBehavior: """
+Orientada a fomentar una cultura de respeto y responsabilidad en el uso del sistema de transporte, esta categoría recopila información sobre el cumplimiento de normas y la aplicación de sanciones. Entre sus indicadores destacan:
+
+          -	Multas de tránsito y transporte: Registro del número de multas impuestas, clasificadas por tipo, hora, día y estado de la sanción, que sirve para evaluar la efectividad de la fiscalización.
+          - Reportes de infracción de norma: Permite identificar comportamientos contrarios a las regulaciones, lo que favorece el diseño de campañas de educación vial y la aplicación de medidas correctivas.
+""",
+    CategoryEnum.infrastructureAccess: """
+La categoría de infraestructura evalúa la calidad, cobertura y mantenimiento del entorno físico destinado a la movilidad urbana sostenible. Sus indicadores permiten conocer tanto la oferta como el estado de la infraestructura:
+
+          -	Reportes de fallas en infraestructura: Registro de incidencias según el tipo de falla, lo que ayuda a priorizar acciones de reparación y mejora.
+          -	Infraestructura para bicicletas y señalización vial: Se mide en kilómetros de infraestructura dedicada para bicicletas y vías señalizadas, impulsando modos de transporte alternativos y seguros.
+          -	Cobertura y estado del sistema de TPU: Se evalúa el porcentaje de población atendida, la proporción de infraestructura en buen estado y el porcentaje intervenido mediante acciones de mantenimiento, asegurando un servicio confiable y eficiente.
+""",
+    CategoryEnum.cleanEfficientMobility: """
+Enfocada en la reducción del impacto ambiental y la optimización de recursos, esta categoría monitorea la modernización y eficiencia energética del parque vehicular y la calidad del aire, a través de indicadores como:
+          
+          -	Tecnología de operación en vehículos de TPU y parque automotor: Permite conocer la cantidad de vehículos según la tecnología utilizada, incluyendo la medición de vehículos obsoletos retirados y aquellos que no superan pruebas de emisiones.
+          -	Emisiones contaminantes y calidad del aire: Se cuantifican las emisiones de CO₂ y otros contaminantes (PM10, PM2.5, CO, SO₂, NO₂ y O₃), junto con el índice de calidad del aire, lo que favorece la planificación de medidas ambientales.
+          -	Sensibilización ciudadana: El porcentaje de ciudadanos informados y sensibilizados respecto al aire limpio es fundamental para promover comportamientos responsables y el uso de tecnologías limpias.
+""",
+    CategoryEnum.userExperience: """
+Esta categoría evalúa la percepción y satisfacción de los usuarios del sistema de transporte, permitiendo identificar oportunidades para mejorar la calidad del servicio y la seguridad en la experiencia de viaje. Entre los indicadores se incluyen:
+
+          -	Abordajes diarios en TPU: Mide la demanda y uso del sistema, reflejando la confianza y aceptación de los usuarios.
+          -	Reportes de incidentes de calidad y seguridad: Se registran tanto fallas en los vehículos como reportes de inseguridad (robos, asaltos, etc.), que permiten responder de manera oportuna a problemas operativos y de seguridad.
+          -	Ocupación y frecuencia de viajes: La medición de la ocupación en vehículos y paraderos, así como el número de viajes diarios desglosados por modo, género y motivo de viaje, proporciona información clave para ajustar la oferta del servicio.
+          -	Subsidios operativos: La proporción de estos respecto a los costos de operación y mantenimiento ayuda a evaluar la sostenibilidad económica del sistema y su impacto en la calidad del servicio.
+""",
+  };
 
   static const Map<CategoryEnum, String> _colors = {
     CategoryEnum.genderMobilityInclusive: "0xFFFF7043",
@@ -266,7 +315,7 @@ extension CategoryExtension on CategoryEnum {
 
   String get svgString => _svgStrings[this]!;
   String get title => _titles[this]!;
-
+  String get tooltip => _tooltips[this]!;
   Color get color => Color(int.parse(_colors[this]!));
   String get jsonKey {
     switch (this) {
@@ -337,8 +386,11 @@ class _CustomReportContainerState extends State<CustomReportContainer> with Sing
           unselectedLabelColor: Colors.grey,
           indicatorColor: Colors.blue,
           tabs: widget.reportItems.map((report) {
-            return Tab(
-              text: report.title,
+            return Tooltip(
+              message: report.description,
+              child: Tab(
+                text: report.title,
+              ),
             );
           }).toList(),
         ),
@@ -620,32 +672,35 @@ class _CategoryButtonState extends State<CategoryButton> {
               builder: (_, boxConstraints) => widget.category.buildBody(widget.categoryReports),
             );
           },
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: hover ? const Color(0xFF0077AE) : const Color.fromRGBO(255, 255, 255, 0.8),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgPicture.string(
-                  theme: const SvgTheme(currentColor: Colors.red),
-                  widget.category.svgString,
-                  height: 50,
-                  width: 50,
-                ),
-                const SizedBox(height: 30),
-                Text(
-                  widget.category.title,
-                  style: TextStyle(
-                    color: hover ? Colors.white : Colors.black,
-                    fontSize: 15,
+          child: Tooltip(
+            message: widget.category.tooltip,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: hover ? const Color(0xFF0077AE) : const Color.fromRGBO(255, 255, 255, 0.8),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.string(
+                    theme: const SvgTheme(currentColor: Colors.red),
+                    widget.category.svgString,
+                    height: 50,
+                    width: 50,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
+                  const SizedBox(height: 30),
+                  Text(
+                    widget.category.title,
+                    style: TextStyle(
+                      color: hover ? Colors.white : Colors.black,
+                      fontSize: 15,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
