@@ -173,15 +173,15 @@ class ImageManagerScreen extends StatelessWidget {
                           enabled: true,
                         ),
                       ),
-                      CustomResponsiveItem.small(
-                        child: FormRequestMultiSelectField(
-                          update: model.update,
-                          field: model.actors,
-                          label: "Actores viales",
-                          items: helper.actors.map((e) => DropdownItem(id: e.id.toString(), text: e.name.toString())).toList(),
-                          enabled: true,
-                        ),
-                      ),
+                      // CustomResponsiveItem.small(
+                      //   child: FormRequestMultiSelectField(
+                      //     update: model.update,
+                      //     field: model.actors,
+                      //     label: "Actores viales",
+                      //     items: helper.actors.map((e) => DropdownItem(id: e.id.toString(), text: e.name.toString())).toList(),
+                      //     enabled: true,
+                      //   ),
+                      // ),
                       CustomResponsiveItem.small(
                         child: FormDateRangePickerField(
                           update: model.update,
