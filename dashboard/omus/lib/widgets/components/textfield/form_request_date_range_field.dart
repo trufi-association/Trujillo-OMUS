@@ -157,6 +157,16 @@ class _DateRangePickerTextFieldState extends State<_DateRangePickerTextField> {
   }
 
   @override
+  void didUpdateWidget(_DateRangePickerTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.initialDateRange != oldWidget.initialDateRange) {
+      setState(() {
+        selectedDateRange = widget.initialDateRange;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return TooltipContainer(

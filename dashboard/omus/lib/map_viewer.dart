@@ -1190,23 +1190,23 @@ class _MapLayerState extends State<MapLayer> {
                                     widget.onGeneralUpdate();
                                   },
                                 ),
-                                FormRequestMultiSelectField(
-                                  update: widget.model.update,
-                                  field: widget.model.actors,
-                                  label: "Actores viales",
-                                  items: widget.helper.actors
-                                      .map(
-                                        (e) => DropdownItem(
-                                          id: e.id.toString(),
-                                          text: e.name.toString(),
-                                        ),
-                                      )
-                                      .toList(),
-                                  enabled: true,
-                                  onChanged: (_) {
-                                    widget.onGeneralUpdate();
-                                  },
-                                ),
+                                // FormRequestMultiSelectField(
+                                //   update: widget.model.update,
+                                //   field: widget.model.actors,
+                                //   label: "Actores viales",
+                                //   items: widget.helper.actors
+                                //       .map(
+                                //         (e) => DropdownItem(
+                                //           id: e.id.toString(),
+                                //           text: e.name.toString(),
+                                //         ),
+                                //       )
+                                //       .toList(),
+                                //   enabled: true,
+                                //   onChanged: (_) {
+                                //     widget.onGeneralUpdate();
+                                //   },
+                                // ),
                                 FormDateRangePickerField(
                                   update: widget.model.update,
                                   label: "Rango de fechas",
@@ -1235,6 +1235,7 @@ class _MapLayerState extends State<MapLayer> {
                                       widget.model.categories.value = null;
                                       widget.model.subCategories.value = null;
                                       widget.model.actors.value = null;
+                                      widget.model.dateRange.value = null;
                                       widget.model.dateRange.value = null;
                                       widget.model.showHeatMapReports.value = false;
                                     });
