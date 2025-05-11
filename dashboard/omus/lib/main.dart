@@ -115,7 +115,7 @@ class MyApp extends StatelessWidget {
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   void _launchWhatsApp() async {
-    const url = 'https://wa.me/0051959312613';
+    const url = 'https://wa.me/+51959312613';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -132,172 +132,184 @@ class HomeScreen extends StatelessWidget {
           title: "",
         ),
       ),
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/background.jpg',
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned.fill(
-            child: Container(
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color.fromARGB(153, 17, 81, 134),
-                    Color.fromARGB(125, 0, 0, 0),
-                  ],
-                  begin: Alignment.bottomRight,
-                  end: Alignment.topLeft,
-                ),
+      body: LayoutBuilder(builder: (context, constraints) {
+        return Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/background.jpg',
+                fit: BoxFit.cover,
               ),
             ),
-          ),
-          Positioned.fill(
-            child: Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 500),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        'Bienvenido a OMUS',
-                        style: TextStyle(
-                          fontSize: 50,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        """Una plataforma de gestión, análisis y difusión de datos del transporte público urbano de la ciudad con enfoque de género y movilidad sostenible que permitirá contar con información actualizada y disponible para los agentes sociales, económicos, comunicacionales e institucionales, así como la ciudadanía en general.
-
-¿Incidentes en el transporte público?""",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 16),
-                      RichText(
-                        textAlign: TextAlign.center,
-                        text: TextSpan(
-                          children: [
-                            const TextSpan(
-                              text: 'Repórtalo a Truxi, envía un WhatsApp al ',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
-                            TextSpan(
-                              text: '+51 959 312 613',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                                decoration: TextDecoration.underline,
-                              ),
-                              recognizer: TapGestureRecognizer()..onTap = _launchWhatsApp,
-                            ),
-                            const TextSpan(
-                              text: '.',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 32),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              context.go("/map-viewer");
-                            },
-                            child: const Text(
-                              'Visor geográfico',
-                            ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () {
-                              context.go("/stats-viewer");
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue,
-                            ),
-                            child: const Text(
-                              'Estadísticas de movilidad',
-                              style: TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
+            Positioned.fill(
+              child: Container(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(153, 17, 81, 134),
+                      Color.fromARGB(125, 0, 0, 0),
                     ],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
                   ),
                 ),
               ),
             ),
-          ),
-          Positioned(
-            bottom: 10,
-            left: 10,
-            child: RichPersistentTooltip(
-              tooltipContent: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  children: [
-                    const TextSpan(
-                      text: """Soy Truxi, tu asistente virtual.
-
-Estoy aquí para ayudarte a reportar cualquier problema relacionado con el transporte público en Trujillo.
-Escríbeme y cuéntame lo que pasó. Tu reporte nos ayuda a mejorar el transporte para todos.
-
-Envíame un mensaje al WhatsApp: """,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
+            Positioned.fill(
+  child: LayoutBuilder(
+    builder: (context, constraints) {
+      return Center(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Bienvenido a OMUS',
+                    style: TextStyle(
+                      fontSize: 50,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
-                    TextSpan(
-                      text: '+51 959 312 613',
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        decoration: TextDecoration.underline,
-                      ),
-                      recognizer: TapGestureRecognizer()..onTap = _launchWhatsApp,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  const Text(
+                    """Una plataforma de gestión, análisis y difusión de datos del transporte público urbano de la ciudad con enfoque de género y movilidad sostenible que permitirá contar con información actualizada y disponible para los agentes sociales, económicos, comunicacionales e institucionales, así como la ciudadanía en general.
+          
+          ¿Incidentes en el transporte público?""",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
                     ),
-                    const TextSpan(
-                      text: '.',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Repórtalo a Truxi, envía un WhatsApp al ',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '+51 959 312 613',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = _launchWhatsApp,
+                        ),
+                        const TextSpan(
+                          text: '.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              child: Container(
-                width: 200,
-                // height: 400,
-                // color: Colors.red,
-                child: Image.asset(
-                  'assets/AsistenteVirtual.png',
-                  fit: BoxFit.contain,
-                ),
+                  ),
+                  const SizedBox(height: 32),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          context.go("/map-viewer");
+                        },
+                        child: const Text(
+                          'Visor geográfico',
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          context.go("/stats-viewer");
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.blue,
+                        ),
+                        child: const Text(
+                          'Estadísticas de movilidad',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      );
+    },
+  ),
+),
+
+            if (constraints.maxWidth >= 850)
+              Positioned(
+                bottom: 10,
+                left: 10,
+                child: RichPersistentTooltip(
+                  tooltipContent: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: """Soy Truxi, tu asistente virtual.
+          
+          Estoy aquí para ayudarte a reportar cualquier problema relacionado con el transporte público en Trujillo.
+          Escríbeme y cuéntame lo que pasó. Tu reporte nos ayuda a mejorar el transporte para todos.
+          
+          Envíame un mensaje al WhatsApp: """,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                        TextSpan(
+                          text: '+51 959 312 613',
+                          style: const TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = _launchWhatsApp,
+                        ),
+                        const TextSpan(
+                          text: '.',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  child: Container(
+                    width: 200,
+                    // height: 400,
+                    // color: Colors.red,
+                    child: Image.asset(
+                      'assets/AsistenteVirtual.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        );
+      }),
     );
   }
 }
@@ -380,7 +392,8 @@ class _RichTooltipState extends State<RichTooltip> {
   void _showTooltip(BuildContext context) {
     final overlay = Overlay.of(context);
     final renderBox = context.findRenderObject() as RenderBox;
-    final targetGlobalCenter = renderBox.localToGlobal(renderBox.size.center(Offset.zero));
+    final targetGlobalCenter =
+        renderBox.localToGlobal(renderBox.size.center(Offset.zero));
 
     _overlayEntry = OverlayEntry(
       builder: (context) => Positioned(

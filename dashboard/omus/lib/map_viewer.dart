@@ -56,30 +56,50 @@ class ModelRequest extends FormRequest {
     required this.showRegulated,
     required this.selectedSITT,
     required this.selectedRegulated,
+    required this.showPTPU,
   });
 
   factory ModelRequest.fromScratch() => ModelRequest(
-        categories: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
-        subCategories: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
+        categories:
+            FormItemContainer<List<String>>(fieldKey: "categories", value: []),
+        subCategories:
+            FormItemContainer<List<String>>(fieldKey: "categories", value: []),
         actors: FormItemContainer<List<String>>(fieldKey: "actors", value: []),
-        agenciesSelection: FormItemContainer<List<String>>(fieldKey: "ac", value: []),
-        routesSelection: FormItemContainer<List<String>>(fieldKey: "ac", value: []),
+        agenciesSelection:
+            FormItemContainer<List<String>>(fieldKey: "ac", value: []),
+        routesSelection:
+            FormItemContainer<List<String>>(fieldKey: "ac", value: []),
         dateRange: FormItemContainer<DateTimeRange>(
           fieldKey: "keyStartDate",
         ),
-        showRoutes: FormItemContainer<bool>(fieldKey: "keyShowAllRoutes", value: false),
-        showAllRoutes: FormItemContainer<bool>(fieldKey: "keyShowAllRoutes", value: true),
-        showHeatMap: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: false),
-        heatMapFilter: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
-        showReports: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
-        showHeatMapReports: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: false),
-        showStops: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
-        showStations: FormItemContainer<bool>(fieldKey: "shotStations", value: false),
-        stopsFilter: FormItemContainer<List<String>>(fieldKey: "categories", value: []),
-        showSITT: FormItemContainer<bool>(fieldKey: "keyShowGeojsonRoutes", value: false),
-        showRegulated: FormItemContainer<bool>(fieldKey: "keyShowRegulatedRoutes", value: false),
-        selectedSITT: FormItemContainer<Map<String, List<String>>>(fieldKey: "selectedRegions", value: {}),
-        selectedRegulated: FormItemContainer<Map<String, List<String>>>(fieldKey: "selectedRegulated", value: {}),
+        showRoutes:
+            FormItemContainer<bool>(fieldKey: "keyShowAllRoutes", value: false),
+        showAllRoutes:
+            FormItemContainer<bool>(fieldKey: "keyShowAllRoutes", value: true),
+        showHeatMap:
+            FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: false),
+        heatMapFilter:
+            FormItemContainer<List<String>>(fieldKey: "categories", value: []),
+        showReports:
+            FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
+        showHeatMapReports:
+            FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: false),
+        showStops:
+            FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: true),
+        showStations:
+            FormItemContainer<bool>(fieldKey: "shotStations", value: false),
+        stopsFilter:
+            FormItemContainer<List<String>>(fieldKey: "categories", value: []),
+        showSITT: FormItemContainer<bool>(
+            fieldKey: "keyShowGeojsonRoutes", value: false),
+        showRegulated: FormItemContainer<bool>(
+            fieldKey: "keyShowRegulatedRoutes", value: false),
+        selectedSITT: FormItemContainer<Map<String, List<String>>>(
+            fieldKey: "selectedRegions", value: {}),
+        selectedRegulated: FormItemContainer<Map<String, List<String>>>(
+            fieldKey: "selectedRegulated", value: {}),
+        showPTPU:
+            FormItemContainer<bool>(fieldKey: "keyShowPTPU", value: false),
       );
 
   final FormItemContainer<List<String>> categories;
@@ -99,6 +119,7 @@ class ModelRequest extends FormRequest {
   final FormItemContainer<List<String>> stopsFilter;
   final FormItemContainer<bool> showSITT;
   final FormItemContainer<bool> showRegulated;
+  final FormItemContainer<bool> showPTPU;
   final FormItemContainer<Map<String, List<String>?>> selectedSITT;
   final FormItemContainer<Map<String, List<String>?>> selectedRegulated;
 }
@@ -113,6 +134,7 @@ class ServerOriginal {
   final List<Station> stations;
   final Map<String, Region> sittRoutes;
   final Map<String, Region> regulatedRoutes;
+  final List<List<List<LatLng>>> ptpuFeatures;
   ServerOriginal({
     required this.categories,
     required this.allCategories,
@@ -123,6 +145,7 @@ class ServerOriginal {
     required this.stations,
     required this.sittRoutes,
     required this.regulatedRoutes,
+    required this.ptpuFeatures,
   });
 }
 
@@ -151,7 +174,8 @@ extension FeatureTypeExtension on FeatureType {
     FeatureType.ramp: 'ramp',
     FeatureType.shelter: 'shelter',
     FeatureType.level: 'level',
-    FeatureType.passengerInformationDisplaySpeechOutput: 'passenger_information_display:speech_output',
+    FeatureType.passengerInformationDisplaySpeechOutput:
+        'passenger_information_display:speech_output',
     FeatureType.tactileWritingBrailleEs: 'tactile_writing:braille:es',
     FeatureType.tactilePaving: 'tactile_paving',
     FeatureType.departuresBoard: 'departures_board',
@@ -159,7 +183,8 @@ extension FeatureTypeExtension on FeatureType {
 
   String toValue() => _featureTypeMap[this]!;
 
-  static FeatureType fromValue(String value) => _featureTypeMap.entries.firstWhere((entry) => entry.value == value).key;
+  static FeatureType fromValue(String value) =>
+      _featureTypeMap.entries.firstWhere((entry) => entry.value == value).key;
 
   static const Map<FeatureType, String> _featureTypeSpanishMap = {
     FeatureType.advertising: 'Panel Publicidad',
@@ -191,7 +216,8 @@ extension GenderExtension on Gender {
   };
 
   static Gender fromValue(String value) => _valueMap[value.toLowerCase()]!;
-  String toValue() => _valueMap.entries.firstWhere((entry) => entry.value == this).key;
+  String toValue() =>
+      _valueMap.entries.firstWhere((entry) => entry.value == this).key;
   String toText() {
     String value = toValue();
     return value[0].toUpperCase() + value.substring(1);
@@ -212,13 +238,15 @@ class MainMap extends StatefulWidget {
   MainMapState createState() => MainMapState();
 }
 
-List<Report> filterReports({required ServerOriginal helper, required ModelRequest model}) {
+List<Report> filterReports(
+    {required ServerOriginal helper, required ModelRequest model}) {
   var categories = [
     ...(model.categories.value ?? []),
     ...(model.subCategories.value ?? []),
   ];
   if (categories.isEmpty) {
-    categories = helper.allCategories.map((value) => value.id.toString()).toList();
+    categories =
+        helper.allCategories.map((value) => value.id.toString()).toList();
   }
   var actors = model.actors.value ?? [];
   if (actors.isEmpty) {
@@ -231,7 +259,8 @@ List<Report> filterReports({required ServerOriginal helper, required ModelReques
     final reportDate = value.reportDate;
     if (dateRange != null) {
       if (reportDate != null) {
-        inDateRange = reportDate.isAfter(dateRange.start) && reportDate.isBefore(dateRange.end);
+        inDateRange = reportDate.isAfter(dateRange.start) &&
+            reportDate.isBefore(dateRange.end);
       } else {
         inDateRange = false;
       }
@@ -245,8 +274,10 @@ class MainMapState extends State<MainMap> {
   double zoom = 13;
   Report? currentReport;
   Station? currentStation;
-  final StreamController<void> _rebuildGenderStream = StreamController.broadcast();
-  final StreamController<void> _rebuildGeneralStream = StreamController.broadcast();
+  final StreamController<void> _rebuildGenderStream =
+      StreamController.broadcast();
+  final StreamController<void> _rebuildGeneralStream =
+      StreamController.broadcast();
 
   LeafletMapController leafletMapController = LeafletMapController();
 
@@ -281,63 +312,104 @@ class MainMapState extends State<MainMap> {
               ]);
               final allCategories = response[0] as List<Category>;
               final categoriesMap = Map.fromEntries(
-                allCategories.where((value) => value.parentId == null).map((value) => MapEntry(value.id, value)),
+                allCategories
+                    .where((value) => value.parentId == null)
+                    .map((value) => MapEntry(value.id, value)),
               );
-              allCategories.where((value) => value.parentId != null).forEach((value) {
+              allCategories
+                  .where((value) => value.parentId != null)
+                  .forEach((value) {
                 categoriesMap[value.parentId]?.subcategories.add(value);
               });
-              var heatMapData = await rootBundle.loadString('assets/mapa_de_calor.geojson');
+              var heatMapData =
+                  await rootBundle.loadString('assets/mapa_de_calor.geojson');
 
-              final data = (jsonDecode(heatMapData)['features'] as List).map((feature) {
+              final data =
+                  (jsonDecode(heatMapData)['features'] as List).map((feature) {
                 final coords = feature['geometry']['coordinates'];
-                final name = (feature['properties']['name']?.toString() ?? "").toLowerCase();
+                final name = (feature['properties']['name']?.toString() ?? "")
+                    .toLowerCase();
                 final latlng = LatLng(coords[1], coords[0]);
-                return GenderBoard(latLng: latlng, isMen: name.contains("hombre"));
+                return GenderBoard(
+                    latLng: latlng, isMen: name.contains("hombre"));
               }).toList();
-              var stopsData = await rootBundle.loadString('assets/stops.geojson');
-              final stops = (jsonDecode(stopsData)['features'] as List).map((feature) => GeoFeature.fromJson(feature)).toList();
-              var stationsData = await rootBundle.loadString('assets/merged_stations.json');
-              final stations = (jsonDecode(stationsData) as List).map((feature) => Station.fromJson(feature)).toList();
-              var sittRoutesData = await rootBundle.loadString('assets/RutasDelSITT.json');
-              final Map<String, dynamic> sittRoutesDecodedData = jsonDecode(sittRoutesData);
+              var ptpuData = await rootBundle
+                  .loadString('assets/pnft_latlon_01156_2023.geojson');
 
-              final sittRoutes = sittRoutesDecodedData.map((key, value) => MapEntry(
-                    key,
-                    Region.fromJson(value),
-                  ));
-              var regulatedRoutesData = await rootBundle.loadString('assets/PlanReguladorDeRutas.json');
-              final Map<String, dynamic> regulatedRoutesDecodedData = jsonDecode(regulatedRoutesData);
+              final ptpuFeatures =
+                  (jsonDecode(ptpuData)['features'] as List).expand((feature) {
+                final coords = feature['geometry']['coordinates'] as List;
+                return coords.map((polygon) {
+                  return (polygon as List).map((ring) {
+                    return (ring as List).map((point) {
+                      final lon = point[0];
+                      final lat = point[1];
+                      return LatLng(lat, lon);
+                    }).toList();
+                  }).toList();
+                });
+              }).toList();
+              var stopsData =
+                  await rootBundle.loadString('assets/stops.geojson');
+              final stops = (jsonDecode(stopsData)['features'] as List)
+                  .map((feature) => GeoFeature.fromJson(feature))
+                  .toList();
+              var stationsData =
+                  await rootBundle.loadString('assets/merged_stations.json');
+              final stations = (jsonDecode(stationsData) as List)
+                  .map((feature) => Station.fromJson(feature))
+                  .toList();
+              var sittRoutesData =
+                  await rootBundle.loadString('assets/RutasDelSITT.json');
+              final Map<String, dynamic> sittRoutesDecodedData =
+                  jsonDecode(sittRoutesData);
 
-              final regulatedRoutes = regulatedRoutesDecodedData.map((key, value) => MapEntry(
-                    key,
-                    Region.fromJson(value),
-                  ));
+              final sittRoutes =
+                  sittRoutesDecodedData.map((key, value) => MapEntry(
+                        key,
+                        Region.fromJson(value),
+                      ));
+              var regulatedRoutesData = await rootBundle
+                  .loadString('assets/PlanReguladorDeRutas.json');
+              final Map<String, dynamic> regulatedRoutesDecodedData =
+                  jsonDecode(regulatedRoutesData);
+
+              final regulatedRoutes =
+                  regulatedRoutesDecodedData.map((key, value) => MapEntry(
+                        key,
+                        Region.fromJson(value),
+                      ));
               return ServerOriginal(
-                allCategories: allCategories,
-                categories: categoriesMap,
-                actors: response[1] as List<VialActor>,
-                reports: response[2] as List<Report>,
-                data: data,
-                stops: stops,
-                stations: stations,
-                sittRoutes: sittRoutes,
-                regulatedRoutes: regulatedRoutes,
-              );
+                  allCategories: allCategories,
+                  categories: categoriesMap,
+                  actors: response[1] as List<VialActor>,
+                  reports: response[2] as List<Report>,
+                  data: data,
+                  stops: stops,
+                  stations: stations,
+                  sittRoutes: sittRoutes,
+                  regulatedRoutes: regulatedRoutes,
+                  ptpuFeatures: ptpuFeatures);
             },
             saveModel: (_, {id}) async => {},
             onSaveChanges: () => {},
             builder: (params) {
               final helper = params.responseModel.responseHelper!;
               final model = params.model;
-              final filteredReports = filterReports(helper: helper, model: model);
+              final filteredReports =
+                  filterReports(helper: helper, model: model);
 
               final List<WeightedLatLng> genderMap = helper.data
                   .where((value) {
-                    final stopsFilter = model.heatMapFilter.value?.map((value) => GenderExtension.fromValue(value)).toList() ?? [];
+                    final stopsFilter = model.heatMapFilter.value
+                            ?.map((value) => GenderExtension.fromValue(value))
+                            .toList() ??
+                        [];
                     if (stopsFilter.isEmpty) return true;
                     for (final stopFeature in stopsFilter) {
                       if (stopFeature == Gender.men && value.isMen) return true;
-                      if (stopFeature == Gender.woman && !value.isMen) return true;
+                      if (stopFeature == Gender.woman && !value.isMen)
+                        return true;
                     }
 
                     return false;
@@ -347,8 +419,10 @@ class MainMapState extends State<MainMap> {
                   )
                   .toList();
               final List<WeightedLatLng> reportsFiltered = filteredReports
-                  .where((report) => report.latitude != null && report.longitude != null)
-                  .map((report) => WeightedLatLng(LatLng(report.latitude!, report.longitude!), 1))
+                  .where((report) =>
+                      report.latitude != null && report.longitude != null)
+                  .map((report) => WeightedLatLng(
+                      LatLng(report.latitude!, report.longitude!), 1))
                   .toList();
 
               return Stack(
@@ -365,35 +439,91 @@ class MainMapState extends State<MainMap> {
                         }),
                     children: [
                       openStreetMapTileLayer,
-                      if (model.showHeatMap.value == true && genderMap.isNotEmpty)
+                      if (model.showHeatMap.value == true &&
+                          genderMap.isNotEmpty)
                         HeatMapLayer(
                           heatMapDataSource: InMemoryHeatMapDataSource(
                             data: genderMap,
                           ),
                           reset: _rebuildGenderStream.stream,
                         ),
+
+                      if (model.showPTPU.value == true)
+                      PolygonLayer(
+                        polygons: helper.ptpuFeatures.expand((polygon) {
+                          List<Polygon> polygonList = [];
+
+                          for (int i = 0; i < polygon.length; i++) {
+                            List<LatLng> ring = polygon[i];
+
+                            // Si es el anillo exterior (index 0), lo renderizamos con relleno
+                            if (i == 0) {
+                              polygonList.add(
+                                Polygon(
+                                  points: ring,
+                                  borderColor: Colors.green,
+                                  borderStrokeWidth: 2,
+                                  color: Colors.green.withAlpha(50),
+                                  isFilled: true,
+                                ),
+                              );
+                            } else {
+                              // Anillos internos (holes), solo borde sin relleno
+                              polygonList.add(
+                                Polygon(
+                                  points: ring,
+                                  borderColor: Colors.green,
+                                  borderStrokeWidth: 2,
+                                  color: Colors.white.withAlpha(175),
+                                  isFilled: true,
+                                ),
+                              );
+                            }
+                          }
+
+                          return polygonList;
+                        }).toList(),
+                      ),
                       if (model.showSITT.value == true)
                         PolylineLayer(
                           polylines: helper.sittRoutes.values.expand((route) {
-                            final selecteRegion = model.selectedSITT.value?[route.name];
-                            if (selecteRegion?.isEmpty ?? true) return <Polyline>[];
-                            return route.features.where((element) => selecteRegion!.contains(element.name)).map((feature) => Polyline(
-                                  points: feature.geometry.map((loc) => LatLng(loc.latitude, loc.longitude)).toList(),
-                                  strokeWidth: 4,
-                                  color: Colors.purple,
-                                ));
+                            final selecteRegion =
+                                model.selectedSITT.value?[route.name];
+                            if (selecteRegion?.isEmpty ?? true)
+                              return <Polyline>[];
+                            return route.features
+                                .where((element) =>
+                                    selecteRegion!.contains(element.name))
+                                .map((feature) => Polyline(
+                                      points: feature.geometry
+                                          .map((loc) => LatLng(
+                                              loc.latitude, loc.longitude))
+                                          .toList(),
+                                      strokeWidth: 4,
+                                      color: Colors.purple,
+                                    ));
                           }).toList(),
                         ),
                       if (model.showRegulated.value == true)
                         PolylineLayer(
-                          polylines: helper.regulatedRoutes.values.expand((route) {
-                            final selecteRegion = model.selectedRegulated.value?[route.name];
-                            if (selecteRegion?.isEmpty ?? true) return <Polyline>[];
-                            return route.features.where((element) => selecteRegion!.contains(element.name)).map((feature) => Polyline(
-                                  points: feature.geometry.map((loc) => LatLng(loc.latitude, loc.longitude)).toList(),
-                                  strokeWidth: 4,
-                                  color: const Color.fromARGB(255, 111, 4, 77),
-                                ));
+                          polylines:
+                              helper.regulatedRoutes.values.expand((route) {
+                            final selecteRegion =
+                                model.selectedRegulated.value?[route.name];
+                            if (selecteRegion?.isEmpty ?? true)
+                              return <Polyline>[];
+                            return route.features
+                                .where((element) =>
+                                    selecteRegion!.contains(element.name))
+                                .map((feature) => Polyline(
+                                      points: feature.geometry
+                                          .map((loc) => LatLng(
+                                              loc.latitude, loc.longitude))
+                                          .toList(),
+                                      strokeWidth: 4,
+                                      color:
+                                          const Color.fromARGB(255, 111, 4, 77),
+                                    ));
                           }).toList(),
                         ),
                       if (model.showRoutes.value == true) ...[
@@ -411,23 +541,44 @@ class MainMapState extends State<MainMap> {
                       if (model.showStops.value == true)
                         MarkerLayer(
                           markers: helper.stops.where((value) {
-                            final stopsFilter = model.stopsFilter.value?.map((value) => FeatureTypeExtension.fromValue(value)).toList() ?? [];
+                            final stopsFilter = model.stopsFilter.value
+                                    ?.map((value) =>
+                                        FeatureTypeExtension.fromValue(value))
+                                    .toList() ??
+                                [];
                             if (stopsFilter.isEmpty) return true;
                             for (final stopFeature in stopsFilter) {
-                              if (stopFeature == FeatureType.advertising && value.advertising == true) return true;
-                              if (stopFeature == FeatureType.bench && value.bench == true) return true;
-                              if (stopFeature == FeatureType.bicycleParking && value.bicycleParking == true) return true;
-                              if (stopFeature == FeatureType.bin && value.bin == true) return true;
-                              if (stopFeature == FeatureType.lit && value.lit == true) return true;
-                              if (stopFeature == FeatureType.ramp && value.ramp == true) return true;
-                              if (stopFeature == FeatureType.shelter && value.shelter == true) return true;
-                              if (stopFeature == FeatureType.level && value.level == true) return true;
-                              if (stopFeature == FeatureType.passengerInformationDisplaySpeechOutput && value.passengerInformationDisplaySpeechOutput == true) {
+                              if (stopFeature == FeatureType.advertising &&
+                                  value.advertising == true) return true;
+                              if (stopFeature == FeatureType.bench &&
+                                  value.bench == true) return true;
+                              if (stopFeature == FeatureType.bicycleParking &&
+                                  value.bicycleParking == true) return true;
+                              if (stopFeature == FeatureType.bin &&
+                                  value.bin == true) return true;
+                              if (stopFeature == FeatureType.lit &&
+                                  value.lit == true) return true;
+                              if (stopFeature == FeatureType.ramp &&
+                                  value.ramp == true) return true;
+                              if (stopFeature == FeatureType.shelter &&
+                                  value.shelter == true) return true;
+                              if (stopFeature == FeatureType.level &&
+                                  value.level == true) return true;
+                              if (stopFeature ==
+                                      FeatureType
+                                          .passengerInformationDisplaySpeechOutput &&
+                                  value.passengerInformationDisplaySpeechOutput ==
+                                      true) {
                                 return true;
                               }
-                              if (stopFeature == FeatureType.tactileWritingBrailleEs && value.tactileWritingBrailleEs == true) return true;
-                              if (stopFeature == FeatureType.tactilePaving && value.tactilePaving == true) return true;
-                              if (stopFeature == FeatureType.departuresBoard && value.departuresBoard == true) return true;
+                              if (stopFeature ==
+                                      FeatureType.tactileWritingBrailleEs &&
+                                  value.tactileWritingBrailleEs == true)
+                                return true;
+                              if (stopFeature == FeatureType.tactilePaving &&
+                                  value.tactilePaving == true) return true;
+                              if (stopFeature == FeatureType.departuresBoard &&
+                                  value.departuresBoard == true) return true;
                             }
 
                             return false;
@@ -438,7 +589,8 @@ class MainMapState extends State<MainMap> {
                               point: stop.coordinates,
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: const Color.fromRGBO(152, 195, 116, 1),
+                                    color:
+                                        const Color.fromRGBO(152, 195, 116, 1),
                                     borderRadius: BorderRadius.circular(50),
                                     border: Border.all(color: Colors.white)),
                                 child: const Icon(
@@ -473,7 +625,8 @@ class MainMapState extends State<MainMap> {
                           }).toList(),
                         ),
                       if (model.showReports.value == true) ...[
-                        if (model.showHeatMapReports.value == true && reportsFiltered.isNotEmpty)
+                        if (model.showHeatMapReports.value == true &&
+                            reportsFiltered.isNotEmpty)
                           HeatMapLayer(
                             heatMapOptions: HeatMapOptions(layerOpacity: 1),
                             heatMapDataSource: InMemoryHeatMapDataSource(
@@ -491,7 +644,8 @@ class MainMapState extends State<MainMap> {
                               maxZoom: 15,
                               markers: filteredReports.map((report) {
                                 return Marker(
-                                  point: LatLng(report.latitude ?? 0, report.longitude ?? 0),
+                                  point: LatLng(report.latitude ?? 0,
+                                      report.longitude ?? 0),
                                   alignment: Alignment.topCenter,
                                   child: MouseRegion(
                                     cursor: SystemMouseCursors.click,
@@ -515,12 +669,16 @@ class MainMapState extends State<MainMap> {
                                 return MouseRegion(
                                   cursor: SystemMouseCursors.click,
                                   child: Container(
-                                    decoration:
-                                        BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.blue, border: Border.all(color: Colors.white)),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        color: Colors.blue,
+                                        border:
+                                            Border.all(color: Colors.white)),
                                     child: Center(
                                       child: Text(
                                         markers.length.toString(),
-                                        style: const TextStyle(color: Colors.white),
+                                        style: const TextStyle(
+                                            color: Colors.white),
                                       ),
                                     ),
                                   ),
@@ -570,7 +728,11 @@ class MainMapState extends State<MainMap> {
 }
 
 class CurrentReportRender extends StatelessWidget {
-  const CurrentReportRender({super.key, required this.currentReport, required this.helper, this.onPressed});
+  const CurrentReportRender(
+      {super.key,
+      required this.currentReport,
+      required this.helper,
+      this.onPressed});
   final Report currentReport;
   final ServerOriginal helper;
   final void Function()? onPressed;
@@ -604,9 +766,13 @@ class CurrentReportRender extends StatelessWidget {
                   child: InstaImageViewer(
                     child: CachedNetworkImage(
                       fit: BoxFit.contain,
-                      imageUrl: '$apiUrl/Categories/proxy?url=${Uri.encodeComponent(currentReport?.images?.first ?? "")}',
-                      placeholder: (context, url) => const SizedBox(width: 100, child: Center(child: CircularProgressIndicator())),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                      imageUrl:
+                          '$apiUrl/Categories/proxy?url=${Uri.encodeComponent(currentReport?.images?.first ?? "")}',
+                      placeholder: (context, url) => const SizedBox(
+                          width: 100,
+                          child: Center(child: CircularProgressIndicator())),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
                 ),
@@ -628,11 +794,15 @@ class CurrentReportRender extends StatelessWidget {
                                   children: [
                                     const TextSpan(
                                       text: 'ID: ',
-                                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
                                     TextSpan(
                                       text: '${currentReport!.id}',
-                                      style: const TextStyle(fontSize: 16, color: Colors.black),
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.black),
                                     ),
                                   ],
                                 ),
@@ -643,11 +813,20 @@ class CurrentReportRender extends StatelessWidget {
                                   children: [
                                     const TextSpan(
                                       text: 'Categoría: ',
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
                                     TextSpan(
-                                      text: helper.allCategories.findOrNull((value) => value.id == currentReport!.categoryId)?.categoryName ?? "-",
-                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                      text: helper.allCategories
+                                              .findOrNull((value) =>
+                                                  value.id ==
+                                                  currentReport!.categoryId)
+                                              ?.categoryName ??
+                                          "-",
+                                      style: const TextStyle(
+                                          fontSize: 14, color: Colors.black),
                                     ),
                                   ],
                                 ),
@@ -658,11 +837,21 @@ class CurrentReportRender extends StatelessWidget {
                                   children: [
                                     const TextSpan(
                                       text: 'Actor involucrado: ',
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
                                     TextSpan(
-                                      text: helper.actors.findOrNull((value) => value.id == currentReport!.involvedActorId)?.name ?? "-",
-                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                      text: helper.actors
+                                              .findOrNull((value) =>
+                                                  value.id ==
+                                                  currentReport!
+                                                      .involvedActorId)
+                                              ?.name ??
+                                          "-",
+                                      style: const TextStyle(
+                                          fontSize: 14, color: Colors.black),
                                     ),
                                   ],
                                 ),
@@ -673,11 +862,20 @@ class CurrentReportRender extends StatelessWidget {
                                   children: [
                                     const TextSpan(
                                       text: 'Víctima: ',
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
                                     TextSpan(
-                                      text: helper.actors.findOrNull((value) => value.id == currentReport!.victimActorId)?.name ?? "-",
-                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                      text: helper.actors
+                                              .findOrNull((value) =>
+                                                  value.id ==
+                                                  currentReport!.victimActorId)
+                                              ?.name ??
+                                          "-",
+                                      style: const TextStyle(
+                                          fontSize: 14, color: Colors.black),
                                     ),
                                   ],
                                 ),
@@ -688,11 +886,15 @@ class CurrentReportRender extends StatelessWidget {
                                   children: [
                                     const TextSpan(
                                       text: 'Descripción: ',
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
                                     TextSpan(
                                       text: '${currentReport!.description}',
-                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                      style: const TextStyle(
+                                          fontSize: 14, color: Colors.black),
                                     ),
                                   ],
                                 ),
@@ -703,11 +905,18 @@ class CurrentReportRender extends StatelessWidget {
                                   children: [
                                     const TextSpan(
                                       text: 'Fecha: ',
-                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.black),
                                     ),
                                     TextSpan(
-                                      text: DateFormat('yyyy-MM-dd kk:mm').format(currentReport!.reportDate!.add(DateTime.now().timeZoneOffset)),
-                                      style: const TextStyle(fontSize: 14, color: Colors.black),
+                                      text: DateFormat('yyyy-MM-dd kk:mm')
+                                          .format(currentReport!.reportDate!
+                                              .add(DateTime.now()
+                                                  .timeZoneOffset)),
+                                      style: const TextStyle(
+                                          fontSize: 14, color: Colors.black),
                                     ),
                                   ],
                                 ),
@@ -772,11 +981,15 @@ class StationInfoRender extends StatelessWidget {
                       children: [
                         const TextSpan(
                           text: 'Estación: ',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text: station.name,
-                          style: const TextStyle(fontSize: 16, color: Colors.black),
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.black),
                         ),
                       ],
                     ),
@@ -787,11 +1000,15 @@ class StationInfoRender extends StatelessWidget {
                       children: [
                         const TextSpan(
                           text: 'Código: ',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text: station.info.codigo,
-                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                         ),
                       ],
                     ),
@@ -802,11 +1019,15 @@ class StationInfoRender extends StatelessWidget {
                       children: [
                         const TextSpan(
                           text: 'Lugar: ',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text: station.info.lugar,
-                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                         ),
                       ],
                     ),
@@ -817,11 +1038,15 @@ class StationInfoRender extends StatelessWidget {
                       children: [
                         const TextSpan(
                           text: 'Ubicación: ',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text: station.info.ubicacion,
-                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                         ),
                       ],
                     ),
@@ -832,11 +1057,15 @@ class StationInfoRender extends StatelessWidget {
                       children: [
                         const TextSpan(
                           text: 'Estado: ',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text: station.info.estado,
-                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                         ),
                       ],
                     ),
@@ -847,11 +1076,15 @@ class StationInfoRender extends StatelessWidget {
                       children: [
                         const TextSpan(
                           text: 'Variables: ',
-                          style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold, color: Colors.black),
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
                         ),
                         TextSpan(
                           text: station.info.variables.join(', '),
-                          style: const TextStyle(fontSize: 14, color: Colors.black),
+                          style: const TextStyle(
+                              fontSize: 14, color: Colors.black),
                         ),
                       ],
                     ),
@@ -918,11 +1151,13 @@ class StationStatusState extends State<StationStatus> {
   void initState() {
     super.initState();
     _fetchData();
-    _timer = Timer.periodic(const Duration(minutes: 1), (timer) => _fetchData());
+    _timer =
+        Timer.periodic(const Duration(minutes: 1), (timer) => _fetchData());
   }
 
   Future<void> _fetchData() async {
-    final url = 'https://tudata.info/api/v1/register/${widget.station.id}/last-register';
+    final url =
+        'https://tudata.info/api/v1/register/${widget.station.id}/last-register';
 
     var headers = {
       'x-api-key': '821303c9-yyqr-1860-vt4t',
@@ -935,7 +1170,8 @@ class StationStatusState extends State<StationStatus> {
         final List<dynamic> data = jsonDecode(response.body);
         if (mounted) {
           setState(() {
-            _readings = data.map((json) => SensorReading.fromJson(json)).toList();
+            _readings =
+                data.map((json) => SensorReading.fromJson(json)).toList();
           });
         }
       } else {
@@ -1150,21 +1386,31 @@ class _MapLayerState extends State<MapLayer> {
                                       .toList(),
                                   enabled: true,
                                   onChanged: (items) {
-                                    final categoryChanged = widget.helper.categories.values
-                                        .where((value) => items.contains(value.id.toString()))
-                                        .expand((category) => category.subcategories)
+                                    final categoryChanged = widget
+                                        .helper.categories.values
+                                        .where((value) =>
+                                            items.contains(value.id.toString()))
+                                        .expand((category) =>
+                                            category.subcategories)
                                         .toList();
-                                    final currentFilter = widget.model.subCategories.value ?? [];
-                                    final currentSubCategories =
-                                        widget.helper.allCategories.where((value) => currentFilter.contains(value.id.toString())).toList();
-                                    final newSubCategoryList = currentSubCategories
-                                        .where((value) => categoryChanged.contains(value))
-                                        .map(
-                                          (value) => value.id.toString(),
-                                        )
+                                    final currentFilter =
+                                        widget.model.subCategories.value ?? [];
+                                    final currentSubCategories = widget
+                                        .helper.allCategories
+                                        .where((value) => currentFilter
+                                            .contains(value.id.toString()))
                                         .toList();
+                                    final newSubCategoryList =
+                                        currentSubCategories
+                                            .where((value) =>
+                                                categoryChanged.contains(value))
+                                            .map(
+                                              (value) => value.id.toString(),
+                                            )
+                                            .toList();
                                     widget.model.update(() {
-                                      widget.model.subCategories.value = newSubCategoryList;
+                                      widget.model.subCategories.value =
+                                          newSubCategoryList;
                                     });
                                     widget.onGeneralUpdate();
                                   },
@@ -1175,7 +1421,10 @@ class _MapLayerState extends State<MapLayer> {
                                   label: "Sub-Categorias",
                                   items: widget.helper.allCategories
                                       .where((value) {
-                                        return widget.model.categories.value?.contains(value.parentId.toString()) ?? false;
+                                        return widget.model.categories.value
+                                                ?.contains(value.parentId
+                                                    .toString()) ??
+                                            false;
                                       })
                                       .toList()
                                       .map(
@@ -1237,7 +1486,8 @@ class _MapLayerState extends State<MapLayer> {
                                       widget.model.actors.value = null;
                                       widget.model.dateRange.value = null;
                                       widget.model.dateRange.value = null;
-                                      widget.model.showHeatMapReports.value = false;
+                                      widget.model.showHeatMapReports.value =
+                                          false;
                                     });
                                   },
                                 ),
@@ -1331,14 +1581,20 @@ class _MapLayerState extends State<MapLayer> {
                                       .toList(),
                                   enabled: true,
                                   onChanged: (items) {
-                                    final routesSelected = widget.model.routesSelection.value ?? [];
+                                    final routesSelected =
+                                        widget.model.routesSelection.value ??
+                                            [];
                                     final routes = routesSelected
-                                        .map((value) => gtfsData.routes.findOrNull((route) => route.routeId == value)!)
-                                        .where((value) => items.contains(value.agencyId))
+                                        .map((value) => gtfsData.routes
+                                            .findOrNull((route) =>
+                                                route.routeId == value)!)
+                                        .where((value) =>
+                                            items.contains(value.agencyId))
                                         .map((value) => value.routeId)
                                         .toList();
                                     widget.model.update(() {
-                                      widget.model.routesSelection.value = routes;
+                                      widget.model.routesSelection.value =
+                                          routes;
                                     });
                                   },
                                 ),
@@ -1347,7 +1603,10 @@ class _MapLayerState extends State<MapLayer> {
                                   field: widget.model.routesSelection,
                                   label: "Rutas",
                                   items: gtfsData.routes
-                                      .where((value) => widget.model.agenciesSelection.value?.contains(value.agencyId) ?? false)
+                                      .where((value) =>
+                                          widget.model.agenciesSelection.value
+                                              ?.contains(value.agencyId) ??
+                                          false)
                                       .map(
                                         (e) => DropdownItem(
                                           id: e.routeId,
@@ -1434,7 +1693,10 @@ class _MapLayerState extends State<MapLayer> {
                             const Expanded(
                               child: Text(
                                 "Rutas del SITT",
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
                               ),
                             ),
                             FormRequestToggleSwitch(
@@ -1448,21 +1710,27 @@ class _MapLayerState extends State<MapLayer> {
                           Container(
                             margin: const EdgeInsets.all(5),
                             child: Column(
-                              children: widget.helper.sittRoutes.values.map((route) {
-                                final selecteRegion = widget.model.selectedSITT.value?[route.name];
+                              children:
+                                  widget.helper.sittRoutes.values.map((route) {
+                                final selecteRegion = widget
+                                    .model.selectedSITT.value?[route.name];
                                 return Column(children: [
                                   Row(
                                     children: [
                                       FormRequestToggleSwitch(
                                         update: widget.model.update,
-                                        field: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: selecteRegion != null),
+                                        field: FormItemContainer<bool>(
+                                            fieldKey: "keyShowHeatMap",
+                                            value: selecteRegion != null),
                                         enabled: true,
                                         onChanged: (changed) {
                                           widget.model.update(() {
                                             if (changed == true) {
-                                              widget.model.selectedSITT.value?[route.name] = [];
+                                              widget.model.selectedSITT
+                                                  .value?[route.name] = [];
                                             } else {
-                                              widget.model.selectedSITT.value?.remove(route.name);
+                                              widget.model.selectedSITT.value
+                                                  ?.remove(route.name);
                                             }
                                           });
                                         },
@@ -1470,7 +1738,10 @@ class _MapLayerState extends State<MapLayer> {
                                       Expanded(
                                         child: Text(
                                           route.name,
-                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.blue),
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.blue),
                                         ),
                                       ),
                                     ],
@@ -1480,14 +1751,21 @@ class _MapLayerState extends State<MapLayer> {
                                         .map((feature) => FormRequestCheckBox(
                                               update: widget.model.update,
                                               label: feature.name,
-                                              field: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: selecteRegion?.contains(feature.name) ?? false),
+                                              field: FormItemContainer<bool>(
+                                                  fieldKey: "keyShowHeatMap",
+                                                  value:
+                                                      selecteRegion?.contains(
+                                                              feature.name) ??
+                                                          false),
                                               enabled: true,
                                               onChanged: (changed) {
                                                 widget.model.update(() {
                                                   if (changed == true) {
-                                                    selecteRegion?.add(feature.name);
+                                                    selecteRegion
+                                                        ?.add(feature.name);
                                                   } else {
-                                                    selecteRegion?.remove(feature.name);
+                                                    selecteRegion
+                                                        ?.remove(feature.name);
                                                   }
                                                 });
                                               },
@@ -1503,7 +1781,10 @@ class _MapLayerState extends State<MapLayer> {
                             const Expanded(
                               child: Text(
                                 "Plan Regulador de Rutas",
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
                               ),
                             ),
                             FormRequestToggleSwitch(
@@ -1517,21 +1798,28 @@ class _MapLayerState extends State<MapLayer> {
                           Container(
                             margin: const EdgeInsets.all(5),
                             child: Column(
-                              children: widget.helper.regulatedRoutes.values.map((route) {
-                                final selecteRegion = widget.model.selectedRegulated.value?[route.name];
+                              children: widget.helper.regulatedRoutes.values
+                                  .map((route) {
+                                final selecteRegion = widget
+                                    .model.selectedRegulated.value?[route.name];
                                 return Column(children: [
                                   Row(
                                     children: [
                                       FormRequestToggleSwitch(
                                         update: widget.model.update,
-                                        field: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: selecteRegion != null),
+                                        field: FormItemContainer<bool>(
+                                            fieldKey: "keyShowHeatMap",
+                                            value: selecteRegion != null),
                                         enabled: true,
                                         onChanged: (changed) {
                                           widget.model.update(() {
                                             if (changed == true) {
-                                              widget.model.selectedRegulated.value?[route.name] = [];
+                                              widget.model.selectedRegulated
+                                                  .value?[route.name] = [];
                                             } else {
-                                              widget.model.selectedRegulated.value?.remove(route.name);
+                                              widget
+                                                  .model.selectedRegulated.value
+                                                  ?.remove(route.name);
                                             }
                                           });
                                         },
@@ -1539,7 +1827,10 @@ class _MapLayerState extends State<MapLayer> {
                                       Expanded(
                                         child: Text(
                                           route.name,
-                                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.blue),
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.blue),
                                         ),
                                       ),
                                     ],
@@ -1549,14 +1840,21 @@ class _MapLayerState extends State<MapLayer> {
                                         .map((feature) => FormRequestCheckBox(
                                               update: widget.model.update,
                                               label: feature.name,
-                                              field: FormItemContainer<bool>(fieldKey: "keyShowHeatMap", value: selecteRegion?.contains(feature.name) ?? false),
+                                              field: FormItemContainer<bool>(
+                                                  fieldKey: "keyShowHeatMap",
+                                                  value:
+                                                      selecteRegion?.contains(
+                                                              feature.name) ??
+                                                          false),
                                               enabled: true,
                                               onChanged: (changed) {
                                                 widget.model.update(() {
                                                   if (changed == true) {
-                                                    selecteRegion?.add(feature.name);
+                                                    selecteRegion
+                                                        ?.add(feature.name);
                                                   } else {
-                                                    selecteRegion?.remove(feature.name);
+                                                    selecteRegion
+                                                        ?.remove(feature.name);
                                                   }
                                                 });
                                               },
@@ -1566,6 +1864,25 @@ class _MapLayerState extends State<MapLayer> {
                               }).toList(),
                             ),
                           ),
+                        const Divider(),
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                "Población con cobertura de TPU",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue),
+                              ),
+                            ),
+                            FormRequestToggleSwitch(
+                              update: widget.model.update,
+                              field: widget.model.showPTPU,
+                              enabled: true,
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -1699,19 +2016,24 @@ class _SelectedMapLayerState extends State<SelectedMapLayer> {
     super.initState();
     _lastGtfsData = widget.gtfsData;
     _lastRouteSelection = widget.routeSelection.toString();
-    _cachedSelectedRoutes = _getSelectedRoutes(_lastGtfsData, widget.routeSelection);
-    _cachedSelectedMarkers = _getSelectedStopsMarkers(_lastGtfsData, widget.routeSelection);
+    _cachedSelectedRoutes =
+        _getSelectedRoutes(_lastGtfsData, widget.routeSelection);
+    _cachedSelectedMarkers =
+        _getSelectedStopsMarkers(_lastGtfsData, widget.routeSelection);
   }
 
   @override
   void didUpdateWidget(SelectedMapLayer oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.gtfsData != _lastGtfsData || widget.routeSelection.toString() != _lastRouteSelection) {
+    if (widget.gtfsData != _lastGtfsData ||
+        widget.routeSelection.toString() != _lastRouteSelection) {
       setState(() {
         _lastGtfsData = widget.gtfsData;
         _lastRouteSelection = widget.routeSelection.toString();
-        _cachedSelectedRoutes = _getSelectedRoutes(_lastGtfsData, widget.routeSelection);
-        _cachedSelectedMarkers = _getSelectedStopsMarkers(_lastGtfsData, widget.routeSelection);
+        _cachedSelectedRoutes =
+            _getSelectedRoutes(_lastGtfsData, widget.routeSelection);
+        _cachedSelectedMarkers =
+            _getSelectedStopsMarkers(_lastGtfsData, widget.routeSelection);
       });
     }
   }
@@ -1739,7 +2061,8 @@ class _SelectedMapLayerState extends State<SelectedMapLayer> {
         if (!shapeMap.containsKey(shape.shapeId)) {
           shapeMap[shape.shapeId] = [];
         }
-        shapeMap[shape.shapeId]!.add(LatLng(shape.shapePtLat, shape.shapePtLon));
+        shapeMap[shape.shapeId]!
+            .add(LatLng(shape.shapePtLat, shape.shapePtLon));
       }
     }
 
@@ -1768,9 +2091,17 @@ class _SelectedMapLayerState extends State<SelectedMapLayer> {
     List<String> selectedRoutes,
   ) {
     if (gtfsData.stops.isEmpty) return [];
-    final selectedTripIds = gtfsData.trips.where((trip) => selectedRoutes.contains(trip.routeId)).map((trip) => trip.tripId).toList();
-    final selectedStopIds = gtfsData.stopTimes.where((stopTime) => selectedTripIds.contains(stopTime.tripId)).map((stopTime) => stopTime.stopId).toList();
-    return gtfsData.stops.where((stop) => selectedStopIds.contains(stop.stopId)).map((stop) {
+    final selectedTripIds = gtfsData.trips
+        .where((trip) => selectedRoutes.contains(trip.routeId))
+        .map((trip) => trip.tripId)
+        .toList();
+    final selectedStopIds = gtfsData.stopTimes
+        .where((stopTime) => selectedTripIds.contains(stopTime.tripId))
+        .map((stopTime) => stopTime.stopId)
+        .toList();
+    return gtfsData.stops
+        .where((stop) => selectedStopIds.contains(stop.stopId))
+        .map((stop) {
       return Marker(
         point: LatLng(stop.stopLat, stop.stopLon),
         alignment: Alignment.center,
@@ -1898,11 +2229,14 @@ class _ReportPieChartState extends State<ReportPieChart> {
                   pieTouchData: PieTouchData(
                     touchCallback: (FlTouchEvent event, pieTouchResponse) {
                       setState(() {
-                        if (!event.isInterestedForInteractions || pieTouchResponse == null || pieTouchResponse.touchedSection == null) {
+                        if (!event.isInterestedForInteractions ||
+                            pieTouchResponse == null ||
+                            pieTouchResponse.touchedSection == null) {
                           touchedIndex = -1;
                           return;
                         }
-                        touchedIndex = pieTouchResponse.touchedSection!.touchedSectionIndex;
+                        touchedIndex = pieTouchResponse
+                            .touchedSection!.touchedSectionIndex;
                       });
                     },
                   ),
@@ -1951,7 +2285,8 @@ class _ReportPieChartState extends State<ReportPieChart> {
       }
       if (category != null) {
         int mainCategoryId = category.parentId ?? category.id;
-        categoryCounts[mainCategoryId] = (categoryCounts[mainCategoryId] ?? 0) + 1;
+        categoryCounts[mainCategoryId] =
+            (categoryCounts[mainCategoryId] ?? 0) + 1;
       }
     }
 
@@ -1960,7 +2295,8 @@ class _ReportPieChartState extends State<ReportPieChart> {
       final isTouched = index == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
       final radius = isTouched ? shortesSide + 10 : shortesSide;
-      final double percentage = entry.value.toDouble() / widget.reports.length * 100;
+      final double percentage =
+          entry.value.toDouble() / widget.reports.length * 100;
       index++;
 
       return PieChartSectionData(

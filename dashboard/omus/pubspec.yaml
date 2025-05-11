@@ -99,6 +99,7 @@ flutter:
     - assets/Logo_OMUS.png
     - assets/logos.png
     - assets/merged_stations.json
+    - assets/pnft_latlon_01156_2023.geojson
 
   # To add assets to your application, add an assets section, like this:
   # assets:
