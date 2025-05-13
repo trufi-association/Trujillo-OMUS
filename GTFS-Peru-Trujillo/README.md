@@ -1,54 +1,92 @@
-## INTRODUCTION 
+## Introduction
 
-Trufi’s General Transit Feed Specification (GTFS) tool allows you to create a map for Trujillo city. You can also send your route data to Google Maps, Open Trip Planner, OpenStreetMap, and other public atlases to keep navigation databases updated. 
+Trufi’s GTFS tool allows you to:
 
-Follow the steps below to create a public transportation map using our tool.
+- Generate GTFS data from OSM for the city of Trujillo.
+- View route data in a Markdown-based map report.
+- Send data to platforms like Google Maps, OTP, and OSM.
 
-### Steps 
+---
 
-+ Step 1:  Download [Trujillo-OMUS](https://github.com/trufi-association/Trujillo-OMUS)
+## Setup Guide
 
-+ Step 2: Download three tools: [Nodsjs](https://nodejs.org/en), [Git]( https://github.com/git-guides/install-git), and a text code editor. We recommend [Visual Studio (VS) Code]( https://code.visualstudio.com/).
+### Prerequisites
 
-+ Step 3: Click on “code” and copy the HTTPS URL. 
-You may choose to download GitHub Desktop and select the “GitHub CLI”. 
-There is a login required to use this method. There is no login required to use the HTTPS method.
- 
-+ Step 4: Type Git clone and the HTTPS URL into the Git PowerShell command line.
- 
-+ Step 5: Find the Trufi GFTS folder on your device. Right-click it and copy the folder.
+Make sure you have the following tools installed:
 
-+ Step 6: Find the VS Code folder. Paste the Trufi folder inside it.
- 
-+ Step 7: Type npm install in the console to install all node dependencies.
+- [Node.js](https://nodejs.org/en)
+- [Git](https://github.com/git-guides/install-git)
+- A code editor (recommended: [Visual Studio Code](https://code.visualstudio.com/))
 
-+ Step 8: Under the output files set GFTS to true.
+---
 
-+ Step 9: Run the application in the VS Code terminal. Type: Node - .\examples\ your folder \index\js. 
+### Steps to Generate GTFS
 
-In your output folder, there is a new README file. You can copy and paste its contents into a markdown viewer to see your new map and errors. 
+#### Step 1: Clone this repository
+```bash
+git clone https://github.com/trufi-association/Trujillo-OMUS.git
+```
+#### Step 2: Navigate to the project folder
+```bash
+cd Trujillo-OMUS
+```
+#### Step 3: Install dependencies
+```bash
+npm install
+```
+#### Step 4: Run the GTFS generation script
+```bash
+node ./GTFS-Peru-Trujillo
+```
+After the script runs:
 
+- A `README.md` file will be generated in the output folder.
+- Open it in a [Markdown viewer](https://dillinger.io/) to see your transit map and any errors.
 
-## Optional Steps 
+#### Step 5: Locate the output folder
+#### Step 6: Compress all files to create your GTFS feed (ZIP format)
 
-### Test a sample map
+---
 
-There are route examples inside the folder that allow you to visualize how the application works. 
+## Optional: Test Sample Routes
 
-- [ ] Work inside an index, run, and type node -.\examples\the example you want to work inside\index.js
- 
-- [ ] Test one of the sample maps, open its README file. Copy the markdown text. 
-Navigate to a markdown reader and paste the text. Examine the output. 
-Here, you can see the output layout and learn how to fix errors.
+The project includes test routes to explore the output format.
 
-### Customize your application
- 
-To specify routes, operation times, and other local options, you can change the following elements:
+```bash
+# Run using example data
+node ./GTFS-Peru-Trujillo
+```
 
-- [ ] Add or update the "agencytimezone" element. Use it to add your transportation agency’s name. You may also use the default calendar option to set transportation operation times.
+Then:
 
-- [ ] Every city does not have stops included in its routes. The “fakestops” option allows you to create fake stops so that your output is not empty. If you live in a place without designated bus stops, select false under "fakestops" to create fake ones. The default interval is 100 meters. However, if you would like more or fewer stops, change the interval. 
- 
-- [ ] To build or add streets, type and inside the “return.stops.join" element.
+1. Open the generated `README.md` inside the output folder.
+2. Copy and paste the contents into any [Markdown viewer](https://dillinger.io/).
+3. Analyze the route structure and review potential errors.
 
-- [ ] You have a section in your code called “stops”. If a stop name is unknown, type unknown in this section so that the map does not output an incorrect street name. 
+---
+
+## Customization Options
+
+You can tailor the behavior of the GTFS generator using configuration parameters:
+
+- **`agency_timezone`**  
+  Customize your transit agency’s name and timezone.
+
+- **`fakestops`**  
+  For informal systems without fixed stops, enable fake stop generation (`true`).  
+  Default interval: `100 meters`. You can change this interval.
+
+- **`stop names`**  
+  Use `"unknown"` for stops with no name to avoid incorrect values.
+
+- **`return.stops.join`**  
+  Control how stop coordinates are connected to street segments.
+
+---
+
+## Useful Links
+
+- [OMUS Live Platform](https://omus.tmt.gob.pe)
+- [Trufi Association](https://trufi-association.org/)
+- [GTFS Documentation](https://gtfs.org/)
+- [OpenStreetMap](https://www.openstreetmap.org/)
