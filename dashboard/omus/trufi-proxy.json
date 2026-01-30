@@ -1,0 +1,7 @@
+{
+  "name": "omus-dashboard",
+  "description": "OMUS Dashboard Frontend - Observatorio de Movilidad Urbana y Seguridad",
+  "container": "omus-dashboard",
+  "port": 80,
+  "analytics": true
+}

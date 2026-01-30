@@ -21,6 +21,7 @@ services:
 
   api:
     build: .
+    container_name: omus-api
     restart: unless-stopped
     depends_on:
       db:

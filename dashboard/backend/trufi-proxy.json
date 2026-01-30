@@ -1,0 +1,7 @@
+{
+  "name": "omus-api",
+  "description": "OMUS Dashboard API - Observatorio de Movilidad Urbana y Seguridad",
+  "container": "omus-api",
+  "port": 8080,
+  "analytics": true
+}

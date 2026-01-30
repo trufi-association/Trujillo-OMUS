@@ -52,6 +52,77 @@ docker compose up -d
 - El acceso se hace a través del proxy con HTTPS
 - `ASPNETCORE_ENVIRONMENT=Production`
 
+## Configuración de trufi-server
+
+Este proyecto usa [trufi-server](https://github.com/trufi-association/trufi-server) como reverse proxy con SSL automático.
+
+### Archivos de integración
+
+- `trufi-proxy.json` - Autodescubrimiento del servicio
+- `../trufi-server-config.json` - Configuración YARP para path-based routing
+
+### Pasos de configuración
+
+1. **Asegúrate que trufi-server esté corriendo:**
+   ```bash
+   cd /path/to/trufi-server
+   docker compose up -d
+   ```
+
+2. **Verifica que la red `trufi-server` exista:**
+   ```bash
+   docker network ls | grep trufi-server
+   ```
+
+3. **Configura las rutas en trufi-server** agregando esto a `data/config/appsettings.json`:
+   ```json
+   {
+     "ReverseProxy": {
+       "Routes": {
+         "omus-api-route": {
+           "ClusterId": "omus-api",
+           "Match": {
+             "Hosts": ["omus.tmt.gob.pe"],
+             "Path": "/api/{**catch-all}"
+           }
+         }
+       },
+       "Clusters": {
+         "omus-api": {
+           "Destinations": {
+             "primary": {
+               "Address": "http://omus-api:8080"
+             }
+           }
+         }
+       }
+     }
+   }
+   ```
+
+4. **Reinicia trufi-server** para aplicar la configuración:
+   ```bash
+   docker compose restart
+   ```
+
+5. **Despliega el backend:**
+   ```bash
+   docker compose up -d
+   ```
+
+### Verificar integración
+
+```bash
+# Ver todos los contenedores en la red trufi-server
+docker network inspect trufi-server --format='{{range .Containers}}{{.Name}} {{end}}'
+
+# Verificar logs del API
+docker logs omus-api
+
+# Probar endpoint
+curl https://omus.tmt.gob.pe/api/Categories
+```
+
 ### Without Docker
 
 1. Install MySQL 8.0 locally

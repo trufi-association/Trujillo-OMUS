@@ -1,7 +1,7 @@
-version: '3'
 services:
   app:
     image: nginx:1.15-alpine
+    container_name: omus-dashboard
     volumes:
       - ./nginx:/etc/nginx/conf.d
       - ./build/web:/var/www/app
@@ -11,4 +11,5 @@ services:
 
 networks:
   default:
+    external: true
     name: trufi-server
