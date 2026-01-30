@@ -1,13 +1,13 @@
-version: '3.8'
+# Docker Compose - Production Configuration (default)
+# For production: docker compose up -d
+# For development: docker compose -f docker-compose.yml -f docker-compose.dev.yml up -d --build
 
 services:
   db:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: Hy@WJMWqW9Eb!EO
-      MYSQL_DATABASE: omus
-    # ports:
-    #   - "3306:3306"
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-omus}
     restart: unless-stopped
     volumes:
       - ./db/conf.d:/etc/mysql/conf.d
@@ -29,16 +29,21 @@ services:
       - ./scripts:/app/scripts
       - ../../GTFS-Peru-Trujillo:/app/gtfs_builder
       - ../../dashboard/omus/build/web/assets/assets/gtfs:/app/gtfs
-    # ports:
-    #   - "8080:8080"
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=db;Database=omus;User=root;Password=Hy@WJMWqW9Eb!EO;
-      - Jwt__Key=SuperSecretKeyThatIsMuchLongerAndMoreSecure@12345
-      - Jwt__Issuer=https://trufi.dev
-      - Jwt__Audience=https://trufi.dev
-      - ApiKey=2d8526cf40634bdea3b508f01f88e5c9
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Server=db;Database=${MYSQL_DATABASE:-omus};User=root;Password=${MYSQL_ROOT_PASSWORD};
+      - Jwt__Key=${JWT_KEY}
+      - Jwt__Issuer=${API_URL}
+      - Jwt__Audience=${API_URL}
+      - ApiKey=${API_KEY}
+      - TextIt__Token=${TEXTIT_TOKEN}
+      - Admin__Username=${ADMIN_USERNAME}
+      - Admin__Password=${ADMIN_PASSWORD}
+      - Cors__Origins=${CORS_ORIGINS}
+      - Cors__AllowLocalhost=${CORS_ALLOW_LOCALHOST:-false}
+      - Proxy__AllowedDomains=${PROXY_ALLOWED_DOMAINS}
 
 networks:
   default:
+    external: true
     name: trufi-server

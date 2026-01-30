@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:omus/authentication/authentication_bloc.dart';
-import 'package:omus/main.dart';
+import 'package:omus/presentation/widgets/common/general_app_bar.dart';
 import 'package:omus/services/api_exceptions.dart';
 import 'package:omus/services/login/models/login_request.dart';
 import 'package:omus/widgets/async_handler.dart';

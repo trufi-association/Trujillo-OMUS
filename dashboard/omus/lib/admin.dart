@@ -7,7 +7,7 @@ import 'package:omus/authentication/authentication_bloc.dart';
 import 'package:omus/chart_admin.dart';
 import 'package:omus/gtfs_admin.dart';
 import 'package:omus/image_manager_screen.dart';
-import 'package:omus/main.dart';
+import 'package:omus/presentation/widgets/common/general_app_bar.dart';
 import 'package:omus/services/api_service.dart';
 import 'package:omus/stats_viewer.dart';
 import 'package:provider/provider.dart';

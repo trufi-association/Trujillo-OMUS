@@ -14,6 +14,6 @@ abstract class AuthenticationService {
       ApiHelper.token = token;
       return token;
     }
-    throw ApiException.fromResponse(response);
+    throw ApiResponseException.fromResponse(response);
   }
 }

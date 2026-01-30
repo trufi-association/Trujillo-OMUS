@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OMUS.Data;
+using OMUS.Services;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
-using System.Text;
 using Microsoft.AspNetCore.Authorization;
 
 namespace OMUS.Controllers
@@ -13,12 +11,13 @@ namespace OMUS.Controllers
     public class VialActorsController : ControllerBase
     {
         private readonly OMUSContext _context;
+        private readonly ITextItService _textItService;
 
-        public VialActorsController(OMUSContext context)
+        public VialActorsController(OMUSContext context, ITextItService textItService)
         {
             _context = context;
+            _textItService = textItService;
         }
-
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<VialActor>>> GetVialActors()
@@ -26,12 +25,11 @@ namespace OMUS.Controllers
             return await _context.VialActors.ToListAsync();
         }
 
-
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> SaveVialActor(VialActor vialActor)
         {
-            if (vialActor.Id == 0) // Assuming 0 is the default value for uninitialized int
+            if (vialActor.Id == 0)
             {
                 _context.VialActors.Add(vialActor);
                 await _context.SaveChangesAsync();
@@ -48,8 +46,6 @@ namespace OMUS.Controllers
             }
         }
 
-
-
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteVialActor(int id)
@@ -63,36 +59,19 @@ namespace OMUS.Controllers
             return NoContent();
         }
 
-
         [Authorize]
         [HttpGet("SyncTextIt")]
         public async Task<IActionResult> SyncTextIt()
         {
             var actors = await _context.VialActors.ToListAsync();
-            var actorsJson = JsonConvert.SerializeObject(actors);
+            var success = await _textItService.SyncGlobalAsync("vialactors", actors);
 
-            using (var client = new HttpClient())
+            if (success)
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", "0c8454f10c5917709f462d89342742a81d195d07");
-
-                var content = new StringContent(JsonConvert.SerializeObject(new
-                {
-                    value = actorsJson
-                }), Encoding.UTF8, "application/json");
-
-                var response = await client.PostAsync("https://textit.com/api/v2/globals.json?key=vialactors", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return NoContent();
-                }
-                else
-                {
-                    var responseBody = await response.Content.ReadAsStringAsync();
-                    return StatusCode((int)response.StatusCode, responseBody);
-                }
+                return NoContent();
             }
-        }
 
+            return StatusCode(502, new { message = "Failed to sync with TextIt" });
+        }
     }
 }

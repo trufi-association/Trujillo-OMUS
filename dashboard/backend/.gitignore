@@ -3,3 +3,19 @@ db/
 database/
 bin/
 obj/
+
+# Environment files with secrets
+.env
+.env.local
+.env.production
+appsettings.Development.json
+appsettings.Production.json
+
+# IDE
+.vs/
+.vscode/
+*.user
+
+# Logs
+logs/
+*.log

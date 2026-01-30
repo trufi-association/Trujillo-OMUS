@@ -117,10 +117,11 @@ class _ChartAdminScreenState extends State<ChartAdminScreen> {
   }
 
   void _openUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
     } else {
-      _showMessage("No se pudo abrir el enlace.");
+      _showMessage('No se pudo abrir el enlace.');
     }
   }
 

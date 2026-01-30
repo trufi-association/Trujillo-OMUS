@@ -61,3 +61,74 @@ Map<String, Region> loadRegions(Map<String, dynamic> parsedJson) {
         Region.fromJson(value),
       ));
 }
+
+/// GeoJSON Feature model for bus stops with accessibility properties.
+class GeoFeature {
+  final Location coordinates;
+  final bool? advertising;
+  final bool? bench;
+  final bool? bicycleParking;
+  final bool? bin;
+  final bool? lit;
+  final bool? ramp;
+  final bool? shelter;
+  final bool? level;
+  final bool? passengerInformationDisplaySpeechOutput;
+  final bool? tactileWritingBrailleEs;
+  final bool? tactilePaving;
+  final bool? departuresBoard;
+
+  GeoFeature({
+    required this.coordinates,
+    this.advertising,
+    this.bench,
+    this.bicycleParking,
+    this.bin,
+    this.lit,
+    this.ramp,
+    this.shelter,
+    this.level,
+    this.passengerInformationDisplaySpeechOutput,
+    this.tactileWritingBrailleEs,
+    this.tactilePaving,
+    this.departuresBoard,
+  });
+
+  factory GeoFeature.fromJson(Map<String, dynamic> json) {
+    final coords = json['geometry']['coordinates'];
+    final location = Location(latitude: coords[1], longitude: coords[0]);
+    final properties = json['properties'];
+
+    return GeoFeature(
+      coordinates: location,
+      advertising: _boolFromProperty(properties['advertising']),
+      bench: _boolFromProperty(properties['bench']),
+      bicycleParking: _boolFromProperty(properties['bicycle_parking']),
+      bin: _boolFromProperty(properties['bin']),
+      lit: _boolFromProperty(properties['lit']),
+      ramp: _boolFromProperty(properties['ramp']),
+      shelter: _boolFromProperty(properties['shelter']),
+      level: properties['level'] == '1'
+          ? true
+          : properties['level'] == '0'
+              ? false
+              : null,
+      passengerInformationDisplaySpeechOutput:
+          _boolFromProperty(properties['passenger_information_display:speech_output']),
+      tactileWritingBrailleEs:
+          _boolFromProperty(properties['tactile_writing:braille:es']),
+      tactilePaving: _boolFromProperty(properties['tactile_paving']),
+      departuresBoard: _boolFromProperty(properties['departures_board']),
+    );
+  }
+
+  static bool? _boolFromProperty(String? propertyValue) {
+    if (propertyValue == 'yes') {
+      return true;
+    } else if (propertyValue == 'no') {
+      return false;
+    } else {
+      return null;
+    }
+  }
+}

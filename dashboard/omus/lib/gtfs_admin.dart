@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:omus/authentication/authentication_bloc.dart';
-import 'package:omus/main.dart';
 import 'package:omus/services/api_service.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;

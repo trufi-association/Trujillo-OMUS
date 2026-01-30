@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OMUS.Data;
+using OMUS.Services;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http.Headers;
-using System.Text;
-using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 
 namespace OMUS.Controllers
@@ -13,14 +11,15 @@ namespace OMUS.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly OMUSContext _context;
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ITextItService _textItService;
+        private readonly IProxyService _proxyService;
 
-        public CategoriesController(OMUSContext context, IHttpClientFactory httpClientFactory)
+        public CategoriesController(OMUSContext context, ITextItService textItService, IProxyService proxyService)
         {
             _context = context;
-            _httpClientFactory = httpClientFactory;
+            _textItService = textItService;
+            _proxyService = proxyService;
         }
-
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
@@ -70,7 +69,6 @@ namespace OMUS.Controllers
             return NoContent();
         }
 
-
         [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
@@ -89,58 +87,49 @@ namespace OMUS.Controllers
         public async Task<IActionResult> SyncTextIt()
         {
             var categories = await _context.Categories.ToListAsync();
-            var categoriesJson = JsonConvert.SerializeObject(categories);
 
-            using (var client = new HttpClient())
+            // Convert to compact DTO format for TextIt (10000 char limit)
+            var compactCategories = categories.Select(c => new
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", "0c8454f10c5917709f462d89342742a81d195d07");
+                id = c.Id,
+                parentId = c.ParentId,
+                categoryName = c.CategoryName,
+                hasVictim = c.hasVictim,
+                hInv = c.hasInvolvedActor,  // Abbreviated to save space
+                hasDateTime = c.hasDateTime
+            });
 
-                var content = new StringContent(JsonConvert.SerializeObject(new
-                {
-                    value = categoriesJson
-                }), Encoding.UTF8, "application/json");
+            var success = await _textItService.SyncGlobalAsync("categories", compactCategories);
 
-                var response = await client.PostAsync("https://textit.com/api/v2/globals.json?key=categories", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    return NoContent();
-                }
-                else
-                {
-                    var responseBody = await response.Content.ReadAsStringAsync();
-                    return StatusCode((int)response.StatusCode, responseBody);
-                }
+            if (success)
+            {
+                return NoContent();
             }
+
+            return StatusCode(502, new { message = "Failed to sync with TextIt" });
         }
+
+        /// <summary>
+        /// Proxy endpoint for fetching external resources.
+        /// Only allows HTTPS URLs from whitelisted domains.
+        /// </summary>
+        [Authorize]
         [HttpGet("proxy")]
         public async Task<IActionResult> Proxy([FromQuery] string url)
         {
             if (string.IsNullOrEmpty(url))
             {
-                return BadRequest("Missing 'url' query parameter.");
+                return BadRequest(new { message = "Missing 'url' query parameter." });
             }
 
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync(url);
+            var result = await _proxyService.FetchUrlAsync(url);
 
-            if (responseMessage.IsSuccessStatusCode)
+            if (result.Success && result.Content != null)
             {
-                var contentType = responseMessage.Content.Headers.ContentType?.ToString() ?? "application/octet-stream";
-                var contentStream = await responseMessage.Content.ReadAsStreamAsync();
-                return File(contentStream, contentType);
+                return File(result.Content, result.ContentType ?? "application/octet-stream");
             }
-            else
-            {
-                var responseBody = await responseMessage.Content.ReadAsStringAsync();
-                return StatusCode((int)responseMessage.StatusCode, responseBody);
-            }
+
+            return StatusCode(result.StatusCode, new { message = result.ErrorMessage });
         }
-
-    }
-    public class SyncCategoriesRequest
-    {
-        public required string Url { get; set; }
-        public required string ApiKey { get; set; }
     }
 }

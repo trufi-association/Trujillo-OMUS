@@ -5,7 +5,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:omus/main.dart';
+import 'package:omus/presentation/widgets/common/general_app_bar.dart';
 import 'package:omus/services/api_service.dart';
 import 'package:omus/services/models/category.dart';
 import 'package:omus/services/models/report.dart';

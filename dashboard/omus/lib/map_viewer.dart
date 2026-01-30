@@ -13,13 +13,13 @@ import 'package:latlong2/latlong.dart';
 import 'package:omus/env.dart';
 import 'package:omus/geojson_models.dart';
 import 'package:omus/logo.dart';
-import 'package:omus/main.dart';
+import 'package:omus/core/utils/map_utils.dart';
+import 'package:omus/presentation/widgets/common/general_app_bar.dart';
 import 'package:omus/services/api_service.dart';
 import 'package:omus/services/models/category.dart';
 import 'package:omus/services/models/report.dart';
 import 'package:omus/services/models/vial_actor.dart';
 import 'package:omus/stations.dart';
-import 'package:omus/stats_viewer.dart';
 import 'package:omus/widgets/components/checkbox/custom_checkbox.dart';
 import 'package:omus/widgets/components/dropdown/helpers/dropdown_item.dart';
 import 'package:omus/widgets/components/dropdown/multi_select_dropdown.dart';
@@ -490,7 +490,7 @@ class MainMapState extends State<MainMap> {
                             return Marker(
                               width: 25,
                               height: 25,
-                              point: stop.coordinates,
+                              point: LatLng(stop.coordinates.latitude, stop.coordinates.longitude),
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: const Color.fromRGBO(152, 195, 116, 1),
